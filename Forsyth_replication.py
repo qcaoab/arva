@@ -76,7 +76,7 @@ if iter_params == "real_exp":
 
 if iter_params == "test_run":
     n_d_train_mc = 10000
-    itbound_mc = 6400 
+    itbound_mc = 1000 
     batchsize_mc = 100
 
 
