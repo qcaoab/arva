@@ -114,7 +114,7 @@ def wrap_run_MCsim(train_test_Flag,  # "train" or "test"
             MCsim_info["model_ID_1"] = "PVS_2019_benchmark_kou_VWD"
 
             # Assign correlations: CHECK ORDER if >= 2 assets!
-            rho_sb = 0.0
+            rho_sb = 0.08228
             MCsim_info["corr_matrix"] = np.array([[1, rho_sb], [rho_sb, 1]])
 
 

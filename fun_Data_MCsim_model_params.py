@@ -166,12 +166,12 @@ def get_model_params(model_ID, real_or_nominal = "real"):
 
             elif model_ID == "PVS_2019_benchmark_kou_T30":   #Calibrated parameters up to end of 2019, PVS stochastic BM paper
                 r = 0.0 #overwrite (but not used)
-                mu = 0.0044 #Basically plays the role of r
-                sig = 0.  # diffusive vol
-                lambda_jump = 0.  # intensity of Poisson
-                nu = 0.  # prob of UP jump
-                zeta1 = 0.  # expo param of UP jump
-                zeta2 = 0.  # expo param of DOWN jump
+                mu = 0.0045 #Basically plays the role of r
+                sig = 0.0130  # diffusive vol
+                lambda_jump = 0.5106  # intensity of Poisson
+                nu = 0.3958  # prob of UP jump
+                zeta1 = 65.85  # expo param of UP jump
+                zeta2 = 57.75  # expo param of DOWN jump
 
             elif model_ID == "PVS_2019_benchmark_kou_VWD": #Calibrated parameters up to end of 2019, PVS stochastic BM paper
                 r = 0.0 #overwrite (but not used)

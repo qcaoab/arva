@@ -210,6 +210,10 @@ def run_Gradient_Descent(method,
             supnorm_grad = np.linalg.norm(grad_theta_new, ord = np.inf)     #max(abs(gradient))
 
             if (newval < tol) or (supnorm_grad < tol):
+
+                print("---- Exiting Early ---- ")
+                print("Exiting at objective value = " + str(newval))
+                print("Exiting at gradient = " + str(supnorm_grad))
                 break   #Exit loop, do not execute rest of the main loop
 
 
@@ -349,6 +353,15 @@ def run_Gradient_Descent(method,
         if itbound >= 1000:
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
                 print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)
+                (_, newval, _, grad_theta_new) = objfun(F_theta = theta_avg,
+                                           NN_object = NN_object, params = params, output_Gradient=True)
+                supnorm_grad = np.linalg.norm(grad_theta_new, ord = np.inf)     #max(abs(gradient))
+                print( "objective value function right now is: " + str(newval))
+                print( "gradient value of function right now is: " + str(grad_theta_new))
+                print( "supnorm grad right now is: " + str(supnorm_grad))
+                print("Weights right now are: ")
+                print(theta)
+
 
     # ---------------------------- End: MAIN LOOP --------------------------------------------
 
