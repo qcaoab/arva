@@ -67,7 +67,7 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "test_run"
+iter_params = "real_exp"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
