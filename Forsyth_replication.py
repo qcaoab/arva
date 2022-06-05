@@ -47,7 +47,7 @@ else:
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
 
-code_title_prefix = "z_MAINv08_LiForsyth_sim_"    #used for saving output
+code_title_prefix = "output/output_mc_forsyth_rep"    #used for saving output
 
 params["T"] = 5. #Investment time horizon, in years
 params["N_rb"] = 20  #Nr of equally-spaced rebalancing events in [0,T]
@@ -57,7 +57,7 @@ params["delta_t"] = params["T"] / params["N_rb"]    # Rebalancing time interval
 params["W0"] = 1000.     # Initial wealth W0
 params["q"] =  0. * np.ones(params["N_rb"])  # Cash injection schedule (a priori specified)
 
-
+np.random.seed(1)
 #Specify TRANSACTION COSTS parameters
 params["TransCosts_TrueFalse"] = False #If True, incorporate transaction costs
 # - if TransCosts_TrueFalse == True, additional parameters will be used
