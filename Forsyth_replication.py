@@ -644,7 +644,7 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
 
     # - augment NN parameters with additional parameters to be solved
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
-        xi_0 = 27.
+        xi_0 = 27.744101568234655
         theta0 = np.concatenate([NN_theta0, [xi_0]])
 
 
