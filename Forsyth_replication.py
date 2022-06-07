@@ -47,7 +47,7 @@ else:
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
 
-code_title_prefix = "output/output_mc_forsyth_rep"    #used for saving output
+code_title_prefix = "researchcode/output/output_mc_forsyth_rep"    #used for saving output
 
 params["T"] = 5. #Investment time horizon, in years
 params["N_rb"] = 20  #Nr of equally-spaced rebalancing events in [0,T]
@@ -71,13 +71,13 @@ iter_params = "real_exp"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 64000 
+    itbound_mc = 100000
     batchsize_mc = 1000
 
 if iter_params == "test_run":
     n_d_train_mc = 10000
     itbound_mc = 1000 
-    batchsize_mc = 100
+    batchsize_mc = 50
 
 
 #Main settings for TRAINING data
