@@ -13,6 +13,8 @@ import os
 import gc   #garbage collector
 import seaborn as sns
 import datetime
+import pickle
+import sys
 
 
 #Import files needed (other files are imported within those files as needed)
@@ -47,7 +49,11 @@ else:
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
 
-code_title_prefix = "researchcode/output/output_mc_forsyth_rep"    #used for saving output
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
+code_title_prefix = "output/output_mc_forsyth_rep"    #used for saving output on local
+# code_title_prefix = "/u7/ma3chen/marc_branch2/researchcode/output/output_mc_forsyth_rep_"    #used for saving output on gpu1
 
 params["T"] = 5. #Investment time horizon, in years
 params["N_rb"] = 20  #Nr of equally-spaced rebalancing events in [0,T]
@@ -67,11 +73,11 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "test_run"
+iter_params = "real_run"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 100000
+    itbound_mc = 64000
     batchsize_mc = 1000
 
 if iter_params == "test_run":
@@ -156,7 +162,12 @@ params["obj_fun"] = "mean_cvar_single_level"
 # "ir_stochastic" info ratio using *STOCHASTIC TARGET* as in Goetzmann et al (2002)
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
-tracing_parameters_to_run = [1.0]  #Must be LIST
+print("tracing parameter entered from terminal: ", sys.argv[1])
+tracing_parameters_to_run = [float(sys.argv[1])]  #Must be LIST
+
+use_previous_theta = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
+
+
 # TRACING PARAMETERS interpreted as follows:
 #   -> STANDARD objectives tracing parameters:
 #   params["obj_fun_rho"] if obj_fun is in ["mean_cvar_single_level"], *larger* rho means we are looking for a *higher* mean
@@ -413,6 +424,7 @@ if output_bootstrap_source_data:
 params["output_csv_data_training_testing"] = False  #if True, write out training/testing data to .csv files
 
 
+
 if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
 
     # ----------------------------------------
@@ -463,6 +475,7 @@ elif params["data_source_Train"] == "simulated":
         #   params["Y_train"][j, n, i] = Return, along sample path j, over time period (t_n, t_n+1), for asset i
         #       -- IMPORTANT: params["Y_train"][j, n, i] entries are basically (1 + return), so it is ready for multiplication with start value
         #   params["Y_order_train"][i] = column name of asset i used for identification
+
 
 
 if params["test_TrueFalse"] is True:
@@ -641,6 +654,28 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     # - initial NN parameters [shuffle for each tracing param]
     NN_theta0 = NN.initialize_NN_parameters(initialize_scheme="glorot_bengio")
     theta0 = NN_theta0.copy()
+
+    #MC edit: set theta to theta from kappa=1, 100,000 epochs run. 
+
+    theta_str = string = "-2.99087860e+00  3.12511766e+00 -1.94362827e+00  3.50441887e+00 \
+                            3.24544731e+00 -3.23380935e+00  2.34256554e+00 -4.22044725e+00 \
+                            -1.80984955e+00 -1.35906866e+01  1.59496220e+00  6.73565515e+00 \
+                            2.85150650e+00  1.93183640e+01  1.20653731e+02  9.73808853e+00 \
+                            1.24890929e+02 -1.28885577e+02 -1.29768695e+02  2.30672054e+01 \
+                            1.04209981e+02 -3.16768026e+00 -2.58983347e-01 -1.03196488e+00 \
+                            -3.45662008e+00  1.92761403e+00  4.29680302e+00 -1.05198990e+01 \
+                            -4.32994996e+01 -1.10862961e+01  5.18497411e+01  1.82995488e+01 \
+                            -6.90156390e+01  5.23661262e+01  7.61562336e+01  1.51768581e+01 \
+                            -1.37237166e+01 -1.57696206e+01  1.74447108e+01  5.06616920e+01 \
+                            -4.87974534e+00  6.97132032e+00  1.96951483e+02  8.44338432e+00 \
+                            -1.17228411e+00  6.11313267e+01 -4.01516703e+00  4.96949197e+01 \
+                            -2.09373935e+00  2.14556855e+00 -2.86543381e-03  2.51993515e+00 \
+                            2.55998766e+00  2.12006589e+02 -5.81855804e+00  2.07103832e+02 \
+                            9.69953104e+00  4.78857516e+00  9.11348009e-02 -2.80040370e+00 \
+                            8.18253704e+00  1.77887740e+00  1.04070616e+00 -2.83247575e+00 "
+    theta0 = np.array([float(num) for num in theta_str.split()])
+
+    print(theta0, np.shape(theta0))    
 
     # - augment NN parameters with additional parameters to be solved
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi

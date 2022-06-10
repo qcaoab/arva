@@ -361,6 +361,7 @@ def run_Gradient_Descent(method,
                 print( "supnorm grad right now is: " + str(supnorm_grad))
                 print("Weights right now are: ")
                 print(theta)
+                print(np.shape(theta0))
 
 
     # ---------------------------- End: MAIN LOOP --------------------------------------------
