@@ -44,7 +44,7 @@ else:
     import matplotlib.pyplot as plt
 
 
-#-----------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------dd F-----------
 # Portfolio problem: Main structural parameters
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
@@ -73,17 +73,17 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "real_exp"
+iter_params = "test_run"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 100000
-    batchsize_mc = 1000
+    itbound_mc = 64000
+    batchsize_mc = 5000
 
 if iter_params == "test_run":
-    n_d_train_mc = 10000
-    itbound_mc = 1000 
-    batchsize_mc = 50
+    n_d_train_mc = int(2.56* (10**5))
+    itbound_mc = 10000
+    batchsize_mc = 100
 
 
 #Main settings for TRAINING data
@@ -245,7 +245,7 @@ elif params["obj_fun"] == "te_stochastic":  # TRACKING ERROR as in Forsyth (2021
 output_parameters = {}
 
 #Basic output params
-output_parameters["code_title_prefix"] = code_title_prefix  # used as prefix for naming files when saving outputs
+output_parameters["code_title_prefix"] = code_title_prefix + "_kappa_" + str(tracing_parameters_to_run) # used as prefix for naming files when saving outputs
 output_parameters["output_results_Excel"] = True      #Output results summary to Excel
 
 output_parameters["save_Figures_format"] = "png"  # if saving figs, format to save figures in, e.g. "png", "eps",
