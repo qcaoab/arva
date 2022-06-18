@@ -15,7 +15,7 @@ import seaborn as sns
 import datetime
 import pickle
 import sys
-
+import datetime
 
 #Import files needed (other files are imported within those files as needed)
 import fun_Data_timeseries_basket
@@ -44,7 +44,12 @@ else:
     import matplotlib.pyplot as plt
 
 
-#------------------------------------------------------------------------------------dd F-----------
+now = datetime.now()
+# dd/mm/YY H:M:S
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+print("process starting at: ", dt_string)	
+
+#-----------------------------------------------------------------------------------------------
 # Portfolio problem: Main structural parameters
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
@@ -73,12 +78,12 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "test_run"
+iter_params = "real_exp"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
     itbound_mc = 64000
-    batchsize_mc = 5000
+    batchsize_mc = 1000
 
 if iter_params == "test_run":
     n_d_train_mc = int(2.56* (10**5))
