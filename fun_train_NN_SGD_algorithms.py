@@ -353,15 +353,14 @@ def run_Gradient_Descent(method,
         if itbound >= 1000:
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
                 print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)
-                (_, newval, _, grad_theta_new) = objfun(F_theta = theta_avg,
+                (_, newval_mc, _, grad_theta_new_mc) = objfun(F_theta = theta_avg,
                                            NN_object = NN_object, params = params, output_Gradient=True)
-                supnorm_grad = np.linalg.norm(grad_theta_new, ord = np.inf)     #max(abs(gradient))
-                print( "objective value function right now is: " + str(newval))
-                print( "gradient value of function right now is: " + str(grad_theta_new))
+                supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
+                print( "objective value function right now is: " + str(newval_mc))
+                print( "gradient value of function right now is: " + str(grad_theta_new_mc))
                 print( "supnorm grad right now is: " + str(supnorm_grad))
                 print("Weights right now are: ")
                 print(theta)
-                print(np.shape(theta0))
 
 
     # ---------------------------- End: MAIN LOOP --------------------------------------------
