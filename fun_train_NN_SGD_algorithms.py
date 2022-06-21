@@ -6,6 +6,9 @@ import copy
 from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun  #objective function for NN evaluation
 from fun_W_T_stats import fun_W_T_summary_stats
 
+import json
+
+
 
 def run_Gradient_Descent(method,
                          theta0,        # initial parameter vector (weights and biases) and other params of form
@@ -393,11 +396,27 @@ def run_Gradient_Descent(method,
         NN_theta = F_theta[0:-1]
         xi = F_theta[-1]  # Last entry is xi, where (xi**2) is candidate VAR
 
+        #added theta cache
+        optimal_params = {"NN":NN_theta.tolist()}
+        with open('NN_optimal2.json', 'w') as outfile:
+            json.dump(optimal_params, outfile)
+        
+        print("NN weights: " + str(NN_theta))
+        print("Minimum obj value:" + str(val))
+        print("Optimal xi: " + str(xi))
+
+
         # Make sure parameter dictionary is updated so that e.g. fun_Objective_functions can work correctly
         params["xi"] = xi #(xi**2) is candidate VAR
 
     else:
         NN_theta = F_theta
+
+        #added theta cache
+        optimal_params = {"NN":NN_theta.tolist()}
+        with open('NN_optimal2.json', 'w') as outfile:
+            json.dump(optimal_params, outfile)
+
 
 
     t_end = time.time()

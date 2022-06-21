@@ -16,6 +16,7 @@ import datetime
 import pickle
 import sys
 import datetime
+import codecs, json
 
 #Import files needed (other files are imported within those files as needed)
 import fun_Data_timeseries_basket
@@ -43,12 +44,9 @@ else:
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
 
-
-now = datetime.now()
-# dd/mm/YY H:M:S
-dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-print("process starting at: ", dt_string)	
-
+now = datetime.datetime.now()
+print ("Starting at: ")
+print (now.strftime("%Y-%m-%d %H:%M:%S"))
 #-----------------------------------------------------------------------------------------------
 # Portfolio problem: Main structural parameters
 #-----------------------------------------------------------------------------------------------
@@ -58,7 +56,7 @@ abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 code_title_prefix = "output/output_mc_forsyth_rep"    #used for saving output on local
-# code_title_prefix = "/u7/ma3chen/marc_branch2/researchcode/output/output_mc_forsyth_rep_"    #used for saving output on gpu1
+
 
 params["T"] = 5. #Investment time horizon, in years
 params["N_rb"] = 20  #Nr of equally-spaced rebalancing events in [0,T]
@@ -68,7 +66,10 @@ params["delta_t"] = params["T"] / params["N_rb"]    # Rebalancing time interval
 params["W0"] = 1000.     # Initial wealth W0
 params["q"] =  0. * np.ones(params["N_rb"])  # Cash injection schedule (a priori specified)
 
-np.random.seed(1)
+seed_mc = 2
+np.random.seed(seed_mc)
+print("\n Random seed: ", seed_mc, " \n")
+
 #Specify TRANSACTION COSTS parameters
 params["TransCosts_TrueFalse"] = False #If True, incorporate transaction costs
 # - if TransCosts_TrueFalse == True, additional parameters will be used
@@ -78,7 +79,7 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "real_exp"
+iter_params = "test_run"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
@@ -86,7 +87,7 @@ if iter_params == "real_exp":
     batchsize_mc = 1000
 
 if iter_params == "test_run":
-    n_d_train_mc = int(2.56* (10**5))
+    n_d_train_mc = int(2.56* (10**4))
     itbound_mc = 10000
     batchsize_mc = 100
 
@@ -660,27 +661,16 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     NN_theta0 = NN.initialize_NN_parameters(initialize_scheme="glorot_bengio")
     theta0 = NN_theta0.copy()
 
-    #MC edit: set theta to theta from kappa=1, 100,000 epochs run. 
+    from pathlib import Path
 
-    # theta_str = string = "-2.99087860e+00  3.12511766e+00 -1.94362827e+00  3.50441887e+00 \
-    #                         3.24544731e+00 -3.23380935e+00  2.34256554e+00 -4.22044725e+00 \
-    #                         -1.80984955e+00 -1.35906866e+01  1.59496220e+00  6.73565515e+00 \
-    #                         2.85150650e+00  1.93183640e+01  1.20653731e+02  9.73808853e+00 \
-    #                         1.24890929e+02 -1.28885577e+02 -1.29768695e+02  2.30672054e+01 \
-    #                         1.04209981e+02 -3.16768026e+00 -2.58983347e-01 -1.03196488e+00 \
-    #                         -3.45662008e+00  1.92761403e+00  4.29680302e+00 -1.05198990e+01 \
-    #                         -4.32994996e+01 -1.10862961e+01  5.18497411e+01  1.82995488e+01 \
-    #                         -6.90156390e+01  5.23661262e+01  7.61562336e+01  1.51768581e+01 \
-    #                         -1.37237166e+01 -1.57696206e+01  1.74447108e+01  5.06616920e+01 \
-    #                         -4.87974534e+00  6.97132032e+00  1.96951483e+02  8.44338432e+00 \
-    #                         -1.17228411e+00  6.11313267e+01 -4.01516703e+00  4.96949197e+01 \
-    #                         -2.09373935e+00  2.14556855e+00 -2.86543381e-03  2.51993515e+00 \
-    #                         2.55998766e+00  2.12006589e+02 -5.81855804e+00  2.07103832e+02 \
-    #                         9.69953104e+00  4.78857516e+00  9.11348009e-02 -2.80040370e+00 \
-    #                         8.18253704e+00  1.77887740e+00  1.04070616e+00 -2.83247575e+00 "
-    # theta0 = np.array([float(num) for num in theta_str.split()])
+    my_file = Path("NN_optimal2.json")
+    if my_file.is_file():
+        obj_text = codecs.open("NN_optimal2.json", 'r', encoding='utf-8').read()
+        b_new = json.loads(obj_text)
+        print(b_new)
+        NN_theta0 = np.array(b_new["NN"])
+        print(NN_theta0)
 
-    print(theta0, np.shape(theta0))    
 
     # - augment NN parameters with additional parameters to be solved
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi

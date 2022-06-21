@@ -215,6 +215,7 @@ def fun_objective(params, standardize=True):
 
 
 def mean_cvar_single_level(W_T_vector, rho, alpha, xi, lambda_smooth):
+   
     # Mean-CVAR objective for SINGLE level optimization problem
 
     # OUTPUT: objective function value and its gradients (if vectors, same size as W_T_vector)
@@ -246,6 +247,9 @@ def mean_cvar_single_level(W_T_vector, rho, alpha, xi, lambda_smooth):
 
         #Function
         fun = -rho * W_T_vector - xi_squared - (1/alpha)*bracket
+        
+        # print("k*EW: ", np.mean(-rho * W_T_vector), "ES: ", np.mean(- xi_squared - (1/alpha)*bracket))
+        
 
         #Gradients
         grad_fun_w = -(rho + (1/alpha)) * ind_W_T_below_xi_squared  \
@@ -256,7 +260,8 @@ def mean_cvar_single_level(W_T_vector, rho, alpha, xi, lambda_smooth):
 
 
     else:  # if lambda_smooth is NOT zero
-
+        
+        
         #Get indicators of the range of W_T
         ind_W_T_below = (W_T_vector < (xi_squared - lambda_smooth)) * 1
         ind_W_T_above = (W_T_vector > (xi_squared + lambda_smooth)) * 1
@@ -279,6 +284,9 @@ def mean_cvar_single_level(W_T_vector, rho, alpha, xi, lambda_smooth):
 
         #Function
         fun = -rho * W_T_vector - xi_squared + (1/alpha)*phi
+
+        # print("k*EW: ", np.mean(-rho * W_T_vector), "ES: ", np.mean(- xi_squared + (1/alpha)*phi))
+        
 
         # Gradients
         grad_fun_w_below = -rho - (1/alpha)
