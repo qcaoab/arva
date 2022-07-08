@@ -521,8 +521,8 @@ NN = class_Neural_Network.Neural_Network(n_nodes_input = params["N_phi"],
 NN.print_layers_info()  #Check what to update
 
 #Update layers info
-NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=True)
+NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=True)
 #NN.update_layer_info(layer_id = 3 , n_nodes = 8, activation = "ELU", add_bias=False)
 NN.update_layer_info(layer_id = 3, activation = "softmax", add_bias= False)
 
