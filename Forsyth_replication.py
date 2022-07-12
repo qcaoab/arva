@@ -66,7 +66,7 @@ params["delta_t"] = params["T"] / params["N_rb"]    # Rebalancing time interval
 params["W0"] = 1000.     # Initial wealth W0
 params["q"] =  0. * np.ones(params["N_rb"])  # Cash injection schedule (a priori specified)
 
-seed_mc = 2
+seed_mc = 1
 np.random.seed(seed_mc)
 print("\n Random seed: ", seed_mc, " \n")
 
@@ -82,13 +82,13 @@ if params["TransCosts_TrueFalse"] is True:
 iter_params = "test_run"
 
 if iter_params == "real_exp":
-    n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 64000
+    n_d_train_mc = int(2.56* (10**5))
+    itbound_mc = 10000
     batchsize_mc = 1000
 
 if iter_params == "test_run":
     n_d_train_mc = int(2.56* (10**4))
-    itbound_mc = 10000
+    itbound_mc = 1000
     batchsize_mc = 100
 
 
@@ -168,8 +168,9 @@ params["obj_fun"] = "mean_cvar_single_level"
 # "ir_stochastic" info ratio using *STOCHASTIC TARGET* as in Goetzmann et al (2002)
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
-print("tracing parameter entered from terminal: ", sys.argv[1])
-tracing_parameters_to_run = [float(sys.argv[1])]  #Must be LIST
+# print("tracing parameter entered from terminal: ", sys.argv[1])
+tracing_parameters_to_run = [1.0, 1.5, 3.0, 10.0]
+#[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
 use_previous_theta = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
 
@@ -215,7 +216,7 @@ elif params["obj_fun"] == "mean_cvar_single_level":  # SINGLE level formulation,
 elif params["obj_fun"] == "meancvarLIKE_constant_wstar":  # NOT true mean-cvar!
     params["obj_fun_alpha"] = 0.05  # alpha for alpha_CVaR, must be in DECIMAL format (not *100)
     params["obj_fun_lambda_smooth"] = 1e-07  # 1e-07  # Lambda for smoothed version of mean-CVAR objective,assumed =0 for no smoothing if not set
-    params["obj_fun_LIST_constant_wstar_tested"] = [785., 800., 805., 806.]   #List of CONSTANT wstar(s),
+    params["obj_fun_LIST_constant_wstar_tested"] = [784.]   #List of CONSTANT wstar(s),
     # in usual mean-CVAR this would be candidate value for value-at-risk at level alpha
     #Code below will loop over wstar in params["LIST_constant_wstar_tested"], and
     # optimize "mean-cvar" objective (minimize) for each constant wstar

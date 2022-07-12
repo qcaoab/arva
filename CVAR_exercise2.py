@@ -70,7 +70,7 @@ if params["TransCosts_TrueFalse"] is True:
 
 
 #Main settings for TRAINING data
-params["N_d_train"] = 5000 #int(2.56* (10**6)) #Nr of TRAINING data return sample paths to bootstrap
+params["N_d_train"] = 50000 #int(2.56* (10**6)) #Nr of TRAINING data return sample paths to bootstrap
 params["data_source_Train"] = "simulated" #"bootstrap" or "simulated" [data source for TRAINING data]
 
 
@@ -161,8 +161,8 @@ tracing_parameters_to_run = [805.] # [300., 500., 800., 1100., 1300.]  #Must be 
 
 
 # SGD max iterations and batch size
-itbound = 100 #64000    #Mean-CVAR: use at least itbound = 50k
-batchsize = 10 #100      #Mean-CVAR: use at least batchsize = 1000, other can use = 100
+itbound = 10000 #64000    #Mean-CVAR: use at least itbound = 50k
+batchsize = 1000 #100      #Mean-CVAR: use at least batchsize = 1000, other can use = 100
 
 # Set objective function parameters [rarely changed]
 # -----------------------------------------------------------------------------
@@ -622,13 +622,13 @@ if params["preTrained_TrueFalse"] is True:
 
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
-# for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
+for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
 
-def NN_solver(wstar):
-        
-    params["obj_fun_LIST_constant_wstar_tested"] = [wstar]
+# def NN_solver(wstar):
+    # tracing_param = tracing_parameters_to_run[0]
 
-    tracing_param = tracing_parameters_to_run[0]
+    # params["obj_fun_LIST_constant_wstar_tested"] = [wstar]
+   
     # SET INITIAL VALUES ----------------------------
     # - initial NN parameters [shuffle for each tracing param]
     NN_theta0 = NN.initialize_NN_parameters(initialize_scheme="glorot_bengio")
@@ -717,13 +717,13 @@ def NN_solver(wstar):
     print("Tracing param: " + str(tracing_param))
     print("-----------------------------------------------")
 
-    return(params_TRAIN["F_val"])
+    # return(params_TRAIN["F_val"])
 
 #END: Loop over tracing_params
 
 from scipy.optimize import minimize
 
-print(minimize(NN_solver, 300.))
+# print(minimize(NN_solver, 300.))
 
 
 

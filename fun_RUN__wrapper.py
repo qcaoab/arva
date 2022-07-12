@@ -43,6 +43,7 @@ def RUN__wrapper_TWO_stage_optimization(
         params["obj_fun_constant_wstar"] = wstar  # CONSTANT wstar(s),
         # in usual mean-CVAR this would be candidate value for value-at-risk at level alpha
 
+        print("wstar(nu): ", wstar)
         # For constant value of wstar: Do TRAINING and/or TESTING of NN, as well as OUTPUTS
         params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
             RUN__wrapper_training_testing_NN(

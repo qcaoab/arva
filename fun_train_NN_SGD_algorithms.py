@@ -359,11 +359,11 @@ def run_Gradient_Descent(method,
                 (_, newval_mc, _, grad_theta_new_mc) = objfun(F_theta = theta_avg,
                                            NN_object = NN_object, params = params, output_Gradient=True)
                 supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
-                print( "objective value function right now is: " + str(newval_mc))
-                print( "gradient value of function right now is: " + str(grad_theta_new_mc))
-                print( "supnorm grad right now is: " + str(supnorm_grad))
-                print("Weights right now are: ")
-                print(theta)
+                # print( "objective value function right now is: " + str(newval_mc))
+                # print( "gradient value of function right now is: " + str(grad_theta_new_mc))
+                # print( "supnorm grad right now is: " + str(supnorm_grad))
+                # print("Weights right now are: ")
+                # print(theta)
 
 
     # ---------------------------- End: MAIN LOOP --------------------------------------------
