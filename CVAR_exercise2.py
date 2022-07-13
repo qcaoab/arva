@@ -187,7 +187,9 @@ elif params["obj_fun"] == "mean_cvar_single_level":  # SINGLE level formulation,
 elif params["obj_fun"] == "meancvarLIKE_constant_wstar":  # NOT true mean-cvar!
     params["obj_fun_alpha"] = 0.05  # alpha for alpha_CVaR, must be in DECIMAL format (not *100)
     params["obj_fun_lambda_smooth"] = 1e-07  # 1e-07  # Lambda for smoothed version of mean-CVAR objective,assumed =0 for no smoothing if not set
-    params["obj_fun_LIST_constant_wstar_tested"] = [float(item) for item in sys.argv[1].split(" ")]#[785., 800., 805., 806.]   #List of CONSTANT wstar(s),
+    # params["obj_fun_LIST_constant_wstar_tested"] = [float(item) for item in sys.argv[1].split(" ")]#[785., 800., 805., 806.]   #List of CONSTANT wstar(s),
+    params["obj_fun_LIST_constant_wstar_tested"] = [100.,400.,700.,900.,1000.,1100.,1200.]#[785., 800., 805., 806.]   #List of CONSTANT wstar(s),
+    
     # in usual mean-CVAR this would be candidate value for value-at-risk at level alpha
     #Code below will loop over wstar in params["LIST_constant_wstar_tested"], and
     # optimize "mean-cvar" objective (minimize) for each constant wstar
