@@ -196,6 +196,7 @@ def RUN__wrapper_training_testing_NN(
     print("W_T_median: " + str(params_TRAIN["W_T_stats_dict"]["W_T_median"]))
     print("W_T_pctile_5: " + str(params_TRAIN["W_T_stats_dict"]["W_T_pctile_5"]))
     print("W_T_CVAR_5_pct: " + str(params_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
+    print("F value: " + str(params_TRAIN["F_val"]))
     print("-----------------------------------------------")
 
 
