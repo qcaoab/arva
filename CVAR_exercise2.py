@@ -161,8 +161,8 @@ tracing_parameters_to_run = [805.] # [300., 500., 800., 1100., 1300.]  #Must be 
 
 
 # SGD max iterations and batch size
-itbound = 10000 #64000    #Mean-CVAR: use at least itbound = 50k
-batchsize = 1000 #100      #Mean-CVAR: use at least batchsize = 1000, other can use = 100
+itbound = 1000 #64000    #Mean-CVAR: use at least itbound = 50k
+batchsize = 100 #100      #Mean-CVAR: use at least batchsize = 1000, other can use = 100
 
 # Set objective function parameters [rarely changed]
 # -----------------------------------------------------------------------------
