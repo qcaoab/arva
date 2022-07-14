@@ -624,12 +624,12 @@ if params["preTrained_TrueFalse"] is True:
 
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
-for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
+# for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
 
-# def NN_solver(wstar):
-    # tracing_param = tracing_parameters_to_run[0]
+def NN_solver(wstar):
+    tracing_param = tracing_parameters_to_run[0]
 
-    # params["obj_fun_LIST_constant_wstar_tested"] = [wstar]
+    params["obj_fun_LIST_constant_wstar_tested"] = [wstar]
    
     # SET INITIAL VALUES ----------------------------
     # - initial NN parameters [shuffle for each tracing param]
@@ -719,13 +719,13 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     print("Tracing param: " + str(tracing_param))
     print("-----------------------------------------------")
 
-    # return(params_TRAIN["F_val"])
+    return(params_TRAIN["F_val"])
 
 #END: Loop over tracing_params
 
 from scipy.optimize import minimize
 
-# print(minimize(NN_solver, 300.))
+print(minimize(NN_solver, 1000.))
 
 
 
