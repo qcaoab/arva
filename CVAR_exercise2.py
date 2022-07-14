@@ -145,7 +145,7 @@ params["obj_fun"] = "meancvarLIKE_constant_wstar"
 # "ir_stochastic" info ratio using *STOCHASTIC TARGET* as in Goetzmann et al (2002)
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
-tracing_parameters_to_run = [805.] # [300., 500., 800., 1100., 1300.]  #Must be LIST
+tracing_parameters_to_run = [0.2, 0.5, 0.8, 1.0, 1.2, 1.5, 2.0] # [300., 500., 800., 1100., 1300.]  #Must be LIST
 # TRACING PARAMETERS interpreted as follows:
 #   -> STANDARD objectives tracing parameters:
 #   params["obj_fun_rho"] if obj_fun is in ["mean_cvar_single_level"], *larger* rho means we are looking for a *higher* mean
@@ -188,7 +188,7 @@ elif params["obj_fun"] == "meancvarLIKE_constant_wstar":  # NOT true mean-cvar!
     params["obj_fun_alpha"] = 0.05  # alpha for alpha_CVaR, must be in DECIMAL format (not *100)
     params["obj_fun_lambda_smooth"] = 1e-07  # 1e-07  # Lambda for smoothed version of mean-CVAR objective,assumed =0 for no smoothing if not set
     # params["obj_fun_LIST_constant_wstar_tested"] = [float(item) for item in sys.argv[1].split(" ")]#[785., 800., 805., 806.]   #List of CONSTANT wstar(s),
-    params["obj_fun_LIST_constant_wstar_tested"] = [100.,400.,700.,900.,1000.,1100.,1200.]#[785., 800., 805., 806.]   #List of CONSTANT wstar(s),
+    params["obj_fun_LIST_constant_wstar_tested"] = [1000.]#[785., 800., 805., 806.]   #List of CONSTANT wstar(s),
     
     # in usual mean-CVAR this would be candidate value for value-at-risk at level alpha
     #Code below will loop over wstar in params["LIST_constant_wstar_tested"], and
@@ -624,12 +624,12 @@ if params["preTrained_TrueFalse"] is True:
 
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
-# for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
+for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
 
-def NN_solver(wstar):
-    tracing_param = tracing_parameters_to_run[0]
+# def NN_solver(wstar):
+    # tracing_param = tracing_parameters_to_run[0]
 
-    params["obj_fun_LIST_constant_wstar_tested"] = [wstar]
+    # params["obj_fun_LIST_constant_wstar_tested"] = [wstar]
    
     # SET INITIAL VALUES ----------------------------
     # - initial NN parameters [shuffle for each tracing param]
@@ -719,13 +719,13 @@ def NN_solver(wstar):
     print("Tracing param: " + str(tracing_param))
     print("-----------------------------------------------")
 
-    return(params_TRAIN["F_val"])
+    # return(params_TRAIN["F_val"])
 
 #END: Loop over tracing_params
 
 from scipy.optimize import minimize
 
-print(minimize(NN_solver, 1000.))
+# print(minimize(NN_solver, 1000.))
 
 
 
