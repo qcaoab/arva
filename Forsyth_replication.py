@@ -82,8 +82,8 @@ if params["TransCosts_TrueFalse"] is True:
 iter_params = "test_run"
 
 if iter_params == "real_exp":
-    n_d_train_mc = int(2.56* (10**5))
-    itbound_mc = 10000
+    n_d_train_mc = int(2.56* (10**6))
+    itbound_mc = 60000
     batchsize_mc = 1000
 
 if iter_params == "test_run":
@@ -169,7 +169,7 @@ params["obj_fun"] = "mean_cvar_single_level"
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
 # print("tracing parameter entered from terminal: ", sys.argv[1])
-tracing_parameters_to_run = [1.0, 1.5, 3.0, 10.0]
+tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
 use_previous_theta = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
