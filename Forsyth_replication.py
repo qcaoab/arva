@@ -169,8 +169,8 @@ params["obj_fun"] = "mean_cvar_single_level"
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
 # print("tracing parameter entered from terminal: ", sys.argv[1])
-tracing_parameters_to_run = [1.0, 1.5, 3.0, 10.0]
-#[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
+# tracing_parameters_to_run = [1.0, 1.5, 3.0, 10.0]
+tracing_parameters_to_run = [float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
 use_previous_theta = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
 
@@ -665,7 +665,7 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     from pathlib import Path
 
     my_file = Path("NN_optimal2.json")
-    if my_file.is_file():
+    if my_file.is_file() and tracing_param != tracing_parameters_to_run[0]:
         obj_text = codecs.open("NN_optimal2.json", 'r', encoding='utf-8').read()
         b_new = json.loads(obj_text)
         print(b_new)
