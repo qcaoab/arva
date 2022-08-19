@@ -169,8 +169,8 @@ params["obj_fun"] = "mean_cvar_single_level"
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
 # print("tracing parameter entered from terminal: ", sys.argv[1])
-# tracing_parameters_to_run = [1.0, 1.5, 3.0, 10.0]
-tracing_parameters_to_run = [float(item) for item in sys.argv[1].split(" ")] #Must be LIST
+tracing_parameters_to_run = [1.0, 1.5, 3.0, 10.0]
+# tracing_parameters_to_run = [float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
 use_previous_theta = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
 
