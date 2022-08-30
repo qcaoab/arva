@@ -179,7 +179,8 @@ params["obj_fun"] = "mean_cvar_single_level"
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
 # print("tracing parameter entered from terminal: ", sys.argv[1])
-tracing_parameters_to_run = [1.5] #[1.0, 1.5, 3.0, 10.0]
+tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
+#[1.0, 1.5, 3.0, 10.0]
 # tracing_parameters_to_run = [float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
 
