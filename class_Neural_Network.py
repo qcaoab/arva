@@ -642,7 +642,7 @@ class Neural_Network(object):
         grad_h_phi = np.squeeze(grad_h_phi) # otherwise grad_h_phi.shape = [N_d, 1, len(phi) ]
 
 
-        return grad_h_theta
+        return grad_h_theta, grad_h_phi
 
 
     def forward_propagation(self, phi, theta = None):
