@@ -114,3 +114,4 @@ W_T_CVAR_5_pct: 747.2411321494716
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
