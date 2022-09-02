@@ -1,0 +1,1546 @@
+Starting at: 
+2022-08-14 10:20:02
+
+ Random seed:  1  
+
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = basic_T30_VWD
+timeseries_basket['basket_desc'] = CRSP data: T30 and VWD
+timeseries_basket['basket_columns'] = 
+['T30_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+5.0% of MC simulations done.
+10.0% of MC simulations done.
+15.0% of MC simulations done.
+20.0% of MC simulations done.
+25.0% of MC simulations done.
+30.0% of MC simulations done.
+35.0% of MC simulations done.
+40.0% of MC simulations done.
+45.0% of MC simulations done.
+50.0% of MC simulations done.
+55.00000000000001% of MC simulations done.
+60.0% of MC simulations done.
+65.0% of MC simulations done.
+70.0% of MC simulations done.
+75.0% of MC simulations done.
+80.0% of MC simulations done.
+85.0% of MC simulations done.
+90.0% of MC simulations done.
+95.0% of MC simulations done.
+100.0% of MC simulations done.
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  hidden_layer    None       None         None   
+4        obj.layers[4]        4  hidden_layer    None       None         None   
+5        obj.layers[5]        5  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+4    False        None  
+5    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       4  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       4  logistic_sigmoid   
+3        obj.layers[3]        3  hidden_layer       4  logistic_sigmoid   
+4        obj.layers[4]        4  hidden_layer       4  logistic_sigmoid   
+5        obj.layers[5]        5  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 4)    False        None  
+2       (4, 4)    False        None  
+3       (4, 4)    False        None  
+4       (4, 4)    False        None  
+5       (4, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-2.04037061e+00  2.68821204e+00 -1.03032180e+00  1.24783624e+00
+  2.29493932e+00 -2.79690373e+00  1.42925907e+00 -1.96386462e+00
+  9.98927294e+01  1.45229721e+01  3.59122442e+01  1.05121730e+02
+  3.12218486e+01  1.35439910e+00  1.47405870e+00  3.29073064e+01
+  3.61731469e+00  2.02401172e+02  2.21326411e+01 -4.55654574e-01
+  1.25601158e+00 -4.35541759e-01  3.82866670e+01  9.62878642e-01
+  2.06830274e+01  3.91932841e+00 -3.09816432e+00 -2.16157868e+01
+  5.70223248e+00  7.76877624e-02 -1.41085821e+00 -6.58123464e+00
+  1.04142514e+01  8.11172190e+00 -1.59118452e+01 -1.59819745e+01
+  2.06478992e+01  3.98219578e+00 -2.66267146e+00 -2.25482892e+01
+ -1.05109155e+02 -7.42383341e+01  3.26622284e+01  4.23856546e+00
+ -6.73101041e+00 -9.87988048e+01 -3.27755102e+01 -5.77494748e+01
+ -4.17571089e+00 -2.12585359e+00  4.73749770e+01  3.86538053e+01
+  3.63464706e+00  3.45694233e-01  1.65705367e+01  6.45404105e+00
+ -3.30749673e+00 -5.28188893e+00  1.08831998e+00 -5.67208694e+00
+  4.83183330e+00 -4.03192662e+00  5.66698988e+00 -5.19228335e+00]
+Minimum obj value:-1046.114795257645
+Optimal xi: 31.104772386216666
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1062.175018415263
+W_T_median: 1049.5421277279409
+W_T_pctile_5: 967.8454906876661
+W_T_CVAR_5_pct: 939.9004593205451
+F value: -1046.114795257645
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.1
+F value: -1046.114795257645
+-----------------------------------------------
+{'NN': [-2.0403706113316566, 2.6882120395574867, -1.0303218039162565, 1.2478362402784786, 2.294939322054054, -2.7969037297132777, 1.4292590733458406, -1.9638646233075616, 99.89272935288918, 14.522972138084729, 35.91224424470113, 105.12172959569884, 31.221848606970394, 1.354399104956871, 1.4740587023708696, 32.9073064488907, 3.6173146868783563, 202.40117212853755, 22.13264108244293, -0.45565457353311906, 1.2560115848194122, -0.435541758890089, 38.28666703154367, 0.9628786422698522, 20.683027403822184, 3.919328413237914, -3.0981643162938477, -21.6157867690333, 5.702232478840515, 0.07768776235937117, -1.4108582111842602, -6.581234638986709, 10.414251377663732, 8.111721901103648, -15.911845230993128, -15.981974502408956, 20.647899244246688, 3.982195780931635, -2.6626714603824344, -22.548289169925457, -105.10915501578228, -74.2383340976258, 32.66222839774045, 4.2385654571085665, -6.7310104107798825, -98.79880481144302, -32.775510212888506, -57.74947475175161, -4.175710886559668, -2.125853587959247, 47.37497700622382, 38.65380526626959, 3.6346470596166607, 0.34569423257859244, 16.570536693698557, 6.4540410495670555, -3.307496726925553, -5.281888933904775, 1.0883199809516746, -5.672086936267978, 4.831833299471006, -4.031926618638413, 5.6669898844718976, -5.192283349954999]}
+[-2.04037061e+00  2.68821204e+00 -1.03032180e+00  1.24783624e+00
+  2.29493932e+00 -2.79690373e+00  1.42925907e+00 -1.96386462e+00
+  9.98927294e+01  1.45229721e+01  3.59122442e+01  1.05121730e+02
+  3.12218486e+01  1.35439910e+00  1.47405870e+00  3.29073064e+01
+  3.61731469e+00  2.02401172e+02  2.21326411e+01 -4.55654574e-01
+  1.25601158e+00 -4.35541759e-01  3.82866670e+01  9.62878642e-01
+  2.06830274e+01  3.91932841e+00 -3.09816432e+00 -2.16157868e+01
+  5.70223248e+00  7.76877624e-02 -1.41085821e+00 -6.58123464e+00
+  1.04142514e+01  8.11172190e+00 -1.59118452e+01 -1.59819745e+01
+  2.06478992e+01  3.98219578e+00 -2.66267146e+00 -2.25482892e+01
+ -1.05109155e+02 -7.42383341e+01  3.26622284e+01  4.23856546e+00
+ -6.73101041e+00 -9.87988048e+01 -3.27755102e+01 -5.77494748e+01
+ -4.17571089e+00 -2.12585359e+00  4.73749770e+01  3.86538053e+01
+  3.63464706e+00  3.45694233e-01  1.65705367e+01  6.45404105e+00
+ -3.30749673e+00 -5.28188893e+00  1.08831998e+00 -5.67208694e+00
+  4.83183330e+00 -4.03192662e+00  5.66698988e+00 -5.19228335e+00]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-2.81458800e+00  2.42480024e+00 -2.10473515e+00  1.11132711e+00
+  3.06915671e+00 -2.53349193e+00  2.50367242e+00 -1.82735550e+00
+  1.27819043e+02  1.37463344e+01  4.12692813e+01  1.41630179e+02
+  3.37061058e+01  1.16419746e+00  1.67515442e+00  3.47254500e+01
+  3.61734075e+00  3.09507661e+02  5.54128731e+01 -4.55613307e-01
+  1.07858461e+02 -6.08754407e-01  4.80661156e+01  1.12594714e+02
+  3.11324812e+01  3.96354262e+00 -1.12554710e+01 -2.70387950e+01
+  5.03593594e+00  2.94302997e-01 -1.76242805e+00 -5.95090088e+00
+  1.18042422e+01  1.08572620e+01 -1.90729061e+01 -1.62181296e+01
+  3.09713188e+01  4.13314275e+00 -1.06867699e+01 -2.78142269e+01
+ -1.08542503e+02 -1.19366488e+02  4.04716020e+01 -3.33986683e+01
+ -5.91451648e+00 -1.61555023e+02 -4.50879568e+01 -1.15551817e+02
+ -3.49401920e+00  2.27243749e+00  6.32542270e+01  3.85242182e+01
+  2.57549693e+00 -3.28899770e+00  9.15806220e+00 -1.66026583e+00
+ -3.35523965e+00 -5.20236269e+00  2.17066300e+00 -6.23788453e+00
+  4.88128590e+00 -4.25432931e+00  7.85825131e+00 -7.09428411e+00]
+Minimum obj value:-1207.5009458656687
+Optimal xi: 31.064659433560017
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1080.500941383286
+W_T_median: 1054.9346108983063
+W_T_pctile_5: 965.6106203953939
+W_T_CVAR_5_pct: 937.3852726900705
+F value: -1207.5009458656687
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.25
+F value: -1207.5009458656687
+-----------------------------------------------
+{'NN': [-2.814588000730507, 2.424800240051831, -2.1047351518221924, 1.1113271142435348, 3.0691567114529303, -2.533491930207542, 2.5036724212517445, -1.8273554972726218, 127.8190429473669, 13.746334441416817, 41.26928125920814, 141.63017888203177, 33.70610577235666, 1.1641974600043599, 1.675154421376457, 34.7254500143306, 3.6173407520717737, 309.50766052065, 55.41287306472779, -0.45561330688405927, 107.8584610160849, -0.6087544074911528, 48.06611557012803, 112.59471438982182, 31.13248118293876, 3.963542618893178, -11.255471028566234, -27.03879496442895, 5.035935939461467, 0.29430299732785853, -1.7624280531350258, -5.950900877856839, 11.804242216994249, 10.857262009001403, -19.072906055342013, -16.218129596274494, 30.97131878451853, 4.133142748379863, -10.686769910026655, -27.81422691008962, -108.54250294020261, -119.36648839259387, 40.471601958065754, -33.39866825908196, -5.914516484084853, -161.5550229983401, -45.08795676058615, -115.5518165947449, -3.4940191953754796, 2.2724374903332283, 63.25422695757899, 38.52421817291202, 2.5754969260137597, -3.288997704936421, 9.15806219886463, -1.6602658329764102, -3.3552396454572144, -5.202362692919648, 2.170663002825692, -6.237884529924661, 4.8812858973720665, -4.254329314064762, 7.8582513140217705, -7.094284112769407]}
+[-2.81458800e+00  2.42480024e+00 -2.10473515e+00  1.11132711e+00
+  3.06915671e+00 -2.53349193e+00  2.50367242e+00 -1.82735550e+00
+  1.27819043e+02  1.37463344e+01  4.12692813e+01  1.41630179e+02
+  3.37061058e+01  1.16419746e+00  1.67515442e+00  3.47254500e+01
+  3.61734075e+00  3.09507661e+02  5.54128731e+01 -4.55613307e-01
+  1.07858461e+02 -6.08754407e-01  4.80661156e+01  1.12594714e+02
+  3.11324812e+01  3.96354262e+00 -1.12554710e+01 -2.70387950e+01
+  5.03593594e+00  2.94302997e-01 -1.76242805e+00 -5.95090088e+00
+  1.18042422e+01  1.08572620e+01 -1.90729061e+01 -1.62181296e+01
+  3.09713188e+01  4.13314275e+00 -1.06867699e+01 -2.78142269e+01
+ -1.08542503e+02 -1.19366488e+02  4.04716020e+01 -3.33986683e+01
+ -5.91451648e+00 -1.61555023e+02 -4.50879568e+01 -1.15551817e+02
+ -3.49401920e+00  2.27243749e+00  6.32542270e+01  3.85242182e+01
+  2.57549693e+00 -3.28899770e+00  9.15806220e+00 -1.66026583e+00
+ -3.35523965e+00 -5.20236269e+00  2.17066300e+00 -6.23788453e+00
+  4.88128590e+00 -4.25432931e+00  7.85825131e+00 -7.09428411e+00]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-2.83249796e+00  2.35621824e+00 -2.46524738e+00  9.17582745e-01
+  3.08706667e+00 -2.46490993e+00  2.86418465e+00 -1.63361113e+00
+  1.34767519e+02  1.65548766e+01  3.68580883e+01  1.58779773e+02
+  2.19821658e+01  1.51700163e+00  1.62401554e+00  2.13921105e+01
+  3.61734092e+00  3.46670621e+02  5.70084629e+01 -4.55612882e-01
+  2.15043040e+02 -1.60456587e+00  6.55052432e+01  2.29859867e+02
+  3.69065200e+01  5.18779232e-01 -1.27268664e+01 -3.12217754e+01
+  4.68003231e+00  9.52513672e-01 -1.45459384e+00 -6.45527250e+00
+  1.33514229e+01  1.17385080e+01 -1.92405428e+01 -2.08438161e+01
+  3.63670497e+01  2.17711056e-01 -1.22761568e+01 -3.24887326e+01
+ -8.22492411e+01 -1.67905855e+02  1.94034498e+01 -2.08270550e+02
+ -5.50122491e+00 -1.94237578e+02 -8.36962563e-01 -1.57763748e+02
+ -2.31771641e+00 -3.90982301e+00  7.68988767e+01 -1.79458594e+01
+  1.38431512e+00 -1.17713863e+00  5.76657190e+00 -1.12397187e+00
+ -3.82920521e+00 -4.93632468e+00  4.43402886e+00 -6.89752832e+00
+  4.58300214e+00 -3.47832195e+00  1.02713998e+01 -7.77412221e+00]
+Minimum obj value:-1371.9613505984678
+Optimal xi: 30.964875793163184
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1105.137614013435
+W_T_median: 1061.9955076779427
+W_T_pctile_5: 959.3642288971523
+W_T_CVAR_5_pct: 929.9140718752847
+F value: -1371.9613505984678
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.4
+F value: -1371.9613505984678
+-----------------------------------------------
+{'NN': [-2.8324979627303106, 2.356218243034931, -2.4652473849501977, 0.9175827451106255, 3.087066673452668, -2.464909933190828, 2.8641846543797844, -1.6336111281398167, 134.7675193737111, 16.55487657586399, 36.85808829002035, 158.77977302555044, 21.98216581620277, 1.5170016297486575, 1.6240155389188724, 21.392110465695332, 3.6173409154011145, 346.6706213180227, 57.00846291369589, -0.45561288197258387, 215.04304040355055, -1.60456586916591, 65.50524316480592, 229.85986699978343, 36.90651996292535, 0.5187792316564661, -12.726866406572093, -31.221775353696753, 4.680032312275399, 0.9525136719195513, -1.4545938410791655, -6.455272498366685, 13.351422918058564, 11.73850798839231, -19.240542787955327, -20.84381611437336, 36.36704972062975, 0.21771105581171157, -12.276156795854783, -32.48873259343508, -82.24924113675411, -167.905854799035, 19.40344981627232, -208.27055033894302, -5.501224905862534, -194.2375778794229, -0.8369625631088786, -157.76374756451304, -2.317716412653373, -3.909823009154829, 76.89887672582316, -17.94585939216039, 1.3843151246837448, -1.1771386317590327, 5.766571900464449, -1.1239718660231572, -3.8292052066342084, -4.936324680065507, 4.4340288551391, -6.897528317798872, 4.583002142904233, -3.478321952806068, 10.271399776307133, -7.774122209049445]}
+[-2.83249796e+00  2.35621824e+00 -2.46524738e+00  9.17582745e-01
+  3.08706667e+00 -2.46490993e+00  2.86418465e+00 -1.63361113e+00
+  1.34767519e+02  1.65548766e+01  3.68580883e+01  1.58779773e+02
+  2.19821658e+01  1.51700163e+00  1.62401554e+00  2.13921105e+01
+  3.61734092e+00  3.46670621e+02  5.70084629e+01 -4.55612882e-01
+  2.15043040e+02 -1.60456587e+00  6.55052432e+01  2.29859867e+02
+  3.69065200e+01  5.18779232e-01 -1.27268664e+01 -3.12217754e+01
+  4.68003231e+00  9.52513672e-01 -1.45459384e+00 -6.45527250e+00
+  1.33514229e+01  1.17385080e+01 -1.92405428e+01 -2.08438161e+01
+  3.63670497e+01  2.17711056e-01 -1.22761568e+01 -3.24887326e+01
+ -8.22492411e+01 -1.67905855e+02  1.94034498e+01 -2.08270550e+02
+ -5.50122491e+00 -1.94237578e+02 -8.36962563e-01 -1.57763748e+02
+ -2.31771641e+00 -3.90982301e+00  7.68988767e+01 -1.79458594e+01
+  1.38431512e+00 -1.17713863e+00  5.76657190e+00 -1.12397187e+00
+ -3.82920521e+00 -4.93632468e+00  4.43402886e+00 -6.89752832e+00
+  4.58300214e+00 -3.47832195e+00  1.02713998e+01 -7.77412221e+00]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-3.76600765e+00  2.20817431e+00 -3.54977603e+00  1.39991096e+00
+  4.02057636e+00 -2.31686600e+00  3.94871330e+00 -2.11593935e+00
+  1.68542966e+02  1.34453471e+01  3.39841385e+01  3.02431384e+02
+  1.99857784e+01  1.71651900e+00  9.57175708e-01  1.58870088e+01
+  3.61734214e+00  3.88581190e+02  5.74363513e+01 -4.55607997e-01
+  2.50133449e+02  1.67619228e-01  7.70977084e+01  2.57839511e+02
+  4.05183042e+01 -2.52234807e+00 -1.37056130e+00 -3.96116676e+01
+  4.57058229e+00  1.38249490e+00 -1.67141226e+00 -6.81403574e+00
+  1.97008428e+01  5.97148937e+00 -2.37121152e+01 -2.19379155e+01
+  3.94718367e+01 -3.35361151e+00 -1.13584243e+00 -4.18240909e+01
+ -1.33039255e+02 -2.72036036e+02  4.99417389e+00 -2.29963895e+02
+ -2.04516203e+01 -7.76923672e+01  4.12998642e+00 -8.81974533e+01
+ -5.49936201e-01  7.06717423e+01  5.73537764e+01 -4.88760911e+01
+  1.10483127e+00 -7.95967009e-01  2.79672154e+00  2.40058966e+00
+ -3.75058778e+00 -5.11958192e+00  1.01851755e+01 -6.16151744e+00
+  4.81697175e+00 -2.70661521e+00  1.59359094e+02 -1.53965027e+01]
+Minimum obj value:-1599.4120240630775
+Optimal xi: 30.56132267837277
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1171.7721558939816
+W_T_median: 1078.8667990765239
+W_T_pctile_5: 934.3870234913069
+W_T_CVAR_5_pct: 896.3522655624174
+F value: -1599.4120240630775
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.6
+F value: -1599.4120240630775
+-----------------------------------------------
+{'NN': [-3.766007647826692, 2.2081743061714265, -3.549776031704777, 1.3999109631531879, 4.020576358549168, -2.3168659963273024, 3.9487133011344087, -2.1159393461822464, 168.54296587029287, 13.445347103777163, 33.98413853489757, 302.4313836862462, 19.98577841391263, 1.7165190030461417, 0.9571757079743083, 15.88700882088158, 3.6173421418345626, 388.5811897955916, 57.43635131465685, -0.4556079974503247, 250.13344917093562, 0.16761922770050974, 77.09770842540638, 257.83951119047555, 40.5183042292199, -2.5223480734859205, -1.3705613047359928, -39.61166763111114, 4.57058228879325, 1.3824949014144776, -1.671412259613811, -6.814035737596648, 19.70084276529592, 5.971489367130561, -23.71211520558006, -21.93791551132871, 39.47183671708823, -3.353611509606715, -1.1358424330920238, -41.82409093037784, -133.0392554140336, -272.03603618008106, 4.9941738948891725, -229.96389451369367, -20.451620250294695, -77.69236722425512, 4.129986415834096, -88.19745325681241, -0.5499362005412933, 70.67174228142147, 57.35377638186454, -48.876091101607535, 1.104831266397086, -0.7959670091225219, 2.7967215380120165, 2.4005896574444314, -3.7505877817575035, -5.119581917313215, 10.185175472887835, -6.161517442756134, 4.816971746446047, -2.706615205574253, 159.3590944183233, -15.396502680949075]}
+[-3.76600765e+00  2.20817431e+00 -3.54977603e+00  1.39991096e+00
+  4.02057636e+00 -2.31686600e+00  3.94871330e+00 -2.11593935e+00
+  1.68542966e+02  1.34453471e+01  3.39841385e+01  3.02431384e+02
+  1.99857784e+01  1.71651900e+00  9.57175708e-01  1.58870088e+01
+  3.61734214e+00  3.88581190e+02  5.74363513e+01 -4.55607997e-01
+  2.50133449e+02  1.67619228e-01  7.70977084e+01  2.57839511e+02
+  4.05183042e+01 -2.52234807e+00 -1.37056130e+00 -3.96116676e+01
+  4.57058229e+00  1.38249490e+00 -1.67141226e+00 -6.81403574e+00
+  1.97008428e+01  5.97148937e+00 -2.37121152e+01 -2.19379155e+01
+  3.94718367e+01 -3.35361151e+00 -1.13584243e+00 -4.18240909e+01
+ -1.33039255e+02 -2.72036036e+02  4.99417389e+00 -2.29963895e+02
+ -2.04516203e+01 -7.76923672e+01  4.12998642e+00 -8.81974533e+01
+ -5.49936201e-01  7.06717423e+01  5.73537764e+01 -4.88760911e+01
+  1.10483127e+00 -7.95967009e-01  2.79672154e+00  2.40058966e+00
+ -3.75058778e+00 -5.11958192e+00  1.01851755e+01 -6.16151744e+00
+  4.81697175e+00 -2.70661521e+00  1.59359094e+02 -1.53965027e+01]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-4.45920789e+00  2.28407451e+00 -9.58862510e+00  1.33411420e+00
+  4.71377660e+00 -2.39276620e+00  9.98756237e+00 -2.05014259e+00
+  2.04977021e+02  1.14429749e+01  4.35448809e+01  6.48392276e+02
+  2.63651270e+01  1.57832261e+00  7.70343069e-01  1.08337642e+01
+  3.61734240e+00  4.29457210e+02  5.71759561e+01 -4.55605414e-01
+  2.50625543e+02  4.51699357e-02  9.14501465e+01  2.20917277e+02
+  4.32745431e+01 -2.26437584e+00  7.21127455e+00 -4.70293681e+01
+  4.54791129e+00  1.12974607e+00 -7.58289761e-01 -7.51991599e+00
+  2.08511826e+01 -1.13452277e+00 -3.00131563e+01 -1.70132255e+01
+  4.06732600e+01 -3.30284453e+00  6.76886913e+00 -4.99066053e+01
+ -1.58734408e+02 -2.88360480e+02  1.20233522e+00 -2.29963978e+02
+ -2.08166145e+01  1.61642980e+01 -2.93183577e+00 -7.31468573e+01
+  8.75835086e+00  3.88807328e+02  3.48677458e+01 -4.88760900e+01
+  6.25429206e-01 -5.17918653e-01  2.85290553e+00  2.44581861e+00
+ -4.48507610e+00 -5.11456132e+00  7.61558838e+00 -5.33075412e+00
+  3.01193195e+00 -2.12968807e+00  2.23732288e+02 -1.69588358e+01]
+Minimum obj value:-1719.403612915636
+Optimal xi: 30.04310461879281
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1239.0840401488508
+W_T_median: 1100.5695935863619
+W_T_pctile_5: 902.8880140963768
+W_T_CVAR_5_pct: 852.0466244076671
+F value: -1719.403612915636
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.7
+F value: -1719.403612915636
+-----------------------------------------------
+{'NN': [-4.459207888789858, 2.2840745116266223, -9.588625097826425, 1.3341142019925485, 4.713776599512337, -2.3927662017824023, 9.987562367255952, -2.050142585021477, 204.97702090783375, 11.442974874606971, 43.54488092686801, 648.3922757642763, 26.36512703782616, 1.5783226136394002, 0.7703430692791499, 10.833764236376737, 3.617342399966205, 429.45720976523955, 57.17595607762563, -0.455605413624074, 250.62554329136108, 0.045169935705226316, 91.45014653796501, 220.91727744795446, 43.27454311637441, -2.264375841989286, 7.21127455461862, -47.02936810317482, 4.547911288008544, 1.1297460656307283, -0.7582897606702073, -7.519915989391958, 20.851182604692262, -1.1345227717844655, -30.0131562763391, -17.013225465555013, 40.67325999385927, -3.302844532126215, 6.768869127222276, -49.906605316297515, -158.73440817207546, -288.36048028076124, 1.2023352241582579, -229.96397801630118, -20.816614488099106, 16.16429796933348, -2.93183576893961, -73.14685734937696, 8.758350856626459, 388.8073283968047, 34.86774580475856, -48.876090049282524, 0.6254292059748163, -0.5179186528720181, 2.8529055307212356, 2.4458186137471194, -4.485076097832872, -5.1145613227909985, 7.615588384443408, -5.330754118530139, 3.011931947657386, -2.1296880747874085, 223.73228797006325, -16.95883580603572]}
+[-4.45920789e+00  2.28407451e+00 -9.58862510e+00  1.33411420e+00
+  4.71377660e+00 -2.39276620e+00  9.98756237e+00 -2.05014259e+00
+  2.04977021e+02  1.14429749e+01  4.35448809e+01  6.48392276e+02
+  2.63651270e+01  1.57832261e+00  7.70343069e-01  1.08337642e+01
+  3.61734240e+00  4.29457210e+02  5.71759561e+01 -4.55605414e-01
+  2.50625543e+02  4.51699357e-02  9.14501465e+01  2.20917277e+02
+  4.32745431e+01 -2.26437584e+00  7.21127455e+00 -4.70293681e+01
+  4.54791129e+00  1.12974607e+00 -7.58289761e-01 -7.51991599e+00
+  2.08511826e+01 -1.13452277e+00 -3.00131563e+01 -1.70132255e+01
+  4.06732600e+01 -3.30284453e+00  6.76886913e+00 -4.99066053e+01
+ -1.58734408e+02 -2.88360480e+02  1.20233522e+00 -2.29963978e+02
+ -2.08166145e+01  1.61642980e+01 -2.93183577e+00 -7.31468573e+01
+  8.75835086e+00  3.88807328e+02  3.48677458e+01 -4.88760900e+01
+  6.25429206e-01 -5.17918653e-01  2.85290553e+00  2.44581861e+00
+ -4.48507610e+00 -5.11456132e+00  7.61558838e+00 -5.33075412e+00
+  3.01193195e+00 -2.12968807e+00  2.23732288e+02 -1.69588358e+01]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-4.79976545e+00  1.98793556e+00 -1.53553073e+01  1.57995738e+00
+  5.05433417e+00 -2.09662725e+00  1.57542446e+01 -2.29598577e+00
+  2.22204891e+02  6.22240491e+00  4.08230038e+01  1.38131219e+03
+  4.92544769e+01  9.58318523e-01  1.13146409e+00  1.31976799e+00
+  3.61734242e+00  4.86508811e+02  5.86496870e+01 -4.55605298e-01
+  2.22785690e+02  8.12431444e-01  8.56488872e+01  1.98242649e+01
+  4.79165835e+01 -5.57075605e+00  1.04265460e+01 -5.85700531e+01
+  3.92132382e+00  1.76430388e+00 -2.29823570e+00 -8.18016113e+00
+  2.64362610e+01 -1.16395224e+01 -3.20060413e+01 -3.04225612e+00
+  3.95050393e+01 -3.05283057e+00  5.33364180e+00 -5.42214592e+01
+ -2.05425510e+02 -1.80896985e+02 -1.98063122e+01 -2.29963978e+02
+ -3.22742379e+01 -4.84860954e+01 -1.19862755e+01 -7.31698575e+01
+  9.18256677e+00  7.38716825e+02  4.05928575e+01 -4.88760900e+01
+  4.05999414e-01  9.67136395e-01  1.63169190e+00  3.03622762e+00
+ -5.69824151e+00 -4.84160902e+00  9.99176342e+00 -4.15060130e+00
+  1.42795559e+00 -3.18348078e+00  2.46925796e+02 -4.21293545e+01]
+Minimum obj value:-1845.5575789754741
+Optimal xi: 29.241409087160847
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1321.2219133710357
+W_T_median: 1140.8960862182132
+W_T_pctile_5: 855.5237751823819
+W_T_CVAR_5_pct: 788.5836897870489
+F value: -1845.5575789754741
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.8
+F value: -1845.5575789754741
+-----------------------------------------------
+{'NN': [-4.799765454736828, 1.9879355557596774, -15.355307325274255, 1.5799573828068467, 5.054334165459245, -2.0966272459153763, 15.754244594704254, -2.2959857658357152, 222.2048912350319, 6.22240490774129, 40.823003826101306, 1381.3121896132266, 49.25447690609154, 0.9583185232222109, 1.1314640882589293, 1.319767987980368, 3.6173424231645814, 486.508811239563, 58.64968699646111, -0.455605297850879, 222.78568999753716, 0.8124314443942733, 85.64888723697219, 19.82426486515773, 47.91658354280021, -5.570756053339826, 10.426545977896566, -58.57005307307112, 3.9213238208048304, 1.764303878258917, -2.2982357028707954, -8.180161133799697, 26.43626097036093, -11.639522377253673, -32.006041293827664, -3.0422561233914696, 39.505039344967564, -3.052830565859254, 5.333641800783481, -54.22145921769142, -205.42550977608013, -180.89698519614416, -19.806312230653813, -229.96397801653833, -32.2742378573919, -48.48609540134292, -11.986275476383087, -73.16985746905155, 9.182566770220767, 738.7168253432361, 40.59285750333437, -48.876090049278154, 0.40599941380831495, 0.9671363954219607, 1.6316919015303348, 3.0362276159108066, -5.698241508825074, -4.841609015447552, 9.991763424884779, -4.150601301884328, 1.427955589203038, -3.183480781075864, 246.925796028038, -42.12935452465164]}
+[-4.79976545e+00  1.98793556e+00 -1.53553073e+01  1.57995738e+00
+  5.05433417e+00 -2.09662725e+00  1.57542446e+01 -2.29598577e+00
+  2.22204891e+02  6.22240491e+00  4.08230038e+01  1.38131219e+03
+  4.92544769e+01  9.58318523e-01  1.13146409e+00  1.31976799e+00
+  3.61734242e+00  4.86508811e+02  5.86496870e+01 -4.55605298e-01
+  2.22785690e+02  8.12431444e-01  8.56488872e+01  1.98242649e+01
+  4.79165835e+01 -5.57075605e+00  1.04265460e+01 -5.85700531e+01
+  3.92132382e+00  1.76430388e+00 -2.29823570e+00 -8.18016113e+00
+  2.64362610e+01 -1.16395224e+01 -3.20060413e+01 -3.04225612e+00
+  3.95050393e+01 -3.05283057e+00  5.33364180e+00 -5.42214592e+01
+ -2.05425510e+02 -1.80896985e+02 -1.98063122e+01 -2.29963978e+02
+ -3.22742379e+01 -4.84860954e+01 -1.19862755e+01 -7.31698575e+01
+  9.18256677e+00  7.38716825e+02  4.05928575e+01 -4.88760900e+01
+  4.05999414e-01  9.67136395e-01  1.63169190e+00  3.03622762e+00
+ -5.69824151e+00 -4.84160902e+00  9.99176342e+00 -4.15060130e+00
+  1.42795559e+00 -3.18348078e+00  2.46925796e+02 -4.21293545e+01]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-3.51172900e+00  1.26658573e+00 -2.06143300e+01  1.05206174e+00
+  3.76629771e+00 -1.37527742e+00  2.10132673e+01 -1.76809013e+00
+  2.28079973e+02  3.24179401e+00  1.38150974e+01  1.57628247e+03
+  2.99978039e+01 -2.57137753e-01  1.55449241e+00  8.91899346e-01
+  3.61734243e+00  5.41787927e+02 -2.01779804e+01 -4.55602082e-01
+  2.79231166e+02 -2.51346410e-01  1.16133614e+02 -2.14349444e-01
+  5.74340481e+01 -7.19696556e+00  6.06836948e+00 -6.37503737e+01
+  3.48861144e+00  1.94524050e+00 -3.06193626e+00 -8.86037871e+00
+  2.50158707e+01 -2.21462218e+01 -2.94724695e+01  1.07214403e+01
+  3.24875937e+01 -1.52165081e+00 -9.26325884e-01 -4.01184390e+01
+ -2.57325929e+02 -1.51870360e+02 -4.18690785e+01 -2.29963978e+02
+ -1.84600080e+01 -7.44482779e+01 -1.72216446e+01 -7.31698575e+01
+  8.72644741e+00  8.26672346e+02  9.75689025e+01 -4.88760900e+01
+  5.15621733e-01  1.57967848e+00  1.44278033e+00  3.80802956e+00
+ -6.83716360e+00 -4.89948886e+00  7.37134481e+00 -3.98899306e+00
+  9.10047562e-02 -3.56419073e+00  2.47227060e+02 -7.83696074e+01]
+Minimum obj value:-1979.572769763024
+Optimal xi: 28.414829621438695
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1389.6702192974722
+W_T_median: 1181.1006204047687
+W_T_pctile_5: 807.7823877792216
+W_T_CVAR_5_pct: 728.8718231918452
+F value: -1979.572769763024
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.9
+F value: -1979.572769763024
+-----------------------------------------------
+{'NN': [-3.5117290039014586, 1.2665857279532546, -20.61433004526716, 1.0520617439860025, 3.766297714623668, -1.3752774181091516, 21.013267314698616, -1.7680901270150864, 228.07997254870233, 3.241794008833167, 13.815097386919673, 1576.2824745342818, 29.997803940141477, -0.25713775344812595, 1.554492407045569, 0.891899345606878, 3.617342426867177, 541.7879270038325, -20.177980391945624, -0.4556020817799228, 279.2311657618493, -0.2513464096279638, 116.1336135813332, -0.21434944393113295, 57.43404814484131, -7.196965555361983, 6.068369484586584, -63.75037365078977, 3.4886114355495303, 1.9452405038953102, -3.061936257583177, -8.860378705651305, 25.01587065330873, -22.146221815717805, -29.472469452801057, 10.721440278724932, 32.48759371381339, -1.5216508081682958, -0.9263258840685659, -40.11843902043385, -257.32592902729147, -151.8703604964595, -41.869078548606915, -229.96397801652142, -18.46000795023907, -74.44827785130055, -17.221644574757534, -73.16985746904457, 8.726447406108111, 826.6723464171766, 97.56890253488574, -48.87609004927801, 0.5156217332006405, 1.5796784777218393, 1.4427803330704787, 3.808029564782037, -6.837163601379419, -4.899488855018072, 7.371344809080184, -3.988993059615425, 0.09100475619675566, -3.564190734008178, 247.2270602480643, -78.36960736290618]}
+[-3.51172900e+00  1.26658573e+00 -2.06143300e+01  1.05206174e+00
+  3.76629771e+00 -1.37527742e+00  2.10132673e+01 -1.76809013e+00
+  2.28079973e+02  3.24179401e+00  1.38150974e+01  1.57628247e+03
+  2.99978039e+01 -2.57137753e-01  1.55449241e+00  8.91899346e-01
+  3.61734243e+00  5.41787927e+02 -2.01779804e+01 -4.55602082e-01
+  2.79231166e+02 -2.51346410e-01  1.16133614e+02 -2.14349444e-01
+  5.74340481e+01 -7.19696556e+00  6.06836948e+00 -6.37503737e+01
+  3.48861144e+00  1.94524050e+00 -3.06193626e+00 -8.86037871e+00
+  2.50158707e+01 -2.21462218e+01 -2.94724695e+01  1.07214403e+01
+  3.24875937e+01 -1.52165081e+00 -9.26325884e-01 -4.01184390e+01
+ -2.57325929e+02 -1.51870360e+02 -4.18690785e+01 -2.29963978e+02
+ -1.84600080e+01 -7.44482779e+01 -1.72216446e+01 -7.31698575e+01
+  8.72644741e+00  8.26672346e+02  9.75689025e+01 -4.88760900e+01
+  5.15621733e-01  1.57967848e+00  1.44278033e+00  3.80802956e+00
+ -6.83716360e+00 -4.89948886e+00  7.37134481e+00 -3.98899306e+00
+  9.10047562e-02 -3.56419073e+00  2.47227060e+02 -7.83696074e+01]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-1.83006680e+00  1.22697079e+00 -5.39296961e+00  7.28098047e-01
+  2.08463551e+00 -1.33566248e+00  5.79190688e+00 -1.44412643e+00
+  2.28342148e+02  1.52337227e+00 -4.88104822e-01  1.61089131e+03
+  1.00278642e+01 -3.26387182e-01  1.01596705e+01 -8.67138599e+00
+ -4.14957291e+01  6.76225903e+02 -7.83243304e+00 -1.77474421e+01
+  3.41774765e+02  2.39455988e+00  2.14923830e+02 -5.68680602e+01
+  6.48554130e+01 -6.64275784e+00 -1.29053503e+01 -6.67870426e+01
+ -2.32850220e+00  7.58181049e+00  1.01683566e+01 -7.18239979e+00
+  2.20250253e+01 -2.34679171e+01 -3.41437299e+01  1.37806701e+01
+  1.15005212e+01  1.38934371e+01 -5.36503487e-01 -2.80535815e+01
+ -2.97735891e+02 -1.80900445e+02 -8.56346447e+01 -2.29963978e+02
+ -3.86246227e+00 -1.17962976e+02 -2.99791527e+01 -7.31698575e+01
+  5.42588020e+00  8.68451517e+02  1.58690451e+02 -4.88760900e+01
+  4.74206044e-01  4.64660094e-01  1.51345388e+00  1.87383898e+01
+ -1.00198586e+01 -4.62211971e+00  2.70620645e+00 -4.16347107e+00
+ -2.09126908e+00 -3.97598656e+00  1.57272785e+02 -1.76338020e+02]
+Minimum obj value:-2132.007550704554
+Optimal xi: 27.769091852255233
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1455.855373625742
+W_T_median: 1244.1923023464733
+W_T_pctile_5: 771.6099745856985
+W_T_CVAR_5_pct: 676.1559937559906
+F value: -2132.007550704554
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.0
+F value: -2132.007550704554
+-----------------------------------------------
+{'NN': [-1.8300668007596799, 1.2269707941913277, -5.392969606151307, 0.7280980474093369, 2.0846355114806974, -1.3356624843473086, 5.791906875432569, -1.444126430438391, 228.342148219698, 1.5233722695319174, -0.4881048224711416, 1610.891311273511, 10.027864150277752, -0.32638718209361445, 10.159670539447633, -8.671385988448607, -41.495729051452955, 676.2259026678265, -7.832433042140386, -17.747442051589175, 341.77476532804906, 2.3945598775768784, 214.92382960531546, -56.86806019712668, 64.85541298248302, -6.642757842588586, -12.905350340033152, -66.78704256105802, -2.3285021986278194, 7.5818104871832, 10.168356568938894, -7.182399785650535, 22.02502527032886, -23.467917124276177, -34.143729890318845, 13.780670108982715, 11.50052121702621, 13.893437061546262, -0.5365034866145617, -28.05358146589353, -297.7358907837149, -180.90044483759718, -85.63464466376519, -229.96397801651653, -3.8624622688656496, -117.9629755067435, -29.979152718675095, -73.16985746904102, 5.425880198037455, 868.4515165779077, 158.690451266883, -48.876090049278, 0.4742060438573394, 0.4646600935877271, 1.5134538788603578, 18.738389808296617, -10.019858576275348, -4.622119708508231, 2.7062064455376973, -4.16347106840275, -2.091269075340439, -3.9759865572002466, 157.27278509789622, -176.33802026633225]}
+[-1.83006680e+00  1.22697079e+00 -5.39296961e+00  7.28098047e-01
+  2.08463551e+00 -1.33566248e+00  5.79190688e+00 -1.44412643e+00
+  2.28342148e+02  1.52337227e+00 -4.88104822e-01  1.61089131e+03
+  1.00278642e+01 -3.26387182e-01  1.01596705e+01 -8.67138599e+00
+ -4.14957291e+01  6.76225903e+02 -7.83243304e+00 -1.77474421e+01
+  3.41774765e+02  2.39455988e+00  2.14923830e+02 -5.68680602e+01
+  6.48554130e+01 -6.64275784e+00 -1.29053503e+01 -6.67870426e+01
+ -2.32850220e+00  7.58181049e+00  1.01683566e+01 -7.18239979e+00
+  2.20250253e+01 -2.34679171e+01 -3.41437299e+01  1.37806701e+01
+  1.15005212e+01  1.38934371e+01 -5.36503487e-01 -2.80535815e+01
+ -2.97735891e+02 -1.80900445e+02 -8.56346447e+01 -2.29963978e+02
+ -3.86246227e+00 -1.17962976e+02 -2.99791527e+01 -7.31698575e+01
+  5.42588020e+00  8.68451517e+02  1.58690451e+02 -4.88760900e+01
+  4.74206044e-01  4.64660094e-01  1.51345388e+00  1.87383898e+01
+ -1.00198586e+01 -4.62211971e+00  2.70620645e+00 -4.16347107e+00
+ -2.09126908e+00 -3.97598656e+00  1.57272785e+02 -1.76338020e+02]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-1.39937534e+00  6.52126419e-01 -3.53794355e+00  1.88092086e+00
+  1.65394406e+00 -7.60818109e-01  3.93688082e+00 -2.59694924e+00
+  2.28343400e+02  2.46211614e+00 -2.39894114e+00  1.63768369e+03
+ -1.79711391e+01  1.48290462e+01  8.52862290e+01 -6.23854542e+01
+ -8.55607581e+01  6.70287791e+02 -1.06891395e+01  1.17154668e+00
+  3.95124115e+02  2.52537010e+00  3.76382370e+02 -2.92918862e+01
+  6.74488640e+01 -7.69022459e+00 -1.73967615e+01 -6.81150607e+01
+ -3.56179316e-01  5.37831333e+00  2.01882940e+01 -1.22847737e+01
+  2.04695923e+01 -2.21566281e+01 -2.75522873e+01  1.47719486e+01
+  1.01399800e+01  1.63695246e+01  9.43529361e+00 -3.55280068e+01
+ -3.01001598e+02 -3.63231801e+02 -3.13935478e+02 -2.29963978e+02
+ -3.56521473e+00 -1.78116769e+02 -1.19903275e+01 -7.31699000e+01
+  5.76606083e+00  9.04227045e+02  2.55960410e+02 -4.88760900e+01
+  6.61082048e-01  1.36341170e+00  2.00524078e+00  2.54792734e+02
+ -8.91594055e+00 -3.45789149e+00  2.80250134e+00 -4.27813547e+00
+ -4.47104126e+00 -5.00020126e+00 -4.69336589e+01 -2.31845544e+02]
+Minimum obj value:-2426.351418593625
+Optimal xi: 27.182135994065494
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1489.0405434085983
+W_T_median: 1303.6841270799978
+W_T_pctile_5: 740.0026707569752
+W_T_CVAR_5_pct: 639.5241911133959
+F value: -2426.351418593625
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.2
+F value: -2426.351418593625
+-----------------------------------------------
+{'NN': [-1.399375344579664, 0.6521264192444416, -3.5379435536595243, 1.8809208576945797, 1.65394405529801, -0.7608181094004164, 3.9368808228921592, -2.5969492407237302, 228.3433997277445, 2.4621161365442195, -2.3989411364077307, 1637.6836855190834, -17.971139070891603, 14.82904622257731, 85.28622902831415, -62.385454158635035, -85.56075813104324, 670.2877908171461, -10.689139523258959, 1.1715466839738677, 395.1241146852936, 2.5253700998788005, 376.3823699160543, -29.291886240582983, 67.44886396791038, -7.690224593792367, -17.396761453253376, -68.11506065889664, -0.35617931613552023, 5.378313330865125, 20.188293960805428, -12.2847736999934, 20.46959231281194, -22.15662807236348, -27.552287301406313, 14.771948590287842, 10.139979977990466, 16.36952458181837, 9.435293609216664, -35.52800676194795, -301.00159786176283, -363.2318005616175, -313.93547845006293, -229.96397801651622, -3.565214729778997, -178.1167692514708, -11.990327467545997, -73.16990001137454, 5.7660608251804, 904.2270452800644, 255.9604098476688, -48.876090049278, 0.6610820475120786, 1.3634117038020876, 2.005240783070779, 254.79273407259544, -8.915940553192195, -3.4578914933812412, 2.802501338136463, -4.278135471391824, -4.47104125966766, -5.000201258446291, -46.93365889245081, -231.8455439166638]}
+[-1.39937534e+00  6.52126419e-01 -3.53794355e+00  1.88092086e+00
+  1.65394406e+00 -7.60818109e-01  3.93688082e+00 -2.59694924e+00
+  2.28343400e+02  2.46211614e+00 -2.39894114e+00  1.63768369e+03
+ -1.79711391e+01  1.48290462e+01  8.52862290e+01 -6.23854542e+01
+ -8.55607581e+01  6.70287791e+02 -1.06891395e+01  1.17154668e+00
+  3.95124115e+02  2.52537010e+00  3.76382370e+02 -2.92918862e+01
+  6.74488640e+01 -7.69022459e+00 -1.73967615e+01 -6.81150607e+01
+ -3.56179316e-01  5.37831333e+00  2.01882940e+01 -1.22847737e+01
+  2.04695923e+01 -2.21566281e+01 -2.75522873e+01  1.47719486e+01
+  1.01399800e+01  1.63695246e+01  9.43529361e+00 -3.55280068e+01
+ -3.01001598e+02 -3.63231801e+02 -3.13935478e+02 -2.29963978e+02
+ -3.56521473e+00 -1.78116769e+02 -1.19903275e+01 -7.31699000e+01
+  5.76606083e+00  9.04227045e+02  2.55960410e+02 -4.88760900e+01
+  6.61082048e-01  1.36341170e+00  2.00524078e+00  2.54792734e+02
+ -8.91594055e+00 -3.45789149e+00  2.80250134e+00 -4.27813547e+00
+ -4.47104126e+00 -5.00020126e+00 -4.69336589e+01 -2.31845544e+02]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-1.62317538e+00  7.87141523e-01 -4.01354675e+00  1.46867490e+00
+  1.87774409e+00 -8.95833213e-01  4.41248402e+00 -2.18470328e+00
+  2.28344428e+02  2.85768067e+00 -1.23528638e+00  1.68270506e+03
+  1.98831865e+00  4.02647804e+00  1.15046047e+02 -3.46685895e+01
+ -8.43549969e+01  6.90582218e+02 -1.05060837e+01 -1.16537592e+01
+  3.94297775e+02  2.39042096e+00  5.03204398e+02 -2.02264723e+01
+  6.86316530e+01 -8.35134938e+00 -2.04547994e+01 -6.91052185e+01
+ -7.16431763e-02  5.26528037e+00  1.99269525e+01 -1.20593079e+01
+  2.06000722e+01 -2.23628106e+01 -2.82444577e+01  1.40503196e+01
+  1.17334980e+01  2.02846263e+01  1.12820016e+01 -4.48117834e+01
+ -3.23140474e+02 -5.68954453e+02 -6.54225013e+02 -2.29963978e+02
+ -4.63415862e+00 -2.11093019e+02 -2.36114513e+00 -7.39897830e+01
+  7.63824905e+00  9.36601843e+02  3.22607091e+02 -4.88760900e+01
+  7.88323056e-01  6.25446710e+00  1.78067311e+00  3.06907293e+02
+ -1.00152303e+01 -3.50686588e+00  8.94429765e-01 -3.92028485e+00
+ -9.61033451e+00 -6.01620661e+00 -1.59100737e+02 -1.22561404e+02]
+Minimum obj value:-2875.879285752981
+Optimal xi: 26.636130478297574
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1511.901090100369
+W_T_median: 1356.9293380275835
+W_T_pctile_5: 710.6662352791307
+W_T_CVAR_5_pct: 608.0491767813136
+F value: -2875.879285752981
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.5
+F value: -2875.879285752981
+-----------------------------------------------
+{'NN': [-1.6231753765729828, 0.7871415228781534, -4.013546754165967, 1.468674896075568, 1.8777440873174145, -0.8958332130341552, 4.4124840237556135, -2.1847032791047365, 228.34442799890022, 2.8576806680904303, -1.235286377092135, 1682.7050588002544, 1.9883186515402094, 4.02647804491573, 115.04604729170659, -34.66858950989181, -84.35499691591723, 690.5822176848952, -10.506083675620616, -11.653759190263681, 394.29777511207294, 2.3904209607275066, 503.2043977263054, -20.22647231237683, 68.63165301476786, -8.35134937559425, -20.454799395701144, -69.10521854768592, -0.0716431762549236, 5.265280366184822, 19.926952529173512, -12.059307905762529, 20.600072164275154, -22.36281055596514, -28.24445766582635, 14.050319596828409, 11.733498019728195, 20.28462625417382, 11.282001599738617, -44.81178335220788, -323.14047427893655, -568.9544530058193, -654.2250134582384, -229.96397801651622, -4.634158624329326, -211.09301876356483, -2.361145128075051, -73.98978301475111, 7.638249050483423, 936.6018428481292, 322.60709121502634, -48.876090049278, 0.7883230557480332, 6.254467097272621, 1.7806731137817333, 306.9072925973706, -10.015230277148756, -3.5068658760920477, 0.8944297651800908, -3.9202848536987953, -9.610334508895276, -6.016206614462033, -159.10073652581772, -122.561404059009]}
+[-1.62317538e+00  7.87141523e-01 -4.01354675e+00  1.46867490e+00
+  1.87774409e+00 -8.95833213e-01  4.41248402e+00 -2.18470328e+00
+  2.28344428e+02  2.85768067e+00 -1.23528638e+00  1.68270506e+03
+  1.98831865e+00  4.02647804e+00  1.15046047e+02 -3.46685895e+01
+ -8.43549969e+01  6.90582218e+02 -1.05060837e+01 -1.16537592e+01
+  3.94297775e+02  2.39042096e+00  5.03204398e+02 -2.02264723e+01
+  6.86316530e+01 -8.35134938e+00 -2.04547994e+01 -6.91052185e+01
+ -7.16431763e-02  5.26528037e+00  1.99269525e+01 -1.20593079e+01
+  2.06000722e+01 -2.23628106e+01 -2.82444577e+01  1.40503196e+01
+  1.17334980e+01  2.02846263e+01  1.12820016e+01 -4.48117834e+01
+ -3.23140474e+02 -5.68954453e+02 -6.54225013e+02 -2.29963978e+02
+ -4.63415862e+00 -2.11093019e+02 -2.36114513e+00 -7.39897830e+01
+  7.63824905e+00  9.36601843e+02  3.22607091e+02 -4.88760900e+01
+  7.88323056e-01  6.25446710e+00  1.78067311e+00  3.06907293e+02
+ -1.00152303e+01 -3.50686588e+00  8.94429765e-01 -3.92028485e+00
+ -9.61033451e+00 -6.01620661e+00 -1.59100737e+02 -1.22561404e+02]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-1.58511388e+00 -5.26270329e+00 -1.86248345e+01  1.10116272e+01
+  1.83968259e+00  5.15401160e+00  1.90237717e+01 -1.17276556e+01
+  2.37936608e+02  4.48197759e+00  7.85339275e-01  1.68539311e+03
+ -7.87585998e+01  5.85130154e+00  6.75872934e+01 -1.24525575e+01
+ -1.62249233e+02  6.96411547e+02 -1.06786747e+01 -7.41652036e+01
+  4.11117840e+02  1.83880368e+00  5.99198766e+02  5.89149504e+01
+  5.91376500e+01 -1.60670173e+01 -4.01803719e+01 -8.15063541e+01
+ -4.22575098e+00  1.00898906e+01  2.73699703e+01 -3.08082030e+01
+  1.23241292e+01 -1.35312409e+01 -2.20559763e+01  1.86859522e+01
+  1.20778437e+01  2.05268258e+01  2.09549303e+00 -5.54902145e+01
+ -4.51332947e+02 -5.41330919e+02 -7.90038818e+02 -2.22945923e+02
+ -5.31065935e+01 -2.13329267e+02 -8.05279486e+01 -1.36936867e+02
+ -3.09045747e+00  9.90311514e+02  2.23667084e+02 -1.65613035e+02
+  5.03507310e-01  2.83367993e+01  3.22344591e+00  3.09835477e+02
+ -2.25174782e+01 -7.75440094e+00 -1.12350076e+00 -2.64859158e+00
+ -9.30017873e+00 -4.12186518e+00 -2.14239644e+02 -6.76881880e+01]
+Minimum obj value:-3631.4804848981694
+Optimal xi: 25.974435166189313
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1529.5564136328119
+W_T_median: 1391.5666903727315
+W_T_pctile_5: 682.518397249865
+W_T_CVAR_5_pct: 573.0597992061233
+F value: -3631.4804848981694
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 2.0
+F value: -3631.4804848981694
+-----------------------------------------------
+{'NN': [-1.585113881146062, -5.2627032879719575, -18.624834462693475, 11.01162721224951, 1.839682591824029, 5.154011597769401, 19.023771720867746, -11.727655595278776, 237.93660754424022, 4.481977594855591, 0.7853392753967043, 1685.3931125019108, -78.75859980270027, 5.851301539377186, 67.58729339944222, -12.452557458256177, -162.24923276038024, 696.4115465468238, -10.678674693087013, -74.16520355856503, 411.11784014047186, 1.8388036848098868, 599.1987660919857, 58.914950392080705, 59.13765003347629, -16.0670173265366, -40.18037189042284, -81.50635410968911, -4.225750982469733, 10.089890568499806, 27.369970322251376, -30.808202978358665, 12.324129214642197, -13.531240870443021, -22.055976304078207, 18.685952235776842, 12.07784368009359, 20.526825812316908, 2.095493025011277, -55.49021452931236, -451.3329470714385, -541.3309188167218, -790.0388182674815, -222.94592326136151, -53.10659349482841, -213.3292668366726, -80.527948575318, -136.93686667357096, -3.0904574663440507, 990.3115136023896, 223.66708374595407, -165.61303470956025, 0.5035073100197022, 28.336799323918452, 3.223445905023552, 309.8354769602016, -22.517478180220575, -7.754400941608611, -1.123500764119054, -2.648591578451134, -9.300178727626243, -4.121865175173365, -214.2396444195168, -67.68818802225158]}
+[-1.58511388e+00 -5.26270329e+00 -1.86248345e+01  1.10116272e+01
+  1.83968259e+00  5.15401160e+00  1.90237717e+01 -1.17276556e+01
+  2.37936608e+02  4.48197759e+00  7.85339275e-01  1.68539311e+03
+ -7.87585998e+01  5.85130154e+00  6.75872934e+01 -1.24525575e+01
+ -1.62249233e+02  6.96411547e+02 -1.06786747e+01 -7.41652036e+01
+  4.11117840e+02  1.83880368e+00  5.99198766e+02  5.89149504e+01
+  5.91376500e+01 -1.60670173e+01 -4.01803719e+01 -8.15063541e+01
+ -4.22575098e+00  1.00898906e+01  2.73699703e+01 -3.08082030e+01
+  1.23241292e+01 -1.35312409e+01 -2.20559763e+01  1.86859522e+01
+  1.20778437e+01  2.05268258e+01  2.09549303e+00 -5.54902145e+01
+ -4.51332947e+02 -5.41330919e+02 -7.90038818e+02 -2.22945923e+02
+ -5.31065935e+01 -2.13329267e+02 -8.05279486e+01 -1.36936867e+02
+ -3.09045747e+00  9.90311514e+02  2.23667084e+02 -1.65613035e+02
+  5.03507310e-01  2.83367993e+01  3.22344591e+00  3.09835477e+02
+ -2.25174782e+01 -7.75440094e+00 -1.12350076e+00 -2.64859158e+00
+ -9.30017873e+00 -4.12186518e+00 -2.14239644e+02 -6.76881880e+01]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-3.30683403e-01 -2.98779904e+00 -1.52940448e+01  1.12036525e+01
+  5.85239774e-01  2.87910735e+00  1.56929125e+01 -1.19196809e+01
+  2.19344172e+02  5.63757592e+00  1.45091352e+00  1.78360198e+03
+ -2.75341372e+01  6.38896147e+00  1.04434686e+02 -4.03261125e+00
+ -2.04188470e+02  7.02041159e+02 -1.19432605e+01 -1.18121262e+02
+  4.86793287e+02  4.54215831e+00  5.98741204e+02  3.20352586e+01
+  5.93142919e+01 -1.30387171e+01 -5.69107911e+00 -8.18922078e+01
+ -3.74908367e+00  1.13111550e+01  8.30860319e+01 -3.76319356e+01
+  1.31021702e+01 -1.82305730e+01 -4.50975978e+01  1.15789872e+01
+  1.78431790e+01  2.43842763e+01  5.98494243e+00 -5.46412986e+01
+ -5.33386073e+02 -5.52711582e+02 -8.67937983e+02 -2.24482350e+02
+ -6.18852638e+01 -1.64278160e+02 -9.91120536e+01 -2.84702377e+02
+  2.53493867e+00  1.02755404e+03  1.94243848e+02 -2.54290826e+02
+  2.16711449e+00  6.04663735e+01  4.11354140e+00  2.99695259e+02
+ -2.25746009e+01 -7.32680648e+00 -4.59265825e+00 -4.52451734e-01
+ -1.13847234e+01 -3.43284655e+00 -2.24719325e+02 -5.77640719e+01]
+Minimum obj value:-5142.815118117052
+Optimal xi: 24.979252082123946
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1551.6347824820168
+W_T_median: 1406.0687944594565
+W_T_pctile_5: 624.1985510150489
+W_T_CVAR_5_pct: 487.910933006613
+F value: -5142.815118117052
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 3.0
+F value: -5142.815118117052
+-----------------------------------------------
+{'NN': [-0.3306834029633841, -2.9877990369354457, -15.294044841764338, 11.203652513598746, 0.5852397742595156, 2.879107346651452, 15.69291245273988, -11.919680896627929, 219.34417180300167, 5.637575918184727, 1.4509135161050182, 1783.6019781318118, -27.534137249932893, 6.3889614666137, 104.43468641559674, -4.032611252006068, -204.18846960472425, 702.0411591803393, -11.943260508487908, -118.1212622559822, 486.7932873523264, 4.542158314298527, 598.741203515771, 32.035258557007225, 59.314291873945706, -13.0387171075123, -5.691079112094602, -81.89220783685069, -3.749083672407187, 11.311155022469377, 83.08603192358098, -37.63193564521821, 13.102170158130692, -18.2305729730632, -45.097597773239414, 11.578987240062352, 17.843178961426652, 24.38427632523546, 5.984942430232638, -54.64129864942645, -533.3860731472571, -552.7115818149799, -867.9379831905655, -224.48234960629907, -61.88526381308254, -164.27815979194395, -99.11205355806553, -284.7023765198214, 2.534938672057069, 1027.5540427583735, 194.24384784664957, -254.29082636063478, 2.1671144877768755, 60.46637346710362, 4.113541400286605, 299.69525926352736, -22.574600903466376, -7.326806477341738, -4.5926582485093, -0.4524517341259119, -11.384723412724584, -3.4328465494058356, -224.71932487320464, -57.764071874008756]}
+[-3.30683403e-01 -2.98779904e+00 -1.52940448e+01  1.12036525e+01
+  5.85239774e-01  2.87910735e+00  1.56929125e+01 -1.19196809e+01
+  2.19344172e+02  5.63757592e+00  1.45091352e+00  1.78360198e+03
+ -2.75341372e+01  6.38896147e+00  1.04434686e+02 -4.03261125e+00
+ -2.04188470e+02  7.02041159e+02 -1.19432605e+01 -1.18121262e+02
+  4.86793287e+02  4.54215831e+00  5.98741204e+02  3.20352586e+01
+  5.93142919e+01 -1.30387171e+01 -5.69107911e+00 -8.18922078e+01
+ -3.74908367e+00  1.13111550e+01  8.30860319e+01 -3.76319356e+01
+  1.31021702e+01 -1.82305730e+01 -4.50975978e+01  1.15789872e+01
+  1.78431790e+01  2.43842763e+01  5.98494243e+00 -5.46412986e+01
+ -5.33386073e+02 -5.52711582e+02 -8.67937983e+02 -2.24482350e+02
+ -6.18852638e+01 -1.64278160e+02 -9.91120536e+01 -2.84702377e+02
+  2.53493867e+00  1.02755404e+03  1.94243848e+02 -2.54290826e+02
+  2.16711449e+00  6.04663735e+01  4.11354140e+00  2.99695259e+02
+ -2.25746009e+01 -7.32680648e+00 -4.59265825e+00 -4.52451734e-01
+ -1.13847234e+01 -3.43284655e+00 -2.24719325e+02 -5.77640719e+01]
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+Running Adam.
+2.0% of gradient descent iterations done. Method = Adam
+4.0% of gradient descent iterations done. Method = Adam
+6.0% of gradient descent iterations done. Method = Adam
+8.0% of gradient descent iterations done. Method = Adam
+10.0% of gradient descent iterations done. Method = Adam
+12.0% of gradient descent iterations done. Method = Adam
+14.000000000000002% of gradient descent iterations done. Method = Adam
+16.0% of gradient descent iterations done. Method = Adam
+18.0% of gradient descent iterations done. Method = Adam
+20.0% of gradient descent iterations done. Method = Adam
+22.0% of gradient descent iterations done. Method = Adam
+24.0% of gradient descent iterations done. Method = Adam
+26.0% of gradient descent iterations done. Method = Adam
+28.000000000000004% of gradient descent iterations done. Method = Adam
+30.0% of gradient descent iterations done. Method = Adam
+32.0% of gradient descent iterations done. Method = Adam
+34.0% of gradient descent iterations done. Method = Adam
+36.0% of gradient descent iterations done. Method = Adam
+38.0% of gradient descent iterations done. Method = Adam
+40.0% of gradient descent iterations done. Method = Adam
+42.0% of gradient descent iterations done. Method = Adam
+44.0% of gradient descent iterations done. Method = Adam
+46.0% of gradient descent iterations done. Method = Adam
+48.0% of gradient descent iterations done. Method = Adam
+50.0% of gradient descent iterations done. Method = Adam
+52.0% of gradient descent iterations done. Method = Adam
+54.0% of gradient descent iterations done. Method = Adam
+56.00000000000001% of gradient descent iterations done. Method = Adam
+57.99999999999999% of gradient descent iterations done. Method = Adam
+60.0% of gradient descent iterations done. Method = Adam
+62.0% of gradient descent iterations done. Method = Adam
+64.0% of gradient descent iterations done. Method = Adam
+66.0% of gradient descent iterations done. Method = Adam
+68.0% of gradient descent iterations done. Method = Adam
+70.0% of gradient descent iterations done. Method = Adam
+72.0% of gradient descent iterations done. Method = Adam
+74.0% of gradient descent iterations done. Method = Adam
+76.0% of gradient descent iterations done. Method = Adam
+78.0% of gradient descent iterations done. Method = Adam
+80.0% of gradient descent iterations done. Method = Adam
+82.0% of gradient descent iterations done. Method = Adam
+84.0% of gradient descent iterations done. Method = Adam
+86.0% of gradient descent iterations done. Method = Adam
+88.0% of gradient descent iterations done. Method = Adam
+90.0% of gradient descent iterations done. Method = Adam
+92.0% of gradient descent iterations done. Method = Adam
+94.0% of gradient descent iterations done. Method = Adam
+96.0% of gradient descent iterations done. Method = Adam
+98.0% of gradient descent iterations done. Method = Adam
+100.0% of gradient descent iterations done. Method = Adam
+NN weights: [-3.32539134e-01 -2.98779904e+00 -1.53037692e+01  1.12036525e+01
+  5.87092211e-01  2.87910735e+00  1.57026195e+01 -1.19196809e+01
+  2.19344172e+02  5.63757520e+00  1.44954505e+00  1.78360198e+03
+ -2.75341372e+01  6.38896147e+00  1.04434686e+02 -4.03261125e+00
+ -2.04188470e+02  7.02041159e+02 -1.19432635e+01 -1.18121262e+02
+  4.86793287e+02  4.54215831e+00  5.98741204e+02  3.20352586e+01
+  5.93142919e+01 -1.30387171e+01 -5.69107911e+00 -8.18922078e+01
+ -3.74907854e+00  1.13111602e+01  8.30860319e+01 -3.76319356e+01
+  1.31021816e+01 -1.82305615e+01 -4.50975978e+01  1.15789872e+01
+  1.78431790e+01  2.43842763e+01  5.98494243e+00 -5.46412986e+01
+ -5.33386073e+02 -5.52711582e+02 -8.67937983e+02 -2.24482350e+02
+ -6.18852638e+01 -1.64278160e+02 -9.91120536e+01 -2.84702377e+02
+  2.53493867e+00  1.02755404e+03  1.94243848e+02 -2.54290826e+02
+  2.16711449e+00  6.04663735e+01  4.11354140e+00  2.99695259e+02
+ -2.25746009e+01 -7.32680648e+00 -4.59265825e+00 -4.52451734e-01
+ -1.13847234e+01 -3.43284655e+00 -2.24719325e+02 -5.77640719e+01]
+Minimum obj value:-16004.257622427953
+Optimal xi: 24.971420917194667
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING-dataset
+W_T_mean: 1551.6347824820195
+W_T_median: 1406.0687944594588
+W_T_pctile_5: 624.1985510150496
+W_T_CVAR_5_pct: 487.9109330066135
+F value: -16004.257622427953
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 10.0
+F value: -16004.257622427953
+-----------------------------------------------
