@@ -79,7 +79,7 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "test_run"
+iter_params = "real_exp"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
@@ -90,6 +90,16 @@ if iter_params == "test_run":
     n_d_train_mc = int(2.56* (10**4))
     itbound_mc = 1000
     batchsize_mc = 100
+
+if iter_params == "tiny":
+    n_d_train_mc = 100
+    itbound_mc = 2
+    batchsize_mc = 2
+    params["N_rb"] = 2
+    params["q"] =  0. * np.ones(params["N_rb"]) 
+
+
+continuation_learn = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
 
 
 #Main settings for TRAINING data
@@ -170,9 +180,12 @@ params["obj_fun"] = "mean_cvar_single_level"
 
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
+
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
-use_previous_theta = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
+#[1.0, 1.5, 3.0, 10.0]
+# tracing_parameters_to_run = [float(item) for item in sys.argv[1].split(" ")] #Must be LIST
+
 
 
 # TRACING PARAMETERS interpreted as follows:
@@ -664,8 +677,9 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
 
     from pathlib import Path
 
+
     my_file = Path("NN_optimal2.json")
-    if my_file.is_file():
+    if my_file.is_file() and tracing_param != tracing_parameters_to_run[0] and continuation_learn:
         obj_text = codecs.open("NN_optimal2.json", 'r', encoding='utf-8').read()
         b_new = json.loads(obj_text)
         print(b_new)

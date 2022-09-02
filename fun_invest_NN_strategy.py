@@ -269,7 +269,7 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
 
             a_t_n_output, a_layers_all, z_layers_all = NN_object.forward_propagation(phi=phi)
 
-        else:
+        else:   
             # output_Gradient == False: No need to keep track of the outputs
             a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
 
@@ -354,7 +354,7 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
                 grad_hH_a[:, ConfPenalty_n_H-1:N_a] = minone_minus_log_a_t_n_output[:, ConfPenalty_n_H-1:N_a].copy()
 
                 # -- BACKPROPAGATION to get grad_h_H (gradient of h_H w.r.t. parameters of NN
-                grad_hH = NN_object.back_propagation(grad_hH_a, a_layers_all, z_layers_all)
+                grad_hH, _ = NN_object.back_propagation(grad_hH_a, a_layers_all, z_layers_all)
 
                 #Update gradient of entropy
                 grad_H_t_n = grad_H_prev + grad_hH
@@ -418,18 +418,19 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
         if output_Gradient is True:
 
             #Notes:
-            # grad_h is calculated in NN_object.backpropagation
+            # grad_h_theta, grad_h_phi is calculated in NN_object.backpropagation
             # grad_g is calculated via recursion
 
             grad_h_a = Y_t_n.copy() #gradient of h w.r.t. a (output of NN), input for backprop
 
-            #-- BACKPROPAGATION to get grad_h (gradient of h w.r.t. parameters of NN
-            grad_h = NN_object.back_propagation(grad_h_a, a_layers_all, z_layers_all)
-
+            #-- BACKPROPAGATION to get grad_h_theta, grad_h_phi (gradient of h w.r.t. 
+            # parameters of NN and std wealth (phi)
+            grad_h_theta, grad_h_phi = NN_object.back_propagation(grad_h_a, a_layers_all, z_layers_all)
+            # MC note: add output from grad_h_phi above?
 
             #Update the derivative of wealth with respect to parameters of NN
             if n == 1:  #First rebalancing event, create grad_g
-                grad_g = (W0 + q[n_index]) * grad_h     #same, whether we have TCs or not
+                grad_g = (W0 + q[n_index]) * grad_h_theta    #same, whether we have TCs or not
 
             else: #Other rebalancing events, build up grad_g, column by column
                 for k in np.arange(0,N_theta,1):    #loop over number of parameters of NN
@@ -440,7 +441,9 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
 
                     #Whether transaction costs or not (grad_g_prev is now gradient of W(t_n^+))
                     grad_g[:, k] = np.multiply(grad_g_prev[:, k], h) \
-                                   + np.multiply(g_prev, grad_h[:, k])
+                                   + np.multiply(g_prev, grad_h_theta[:, k]) \
+                                    + np.multiply(grad_g_prev[:,k], grad_h_phi[:,1]) \
+                                        * 1/params["benchmark_W_std_train"][:,n_index]
 
 
 
@@ -471,7 +474,7 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
                     grad_pi_a[:, asset_index] = 1.
 
                     # -- BACKPROPAGATION to get grad_pi for this asset
-                    grad_pi = NN_object.back_propagation(grad_pi_a, a_layers_all, z_layers_all)
+                    grad_pi, _ = NN_object.back_propagation(grad_pi_a, a_layers_all, z_layers_all)
 
 
                     for k in np.arange(0,N_theta,1):    #loop over number of parameters of NN

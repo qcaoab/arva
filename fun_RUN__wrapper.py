@@ -191,7 +191,7 @@ def RUN__wrapper_training_testing_NN(
 
 
     print("-----------------------------------------------")
-    print("Selected results: NN strategy on TRAINING dataset")
+    print("Selected results: NN-strategy-on-TRAINING dataset")
     print("W_T_mean: " + str(params_TRAIN["W_T_stats_dict"]["W_T_mean"]))
     print("W_T_median: " + str(params_TRAIN["W_T_stats_dict"]["W_T_median"]))
     print("W_T_pctile_5: " + str(params_TRAIN["W_T_stats_dict"]["W_T_pctile_5"]))

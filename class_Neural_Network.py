@@ -636,7 +636,13 @@ class Neural_Network(object):
         # grad_h_theta.shape = (number of data points in training set, len(self.theta)
         # grad_h_theta[j,i] = for data point j in training set, grad_h w.r.t. self.theta[i]
 
-        return grad_h_theta
+        #grad_h_phi: Gradient of function h of outputs w.r.t. values of feature vector phi
+        # loop above stopped at l==1 [first hidden layer], so values of error_l and x_l correct
+        grad_h_phi = np.matmul(error_l, np.transpose(x_l))
+        grad_h_phi = np.squeeze(grad_h_phi) # otherwise grad_h_phi.shape = [N_d, 1, len(phi) ]
+
+
+        return grad_h_theta, grad_h_phi
 
 
     def forward_propagation(self, phi, theta = None):
