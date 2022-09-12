@@ -442,7 +442,7 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
                     #Whether transaction costs or not (grad_g_prev is now gradient of W(t_n^+))
                     grad_g[:, k] = np.multiply(grad_g_prev[:, k], h) \
                                    + np.multiply(g_prev, grad_h_theta[:, k]) \
-                                    + np.multiply(grad_g_prev[:,k], grad_h_phi[:,1]) \
+                                    + np.multiply(g_prev, np.multiply(grad_g_prev[:,k], grad_h_phi[:,1])) \
                                         * 1/params["benchmark_W_std_train"][:,n_index]
 
 
