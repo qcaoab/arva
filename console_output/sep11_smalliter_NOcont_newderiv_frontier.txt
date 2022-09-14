@@ -1,5 +1,5 @@
 Starting at: 
-2022-09-02 09:42:14
+2022-09-11 22:24:03
 
  Random seed:  1  
 
@@ -107,10 +107,10 @@ obj.layers is a list of 'Neural_Network_Layer' objects with following attributes
 --------------------------------------------------------------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -163,46 +163,46 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [ -5.50320278  11.57611594  16.41644151  15.04947577   5.75777149
- -11.68480763 -16.01750425 -15.76550415  -8.43879217  17.57604911
- -10.85343136  -1.28309158 125.17271385   2.65556309 121.8969967
-  63.47570668  37.93380482   2.88397741   3.37264655  -7.53056232
-  55.16332311   8.56004315  28.97524508  -0.90154275   8.079402
-   9.43088819 -21.59972481  -2.6202627  -10.65058333 -10.43024201
-  14.13535373  11.30184762   5.76823031   6.02200992 -21.3259531
-  -2.46664689   1.25254156   2.61892201   0.22748828  30.73667604
- -73.99153847 -59.07707016 -28.37255402 -53.9330187  -79.72475167
- -56.9545206  -27.62059643 -52.53426874   0.74478924  81.54172047
- 105.78323274  90.32569471   9.46752915  61.4796037   75.97418677
-  59.41425328  -5.26093186  -5.00695758   3.01739133  -5.60245056
-   3.49173806  -5.4524795    3.11465864  -5.57394103]
-Minimum obj value:-1046.5494208834307
-Optimal xi: 31.113759007371854
+NN weights: [  0.87854119   1.28047768   0.80492869   1.81079033  -0.61778981
+  -2.6443001   -1.10656003  -2.06091428  42.79359675  52.75264031
+  97.79494131  68.21545733   1.17567369   3.84267234   2.53501517
+   7.24132694 -23.37883686 -24.7957267   -5.94328966   6.96839638
+  48.33561121  56.31648959  52.6651913   55.02386534   8.81016547
+  61.81176387 -13.61556394  29.70412403  12.83589148  51.68048692
+ -16.29523253  22.55541369  -0.91118819  17.12790488  -8.34810503
+  26.64831418   8.04697657 -12.41158813   4.11366468  -6.46607084
+   1.81975488 -30.73365862 -31.20620983 -27.89922946  12.44388252
+  33.63244291  31.92101736  32.88679737  12.19761835 -28.57757412
+ -28.82978604 -25.33570256   4.39881427  17.82244512  17.03341574
+  17.30404476  -3.4797117   -2.93422218   2.35621446  -5.16071364
+   2.3990635   -5.17121313   2.31838487  -5.16766962]
+Minimum obj value:-1046.0315380385077
+Optimal xi: 31.098315981074872
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1057.7527339381647
-W_T_median: 1053.9091305121447
-W_T_pctile_5: 968.4729144212629
-W_T_CVAR_5_pct: 940.7785394268908
-F value: -1046.5494208834307
+W_T_mean: 1060.1896240829183
+W_T_median: 1051.5345761169833
+W_T_pctile_5: 967.576213261727
+W_T_CVAR_5_pct: 940.0177333190285
+F value: -1046.0315380385077
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 0.1
-F value: -1046.5494208834307
+F value: -1046.0315380385077
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -255,46 +255,46 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [  3.43138995  -4.60162422   3.71608223 -10.34071645  -4.10069337
-   5.4928885   -3.68362735   8.96524907   4.2873461   -1.3391776
-   2.23511599   3.58024318  35.26884289  48.36137878   5.55249757
-  78.23521681   1.46614841  22.581809    35.08151464 -18.50253416
-  36.10115544 134.09006195  61.98551884 108.1647628   -1.71928427
-   9.35777107  96.74059515 110.82264415  -1.67019931  12.07676134
-   4.79504386   8.1740438    0.18050428   7.08433928  -1.59911886
-   4.80460566  23.80712206  31.45476224   7.88910501   4.81584359
-  94.54336018  30.54492847  29.55113823  32.90175674  14.35215105
-   8.28410489  68.64886819  10.31730898  59.39616602  62.90235697
-   0.69220358  62.32853624  -4.10227892   5.20482734   1.37169721
-   5.46766185  17.28941927  -4.46796691   5.25166679  -3.41625003
-  -4.13387073  -3.93213582   5.11855387  -3.37241763]
-Minimum obj value:-1208.7521426815126
-Optimal xi: 31.075693245338208
+NN weights: [ -4.7665309    2.15721647 -10.51493398  -6.4036965    2.98799564
+  -0.87286249  10.41540838   6.67156189  27.52595806  32.61638445
+   1.85167911  28.5218022   -1.91174952 -14.2386921    0.87907625
+ -16.89926533  58.26162296  23.78678735  19.28378826  24.4242036
+  45.11822075  26.55498494  20.15292655  24.01494203  -4.29453979
+   6.93036092 -10.64398831  12.32845552  -0.8982001   13.46869274
+  -7.349098    23.50196243 -24.42400908 -13.47127565  -2.9293511
+   5.88107907  -1.75195776  14.64062893  -7.83863222  23.14668465
+ -35.81147164 -40.78981906 -41.85562883   4.28686714 -19.18096987
+  -7.22859543  -8.19159863   4.18117126   6.98340488   0.25581122
+   0.59870004   1.76125682  45.97423334  44.66809768  44.17371054
+  -2.8685756    3.41395715  -3.76874442   1.65781083  -3.61712777
+   1.87034174  -3.63119322   4.79916839   1.62392713]
+Minimum obj value:-1208.2204925878668
+Optimal xi: 31.084537107795526
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1082.04342002283
-W_T_median: 1054.4050056092137
-W_T_pctile_5: 966.5225411273046
-W_T_CVAR_5_pct: 938.2590661308379
-F value: -1208.7521426815126
+W_T_mean: 1075.3587920652694
+W_T_median: 1051.8808526665234
+W_T_pctile_5: 966.725534302689
+W_T_CVAR_5_pct: 939.3870435553239
+F value: -1208.2204925878668
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 0.25
-F value: -1208.7521426815126
+F value: -1208.2204925878668
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -347,46 +347,46 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [  1.96088433 -12.70360482   5.69485427   2.58474019  -3.24830219
-  11.67629697  -4.83669393  -1.86407229  -0.49239884   2.93815695
-   9.52989526   3.13676501  88.2423693    1.14001955  17.55971755
-  59.59647657  54.42183494  27.32245911  22.77652718   0.30952819
-   3.60743548  26.8006759    6.14559828 209.4298015   -8.35831324
-  -1.177902     6.51520019  20.36625646  -6.00308779 -12.43970716
-  11.90179055 -43.35896065   2.51009617  -3.27888023 216.59998857
-   2.07249156  33.83432896  18.75789182   2.90669855  88.94966214
-  22.00549738  20.38889778   4.70441266  21.77891697   2.28480139
-  71.6232589   64.98509389  70.98487275   1.11046233   5.53605986
-  -3.71602182   4.90708985  88.00931811  35.74699058  -1.9792695
-  37.89092266  -4.19051803  -4.30678263   4.96610414  -3.73031262
-  13.90967016  -4.68393247   5.05911409  -3.81364849]
-Minimum obj value:-1373.1506392028984
-Optimal xi: 30.983851131273507
+NN weights: [  4.03039351   5.96497599  -3.49190815   2.56942913  -4.84080727
+  -4.2711592    3.29059674  -2.56149255  56.45108878  31.81560125
+  56.05244335  75.51200695  56.12953077  29.72288607  54.22924262
+  73.6739973   44.9969433   40.84214481  -1.05105412  -9.6013592
+   6.01984616   1.82111277   8.97994652   6.5771421   -5.74097169
+  -0.11938838  -7.14932268   9.04257043 -12.85285963  -2.46567804
+ -23.40659505   2.86941465   1.5072478   26.9911717   22.6309841
+   0.64278114  -2.38801857  36.10371801  24.11319534   0.33414657
+ -24.28532557   3.72457      6.8382665    2.45168912 -41.82933313
+ -11.9564279    1.71785388   2.88494272 -13.66651611   0.90943185
+   4.1616682   11.292465    14.52547132  -1.50602316  -4.30407285
+ -12.67590779   4.35023905  -3.62945269   0.78079841  -2.60700166
+   5.74515269   1.25391652  -2.57167452   1.94838174]
+Minimum obj value:-1373.147677258318
+Optimal xi: 30.98853826048785
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1106.6249947421686
-W_T_median: 1061.824453064492
-W_T_pctile_5: 960.6326928328697
-W_T_CVAR_5_pct: 930.5114176291868
-F value: -1373.1506392028984
+W_T_mean: 1103.2558278796037
+W_T_median: 1061.3089976113824
+W_T_pctile_5: 960.9940292396622
+W_T_CVAR_5_pct: 931.857612794376
+F value: -1373.147677258318
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 0.4
-F value: -1373.1506392028984
+F value: -1373.147677258318
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -439,46 +439,46 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [  4.28877527 -10.75369681  -4.44897424   3.06835294  -4.26007647
-  10.66194932   4.50757481  -3.20671496   3.9165237   -4.61841317
-   1.89140393   5.02337349 119.17484561  99.98058325 272.46892248
-  18.39686326   5.51862821  51.07327137  59.33986417  20.89955655
- 109.01019259 -19.56064069 -17.67964481  12.30097566  -1.73792768
-  -2.50057357   4.93033527  13.30172987   8.5826824  -10.74218212
-  26.10406276 103.24845258   1.34979368   8.176878     5.08518542
-  46.75938083  -3.60229596 219.09307133  36.89017202  34.58236374
-  43.67855682  28.14062499 -36.41605816 -32.17043722   0.94898076
-   2.01378944  92.4417635   87.41269744  -1.01471128   1.59196795
-  12.01697111  10.52338578   1.00908814  62.8441837   64.07137007
-  62.27438339   9.43214469  -0.79403534  -4.62697421  -3.90436478
-   3.6284017   -3.8196402    3.65338506  -3.87486384]
-Minimum obj value:-1597.9200111294454
-Optimal xi: 30.72944445862397
+NN weights: [  2.48709021  -1.76379175   4.70514571  -2.552409    -3.48760661
+   3.07787636  -3.63623637   3.94327441   9.76939527   0.32516602
+   1.98403315  33.03267013  15.37265011  44.3493772    3.23203389
+  -4.24961814  64.44403773  25.96798093  22.01910638  19.29543134
+   6.17080593  42.92102381  68.06805492  14.17992102   2.64193926
+  24.92359537  27.37268046  -2.38782861  11.36880682   1.45045118
+  24.57036243   5.37974574 -10.91526656  -1.65483238 -21.76581211
+   8.97706049  -7.36081513   3.22765941  -2.77478342  50.48420764
+   3.37573006  22.74745433  -4.40676484  10.02391422 -35.68490543
+   2.21458182 -30.42392817   1.76955631   1.67217398   3.04962054
+  -7.73481443  10.74705188   3.67935      1.62690187  18.3736724
+  -3.15787063   1.55215406  -3.09175396  -9.3968755    3.34457129
+   3.85943513  -3.03453472   4.69037757   1.37266752]
+Minimum obj value:-1600.0383730066358
+Optimal xi: 30.55584363055789
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1149.2637084502958
-W_T_median: 1074.1943370816787
-W_T_pctile_5: 944.262951114177
-W_T_CVAR_5_pct: 908.361817229361
-F value: -1597.9200111294454
+W_T_mean: 1174.4924833955997
+W_T_median: 1077.929610241517
+W_T_pctile_5: 933.2585746445449
+W_T_CVAR_5_pct: 895.3465876010464
+F value: -1600.0383730066358
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 0.6
-F value: -1597.9200111294454
+F value: -1600.0383730066358
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -531,49 +531,46 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [ 4.22497293e+00 -1.32157943e+01  4.37014888e+00 -5.17360167e+00
- -3.61204982e+00  1.28705007e+01 -2.99649095e+00  4.38703921e+00
-  1.02385801e+01  1.17213860e+02  1.52433331e+02  2.99047852e+01
-  8.05575018e+01  1.20334581e+02  2.77235626e+02 -2.15732628e+00
- -1.26552801e+01  5.32776733e+00  2.65509810e+00  2.32212770e+01
- -4.52976164e+01  1.22271208e+01  3.32587642e+01  4.38073017e+00
- -1.09063012e+01 -1.23563396e+00  5.05686949e+01  4.73462554e+01
- -3.02465103e+00  1.59121843e+01  1.08675881e+01 -8.73548289e+00
-  1.13961617e+01  3.81882840e+00  5.04401336e-01 -3.09813259e+00
-  2.05282592e+02 -9.07188428e-01  6.49146322e+01  2.07790171e+01
-  5.43309809e+01  1.98203760e-01 -1.15475078e+00  3.71419927e+01
- -1.65956610e+01  3.03569155e+01  1.25018563e+01 -1.23985751e+01
-  5.15659306e+00  1.25407054e+00 -1.24276069e+00  7.88020147e+00
-  2.04595728e+00  2.42391854e+01  5.23048606e+01 -7.17216691e+00
- -4.78304052e-01 -3.74820506e+00 -8.45863010e+00 -3.55521219e+00
-  1.57775990e+01  9.24233819e-01  4.92576591e+00 -2.62864922e+00]
-Minimum obj value:-1725.0192226174977
-Optimal xi: 29.87074338038617
+NN weights: [  1.17650071  -1.3768505   -5.31972698  -2.95132907  -0.78539592
+   1.18908241   4.99295189   3.19612058 -19.97906226  -4.83512139
+   3.54027319  -2.44090028   4.47932768   9.728418    54.36744254
+   4.76824252   4.79607609   9.56187273  50.03508304   3.77209912
+  66.14875254  42.62781142   1.90835048  13.64397491  24.09988693
+   5.80324216  63.01716242  20.78584737   1.66705596  30.60785748
+   1.96271514  10.47634306  -7.081234     9.84145621   0.10993141
+   7.68181829  -3.09730982   1.82007863  14.72212684  45.96279078
+ -17.42557237  -4.21168115   3.3372184   10.66037774  -1.20842319
+  15.53610657  26.97354728  36.28428717 -35.96601889   4.11663306
+   1.89768954   3.84119887  -6.05012693  10.62049439   4.71333208
+  25.98072979   3.80736963  -1.88716074  14.1870286    2.62328172
+  -9.27015304   2.74855238   5.22374482   4.38787753]
+Minimum obj value:-1705.9658591021766
+Optimal xi: 30.155465149037866
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1271.3262831626046
-W_T_median: 1109.6597318484419
-W_T_pctile_5: 893.1533250267561
-W_T_CVAR_5_pct: 835.1064997437243
-F value: -1725.0192226174977
+W_T_mean: 1193.5149673597552
+W_T_median: 1091.931535007786
+W_T_pctile_5: 910.17506679131
+W_T_CVAR_5_pct: 870.5128646711045
+F value: -1705.9658591021766
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 0.7
-F value: -1725.0192226174977
+F value: -1705.9658591021766
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -626,49 +623,46 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [-8.91476446e+00 -1.87239393e+01  4.84746494e+00  2.31506956e+00
-  9.13206954e+00  1.68948054e+01 -6.45264119e+00 -8.65166140e-01
-  3.18820296e+00  2.00512679e+01  5.20076578e+01  5.46901936e+00
-  4.02828280e+00  1.09875330e+02  1.10486648e+01  4.00420280e+01
-  2.24389179e+01  1.31985551e+01  2.52543299e+01  1.44100550e+01
-  5.36177275e+00 -5.13677622e+00  1.10537314e+01 -1.20847778e+01
- -7.89219916e+00  6.95190558e+00  1.04862900e+00  7.64927421e+00
-  4.32055742e+00  8.58111044e+01  8.94733226e+00  9.22612893e+01
-  5.53467314e+01  1.95872233e-01  1.54764377e+02  1.78275326e+01
-  6.04580260e+01 -2.04650606e+00  2.57607732e+01  5.43011390e+00
-  1.94994578e+00 -1.57348972e+01 -2.12424835e+00  4.09705576e+00
-  4.21466700e-01 -1.28555631e+01  7.08217400e+00  6.29094628e+01
- -3.24628976e+00  1.01781839e+02  8.23691984e+01  1.57679603e+00
-  1.45206410e-01 -1.74847082e+01  1.58525205e+01  2.06244824e+01
-  8.70532544e+00  1.91698550e+00  3.58844253e+00 -2.63135700e+00
- -7.69484192e-01 -3.03284938e+00  4.19160877e+00  3.71746050e+00]
-Minimum obj value:-1854.6770406270336
-Optimal xi: 29.11614870247538
+NN weights: [  1.4895023   -4.95186031 -20.34667984  -0.66389943  -1.36068438
+   4.5487898   19.43431626   1.016852    -4.37153083   6.25495608
+  12.86737428  -1.35618206  15.69100256   1.60706425 -17.16572498
+   1.46911668  21.27514818   1.86130448  -1.93992344  90.70569323
+   2.97058527  12.51717829   8.28523207  13.81928727  -3.12973652
+  20.98297804  14.85358011   3.8107099    1.03371381 -47.74861538
+ -20.46710711 -41.62018407  24.36087845  -3.81296317  11.64281964
+  -3.05665769  -5.9421676    7.2005318   17.9306255    0.83192173
+ -25.0016167    5.18744754 -18.61871923  -0.76852123   6.5749797
+  -5.00690302   6.72689174  -5.76316801  -5.13386756  90.8767408
+   0.63546012   4.2781487    3.14817011 -35.06125868   5.38494289
+  -3.73205739   6.64869195   1.16872576   2.22092571  -2.05148531
+  -5.22675318   3.70856933  -3.52963301  -2.0622883 ]
+Minimum obj value:-1854.026289641737
+Optimal xi: 29.28377957368116
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1346.1834365003347
-W_T_median: 1145.804739478228
-W_T_pctile_5: 850.4443564177296
-W_T_CVAR_5_pct: 777.8532155757441
-F value: -1854.6770406270336
+W_T_mean: 1336.5975549189395
+W_T_median: 1151.2998664835932
+W_T_pctile_5: 859.1524253122119
+W_T_CVAR_5_pct: 784.7912860667943
+F value: -1854.026289641737
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 0.8
-F value: -1854.6770406270336
+F value: -1854.026289641737
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -721,46 +715,46 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [ -2.57331317   3.78506302 -11.85149225  -3.40250566   0.9237753
-  -4.02373089  11.30068617   3.15964545   1.1219361  -11.31645315
-   3.01243778   9.68353693  43.40413657   3.56602829   9.26551649
-   3.82857898  67.49304431 -10.23220935  -5.77305646  -1.58365537
-  71.95612915  -8.85714971  -4.90801766   4.49954836 -29.5707553
-   2.30064973   0.71046906  13.08535038   5.83195785  37.5324492
-  44.54310303  35.33256019 -18.48939964 115.19528907   3.39673725
-  57.8103933  -22.63186379  67.04915885  50.27150504  34.23484036
-  -3.66705792 223.28231665 139.05049137   4.57483775   3.1857848
- -39.52516101   1.34021275   7.67285378   3.67481143 -81.35352993
- -12.01164115   0.57472137 -25.45095424 -37.88526181  -8.60378609
-  41.59216198  12.00746155   7.21539999   3.41639567  -5.95271677
-  -4.84454294  -7.15452755  10.56889864  17.47579094]
-Minimum obj value:-1943.0429421079032
-Optimal xi: 26.548755302093898
+NN weights: [  2.21739169  -1.99461619  -4.15374509   2.63261936  -1.95592365
+   3.23949727   4.42063104  -1.37682046  33.1332211   29.91583648
+   7.20941029   7.2149849    1.70361135 -14.17254671  11.98127773
+  11.82922416  36.82953977 -13.92236925   4.65435706   4.74125261
+  38.26585781   2.62126825   8.92708553   4.10614588  -0.55797143
+ -70.75431558   2.15639564  -7.26591233  20.69594251   1.35288407
+  -1.07592162  10.20692086   3.13954243  -4.49499857  44.99522645
+  14.48958402   8.23787822 -15.14034578  34.39108415   4.98669998
+   0.22321904 -20.23588453   8.96236134 -20.38615516  38.36958944
+   3.16470918  61.23802107  -5.60539547  -5.79851696   6.12759819
+  -9.07202654   1.89906557   4.56902769   2.3723529   25.50989896
+  24.66810327  -2.89677129  -7.67415274  -6.92356454   8.64200966
+   3.68120813  -3.33898463   9.44783511   5.55145202]
+Minimum obj value:-1948.0174134677916
+Optimal xi: 27.1320229081844
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1482.7034470710944
-W_T_median: 1274.1677426327253
-W_T_pctile_5: 711.8553071386773
-W_T_CVAR_5_pct: 608.8119420759472
-F value: -1943.0429421079032
+W_T_mean: 1455.2596578671398
+W_T_median: 1248.3928949074923
+W_T_pctile_5: 734.6510703962645
+W_T_CVAR_5_pct: 638.2928559857504
+F value: -1948.0174134677916
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 0.9
-F value: -1943.0429421079032
+F value: -1948.0174134677916
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -813,46 +807,49 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [   3.29748608   -6.11444177   -0.72633838    8.61370633   -3.40306906
-    5.19519772    0.33149119   -7.89538427  113.58728236   24.62448122
-   28.70862647    3.10425933   -9.59591739   37.92896114  -33.56102798
-   37.13972449   -5.31593006   43.95199889 -132.00721668    6.13305718
-   57.02090278   80.601031     11.44779505   49.500551     10.31686167
-  -55.67814986    2.26782365  -11.45671544   -2.8642684   -19.26220659
-   30.0910363    10.00316406   51.38135245  -16.60599736    2.0860636
-    0.85676035    3.55726041  -99.20433897   -3.50895616  -22.12237474
-    8.8661115    81.92535303   32.89953239   -3.53658059    6.94212946
-  -33.81349111  -42.15743297   10.03538245 -123.57171414  -67.1853257
- -190.21377964    2.83380921  -38.01185285  -67.77457114 -117.48548726
-    6.60183657   -5.92975411   -3.41069075  -15.15518293  -10.45216793
-    1.68021095   -2.85951012    9.28680294    6.21096521]
-Minimum obj value:-2104.616099128073
-Optimal xi: 26.472312371576038
+NN weights: [-3.32822235e+00 -5.92574005e-01 -6.54825201e+00 -1.48287593e+00
+  2.34389149e+00  2.02330801e+00  7.44778433e+00  1.45601746e+00
+  7.95598114e+00 -1.39744065e+00  4.44191101e+00  3.18643934e-01
+ -1.82081270e+00  1.26815400e+01  6.74705826e+01  6.28452820e+01
+ -2.20868101e+00  1.16822295e+01  7.17817010e+01  6.05757752e+01
+ -2.18647461e+00  1.26184876e+01  7.08323835e+01  5.94920836e+01
+  4.75987652e+01  1.03833717e+01  2.39158354e+01 -2.30754514e+01
+  4.63522609e+01  2.36416551e+01  1.53668562e+01  1.28852685e+01
+  1.29068697e+00  5.24183793e+01  2.51456478e+01 -1.29401997e+01
+  1.95738533e+00  6.06035823e+00  7.97901892e-01  2.16649855e+01
+ -1.72779712e+01  3.18002552e+00 -2.58583336e+01 -2.94902140e+00
+ -5.80538700e+00  1.69582157e+01 -1.03078496e+01  7.73097896e+00
+ -3.20186895e+00  9.97795936e+00 -6.76812074e+00  3.16644949e+00
+  5.40159272e+01 -6.72378330e-02  8.41375879e+01  2.74163776e+01
+  4.91107851e+00 -3.97179372e+00  4.49208814e+00  6.31359905e+00
+  4.55918737e+00 -3.84165260e+00 -1.12903004e+01 -7.08629878e+00]
+Minimum obj value:-2094.425330645055
+Optimal xi: 26.79045459359173
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1494.9117061834402
-W_T_median: 1327.5906464399295
-W_T_pctile_5: 711.6606798853281
-W_T_CVAR_5_pct: 610.7720505318671
-F value: -2104.616099128073
+W_T_mean: 1473.3670829589312
+W_T_median: 1274.2894880898884
+W_T_pctile_5: 718.1427770276856
+W_T_CVAR_5_pct: 621.0588365330618
+F value: -2094.425330645055
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 1.0
-F value: -2104.616099128073
+F value: -2094.425330645055
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -905,46 +902,49 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [ -6.81862176  -7.07872853   8.84154036   1.65950922   5.60099936
-   6.7209535   -9.10729166  -1.64847882   2.84380577 -13.5452367
-   9.58720068  22.9572721    4.1851276    5.73032755  32.43006342
-  -0.32060899   8.284469    20.19166523   8.18442449  66.62819922
-   7.64154004   1.89896841 -18.64034688  11.51292435 -10.31064019
- 116.93958805  55.62487549  56.80730036  15.93677637  61.93650421
-  -3.76415188 -13.35757108  59.70639672  13.65590973  22.67947778
-  14.43393244   7.18661148  -0.42254907  19.4109779   24.92440007
-   9.34445366 -43.64297399   3.87812448 -36.49898765  -2.68768341
- 145.93826213   2.55578209 117.57192214 -20.84221394 -26.3185185
-  29.29116724 -29.98407203  -8.27535023  -3.63635628  22.5755321
-  -2.8497527    8.62965385   1.91249036  -0.63733188  -2.68817768
-  13.63321527   8.43730989  -0.20647069  -2.74661341]
-Minimum obj value:-2423.4771770789935
-Optimal xi: 26.929989856050696
+NN weights: [ 4.44557056e+00 -4.16503586e+00 -6.15343730e+00  1.51836335e+00
+ -3.75072289e+00  3.28217495e+00  5.09394714e+00 -2.07661065e+00
+  3.05663110e+01  3.58336436e+00  1.31446972e+01  2.06794130e+01
+  2.12140045e+01 -2.67292798e+01 -4.77744541e+00  1.71328466e+00
+  4.09559816e+01 -3.94434961e+00 -2.18686695e+01  2.51527717e+01
+ -6.34886673e+00  1.45304108e+01  2.33893006e+01  5.90957312e+00
+  5.75198978e+00  4.23718066e+00 -6.02031128e+00  4.40514238e+00
+ -4.83338048e-01 -1.42638762e+01 -5.10503343e+00  2.43791057e+01
+ -2.51847644e+00 -9.38658175e-01  4.34200282e+01  1.13634797e-01
+  2.09329754e+00  1.98934719e+01 -1.42948431e+01  2.83361669e-01
+ -1.76051976e+01  2.84685591e+00 -1.73483578e+01  2.08953349e+00
+  1.94793776e+01  6.82929097e+00  2.22210010e+01  7.15003800e+00
+  8.05351973e+00 -6.50712354e+00  8.61252579e+00 -6.72639407e+00
+ -7.05485348e+01  1.97118647e+00 -6.28705507e+01  1.79625143e+00
+ -6.71732583e-02 -2.26179765e+00  5.80639755e+00  1.78477976e+00
+  2.24130270e-01 -2.24787152e+00  5.82113214e+00  1.76659749e+00]
+Minimum obj value:-2420.8531758045624
+Optimal xi: 27.02130813244911
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1494.6237349474868
-W_T_median: 1316.7889860639814
-W_T_pctile_5: 731.8271079783233
-W_T_CVAR_5_pct: 630.4830859861634
-F value: -2423.4771770789935
+W_T_mean: 1491.7631245277844
+W_T_median: 1300.831570839232
+W_T_pctile_5: 741.4729345245273
+W_T_CVAR_5_pct: 632.0450653843569
+F value: -2420.8531758045624
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 1.2
-F value: -2423.4771770789935
+F value: -2420.8531758045624
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -997,46 +997,46 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [   3.79722094   -1.47904687   -6.28239066    0.52328594   -3.98718333
-    2.73772409    6.15456734   -0.51355836   11.49639295    3.28670054
-   43.03701556   -7.28469665   21.10082647  -14.77494822    1.87735485
-   32.42288787   18.56696234  -49.91954887   53.27161402    6.42411659
-   13.83570724   10.86575626   83.21025138  -10.31269831    9.24335981
-   -1.69660993    0.77434205   61.64013697   -1.73041987   78.59928572
-   96.13413863  -42.95233902    1.9268358    -2.22699269   -8.50179305
-    8.90141842   15.98786455   -0.71576058   -8.05131983   80.56183442
- -146.01834495    2.07111001 -131.07044768 -143.09525566    9.40298331
-    3.31504311    8.09252815    8.8208578    19.48758458   -0.96263378
-   32.21879014   35.52311052   -6.99604454   74.01700473   37.8280704
-   41.20725252  -13.58943156   -9.81446702   20.4707084     5.78685683
-   -0.79491827   -4.47856416   -1.10805108   -4.54826766]
-Minimum obj value:-2844.335971465706
-Optimal xi: 25.731405067425992
+NN weights: [-11.73177339  -9.73502543  -1.26041143  -9.87309716  12.49980311
+  10.89475675   1.18440943   9.92003965  47.92533151  -3.13803394
+   0.29453292  25.62307481  47.00643908  -2.21677156   0.17233653
+  25.79215727   9.85373794  -3.14765523  -5.37185151  -0.41393499
+  47.50026963  -3.04451776   0.80316445  25.02362697  13.85804895
+   0.7657726   -8.79833898   6.05531764  -5.84261424   6.28621759
+  14.82983385  -3.87081875 -12.07911229   5.86971237  13.56871646
+ -26.83235542   4.21406086   0.8404346   31.25019732   4.77446102
+  33.28292897   1.73803926  35.49669132  51.85526217  39.29535598
+  22.04333682  28.87596917   0.3421832   71.44092125   5.88334417
+  57.42366512  -5.92353745 -20.61461745   6.51335426 -21.65781342
+   1.0524021   -0.13221091  -3.17102127  11.30820209   7.64965762
+  -0.12168578  -3.14186327  14.51891135   4.93551373]
+Minimum obj value:-2845.9418434513173
+Optimal xi: 25.792272242905625
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1518.9303752049177
-W_T_median: 1365.0932845010088
-W_T_pctile_5: 669.3599740690701
-W_T_CVAR_5_pct: 566.1467422878424
-F value: -2844.335971465706
+W_T_mean: 1520.199928886252
+W_T_median: 1366.8946615392742
+W_T_pctile_5: 667.2943054579252
+W_T_CVAR_5_pct: 565.6588846336562
+F value: -2845.9418434513173
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 1.5
-F value: -2844.335971465706
+F value: -2845.9418434513173
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -1089,44 +1089,44 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [-4.20816329 -3.8951408  -2.87766444 -3.55339781  2.78827601  2.53784265
-  3.25421057  3.53056795 -1.3248054  -2.2813863  -0.59452282 -1.44816953
- -1.1815792  -2.17765691 -0.74994623 -2.23941134 -2.06678678 -1.84381333
- -1.72370594 -1.7307132  -0.98897069 -1.51660619 -0.06823174 -3.24607648
- -2.16398211 -0.71098575 -0.93358746 -1.29470018 -1.32675272 -1.21561798
- -1.85262116 -1.82911319  0.89772295  0.70759185  1.18952747  1.27690093
- -1.91421096  0.19608882 -1.12220017 -0.7518218  -1.08936241 -1.16447166
- -1.20484383 -0.73890132 -0.14257539  1.13607897  0.86185123  0.93909981
- -0.78692836 -0.76156811 -1.09699972 -1.67004145 -1.27119347 -1.6288818
- -1.51671121 -1.75336279 -0.72351689 -0.71673433 -1.83335677 -1.36439404
- -1.10595674 -2.04424897 -2.00433654 -2.08311926]
-Minimum obj value:-3591.17614438037
-Optimal xi: 24.959217095423863
+NN weights: [-4.12955636 -0.36856283 -3.55739653 -4.10413373  4.58076805  0.33803194
+  4.91348616  3.86302618  0.04604769 -1.40092872 -1.63115892 -2.60175859
+  1.49996851  2.07912524  2.00019934  1.79117154 -0.73748332 -1.7222466
+ -2.02280954 -1.61520837 -0.8863304  -1.69122094 -2.05122448 -1.90859041
+  0.38280666  0.54412321 -0.74781852  1.02628065 -1.26069229 -0.72788795
+ -2.11864679 -0.88955352 -1.82349729 -1.76854692 -1.06450656 -2.2867808
+ -1.53054327 -1.17319457 -1.69132957 -1.82703433  0.96078421  0.78019861
+ -0.70340555 -0.65765852  0.48820446 -0.04354827 -0.58727424  0.91748032
+ -0.90813219 -1.57331755 -0.75224019 -1.05355335  0.58818488  0.6842344
+ -1.16383934  0.40160305  1.71019821  2.55166663  1.2570748   1.98608426
+  1.26326835 -1.60660202 -0.34479527  1.85096891]
+Minimum obj value:-3592.7005999582125
+Optimal xi: 24.960280637413025
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1551.6347824800987
-W_T_median: 1406.068794458646
-W_T_pctile_5: 624.1985510168373
-W_T_CVAR_5_pct: 487.9109330081752
-F value: -3591.17614438037
+W_T_mean: 1551.5577480553873
+W_T_median: 1405.4383972885003
+W_T_pctile_5: 624.6754498300529
+W_T_CVAR_5_pct: 489.59103520411713
+F value: -3592.7005999582125
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 2.0
-F value: -3591.17614438037
+F value: -3592.7005999582125
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -1179,44 +1179,44 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [-2.97047368 -2.9610592  -2.53355049 -4.41478086  2.7696165   3.63738062
-  4.35298395  3.7385858   1.35063899  0.89317467 -2.11109623 -1.86610318
- -0.46644225 -0.1288063  -3.06961568 -1.8374323  -1.22986459 -1.71579385
- -3.11821104 -2.31358244 -0.5828627  -0.63717856 -2.48091904 -2.47467495
-  1.02774156  1.39853799  2.01298562  1.10758123  0.10340901  0.86753804
-  2.11644329  0.87206565 -0.8135045  -2.07661371 -2.14068839 -0.82582595
- -0.7921175  -2.15602838 -1.81202822 -1.33287186  1.6625156   0.67609207
-  0.33266326  1.08485503 -1.38007155 -2.23813455 -1.81989127 -1.98459353
- -2.22352168 -1.56480107 -0.48232218 -0.85763505 -0.23721732 -0.87686979
-  0.60079801  0.11433017 -0.82421058 -1.14398582 -0.09044509 -1.69787693
-  1.25796997  1.00703451  0.32006075 -0.83913374]
-Minimum obj value:-5142.811769577682
-Optimal xi: 24.961763565202112
+NN weights: [-4.41952144 -1.96322708 -2.48093162 -3.90237178  4.12634912  2.83164845
+  3.531668    3.01560408 -1.41597142 -1.89843187 -0.57363793 -2.56402666
+ -0.26293546 -1.90747016  1.05926445 -1.08878742 -0.80054007 -1.42242766
+  0.13250206 -2.75486326 -1.73149355 -2.84938043 -1.81142948 -1.50934275
+ -0.19486527 -0.82557917  0.21060489  0.22465091 -0.87786097 -1.824728
+ -2.14258047 -1.41571092  0.5095953   1.22758526  0.38572591  1.70457663
+ -1.76211107 -1.97786659 -0.84786316 -1.45298624  0.49825533 -0.40507813
+  1.01463452 -0.33684414 -0.68235556 -1.8553076  -0.86850718 -2.0485956
+  0.87702735  0.23697393  0.81153132  0.07433294 -1.4617405  -2.30512594
+ -0.97304801 -1.14263591  0.95991926  1.97356034 -1.82192968 -1.56423327
+  0.8004837   1.53675407  0.3852557  -1.33849282]
+Minimum obj value:-5144.26344769833
+Optimal xi: 24.980714217076756
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1551.634782480973
-W_T_median: 1406.0687944590145
-W_T_pctile_5: 624.1985510160292
-W_T_CVAR_5_pct: 487.91093300746076
-F value: -5142.811769577682
+W_T_mean: 1551.557748060324
+W_T_median: 1405.4383972912642
+W_T_pctile_5: 624.6754498228327
+W_T_CVAR_5_pct: 489.59103520011587
+F value: -5144.26344769833
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 3.0
-F value: -5142.811769577682
+F value: -5144.26344769833
 -----------------------------------------------
 -----------------------------------------------
 Selected results: ConstProp_strategy on TRAINING dataset
-W_T_mean: 1261.0877712339752
-W_T_median: 1222.733226526609
-W_T_pctile_5: 834.028380700438
-W_T_CVAR_5_pct: 747.2411321494716
+W_T_mean: 1261.0933778858873
+W_T_median: 1222.5216402372002
+W_T_pctile_5: 834.4055321177691
+W_T_CVAR_5_pct: 748.3017793876664
 -----------------------------------------------
 Running Adam.
 2.0% of gradient descent iterations done. Method = Adam
@@ -1269,40 +1269,35 @@ Running Adam.
 96.0% of gradient descent iterations done. Method = Adam
 98.0% of gradient descent iterations done. Method = Adam
 100.0% of gradient descent iterations done. Method = Adam
-NN weights: [-4.51170259e+00 -4.96639714e-01 -5.45954178e+00 -5.14787914e+00
-  4.96308587e+00  1.24424615e+00  4.55094060e+00  3.54574650e+00
- -1.68871901e+00 -1.66829447e+00 -1.44734573e+00 -2.44135352e+00
-  1.45379915e-01  8.86576678e-02  1.03632487e+00  8.52577113e-01
- -1.33912706e+00 -1.38082235e+00 -1.52882224e+00 -2.55856939e+00
- -1.86202599e+00 -8.58590589e-01 -2.75560681e+00 -1.53134930e+00
- -1.36566521e+00 -4.62793151e-01 -6.77615098e-02  4.87692003e-01
- -4.95076897e-03  1.01906043e+00  1.51375975e+00  1.67259304e-01
- -1.97830944e+00 -1.83227128e+00 -1.32390106e+00 -2.15503964e+00
- -2.45864814e+00 -1.18422923e+00 -9.42925394e-01 -8.48994402e-01
- -1.63148232e+00 -8.79614740e-01 -1.87733578e+00 -5.26745646e-01
-  2.66655028e-01  9.69191374e-01  5.13854794e-01 -7.74245532e-02
-  9.41134104e-01  1.21996595e+00  6.50455517e-01 -2.27961550e-01
-  4.80610211e-01  2.44035448e-01  1.47382327e+00  9.27654278e-01
- -4.63739282e-01 -6.74288561e-01  4.59610340e-01  1.89395513e+00
- -1.29771661e+00 -1.40677359e+00  6.66211618e-01  1.04892077e+00]
-Minimum obj value:-16004.255573878465
-Optimal xi: 24.962832404451056
+NN weights: [-2.93099567 -3.84700731 -3.74006778 -3.41194374  2.79010747  3.62299304
+  4.18068568  3.02401849  0.43954534 -1.28605902 -1.46357917 -1.61405951
+ -1.13831873 -1.92641564 -1.8013381  -1.90871778 -0.6007402  -1.26599191
+ -1.60936796 -2.41631793 -0.05759192 -1.17035099 -2.1056326  -1.67732193
+  1.46713307  1.34645107  1.69402105  0.6299103  -1.17092879 -0.76391825
+ -1.22447306 -1.65116383 -2.38515985 -0.88926979 -1.46318143 -1.94756556
+ -1.07284337 -1.42500051 -2.45348135 -1.73632623 -1.89370912 -1.33460075
+ -0.71575734 -1.4613319  -0.54098803  0.27091676 -0.81921701 -0.35067103
+ -1.86944208 -1.73509055 -1.08573531 -2.0456424  -1.08538861 -1.47229266
+ -1.36525131 -1.12079369 -1.28988152 -0.66245219 -1.98727948 -0.90129458
+ -0.31155623 -0.26855931 -2.14612813 -1.63472738]
+Minimum obj value:-16005.167540326487
+Optimal xi: 24.97968166111574
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:223: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 /home/ma3chen/pieter_code_all_branches/marc_branch2/researchcode/fun_train_NN.py:235: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 -----------------------------------------------
 Selected results: NN-strategy-on-TRAINING dataset
-W_T_mean: 1551.6347824817055
-W_T_median: 1406.068794459327
-W_T_pctile_5: 624.1985510153411
-W_T_CVAR_5_pct: 487.9109330068651
-F value: -16004.255573878465
+W_T_mean: 1551.5577480629784
+W_T_median: 1405.4383972927872
+W_T_pctile_5: 624.6754498189422
+W_T_CVAR_5_pct: 489.59103519794144
+F value: -16005.167540326487
 -----------------------------------------------
 -----------------------------------------------
 Just FINISHED: 
 Asset basket ID: basic_T30_VWD
 Objective function: mean_cvar_single_level
 Tracing param: 10.0
-F value: -16004.255573878465
+F value: -16005.167540326487
 -----------------------------------------------
