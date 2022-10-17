@@ -1,6 +1,45 @@
 import numpy as np
 import fun_Objective_functions
 import fun_invest_NN_strategy
+import torch
+
+
+def eval_obj_NN_strategy_pyt(NN_pyt, params):
+    
+    #Objective: Calculates the pytorch (mean cvar only atm) objective function value F_val.
+    #NOTE: through the use of the function fun_invest_NN_strategy.invest_NN_strategy_pyt below,
+    #       this code also "invests" the NN control (pytorch) as investment strategy and updates "params"
+
+    
+    #OUTPUTS:
+    # return params, F_val
+    # params dictionary, with added fields:
+    #      ALL fields added by the FUNCTION:  fun_invest_NN_strategy.invest_NN_strategy
+    #     params["F_val"] = F_val     #Obj func value
+    #                                  if params["obj_fun"] = "mean_cvar" this is the LAGRANGIAN
+
+
+    #INPUTS:
+    # NN_pyt = object of pytorch NN class with structure as setup in main code
+    # params = dictionary with investment parameters as set up in main code
+    
+    # ---------------------Invest according to given NN_object with params NN_theta------------------------------
+
+    #Calculate the  wealth paths, terminal wealth
+    
+    params, g= fun_invest_NN_strategy.invest_NN_strategy_pyt(NN_pyt, params)
+
+    #Unpack F_theta
+
+    if params["obj_fun"] == "mean_cvar_single_level":
+        
+        # xi currently initialized as tensor in driver code
+        W_T_vector = g
+        
+        fun = fun_Objective_functions.objective_mean_cvar_pytorch(params, W_T_vector)
+
+
+    return fun, params
 
 def eval_obj_NN_strategy(F_theta, NN_object, params, output_Gradient = False,
                          LRP_for_NN_TrueFalse = False, PRP_TrueFalse = False):
@@ -72,7 +111,6 @@ def eval_obj_NN_strategy(F_theta, NN_object, params, output_Gradient = False,
 
     #Calculate the  wealth paths, terminal wealth, and gradient of terminal wealth w.r.t.
     # NN_theta (= NN_object.theta) parameters if NN_object with parameters NN_theta is the control/investment strategy
-
     params = fun_invest_NN_strategy.invest_NN_strategy(NN_theta= NN_theta,
                                                        NN_object= NN_object,
                                                        params= params,
@@ -113,7 +151,6 @@ def eval_obj_NN_strategy(F_theta, NN_object, params, output_Gradient = False,
             fun_Objective_functions.fun_objective(params=params)
 
 
-
     #Only if we need the gradients
     if output_Gradient is True:
 
@@ -150,10 +187,7 @@ def eval_obj_NN_strategy(F_theta, NN_object, params, output_Gradient = False,
     # -------------------------------------------------------------------------
     # Get CONFIDENCE PENALTY terms, if applicable
     if params["ConfPenalty_TrueFalse"] is True:
-        ConfPenalty_lambda = params[
-            "ConfPenalty_lambda"]  # weight (>0) on confidence penalty term; if == 0, then NO confidence penalty is applied
-        H_T = params["ConfPenalty_H_T"]
-
+        ConfPenalty_lambda =pytorch_mean_cvar_single_level
         if output_Gradient is True:
             grad_H_T = params["ConfPenalty_grad_H_T"]
 

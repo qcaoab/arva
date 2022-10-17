@@ -1,6 +1,47 @@
 #Contains objective functions for portfolio optimization
 
+from logging import raiseExceptions
 import numpy as np
+import torch
+
+
+#MC added pytorch version of objective mean cvar
+def objective_mean_cvar_pytorch(params, W_T_vector):
+    
+    #Assign and evaluate objective function and its gradient w.r.t. terminal wealth
+    # adapted for pytorch tensor format
+
+    # OUTPUT: objective function value and its gradient with respect to terminal wealth
+    #   return fun -- gradient is calculated automatically by pytorch 
+    
+    #   Note: fun.shape = grad_fun.shape = (terminal wealth vector).shape
+    #only mean cvar implemented for pytorch so far
+    
+    # W_T_vector = params["W"][:, -1] #Last column of params["W"] is TERMINAL WEALTH
+
+    # Pytorch objective function shortcut (mean cvar single)
+    #Get info in params specific for mean-cvar
+    rho = params["obj_fun_rho"]
+    alpha = params["obj_fun_alpha"]
+    xi = params["xi"] #this needs to be tensor
+
+    # assuming no lambda smoothing 
+    # also W_T and xi already in tensor         
+    
+    
+    xi_squared = torch.square(xi)
+    ind_W_T_below_xi_squared = (W_T_vector <= xi_squared) * 1   # 1 if W_T <=  xi_squared,
+                                                            # 0 if W_T >  xi_squared
+
+    diff = W_T_vector - xi_squared
+    bracket = torch.multiply(ind_W_T_below_xi_squared, diff)   #same as: minimum(W_T_vector - xi_squared, 0)
+
+    #obj Function
+    fun = -rho * W_T_vector - xi_squared - (1/alpha)*bracket
+
+    #return only fun
+    return fun
+
 
 def fun_objective(params, standardize=True):
     #Assign and evaluate objective function and its gradient w.r.t. terminal wealth
@@ -34,6 +75,7 @@ def fun_objective(params, standardize=True):
 
     obj_fun = params["obj_fun"]
     W_T_vector = params["W"][:, -1] #Last column of params["W"] is TERMINAL WEALTH
+     
 
     if obj_fun == "ads_stochastic":  #Asymmetric distribution shaping (ADS) obj with STOCHASTIC benchmark
 
@@ -212,7 +254,7 @@ def fun_objective(params, standardize=True):
         raise ValueError("PVS error in 'fun_Objectives': specified objective function not coded.")
 
 #End of function: fun_objective
-
+    
 
 def mean_cvar_single_level(W_T_vector, rho, alpha, xi, lambda_smooth):
    

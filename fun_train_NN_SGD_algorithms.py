@@ -4,10 +4,207 @@ import numpy as np
 import pandas as pd
 import copy
 from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun  #objective function for NN evaluation
+from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy_pyt as objfun_pyt #pytorch objective func
 from fun_W_T_stats import fun_W_T_summary_stats
+import torch
 
 import json
 
+def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
+    
+    # OBJECTIVE: Executes constant SGD and/or Adam, using pytorch implementations
+
+    #------------------------------------------------------------------------------------------
+    # OUTPUTS:
+    # returns dictionary "res" with content:
+    # res["method"] = method
+    # res["nit"] = it     #total nr of iterations executed to get res["F_theta"]
+    # res["val"] = val    #objective function value evaluated at res["F_theta"]
+    # res["runtime_mins"] = t_runtime  # run time in MINUTES until output is obtained\
+    # res["summary_df"] = summary_df, where:
+    #           summary_df = pd.DataFrame([[method, it, val, supnorm_grad, t_runtime,
+    #                                 and summary stats of terminal wealth
+
+    # if output_progress == True:
+    #     res["vval"] = vval    #pandas DataFrame outputted ONLY if  output_progress == True:
+    #
+
+
+    #------------------------------------------------------------------------------------------
+    # INPUTS:
+    # method = Gradient descent algorithm to follow [see below for full details]
+    # params = params dictionary, with key components:
+    #       params["N_d"] = total number of scenarios/observations in the training data
+    #       params["Y"][j, n, i] = Training data, along sample path j, over time period (t_n, t_n+1), for asset i
+                                    #this is modified into tensor format
+    #       params["Y"].shape = (N_d, N_rb, N_a) = (Nr of training data pts, Nr of rebal, Nr of assets)
+
+    # theta0 = starting point for SGD
+    # tol = tolerance for solving problem (e.grad. 1e-06)
+    # itbound = maximum number of iterations for the  algorithm
+    # batchsize =  size of minibatch to select from the training data set (in params) for each iteration
+    # check_exit_criteria == False: means we run code until itbound, do not check exit criteria on each iteration
+    # output_progress == True/False: if True, we calculate objective function value at each iteration using FULL training set
+    # nit_running_min =  the  nr of iterations at the end that will be used to get the running minimum
+
+    
+    #get NN training options
+    itbound = NN_training_options["itbound_SGD_algorithms"]
+    batchsize = NN_training_options["batchsize"]
+    check_exit_criteria = NN_training_options["check_exit_criteria"]
+    output_progress = NN_training_options["output_progress"]
+    nit_running_min = NN_training_options["nit_running_min"]
+    nit_IterateAveragingStart=NN_training_options["nit_IterateAveragingStart"]
+    
+    #Adam options
+    Adam_ewma_1 = NN_training_options["Adam_ewma_1"]
+    Adam_ewma_2 = NN_training_options["Adam_ewma_2"]
+    Adam_eta = NN_training_options["Adam_eta"]
+    Adam_epsilon = NN_training_options["Adam_epsilon"]
+    
+    
+    #Check that batch size does NOT exceed N_d
+    if batchsize > params["N_d"]:
+        raise ValueError("PVS error: Batch size exceeds size of all available training data.")
+
+    t_start = time.time() #start keeping track of runtime
+    res = {} #Initialize output dictionary
+
+
+    # ----------------------------  INITIALIZE algorithms --------------------------------------------
+    N_avg = 0   #running number of points over which iterate averaging is calculated
+    if nit_IterateAveragingStart == None:
+        nit_IterateAveragingStart = itbound  #To handle the None case in the if statement
+
+    if check_exit_criteria == True:
+        output_progress = True  #Set true to calculate function value at every iteration using full training data
+
+    if output_progress == True: #Initialize output dataframe for res["vval"]
+        vval = pd.DataFrame(columns=['it_nr', 'objfunc_val'])
+
+    
+    #not needed if initial fval not needed
+    # #select random batch of data
+    # batch_indices = np.random.choice(np.arange(0, params["N_d"], 1),
+    #                                  size=(1, batchsize), replace=False)
+    # batch_indices = batch_indices.flatten()  # make into a 0-dim array for slicing
+
+    # params_it = copy.deepcopy(params)  # Create a copy of input data for initial value
+    # del params_it["Y"]  # REPLACE  data in params_it with the subset for initial value
+    # params_it["Y"] = torch.tensor(params["Y"][batch_indices, :, :].copy(), device=params["device"])  # populate with subset of training data
+    # params_it["N_d"] = batchsize  # Update size of training data for params_it
+    
+
+    # Get initial F_val using this subset of training data -- needed???
+    # f_val = objfun_pyt(NN_pyt, params_it)
+    
+    #initialize xi tensor
+    params["xi"] = torch.tensor([params["xi_0"]], requires_grad=True, device=params["device"])
+    
+    
+    if "Adam" in NN_training_options["methods"]:
+        
+        #create optimizer
+        optimizer = torch.optim.Adam(NN_pyt.parameters())
+
+        #append xi to optimization parameters
+        optimizer.param_groups.append(params["xi"])
+
+    # ---------------------------- MAIN LOOP --------------------------------------------
+
+    for it in np.arange(1, itbound+1, 1):   #will run inclusive of itbound
+        #print(str(it))
+
+        if output_progress == True:
+            val = newval.copy()  # record the objective function value as it stands at end of PREVIOUS iteration
+            temp_vval = pd.DataFrame([[it-1, val]], columns=['it_nr', 'objfunc_val'])
+            vval = vval.append(temp_vval)
+
+
+        # Select batch_indices = indices in the batch/subset of training data for SGD
+        #   sample WITHOUT replacement from {0,1,...,M-1}
+        batch_indices = np.random.choice(np.arange(0, params["N_d"], 1),
+                                         size = (1,batchsize), replace = False)
+                        #--- numpy.random.choice: generates a random sample from a given 1-D array
+
+        batch_indices = batch_indices.flatten()     #make into a 0-dim array for slicing
+
+        params_it = copy.deepcopy(params)  # Create a copy of input data for this iteration
+
+        #-------------------------------------------------------------------------------------
+        # REPLACE training data in params_it with the subset
+        # - so that we can use NN function objfun without change
+        del params_it["Y"] # delete training data
+        params_it["Y"] = torch.tensor(params["Y"][batch_indices, :, :].copy(), device=params["device"])  # populate with subset of training data
+    
+        # params_it["benchmark_W_T_vector"] = params["benchmark_W_T_vector"][batch_indices].copy()  # populate with subset
+        # params_it["benchmark_W_paths"] = params["benchmark_W_paths"][batch_indices, :].copy()  # populate with subset
+
+        #--------------------  UPDATE STEP -------------------
+        
+       
+        
+        # eval obj fun with SGD batch, includes forward pass on NN with updated weights from last step
+        f_val = objfun_pyt(NN_pyt, params_it)
+        
+        f_val.backward()
+        
+         #clear gradients from previous steps
+        optimizer.zero_grad()
+        
+        optimizer.step()
+        
+        
+        # ----------------
+        #ITERATE AVERAGING
+        if (it -1) >= nit_IterateAveragingStart: #nit_IterateAveragingStart is the point from which ONWARDS we do iterate averaging
+            N_avg = N_avg + 1   #the running nr of points over which the average is calculated
+            theta_avg = (theta_avg*N_avg + theta_new) / (N_avg + 1) #running average
+        else:
+            theta_avg = theta_new.copy()
+
+        # ----------------
+        #RUNNING MINIMUM
+        if (output_progress == True) or (it >= itbound - nit_running_min):
+            # Always calc if 'output_progress' == True
+            # OR, for last 'nit_running_min' iterations, calculate the newval for EVERY iteration
+            # regardless of "output_progress", and keep track of running minimum
+
+            # newval is calculated using ALL data, not just subset
+            (_, newval, _, _) = objfun(F_theta = theta_avg,
+                                       NN_object = NN_object, params = params, output_Gradient=False)
+
+            #Keep track of running minimum for last 'nit_running_min' nr of iterations
+            if newval < v_min:  #If there is improvement
+                theta_min = theta_avg.copy() #Set new NN_theta_min
+                v_min = newval.copy() #Set new min value
+
+        else: # to take care of the case if we don't do a running minimum, e.g. if nit_running_min = 0
+              #so we always have a theta_min to use below
+            theta_min = theta_avg.copy()
+
+        # ----------------
+        #Update user on progress every x% of SGD iterations
+        if itbound >= 1000:
+            if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
+                print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)
+                (_, newval_mc, _, grad_theta_new_mc) = objfun(F_theta = theta_avg,
+                                           NN_object = NN_object, params = params, output_Gradient=True)
+                supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
+                # print( "objective value function right now is: " + str(newval_mc))
+                # print( "gradient value of function right now is: " + str(grad_theta_new_mc))
+                # print( "supnorm grad right now is: " + str(supnorm_grad))
+                # print("Weights right now are: ")
+                # print(theta)
+
+
+    # ---------------------------- End: MAIN LOOP --------------------------------------------
+
+
+    
+               
+    
+    return None
 
 
 def run_Gradient_Descent(method,
@@ -170,7 +367,9 @@ def run_Gradient_Descent(method,
 
     # Get gradient grad using this subset of training data
     (_, newval, _, grad_theta_new) = objfun(F_theta = theta_new,
-                                    NN_object = NN_object, params = params_it, output_Gradient=True)
+                                    NN_object = NN_object,
+                                    params = params_it, 
+                                    output_Gradient=True)
 
 
     #Initialize running minimum for final output [we check this over the last nit_running_min iterations]
@@ -276,8 +475,80 @@ def run_Gradient_Descent(method,
             del params_it["benchmark_W_T_vector"]  # delete full vector
             del params_it["benchmark_W_paths"]  # delete full set of paths
 
-            params_it["benchmark_W_T_vector"] = params["benchmark_W_T_vector"][batch_indices].copy()  # populate with subset
-            params_it["benchmark_W_paths"] = params["benchmark_W_paths"][batch_indices, :].copy()  # populate with subset
+    # ---------------------------- MAIN LOOP --------------------------------------------
+
+    for it in np.arange(1, itbound+1, 1):   #will run inclusive of itbound
+        #print(str(it))
+
+        if check_exit_criteria == True: #Check exit criteria
+
+            if tol == None:
+                raise ValueError("PVS error: 'tol' needs to be specified if check_exit_criteria = True.")
+
+            (_, _, _, grad_theta_new) = objfun(F_theta = theta_new,
+                                                          NN_object = NN_object, params = params, output_Gradient=True)
+
+            supnorm_grad = np.linalg.norm(grad_theta_new, ord = np.inf)     #max(abs(gradient))
+
+            if (newval < tol) or (supnorm_grad < tol):
+
+                print("---- Exiting Early ---- ")
+                print("Exiting at objective value = " + str(newval))
+                print("Exiting at gradient = " + str(supnorm_grad))
+                break   #Exit loop, do not execute rest of the main loop
+
+
+        #Passed exit criteria (or not applicable), so continue
+
+
+        if method == "Adadelta": #Record previous value theta for Adadelta
+            if it == 1:
+                theta_prev = np.zeros(theta_new.shape)  # Needed for Adadelta
+            else:
+                theta_prev = theta.copy()  # Needed for Adadelta
+
+
+        theta = theta_new.copy() #Update theta, for all methods
+
+        if method == "Adagrad":
+            v_Adagrad = vnew_Adagrad.copy()
+
+        if method == "Adadelta":
+            v_Adadelta = vnew_Adadelta.copy()  # Adadelta: EWMA of gradient squared
+            u_Adadelta = unew_Adadelta.copy()  # Adadelta: EWMA of param diff squared
+
+        if method == "RMSprop":
+            v_RMSprop = vnew_RMSprop.copy()  # RMSprop
+
+        if method == "Adam":
+            v_Adam = vnew_Adam.copy()  # Adam speed
+            m_Adam = mnew_Adam.copy()  # Adam momentum
+
+
+        if output_progress == True:
+            val = newval.copy()  # record the objective function value as it stands at end of PREVIOUS iteration
+            temp_vval = pd.DataFrame([[it-1, val]], columns=['it_nr', 'objfunc_val'])
+            vval = vval.append(temp_vval)
+
+
+        pass
+        # Select batch_indices = indices in the batch/subset of training data for SGD
+        #   sample WITHOUT replacement from {0,1,...,M-1}
+        batch_indices = np.random.choice(np.arange(0, params["N_d"], 1),
+                                         size = (1,batchsize), replace = False)
+                        #--- numpy.random.choice: generates a random sample from a given 1-D array
+
+        batch_indices = batch_indices.flatten()     #make into a 0-dim array for slicing
+
+        params_it = copy.deepcopy(params)  # Create a copy of input data for this iteration
+
+        #-------------------------------------------------------------------------------------
+        # REPLACE training data in params_it with the subset
+        # - so that we can use NN function objfun without change
+        del params_it["Y"] # delete training data
+        params_it["Y"] = params["Y"][batch_indices, :, :].copy() #populate with subset of training data
+        params_it["benchmark_W_T_vector"] = params["benchmark_W_T_vector"][batch_indices].copy()  # populate with subset
+        params_it["benchmark_W_paths"] = params["benchmark_W_paths"][batch_indices, :].copy()  # populate with subset
 
         # If using Trading signals, also replace the trade signal data with the selected indices
         if params_it["use_trading_signals_TrueFalse"] == True:
@@ -388,7 +659,7 @@ def run_Gradient_Descent(method,
         xi = F_theta[-2]  # Second-last entry is xi, where (xi**2) is candidate VAR
         gamma = F_theta[-1]  # Lagrange multiplier
 
-        # Make sure parameter dictionary is updated so that e.g. fun_Objective_functions can work correctly
+        # Make sure parameter dictionary is updated so that e.g. `fun_`Objective_functions can work correctly
         params["xi"] = xi
         params["gamma"] = gamma
 

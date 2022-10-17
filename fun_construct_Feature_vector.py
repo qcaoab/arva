@@ -1,6 +1,7 @@
 import numpy as np
+import torch
 
-
+    
 def construct_Feature_vector(params,                        # params dictionary as per MAIN code
                              n,                             # n is rebalancing event number n = 1,...,N_rb,
                                                             #   used to calculate time-to-go
@@ -27,6 +28,7 @@ def construct_Feature_vector(params,                        # params dictionary 
     #N_d = params["N_d"]  # Nr of training data return sample paths
     T = params["T"]  # Terminal time
     delta_t = params["delta_t"]  # time interval between rebalancing events
+    pytorch = params["NN_training_options"]["pytorch"]
 
 
     # --------------------------- CONSTRUCT FEATURE VECTOR and standardize ---------------------------
@@ -37,6 +39,9 @@ def construct_Feature_vector(params,                        # params dictionary 
         t_n = n_index * delta_t  # time of rebalancing event
         time_to_go = (T - t_n) * np.ones(len(wealth_n))
         time_to_go_std = time_to_go / T
+        
+        if pytorch:
+            time_to_go_std = torch.tensor(time_to_go_std, device = params["device"])
 
         if feature_calc_option == "matlab":
             # Time to go as defined in Matlab (used here if we want to get exactly the same results)
@@ -64,13 +69,17 @@ def construct_Feature_vector(params,                        # params dictionary 
             benchmark_W_mean_train = params["benchmark_W_mean_train"][:, n_index]
             benchmark_W_std_train = params["benchmark_W_std_train"][:, n_index]
 
-
-
         if benchmark_W_std_train == 0:  # Correct division by zero (for example no variance at time zero)
             benchmark_W_std_train = 1.0
 
+        if pytorch:
+            benchmark_W_mean_train = torch.tensor(benchmark_W_mean_train, device = params["device"])
+            benchmark_W_std_train = torch.tensor(benchmark_W_std_train, device=params["device"])
+            wealth_n = torch.tensor(wealth_n, device=params["device"])
+            
         wealth_std= (wealth_n - benchmark_W_mean_train) / benchmark_W_std_train
 
+       
 
         #Add BENCHMARK wealth in the case of obj_fun in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]
         if params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:
@@ -97,9 +106,13 @@ def construct_Feature_vector(params,                        # params dictionary 
     # --------------------------- CONSTRUCT FEATURE VECTOR for OUTPUT---------------------------
     # Construct feature vector at time t_n+ for NN
 
+    
     #First 2 features always "wealth" and "time-to-go"
-    phi = np.zeros([len(wealth_n), N_phi])  # Initialize to get shape right
-
+    if pytorch:
+        phi = torch.zeros([len(wealth_n), N_phi], device=params["device"])  # Initialize to get shape right
+    else:
+        phi = np.zeros([len(wealth_n), N_phi])  # Initialize to get shape right
+        
     #Order of first 2 matches the matlab order (my original notes has the first 2 reversed)
     phi[:, 0] = time_to_go_std
     phi[:, 1] = wealth_std

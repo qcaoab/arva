@@ -18,6 +18,7 @@ import fun_invest_ConstProp_strategy
 import fun_eval_objfun_NN_strategy
 import fun_W_T_stats
 import fun_BM_vs_NN_comparison
+import class_NN_Pytorch
 
 
 def RUN__wrapper_TWO_stage_optimization(
@@ -96,6 +97,7 @@ def RUN__wrapper_TWO_stage_optimization(
 def RUN__wrapper_ONE_stage_optimization(
         params,  # dictionary as setup in the main code
         NN,  # object of class_Neural_Network with structure as setup in main code
+        NN_pyt, 
         theta0,  # initial parameter vector (weights and biases) + other parameters for objective function
         NN_training_options,  # dictionary with options to train NN, specifying algorithms and hyperparameters
         output_parameters      #Dictionary with output parameters as setup in main code
@@ -113,6 +115,7 @@ def RUN__wrapper_ONE_stage_optimization(
         RUN__wrapper_training_testing_NN(
             params=params,  # dictionary as setup in the main code
             NN=NN,  # object of class_Neural_Network with structure as setup in main code
+            NN_pyt=NN_pyt,
             theta0=theta0,
             # initial parameter vector (weights and biases) + other parameters for objective function
             NN_training_options=NN_training_options
@@ -137,6 +140,7 @@ def RUN__wrapper_ONE_stage_optimization(
 def RUN__wrapper_training_testing_NN(
         params,    #dictionary as setup in the main code
         NN,  # object of class_Neural_Network with structure as setup in main code
+        NN_pyt,
         theta0,      # initial parameter vector (weights and biases) + other parameters for objective function
         NN_training_options  #dictionary with options to train NN, specifying algorithms and hyperparameters
 ):
@@ -147,7 +151,9 @@ def RUN__wrapper_training_testing_NN(
     # -----------------------------------------------------------------------------------------------
     # BENCHMARK: Constant proportion strategy on TRAINING data
     # -----------------------------------------------------------------------------------------------
-
+    
+    # pytorch to do: get outputs from pyt NN
+    
     # Constant proportion strategy implemented on the TRAINING data
     params_CP_TRAIN = fun_invest_ConstProp_strategy.invest_ConstProp_strategy(prop_const=params["benchmark_prop_const"],
                                                                               params=params,
@@ -185,6 +191,7 @@ def RUN__wrapper_training_testing_NN(
     # SOLVE optimization problem, or just evaluate if pre-trained
     params_TRAIN, res_BEST, _, res_ALL_dataframe = fun_train_NN.train_NN( theta0 = theta0,
                                                             NN_object = NN,
+                                                            NN_pyt = NN_pyt,
                                                             params = params,
                                                             NN_training_options = NN_training_options
                                                             )

@@ -3,8 +3,188 @@ import pandas as pd
 import fun_W_T_stats
 import copy
 import fun_utilities    #using smooth approx to abs value function
+import torch 
 
 from fun_construct_Feature_vector import construct_Feature_vector
+
+def invest_NN_strategy_pyt(NN_pyt, params):
+    
+    #OBJECTIVE: Using pytorch, Calculate the  wealth paths, terminal wealth,
+    # where NN_object is the control/investment strategy in pytorch object, with theta parameters
+    
+    #OUTPUT in tensor format
+    # returns dictionary 'params' as per the main code, with following ADDED keys + values:
+    # params["W"]: contains paths of outcomes of W(t_N+) using investment strategy given by NN
+    #              W.shape = (N_d, N_rb+1) since it contains paths, not returns+
+    # params["W_paths_mean"]: contains MEAN of W(t_n+) across sample paths using NN strategy
+    #                W.shape = (1, N_rb+1) since it is the mean of paths, not returns
+    # params["W_paths_std"]: contains STANDARD DEVIATION of W(t_n+) across sample paths using NN strategy
+    #                W.shape = (1, N_rb+1) since it is the mean of paths, not returns
+    # params["NN_object"] = NN_object used to obtain the results, object of pytorch class NN, which gives control
+    # params["W_T_stats_dict"] = W_T_stats_dict: summary W_T stats as a dictionary
+    
+    
+    # params["Feature_phi_paths"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
+
+    # params["NN_asset_prop_paths"].shape = [N_d, N_rb+1, N_a]  Paths for the proportions or wealth in each asset for given dataset
+    #   params["NN_asset_prop_paths"][j, n, i]:
+    #       for i <= N_a-1 (i is *index*): Proportion of wealth t_n^+ invested in asset i
+    #       at rebal time t_n along sample path j
+
+    #INPUTS:
+    #   params = parameter dictionary 
+    #   NN_object = object of class pytorch NN (which gives control) with structure as setup in main code
+    
+    params = copy.deepcopy(params)
+    
+    # Append for output
+    params["strategy_description"] = "invest_NN_strategy"
+
+    #Define local copies for ease of reference
+    N_rb = params["N_rb"]       # Nr of equally-spaced rebalancing events in [0,T]
+    N_a = params["N_a"]         # Nr of assets = nr of output nodes
+    N_phi = params["N_phi"]     # Nr of features, i.e. the number of input nodes
+    N_d = params["N_d"]         # Nr of  data return sample paths
+    W0 = params["W0"]           # Initial wealth W0
+    q = params["q"]             # Cash injection schedule (a priori specified)
+    T = params["T"]             #Terminal time
+    delta_t = params["delta_t"] #time interval between rebalancing events
+    # N_theta = NN_object.theta_length  #Nr of parameters (weights and biases) in NN
+
+    #Do quick checks (adapted for pyt)
+    
+    #check return data right shapeparams["W"]
+    #check number of output nodes 
+    if NN_pyt.model[-2].out_features != N_a or NN_pyt.model[0].in_features != N_phi:
+        raise ValueError("PVS error in 'fun_NN_terminal_wealth': NN not right shape.")
+
+    if sum(params["q"].shape) != N_rb:
+        raise ValueError("PVS error in 'fun_NN_terminal_wealth': cash injection schedule q "
+                         "not right shape.")
+
+
+    #Append fields to params, and initialize
+    params["W"] = np.zeros([N_d, N_rb+1]) #   W contains PATHS, so W.shape = (N_d, N_rb+1)
+    params["W_paths_mean"] = np.zeros([1, N_rb + 1])    #mean of W paths at each rebalancing time
+    params["W_paths_std"] = np.zeros([1, N_rb + 1])     #stdev of W paths at each rebalancing time
+
+    params["Feature_phi_paths"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
+    params["NN_asset_prop_paths"] = np.zeros([N_d, N_rb, N_a])  #Paths for the proportions or wealth in each asset for given dataset
+
+    
+        # ---------------------INITIALIZE values for timestepping loop -------------------
+    g = W0 * torch.ones(N_d, requires_grad=True, device=params["device"])  # Initialize g for g_prev (initial wealth) below for first rebalancing time
+                        # MC note: this is the initialization of the wealth at t=0 that will be used to run 
+                        # the NN strategy. The timestepping loop over rb times will find a new 
+                        # portfolio wealth  each step of loop, calculated applying the current NN strategy.
+                        # The same NN is used at each timestep, which includes a forward pass and backprop
+                        # step for each Rb time. 
+    
+    
+    #-------------------------------------------------------------------------------
+    #   TIMESTEPPING
+    #-------------------------------------------------------------------------------
+
+    for n in np.arange(1,N_rb+1,1): #loop over rebalancing events n = 1,...,N_rb
+        
+        n_index = n - 1 #index of rebalancing event in the data
+
+        # ---------------------Assign previous values from loop -------------------
+        # g = g(t_n) = Wealth at time (t_n_plus_1)^-
+        #   g(t_N_rb) = terminal wealth, i.e. wealth at time (t_N_rb + delta_t) = T
+        # g_prev = g(t_n_min_1) = Wealth at time (t_n)^-
+
+        #Assign values from previous loop
+        g_prev = g.clone() #g_prev = g(t_n_min_1) = wealth (t_n)^-
+
+        
+        # --------------------------- RETURNS FOR  (t_n^+, t_n+1^-) ---------------------------
+        #Construct matrix from training data using the subset of returns for (t_n^+, t_n+1^-)
+        #   params["Y"][j, n_index, i] = Return, along sample path j, over time period (t_n, t_n+1),
+        #                           for asset i
+        Y_t_n = params["Y"][:, n_index, :]
+        # Y_t_n[j,i] = return for asset i, along sample path j, over time period (t_n, t_n+1)
+
+
+
+        # --------------------------- WEALTH (t_n^+) ---------------------------
+        # g_prev will contconstruct_Feature_vector
+        #cash injection
+        g_prev = g_prev + q[n_index] #g_prev now contains W(t_n^+)
+
+        params["W"][:,n_index] = g_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
+        params["W_paths_mean"][0,n_index] = torch.mean(g_prev)
+
+        if torch.std(g_prev) > 0.0:
+            params["W_paths_std"][0, n_index] = torch.std(g_prev, unbiased=True) #ddof=1 for (N_d -1) in denominator (bessels correction)
+        else:
+            params["W_paths_std"][0, n_index] = torch.std(g_prev)
+
+
+
+        #--------------------------- CONSTRUCT FEATURE VECTOR and standardize ---------------------------
+
+
+        phi = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
+                                 n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
+                                 wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
+                                                    # but *before* rebalancing at time t_n for (t_n, t_n+1)
+                                 feature_calc_option= None  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
+                                 )
+
+        for feature_index in np.arange(0,N_phi,1):  #loop over feature index
+            params["Feature_phi_paths"][:,n_index,feature_index] =  phi[:,feature_index].detach().cpu().numpy()
+            #    phi[j,i] = index i=0,...,(N_phi - 1) value of (standardized) feature i along sample path j
+
+
+        # --------------------------- CONTROL  ---------------------------
+        #Get proportions to invest in each asset at time t_n^+
+        #   a_t_n[j,i] = proportion to invest in asset i along sample path j
+
+        a_t_n_output = NN_pyt.forward(phi)
+        
+        
+            # # output_Gradient == False: No need to keep track of the outputs
+            # a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
+
+
+        # --------------------------- PROPORTIONS INVESTED in EACH ASSET ALONG EACH PATH-------------------
+
+        # params["NN_asset_prop_paths"].shape = [N_d, N_rb+1, N_a]  Paths for the proportions in each asset for given dataset
+        #   params["NN_asset_prop_paths"][j, n, i]:
+        #       for i <= N_a-1 (i is *index*): Proportion of wealth t_n^+ invested in asset i
+        #       at rebal time t_n along sample path j
+        # --- Note: params["q"] gives the *withdrawal* paths, so no need to add this to NN_asset_prop_paths
+
+        for asset_index in np.arange(0,N_a,1):  #loop over asset index
+            params["NN_asset_prop_paths"][:,n_index,asset_index] =  a_t_n_output[:,asset_index].detach().cpu().numpy()
+            #    a_t_n_output[j,i] = index i=0,...,(N_a - 1) proportion to invest in asset i along sample path j
+
+
+
+
+        # --------------------------- WEALTH (t_n+1^-) ---------------------------
+
+        h_components = torch.multiply(a_t_n_output, Y_t_n)
+        #  h_components[j,i] = a_t_n[j,i] * Y_t_n[j,i], where
+        #       a_t_n[j,i] = proportion to invest in asset i over (t_n^+, t_n+1^-), along sample path j
+        #       Y_t_n[j,i] = return for asset i, over time period (t_n, t_n+1), along sample path j
+
+        h = torch.sum(h_components, axis=1)  # axis = 1 sums the COLUMS of h_components
+
+
+
+        #Calculate wealth at (t_n+1^-)
+        #       g = g(t_n) = Wealth at time (t_n+1)^-
+        #       g_prev includes cash injection at time t_n
+        g = torch.multiply(g_prev, h)
+
+            
+    #end: TIMESTEPPING
+
+    # -------------------------------------------------
+
+    return params, g
 
 def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
                        LRP_for_NN_TrueFalse = False, PRP_TrueFalse = False):
@@ -59,7 +239,7 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
 
 
     params = copy.deepcopy(params) #Create a copy
-
+    
     # Append for output
     params["strategy_description"] = "invest_NN_strategy"
 

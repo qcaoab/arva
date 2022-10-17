@@ -5,11 +5,12 @@ import numpy as np
 import copy
 import fun_Data__assign
 from fun_train_NN_scipy_algorithms import run_scipy_minimize    #scipy minimization algorithms
-from fun_train_NN_SGD_algorithms import run_Gradient_Descent    #SGD algorithms
+from fun_train_NN_SGD_algorithms import run_Gradient_Descent, run_Gradient_Descent_pytorch    #SGD algorithms
 import fun_eval_objfun_NN_strategy  #used for final objective function evaluation after training
 
 def train_NN(theta0,      # initial parameter vector (weights and biases) + other parameters for objective function
              NN_object,      # object of class_Neural_Network with structure as setup in main code
+             NN_pyt,         #pytorch NN
              params,         # dictionary with investment parameters as set up in main code
              NN_training_options  #dictionary with options to train NN, specifying algorithms and hyperparameters
              ):
@@ -189,8 +190,20 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
         #print(res_RMSprop)
 
 
+    if NN_training_options["pytorch"] and "Adam" in NN_training_options["methods"]:
+        
+        # print("Running pytorch SGD gradient descent.")
+        result_pyt_adam = run_Gradient_Descent_pytorch(NN_pyt= NN_pyt, 
+                                                  NN_orig=NN_object, 
+                                                  params = params, 
+                                                  NN_training_options = NN_training_options)
+        
+        res_ALL["pytorch_adam"] = result_pyt_adam
+        
+    
     # Adam (in SGD algorithms):: ---------------------------------------------------------------------------
-    if "Adam" in NN_training_options["methods"]:
+    # non pytorch adam
+    if not NN_training_options["pytorch"] and "Adam" in NN_training_options["methods"]:
         print("Running Adam.")
         res_Adam = run_Gradient_Descent(method="Adam",
                                        theta0 = theta0,

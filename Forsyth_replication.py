@@ -25,7 +25,8 @@ import fun_Data__MCsim_wrapper
 import class_Neural_Network
 import fun_train_NN_algorithm_defaults
 import fun_RUN__wrapper
-
+import torch
+import class_NN_Pytorch
 
 if run_on_my_computer is True:  #handle importing of matplotlib
 
@@ -79,11 +80,11 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "test_run"
+iter_params = "tiny"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 60000
+    itbound_mc = 30000
     batchsize_mc = 1000
 
 if iter_params == "test_run":
@@ -100,6 +101,12 @@ if iter_params == "tiny":
 
 
 continuation_learn = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
+
+# pytorch stuff
+pytorch_flag = False
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+params["device"] = device
+
 
 
 #Main settings for TRAINING data
@@ -179,7 +186,9 @@ params["obj_fun"] = "mean_cvar_single_level"
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
 # print("tracing parameter entered from terminal: ", sys.argv[1])
-tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
+# tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
+
+tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -659,6 +668,9 @@ NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
 
+#MC pytorch addition:
+NN_training_options["pytorch"] = pytorch_flag  
+
 #If preTrained = True, overwrite
 if params["preTrained_TrueFalse"] is True:
     NN_training_options = {}    #overwrite
@@ -686,13 +698,29 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
         NN_theta0 = np.array(b_new["NN"])
         print(NN_theta0)
 
-
     # - augment NN parameters with additional parameters to be solved
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
         xi_0 = 27.744101568234655
         theta0 = np.concatenate([NN_theta0, [xi_0]])
+        params["xi_0"] = xi_0
 
+    # set up pytorch NN
+    if pytorch_flag:
+        
+        # copy NN structure into pytorch NN
+        NN_pyt = class_NN_Pytorch.pytorch_NN(NN)
+        NN_pyt.cuda()
+        
 
+        # copy parameters into pytorch NN
+            # --need to implement import method later-- #####
+            
+        
+    # pass empty variable so other functions are happy
+    else:
+        NN_pyt = None
+                   
+    
     # SET TRACING PARAMETERS inside params ----------------------------
     if params["obj_fun"] in ["one_sided_quadratic_target_error", "quad_target_error", "huber_loss", "ads"]:
         params["obj_fun_W_target"] = tracing_param  # all of them use Wealth target
@@ -734,6 +762,7 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
             fun_RUN__wrapper.RUN__wrapper_ONE_stage_optimization(
                 params=params,  # dictionary as setup in the main code
                 NN=NN,  # object of class_Neural_Network with structure as setup in main code
+                NN_pyt = NN_pyt,
                 theta0=theta0,
                 # initial parameter vector (weights and biases) + other parameters for objective function
                 NN_training_options=NN_training_options,
