@@ -279,8 +279,8 @@ def RUN__wrapper_output(
     # -----------------------------------------------------------------------------------------------
     # Unpack output flags
     # -----------------------------------------------------------------------------------------------
-    # Basic output params
-    code_title_prefix = output_parameters["code_title_prefix"]   # used as prefix for naming files when saving outputs
+    # Basic output params                                             #added kappa to output name
+    code_title_prefix = output_parameters["code_title_prefix"] + str(params_TRAIN["obj_fun_rho"])   # used as prefix for naming files when saving outputs
     output_results_Excel = output_parameters["output_results_Excel"]  # Output results summary to Excel
 
     save_Figures_format = output_parameters["save_Figures_format"] # format to save figures in, e.g. "png", "eps",

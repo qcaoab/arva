@@ -24,7 +24,7 @@ class pytorch_NN(nn.Module):
         
         def activation_function(name):
             if name == "logistic_sigmoid":
-                return nn.LogSigmoid()
+                return nn.Sigmoid()
             elif name == "ReLU":
                 return nn.ReLU()
             elif name == "softmax":
@@ -60,7 +60,7 @@ class pytorch_NN(nn.Module):
         for l in np.arange(1, original_NN.n_layers_total, 1):
 
             #create layer name
-            name = str(l) + "_" + nn_orig_df["description"].iloc[l]
+            name = nn_orig_df["description"].iloc[l] + "_" + str(l) 
                         
             #create linear layers
             pytorch_layers[name] = nn.Linear(nn_orig_df["x_l(weights)"].iloc[l][0], 
@@ -71,6 +71,13 @@ class pytorch_NN(nn.Module):
             pytorch_layers[name + "_activation"] = activation_function(nn_orig_df["activation"].iloc[l])
             
         self.model = nn.Sequential(pytorch_layers)
+        
+        
+        activation = {}
+        def get_activation(name):
+            def hook(model, input, output):
+                activation[name] = output.detach()
+            return hook
             
         # print structure
         pd.set_option("display.max_rows", None, "display.max_columns", None)
@@ -81,4 +88,38 @@ class pytorch_NN(nn.Module):
 
     def forward(self, input_tensor):
         return self.model(input_tensor.float())
-
+    
+    
+    def import_weights(self, original_NN, params):
+        
+        original_NN.unpack_NN_parameters()
+        
+        pyt_state_dict = self.state_dict()
+        
+        # if original_NN has bias, raise exception
+        for i in range(1,len(original_NN.layers)):
+            if original_NN.layers[i].b_l is not None:
+                raise Exception("Support for NN biases not implemented yet. -mc")
+            
+        for i, layer in enumerate(pyt_state_dict.keys()):
+            pyt_state_dict[layer] = torch.tensor(original_NN.layers[i+1].x_l.T, 
+                                                device = params["device"])
+        
+        self.load_state_dict(pyt_state_dict)
+    
+    def export_weights(self, original_NN):
+        
+        pyt_state_dict = self.state_dict()
+        
+        for i, layer in enumerate(pyt_state_dict.keys()):
+            original_NN.layers[i+1].x_l = pyt_state_dict[layer].detach().cpu().numpy().T
+        
+        #copy from layers to theta vector
+        original_NN.stack_NN_parameters()
+        
+        return original_NN
+    
+    
+        
+        
+        

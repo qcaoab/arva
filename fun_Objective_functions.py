@@ -6,7 +6,7 @@ import torch
 
 
 #MC added pytorch version of objective mean cvar
-def objective_mean_cvar_pytorch(params, W_T_vector):
+def objective_mean_cvar_pytorch(params, W_T_vector, xi):
     
     #Assign and evaluate objective function and its gradient w.r.t. terminal wealth
     # adapted for pytorch tensor format
@@ -23,7 +23,7 @@ def objective_mean_cvar_pytorch(params, W_T_vector):
     #Get info in params specific for mean-cvar
     rho = params["obj_fun_rho"]
     alpha = params["obj_fun_alpha"]
-    xi = params["xi"] #this needs to be tensor
+    # xi is passed from fun_train_SGD_algos to allow optimizer access.
 
     # assuming no lambda smoothing 
     # also W_T and xi already in tensor         
@@ -38,6 +38,7 @@ def objective_mean_cvar_pytorch(params, W_T_vector):
 
     #obj Function
     fun = -rho * W_T_vector - xi_squared - (1/alpha)*bracket
+    fun = torch.mean(fun)
 
     #return only fun
     return fun

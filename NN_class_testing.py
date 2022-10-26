@@ -25,7 +25,8 @@ import fun_Data__MCsim_wrapper
 import class_Neural_Network
 import fun_train_NN_algorithm_defaults
 import fun_RUN__wrapper
-
+import torch
+import class_NN_Pytorch
 
 if run_on_my_computer is True:  #handle importing of matplotlib
 
@@ -79,7 +80,7 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "real_exp"
+iter_params = "test_run"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
@@ -87,7 +88,7 @@ if iter_params == "real_exp":
     batchsize_mc = 1000
 
 if iter_params == "test_run":
-    n_d_train_mc = int(2.56* (10**4))
+    n_d_train_mc = int(2.56* (10**3))
     itbound_mc = 1000
     batchsize_mc = 200
 
@@ -100,6 +101,12 @@ if iter_params == "tiny":
 
 
 continuation_learn = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
+
+# pytorch stuff
+pytorch_flag = True
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+params["device"] = device
+
 
 
 #Main settings for TRAINING data
@@ -181,7 +188,7 @@ params["obj_fun"] = "mean_cvar_single_level"
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
-tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [0.1] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -372,12 +379,193 @@ if params["use_trading_signals_TrueFalse"] is True:
     params["feature_order"].extend(params["trading_signal_basket"]["basket_timeseries_names"])  #Add feature names
 
 
+#-----------------------------------------------------------------------------------------------
+# Market data: ASSETS and FEATURES (trading signals):
+#   If market data required for bootstrapping, extracted, processed (e.g. inflation adjusted)
+#   and prepared for bootstrapping here.
+#-----------------------------------------------------------------------------------------------
+
+#If market data is required (checked inside code), following fields appended/modified to params dictionary:
+#          params["asset_basket"]: (existing field) modified by appending historical data
+#                           and associated key stats (mean, stdev, corr matrix) to asset_basket
+#          params["asset_basket_data_settings"]: new dictionary appended  historical data extraction settings for record
+#          params["trading_signal_basket"]:  (existing field) modified by appending historical data
+#                                   and associated key stats (mean, stdev, corr matrix) to trading_signal_basket
+#                                   Trading signals constructed *lagged* to avoid look-ahead
+#          params["trading_signal_basket_data_settings"]: new dictionary appended historical data extraction settings for record
+#          params["bootstrap_source_data"]: (new field) pandas.DataFrame with time series ready for bootstrapping:
+#                                           1) Inflation adjusted if necessary,
+#                                           2) Trade signals and asset returns merged
+#                                           3) NaNs removed (at start due to trade signal calculation)
+#               for a given month, asset obs are at END of month, trade signals at BEGINNING of month
+
+# Note: if real_or_nominal = "real" (assets or trade signals), the inflation-adjusted returns time series will be constructed here
+
+# params = fun_Data__bootstrap_wrapper.wrap_append_market_data(
+#                             params = params,  #params dictionary as in main code
+#                             data_read_yyyymm_start = 192607, #Start date to use for historical market data, set to None for data set start
+#                             data_read_yyyymm_end = 201912,  #End date to use for historical market data, set to None for data set end
+#                             data_read_input_folder = "Market_data", #folder name (relative path)
+#                             data_read_input_file = "_PVS_ALLfactors_CRSP_FF_data_20200528", #just the filename, no suffix
+#                             data_read_input_file_type = ".xlsx",  # file suffix
+#                             data_read_delta_t = 1 / 12,  # time interval for returns data (monthly returns means data_delta_t=1/12)
+#                             data_read_returns_format = "percentages",  # 'percentages' = already multiplied by 100 but without added % sign
+#                                                                         # 'decimals' is percentages in decimal form
+#                             data_read_skiprows = 15 , # nr of rows of file to skip before start reading
+#                             data_read_index_col = 0,  # Column INDEX of file with yyyymm to use as index
+#                             data_read_header = 0,  # INDEX of row AFTER "skiprows" to use as column names
+#                             data_read_na_values = "nan" # how missing values are identified in the data
+#                             )
+
+params = fun_Data__bootstrap_wrapper.wrap_append_market_data(
+                            params = params,  #params dictionary as in main code
+                            data_read_yyyymm_start = 192601, #Start date to use for historical market data, set to None for data set start
+                            data_read_yyyymm_end = 202012,  #End date to use for historical market data, set to None for data set end
+                            data_read_input_folder = "Market_data", #folder name (relative path)
+                            data_read_input_file = "01_CRSP_data_end2020", #just the filename, no suffix
+                            data_read_input_file_type = ".xlsx",  # file suffix
+                            data_read_delta_t = 1 / 12,  # time interval for returns data (monthly returns means data_delta_t=1/12)
+                            data_read_returns_format = "decimals",  # 'percentages' = already multiplied by 100 but without added % sign
+                                                                        # 'decimals' is percentages in decimal form
+                            data_read_skiprows = 0 , # nr of rows of file to skip before start reading
+                            data_read_index_col = 0,  # Column INDEX of file with yyyymm to use as index
+                            data_read_header = 0,  # INDEX of row AFTER "skiprows" to use as column names
+                            data_read_na_values = "nan" # how missing values are identified in the data
+                            )
+
+#Output bootstrap source data to Excel, if needed
+output_bootstrap_source_data = False
+if output_bootstrap_source_data:
+    df_temp = params["bootstrap_source_data"]
+    df_temp.to_excel(code_title_prefix + "bootstrap_source_data.xlsx")
+#          params["bootstrap_source_data"]: (new field) pandas.DataFrame with time series ready for bootstrapping:
+#                                           1) Inflation adjusted if necessary,
+#                                           2) Trade signals and asset returns merged
+#                                           3) NaNs removed (at start due to trade signal calculation)
+#               for a given month, asset obs are at END of month, trade signals at BEGINNING of month
+
+
+
+#-----------------------------------------------------------------------------------------------
+# MARKET DATA GENERATOR: Source data for training\testing
+#-----------------------------------------------------------------------------------------------
+
+params["output_csv_data_training_testing"] = False  #if True, write out training/testing data to .csv files
+
+
+
+if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
+
+    # ----------------------------------------
+    # TRAINING data bootstrapping
+    # - Append bootstrapped data to "params" dictionary
+
+    params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
+        train_test_Flag = "train",                  # "train" or "test"
+        params = params,                            # params dictionary as in main code
+        data_bootstrap_yyyymm_start = 192601,       # start month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_end = 202012,         # end month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_exp_block_size = 12,          # Expected block size in terms of frequency of market returns data
+                                                    # e.g. = X means expected block size is X months of returns
+                                                    # if market returns data is monthly
+        data_bootstrap_fixed_block = False,         # if False: use STATIONARY BLOCK BOOTSTRAP, if True, use FIXED block bootstrap
+        data_bootstrap_delta_t = 1 / 12             # time interval for returns data (monthly returns means data_delta_t=1/12)
+    )
+
+    # ASSET return data: always appended (if market data required
+    #   params["Y_train"][j, n, i] = Return, along sample path j, over time period (t_n, t_n+1), for asset i
+    #       -- IMPORTANT: params["Y_train"][j, n, i] entries are basically (1 + return), so it is ready for multiplication with start value
+    #   params["Y_order_train"][i] = column name of asset i used for identification
+
+    # TRADING SIGNAL data: only appended if params["use_trading_signals_TrueFalse"] == True
+
+    #   params["TradSig_train"][j, n, i] = Point-in time observation for trade signal i, along sample path j, at rebalancing time t_n;
+    #                               can only rely on time series observations <= t_n
+    #   params["TradSig_order_train"][i] = column name of trade signal i used for identification
+
+    # ----------------------------------------
+
+elif params["data_source_Train"] == "simulated":
+
+    if params["use_trading_signals_TrueFalse"]  is True:
+        raise ValueError("Cannot use trading signals with simulated market data.")
+
+    else:
+        # ----------------------------------------
+        # TRAINING data simulation
+        # - Append simulated data to "params" dictionary
+        params = fun_Data__MCsim_wrapper.wrap_run_MCsim(
+                    train_test_Flag = "train",  # "train" or "test"
+                    params = params,  # params dictionary as in main code
+                    model_ID_set_identifier = "PVS_2019_benchmark_kou" # (see code)identifier for the collection of models AND correlations to use
+                   )
+        # ASSET return data:
+        #   params["MCsim_info_train"]: inputs used to get the MC simulation results
+        #   params["Y_train"][j, n, i] = Return, along sample path j, over time period (t_n, t_n+1), for asset i
+        #       -- IMPORTANT: params["Y_train"][j, n, i] entries are basically (1 + return), so it is ready for multiplication with start value
+        #   params["Y_order_train"][i] = column name of asset i used for identification
+
+
+
+if params["test_TrueFalse"] is True:
+
+    if params["data_source_Test"] == "bootstrap": #TESTING data bootstrap
+
+        # ----------------------------------------
+        # TESTING data bootstrapping
+        # - Append bootstrapped data to "params" dictionary
+
+        params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
+            train_test_Flag = "test",                   # "train" or "test"
+            params = params,                            # params dictionary as in main code
+            data_bootstrap_yyyymm_start = 192601,       # start month to use subset of data for bootstrapping, CHECK DATA!
+            data_bootstrap_yyyymm_end = 201512,         # end month to use subset of data for bootstrapping, CHECK DATA!
+            data_bootstrap_exp_block_size = 24,          # Expected block size in terms of frequency of market returns data
+                                                        # e.g. = X means expected block size is X months of returns
+                                                        # if market returns data is monthly
+            data_bootstrap_fixed_block = False,         # if False: use STATIONARY BLOCK BOOTSTRAP, if True, use FIXED block bootstrap
+            data_bootstrap_delta_t = 1 / 12             # time interval for returns data (monthly returns means data_delta_t=1/12)
+        )
+
+
+        # TEST data: only appended when params["test_TrueFalse"] == True
+
+        #   params["Y_test"][j, n, i] = (1+Return), along sample path j, over time period (t_n, t_n+1), for asset i
+        #   params["Y_order_test"][i] = column name of asset i used for identification
+        #   and if we have trading signals,
+        #   params["TradSig_test"][j, n, i] = Point-in time observation for trade signal i, along sample path j, at rebalancing time t_n;
+        #                               can only rely on time series observations <= t_n
+        #   params["TradSig_order_test"][i] = column name of trade signal i used for identification
+        # ----------------------------------------
+
+
+    elif params["data_source_Test"] == "simulated":
+
+        if params["use_trading_signals_TrueFalse"] is True:
+            raise ValueError("Cannot use trading signals with simulated market data.")
+
+        else:
+            # ----------------------------------------
+            # TESTING data simulation
+            # - Append simulated data to "params" dictionary
+
+            params = fun_Data__MCsim_wrapper.wrap_run_MCsim(
+                train_test_Flag="test",  # "train" or "test"
+                params=params,  # params dictionary as in main code
+                model_ID_set_identifier= "ForsythLi_2019_basic"
+                # (see code)identifier for the collection of models AND correlations to use
+            )
+            # ASSET return data:
+            #   params["MCsim_info_test"]: inputs used to get the MC simulation results
+            #   params["Y_test"][j, n, i] = Return, along sample path j, over time period (t_n, t_n+1), for asset i
+            #       -- IMPORTANT: params["Y_test"][j, n, i] entries are basically (1 + return), so it is ready for multiplication with start value
+            #   params["Y_order_test"][i] = column name of asset i used for identification
 
 
 #-----------------------------------------------------------------------------------------------
 # NEURAL NETWORK (NN) SETUP
 #-----------------------------------------------------------------------------------------------
-params["N_L"] = 4 # Nr of hidden layers of NN
+params["N_L"] = 1 # Nr of hidden layers of NN
                    # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
                    # layer_id list: [0, 1,...,N_L, N_L+1]
 
@@ -389,92 +577,310 @@ NN.print_layers_info()  #Check what to update
 
 #Update layers info
 NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 3 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 4 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+# NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+# NN.update_layer_info(layer_id = 3 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+# NN.update_layer_info(layer_id = 4 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 #NN.update_layer_info(layer_id = 3 , n_nodes = 8, activation = "ELU", add_bias=False)
-NN.update_layer_info(layer_id = 5, activation = "softmax", add_bias= False)
+NN.update_layer_info(layer_id = 2, activation = "softmax", add_bias= False)
 
 NN.print_layers_info() #Check if structure is correct
 
 
 # L2 weight regularization (only weights, not biases)
-# params["lambda_reg"] = 0.0 #1e-08 #1e-07    #Set to zero for no weight regularization
-
-original_NN = NN
-
-n_nodes_input_orig = original_NN.n_nodes_input  #nr of input nodes = size of feature vector
-n_nodes_output_orig = original_NN.n_nodes_output    #nr of output nodes
-n_layers_hidden_orig = original_NN.L   # nr of hidden layers
-n_layers_total_orig = original_NN.n_layers_total
-        
-        
-for l in np.arange(0, original_NN.n_layers_total, 1):
-            orig_dict = {"obj.layers[layer_id]" : "obj.layers[" + str(l) + "]",
-                          "layer_id" : original_NN.layers[l].layer_id,
-                          "description": original_NN.layers[l].description,
-                          "n_nodes" : original_NN.layers[l].n_nodes,
-                          "activation":  original_NN.layers[l].activation,
-                          "x_l(weights)":  [original_NN.layers[l].x_l_shape],
-                          "add_bias" : original_NN.layers[l].add_bias,
-                          "b_l(biases)" : original_NN.layers[l].b_l_length}
-
-            if l == 0 :
-                nn_orig_df = pd.DataFrame.from_dict(orig_dict)
-
-            else:
-                nn_orig_df = pd.concat([nn_orig_df,pd.DataFrame.from_dict(orig_dict)])
-
-nn_orig_df.reset_index()
-
-# node_n_list = []
-# activation_list = []
-# for index, row in nn_orig_df.iterrows():
-#     node_n_list.append(row['n_nodes'])
-#     activation_list.append(row["description"])
-
-# create pytorch layers
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-from collections import OrderedDict
+params["lambda_reg"] = 0.0 #1e-08 #1e-07    #Set to zero for no weight regularization
 
 
-import class_NN_Pytorch
 
-py_NN = class_NN_Pytorch.pytorch_NN(original_NN)
+#-----------------------------------------------------------------------------------------------
+# EXPLAINABLE ML: Parameters for LRP and PRP to explain NN results
+#-----------------------------------------------------------------------------------------------
+
+params["LRP_for_NN_TrueFalse"] = False    #If TRUE, will do layer-wise relevance propagation to explain
+                                            # importance/relevance of each feature at each rebalancing time
+                                            # outputs will be in format params["LRPscores"][j, n, i] = relevance score,
+                                            # along sample path j, at rebalancing time n, for feature i
+params["LRP_for_NN_epsilon"] = 1e-06    #>=0, larger values results in larger "absorption" of relevance
+                                        # at each layer in the backpropagation of relevance scores, and thus
+                                         # makes conclusions regarding importance of features "more sparse"
 
 
-# init theta
+#-- PRP
+params["PRP_TrueFalse"] = output_parameters["output_PRPscores"]      #If TRUE, will do PRP to explain
+                                            # importance/relevance of each feature at each rebalancing time
+                                            # outputs will be in format params["PRPscores"][j, n, i] = relevance score,
+                                            # along sample path j, at rebalancing time n, for feature i
+params["PRP_eps_1"] = 1e-07    #>=0, for numerical stability + absorption of relevance
+params["PRP_eps_2"] = 1e-07    #>=0, for numerical stability + absorption of relevance
 
-# SET INITIAL VALUES ----------------------------
-# - initial NN parameters [shuffle for each tracing param]
-NN_theta0 = original_NN.initialize_NN_parameters(initialize_scheme="glorot_bengio")
-theta0 = NN_theta0.copy()
 
-if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
-        xi_0 = 27.744101568234655
+
+
+#-----------------------------------------------------------------------------------------------
+# BENCHMARK: Specify constant proportion strategy
+#-----------------------------------------------------------------------------------------------
+#prop_const[i] = constant proportion to invest in asset index i \in {0,1,...,N_a -1}
+#               Order corresponds to asset index in sample return paths in params["Y"][:, :, i]
+
+#Equal split
+if params["add_cash_TrueFalse"] is False:   #if NO cash
+    prop_const = np.ones(params["N_a"]) / params["N_a"] #Equal split
+
+else:   #if params["add_cash_TrueFalse"] is True
+    prop_const = np.ones(params["N_a"]-1) / (params["N_a"]-1)  # Equal split between NON-cash assets
+    prop_const = np.insert(prop_const, 0, 0.0)  #insert value of zero for CASH asset
+
+# More complicated splits
+# if params["N_a"] == 2:
+#     #prop_const = np.ones(params["N_a"]) / params["N_a"] #Equal split
+#     prop_const = np.array([0.6, 0.4])
+# elif params["N_a"] == 5:
+#     prop_const = np.array([0.1, 0.3, 0.36, 0.12, 0.12])
+
+params["benchmark_prop_const"] = prop_const.copy()  #Copy over for subsequent use
+
+
+
+#----------------------------------------------------------------------------------------
+# TRAINING, TESTING and OUTPUTS of NN
+#----------------------------------------------------------------------------------------
+
+#Specify dictionary training_options used in training of NN: Set default values
+NN_training_options = fun_train_NN_algorithm_defaults.train_NN_algorithm_defaults()
+
+#NOTE: NN_training_options["methods"] specifies algorithm(s) used to train NN:
+    #       -> can specify multiple methods
+    #       DEFAULT = **ALL** methods coded using both scipy.minimize and SGD algorithms
+    #       *smallest* objective func value returned by ANY of the methods specified is used as the final value
+    #        along with its associated parameter vector
+
+
+#OVERRIDE any of the default values in NN_training_options, for example:
+#NN_training_options["methods"] = ["CG", "Adam", "RMSprop"]
+
+#NN_training_options["itbound_SGD_algorithms"] = 12000
+
+#Override some of the NN_training_options set above if needed
+NN_training_options["methods"] = [ "Adam"]
+NN_training_options["Adam_ewma_1"] = 0.9
+NN_training_options["Adam_ewma_2"] = 0.99 #0.999
+NN_training_options['nit_running_min'] = 0  # nr of iterations at the end that will be used to get the running minimum for output
+NN_training_options["itbound_SGD_algorithms"] = itbound
+NN_training_options["batchsize"] = batchsize
+NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
+
+#MC pytorch addition:
+NN_training_options["pytorch"] = pytorch_flag  
+
+#If preTrained = True, overwrite
+if params["preTrained_TrueFalse"] is True:
+    NN_training_options = {}    #overwrite
+    NN_training_options.update({"methods": "None_preTrained_F_theta__provided" })
+
+
+
+# -----------------------------------------------------------------------------
+# Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
+for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
+
+    # SET INITIAL VALUES ----------------------------
+    # - initial NN parameters [shuffle for each tracing param]
+    NN_theta0 = NN.initialize_NN_parameters(initialize_scheme="glorot_bengio")
+    theta0 = NN_theta0.copy()
+
+    from pathlib import Path
+
+
+    my_file = Path("NN_optimal2.json")
+    if my_file.is_file() and tracing_param != tracing_parameters_to_run[0] and continuation_learn:
+        obj_text = codecs.open("NN_optimal2.json", 'r', encoding='utf-8').read()
+        b_new = json.loads(obj_text)
+        print(b_new)
+        NN_theta0 = np.array(b_new["NN"])
+        print(NN_theta0)
+
+    # - augment NN parameters with additional parameters to be solved
+    if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
+        xi_0 = 27.001 #27.744101568234655
         theta0 = np.concatenate([NN_theta0, [xi_0]])
+        params["xi_0"] = xi_0
 
-# original_NN.theta = NN_theta0
+    # set up pytorch NN
+    if pytorch_flag:
+        
+        # copy NN structure into pytorch NN
+        NN_pyt = class_NN_Pytorch.pytorch_NN(NN)
+        NN_pyt.cuda()
+        
+        NN_pyt.import_weights(NN, params)
+        
+    # pass empty variable so other functions are happy
+    else:
+        NN_pyt = None
+                   
 
-# layer0 = original_NN.layers[0]
+import fun_construct_Feature_vector
 
-# layer0.x_l()
+n = 1
+N_d = params["N_d_train"]         # Nr of  data return sample paths
+W0 = params["W0"] 
+g_prev_pyt = W0 * torch.ones(N_d, requires_grad=True, device=params["device"])
+g_prev_np = W0 * np.ones(N_d)
 
-# original_NN.initialize_NN_parameters()
+params["NN_training_options"] = NN_training_options
+
+import fun_invest_ConstProp_strategy
+# Constant proportion strategy implemented on the TRAINING data
+params_CP_TRAIN = fun_invest_ConstProp_strategy.invest_ConstProp_strategy(prop_const=params["benchmark_prop_const"],
+                                                                            params=params,
+                                                                            train_test_Flag="train")
 
 
-# original_NN = original_NN.unpack_NN_parameters()
+# Append to params results for "W_paths_mean" and "W_paths_std",
+#   used for standardizing the feature vector for NN strategy
+params["benchmark_W_mean_train"] = params_CP_TRAIN["W_paths_mean"].copy()
+params["benchmark_W_std_train"] = params_CP_TRAIN["W_paths_std"].copy()
 
-# py_NN.model[1]
+params["NN_training_options"]["pytorch"] = False
+phi_np = fun_construct_Feature_vector.construct_Feature_vector(params = params,  # params dictionary as per MAIN code
+                                 n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
+                                 wealth_n = g_prev_np,  # Wealth vector W(t_n^+), *after* contribution at t_n
+                                                    # but *before* rebalancing at time t_n for (t_n, t_n+1)
+                                 feature_calc_option= None  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
+                                 )
+    
 
-# py_NN.model[0].weight.data = torch.Tensor([[ 0.1317, -0.2195],
-#         [ 0.2278, -0.7777],
-#         [ 0.6114,  0.4792],
-#         [ 0.0625,  0.6756]])
+params["NN_training_options"]["pytorch"] = True 
+
+phi_pyt = fun_construct_Feature_vector.construct_Feature_vector(params = params,  # params dictionary as per MAIN code
+                                 n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
+                                 wealth_n = g_prev_pyt,  # Wealth vector W(t_n^+), *after* contribution at t_n
+                                                    # but *before* rebalancing at time t_n for (t_n, t_n+1)
+                                 feature_calc_option= None  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
+                                 ).clone().detach()
+
+#hook
+activation = {}
+def get_activation(name):
+    def hook(model, input, output):
+        activation[name] = output.detach()
+    return hook
 
 
-# py_NN.model[0].weight.data.numel()
-# # print(original_NN.layers[0].x_l)
+model = NN_pyt.model
+model.hidden_layer_1.register_forward_hook(get_activation('hidden_layer_1'))
+
+model.hidden_layer_1.register_forward_hook(get_activation('hidden_layer_1_activation'))
+
+print("output comparison:")
+print(NN.forward_propagation(phi_np)[0])
+
+print(NN_pyt.forward(phi_pyt))
+    
+print("layer1 weight comparison:")
+
+print(NN.layers[1].x_l)
+
+print(NN_pyt.state_dict()['model.hidden_layer_1.weight'])
+
+
+print("layer1 weighted output (pre activ) comparison")
+
+
+
+print("post activation:")
+print(NN.forward_propagation(phi_np)[1][1])
+
+print(activation['hidden_layer_1_activation'])
+
+
+x=0
+
+
+#hook?
+
+
+
+print(activation['hidden_layer_1'])
+
+#     # SET TRACING PARAMETERS inside params ----------------------------
+#     if params["obj_fun"] in ["one_sided_quadratic_target_error", "quad_target_error", "huber_loss", "ads"]:
+#         params["obj_fun_W_target"] = tracing_param  # all of them use Wealth target
+
+#     elif params["obj_fun"] in ["mean_cvar_single_level", "meancvarLIKE_constant_wstar"]:
+#         params["obj_fun_rho"] = tracing_param  # all of them use rho (scalarization parameter)
+
+
+#     #Now set tracing_params for STOCHASTIC BENCHMARK objectives:
+#     # this is for params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]
+#     elif params["obj_fun"] == "ads_stochastic": #ADS objective
+#         params["obj_fun_ads_beta"] = tracing_param  # annual target outperformance rate - see Ni, Li, Forsyth (2020)
+
+#     elif params["obj_fun"] == "qd_stochastic":
+#         params["obj_fun_qd_beta"] = tracing_param  #  beta >= 0 in exp(beta*T)
+
+#     elif params["obj_fun"] == "ir_stochastic": # INFORMATION RATIO using stochastic target
+#         params["obj_fun_ir_gamma"] = tracing_param  # objective function gamma (embedding parameter)
+
+#     elif params["obj_fun"] == "te_stochastic":  # TRACKING ERROR as in Forsyth (2021)
+#         if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] is False:
+#             params["obj_fun_te_beta"] = tracing_param  # need to specify beta for beta_hat = exp(beta*t_n)
+#         else:  # if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] is True
+#             params["obj_fun_te_beta_hat"] = tracing_param  # Need to specify beta_hat CONSTANT value >= 1
+
+
+#     # Do ONE-STAGE optimization for some objectives ----------------------------
+#     if params["obj_fun"] in ["mean_cvar_single_level",
+#                              "one_sided_quadratic_target_error",
+#                              "quad_target_error",
+#                              "huber_loss",
+#                              "ads",
+#                              "ads_stochastic",
+#                              "qd_stochastic",
+#                              "ir_stochastic",
+#                              "te_stochastic"]:
+
+#         params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
+#             fun_RUN__wrapper.RUN__wrapper_ONE_stage_optimization(
+#                 params=params,  # dictionary as setup in the main code
+#                 NN=NN,  # object of class_Neural_Network with structure as setup in main code
+#                 NN_pyt = NN_pyt,
+#                 theta0=theta0,
+#                 # initial parameter vector (weights and biases) + other parameters for objective function
+#                 NN_training_options=NN_training_options,
+#                 # dictionary with options to train NN, specifying algorithms and hyperparameters
+#                 output_parameters = output_parameters  # Dictionary with output parameters as setup in main code
+#             )
+
+#     # Do TWO-STAGE optimization for some objectives ----------------------------
+#     elif params["obj_fun"] in ["meancvarLIKE_constant_wstar"]:
+
+#         params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
+#             fun_RUN__wrapper.RUN__wrapper_TWO_stage_optimization(
+#                 params=params,  # dictionary as setup in the main code
+#                 NN=NN,  # object of class_Neural_Network with structure as setup in main code
+#                 theta0=theta0,
+#                 # initial parameter vector (weights and biases) + other parameters for objective function
+#                 NN_training_options=NN_training_options,
+#                 # dictionary with options to train NN, specifying algorithms and hyperparameters
+#                 output_parameters = output_parameters  # Dictionary with output parameters as setup in main code
+#             )
+
+#     else:
+#         raise ValueError("PVS error in main code: params['obj_fun'] = " + params['obj_fun'] +
+#                          " not coded in MAIN code optimization loop.")
+
+
+#     # Give update to on tracing parameter progress
+#     print("-----------------------------------------------")
+#     print("Just FINISHED: ")
+#     print("Asset basket ID: " + params["asset_basket_id"])
+#     print("Objective function: " + params["obj_fun"])
+#     print("Tracing param: " + str(tracing_param))
+#     print("F value: " + str(params_TRAIN["F_val"]))
+#     print("-----------------------------------------------")
+
+# #END: Loop over tracing_params
+
+
+
+

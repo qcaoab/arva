@@ -119,7 +119,8 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
         plt.figure()
         sns.set(font_scale=0.85)
         sns.set_style("ticks")
-
+        
+        print(W_grid_list[::yticklabels])
         h = sns.heatmap(data =z_NNopt_prop_mesh,
                         yticklabels=W_grid_list[::yticklabels],
                         xticklabels = time_to_go[::xticklabels],#time_to_go,
@@ -128,6 +129,8 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
                         cmap= cmap, cbar = True)
         h.set_xticks(np.arange(0,len(time_to_go),xticklabels))
         h.set_yticks(np.arange(0, len(W_grid_list), yticklabels))
+        h.set_yticklabels(W_grid_list[::yticklabels])
+        h.set_xticklabels(time_to_go[::xticklabels])
         h.invert_yaxis()
         plt.title('Optimal control (NN) as proportion of wealth in asset ' + asset_names[asset_index])
         plt.ylabel('Wealth')

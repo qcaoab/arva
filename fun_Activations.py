@@ -233,7 +233,7 @@ def logistic_sigmoid(u, output_Gradient = False):
     # sig.shape = grad_sig.shape =  u.shape
 
     u = np.array(u)
-    sig = np.zeros(u.shape)
+    sig = np.zeros(u.shape, dtype=np.float64)
 
     #Causing overflow issues
     # sig = np.multiply((u < 0), 1 / (1 + np.exp(u))) \
@@ -245,10 +245,11 @@ def logistic_sigmoid(u, output_Gradient = False):
     pos_u_values = np.multiply(pos_indicators, u)
     neg_u_values = np.multiply(neg_indicators, u)
 
-    sig_pos_u = np.divide(np.exp(-pos_u_values), (1 + np.exp(-pos_u_values)))
+    # mc edits: change sign of x to make it match standard pytorch logistic
+    sig_pos_u = np.divide(1, (1 + np.exp(-pos_u_values)))
     sig_pos_u = np.multiply(pos_indicators, sig_pos_u)  # Correct for zeros
 
-    sig_neg_u = 1 / (1 + np.exp(neg_u_values))
+    sig_neg_u = np.divide(np.exp(neg_u_values), (1 + np.exp(neg_u_values)))
     sig_neg_u = np.multiply(neg_indicators, sig_neg_u)  # Correct for zeros
 
     # Add together

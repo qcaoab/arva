@@ -28,8 +28,12 @@ def construct_Feature_vector(params,                        # params dictionary 
     #N_d = params["N_d"]  # Nr of training data return sample paths
     T = params["T"]  # Terminal time
     delta_t = params["delta_t"]  # time interval between rebalancing events
-    pytorch = params["NN_training_options"]["pytorch"]
-
+    
+    
+    if torch.is_tensor(wealth_n):
+        pytorch = True
+    else:
+        pytorch = False
 
     # --------------------------- CONSTRUCT FEATURE VECTOR and standardize ---------------------------
 

@@ -1,0 +1,266 @@
+Starting at: 
+2022-10-23 15:22:12
+
+ Random seed:  1  
+
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = basic_T30_VWD
+timeseries_basket['basket_desc'] = CRSP data: T30 and VWD
+timeseries_basket['basket_columns'] = 
+['T30_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+5.0% of MC simulations done.
+10.0% of MC simulations done.
+15.0% of MC simulations done.
+20.0% of MC simulations done.
+25.0% of MC simulations done.
+30.0% of MC simulations done.
+35.0% of MC simulations done.
+40.0% of MC simulations done.
+45.0% of MC simulations done.
+50.0% of MC simulations done.
+55.00000000000001% of MC simulations done.
+60.0% of MC simulations done.
+65.0% of MC simulations done.
+70.0% of MC simulations done.
+75.0% of MC simulations done.
+80.0% of MC simulations done.
+85.0% of MC simulations done.
+90.0% of MC simulations done.
+95.0% of MC simulations done.
+100.0% of MC simulations done.
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  hidden_layer    None       None         None   
+4        obj.layers[4]        4  hidden_layer    None       None         None   
+5        obj.layers[5]        5  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+4    False        None  
+5    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       4  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       4  logistic_sigmoid   
+3        obj.layers[3]        3  hidden_layer       4  logistic_sigmoid   
+4        obj.layers[4]        4  hidden_layer       4  logistic_sigmoid   
+5        obj.layers[5]        5  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 4)    False        None  
+2       (4, 4)    False        None  
+3       (4, 4)    False        None  
+4       (4, 4)    False        None  
+5       (4, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[4]         4  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[5]         5  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+/home/marcchen/Documents/researchcode/fun_construct_Feature_vector.py:82: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  wealth_n = torch.tensor(wealth_n, device=params["device"])
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -886.4747391130657
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -930.1550226627753
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -974.7553493759934
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1015.436145742156
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1035.6981602478677
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.4076613557443
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.447080774962
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.4781038206481
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.4977000731449
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.509312163118
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.489954633675
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.4864974139198
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5118357380647
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5003835304226
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.4584469300203
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5000560042322
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5244571452934
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5199994235181
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.528771454278
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.528080251147
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5129755762637
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5404000865333
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5307356604299
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5559374783227
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5675662108545
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5738213139261
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5954408566442
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.5992148893067
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.600582940155
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.6283012268148
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.6612282541362
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.6795018560485
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.694092213249
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.7156141619496
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.7218892176184
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.7507699845128
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.7638352090237
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.7937518375463
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.8290834514937
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.8402990623792
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.8903267970163
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.931152488501
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1037.9923865240523
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1038.050632133613
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1038.1275510760138
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1038.1973152946673
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1038.3051145667416
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1038.3158304920262
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1038.5204270095762
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1038.59052308294
+NN weights: [-0.5238457   1.4227897   1.0428073   0.30631882  0.7784063  -1.5314841
+ -0.6438657  -1.0223484  -1.1652428   1.0697651  -0.24896085 -0.7086354
+  1.3825399  -1.2394419  -1.0047427   0.34713212  1.3127558  -1.0734282
+ -0.8765673  -0.11325269  0.69568145 -1.2285584  -0.3475669   0.47451216
+  0.6869408   0.88605255 -2.8608186   0.5348863  -1.0200424  -0.10814054
+  2.8253014  -0.8669397  -0.24912693 -0.43085524  2.6439168  -1.0060482
+ -0.29824185  0.79992545 -1.5385877   0.9383077   2.583511   -0.58195895
+ -1.678887    0.25728258  0.7737557   1.0743922  -4.4533877  -0.27903628
+ -3.569446    0.7652873   2.4963894  -0.20491879  0.7364119   0.76620895
+ -2.7556598   0.89182466 -0.2869267   1.4471989   0.5465432  -1.5166641
+ -1.1806806   4.797753    4.0935493  -4.6258807 ]
+Minimum obj value:-1038.3523299728054
+Optimal xi: 30.987036
+/home/marcchen/Documents/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1054.250496410221
+W_T_median: 1051.148021445462
+W_T_pctile_5: 959.6636238780328
+W_T_CVAR_5_pct: 932.9320818817126
+F value: -1038.3523299728054
+-----------------------------------------------
+/home/marcchen/Documents/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.1
+F value: -1038.3523299728054
+-----------------------------------------------

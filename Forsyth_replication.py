@@ -80,30 +80,30 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 
-iter_params = "tiny"
+iter_params = "real_exp"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 30000
+    itbound_mc = 100000
     batchsize_mc = 1000
 
 if iter_params == "test_run":
-    n_d_train_mc = int(2.56* (10**4))
-    itbound_mc = 1000
-    batchsize_mc = 200
+    n_d_train_mc = int(2.56* (10**5))
+    itbound_mc = 30000
+    batchsize_mc = 500
 
 if iter_params == "tiny":
     n_d_train_mc = 100
-    itbound_mc = 2
-    batchsize_mc = 2
-    params["N_rb"] = 2
+    itbound_mc = 5
+    batchsize_mc = 5
+    params["N_rb"] = 5
     params["q"] =  0. * np.ones(params["N_rb"]) 
 
 
 continuation_learn = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
 
 # pytorch stuff
-pytorch_flag = False
+pytorch_flag = True
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 params["device"] = device
 
@@ -188,7 +188,7 @@ params["obj_fun"] = "mean_cvar_single_level"
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
-tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -565,7 +565,7 @@ if params["test_TrueFalse"] is True:
 #-----------------------------------------------------------------------------------------------
 # NEURAL NETWORK (NN) SETUP
 #-----------------------------------------------------------------------------------------------
-params["N_L"] = 4 # Nr of hidden layers of NN
+params["N_L"] = 2 # Nr of hidden layers of NN
                    # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
                    # layer_id list: [0, 1,...,N_L, N_L+1]
 
@@ -578,10 +578,10 @@ NN.print_layers_info()  #Check what to update
 #Update layers info
 NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
 NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 3 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 4 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+# NN.update_layer_info(layer_id = 3 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+# NN.update_layer_info(layer_id = 4 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 #NN.update_layer_info(layer_id = 3 , n_nodes = 8, activation = "ELU", add_bias=False)
-NN.update_layer_info(layer_id = 5, activation = "softmax", add_bias= False)
+NN.update_layer_info(layer_id = 3, activation = "softmax", add_bias= False)
 
 NN.print_layers_info() #Check if structure is correct
 
@@ -700,7 +700,7 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
 
     # - augment NN parameters with additional parameters to be solved
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
-        xi_0 = 27.744101568234655
+        xi_0 = 27.001 #27.744101568234655
         theta0 = np.concatenate([NN_theta0, [xi_0]])
         params["xi_0"] = xi_0
 
@@ -711,10 +711,7 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
         NN_pyt = class_NN_Pytorch.pytorch_NN(NN)
         NN_pyt.cuda()
         
-
-        # copy parameters into pytorch NN
-            # --need to implement import method later-- #####
-            
+        NN_pyt.import_weights(NN, params)
         
     # pass empty variable so other functions are happy
     else:

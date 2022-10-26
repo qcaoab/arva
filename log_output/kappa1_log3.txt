@@ -1,0 +1,29 @@
+Starting at: 
+2022-10-21 19:23:07
+
+ Random seed:  1  
+
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = basic_T30_VWD
+timeseries_basket['basket_desc'] = CRSP data: T30 and VWD
+timeseries_basket['basket_columns'] = 
+['T30_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/researchcode/Forsyth_replication.py", line 497, in <module>
+    params = fun_Data__MCsim_wrapper.wrap_run_MCsim(
+  File "/home/marcchen/Documents/researchcode/fun_Data__MCsim_wrapper.py", line 154, in wrap_run_MCsim
+    params = fun_Data_MCsim.MCsim(MCsim_info=params["MCsim_info_" + train_test_Flag],
+  File "/home/marcchen/Documents/researchcode/fun_Data_MCsim.py", line 167, in MCsim
+    log_jump_mult_sum = func_SimLogJumpMult(NrSims=N_d,
+  File "/home/marcchen/Documents/researchcode/fun_Data_MCsim.py", line 68, in func_SimLogJumpMult
+    - np.multiply(1 - jump_up_or_down,temp_DOWNjumps )
+KeyboardInterrupt

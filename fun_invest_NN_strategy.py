@@ -108,7 +108,7 @@ def invest_NN_strategy_pyt(NN_pyt, params):
 
 
         # --------------------------- WEALTH (t_n^+) ---------------------------
-        # g_prev will contconstruct_Feature_vector
+        # g_prev will construct_Feature_vector
         #cash injection
         g_prev = g_prev + q[n_index] #g_prev now contains W(t_n^+)
 
