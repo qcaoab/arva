@@ -246,3 +246,5 @@ objective value function right now is: -1547.873751894685
 objective value function right now is: -1548.2768461228654
 57.99999999999999% of gradient descent iterations done. Method = A
 objective value function right now is: -1549.0683961468303
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1549.417815407344
