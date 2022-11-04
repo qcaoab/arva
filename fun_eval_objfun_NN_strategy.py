@@ -4,11 +4,12 @@ import fun_invest_NN_strategy
 import torch
 
 
-def eval_obj_NN_strategy_pyt(NN_pyt, params, xi):
+def eval_obj_NN_strategy_pyt(NN_list, params, xi):
     
     #Objective: Calculates the pytorch (mean cvar only atm) objective function value F_val.
     #NOTE: through the use of the function fun_invest_NN_strategy.invest_NN_strategy_pyt below,
     #       this code also "invests" the NN control (pytorch) as investment strategy and updates "params"
+    #       withdrawal NN functionality also added
 
     
     #OUTPUTS:
@@ -25,9 +26,9 @@ def eval_obj_NN_strategy_pyt(NN_pyt, params, xi):
     
     # ---------------------Invest according to given NN_object with params NN_theta------------------------------
 
-    #Calculate the  wealth paths, terminal wealth
     
-    params, g= fun_invest_NN_strategy.invest_NN_strategy_pyt(NN_pyt, params)
+    #Calculate the  wealth paths, terminal wealth
+    params, g, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
 
     #Unpack F_theta
 
@@ -36,7 +37,7 @@ def eval_obj_NN_strategy_pyt(NN_pyt, params, xi):
         # xi currently initialized as tensor in driver code
         W_T_vector = g
         
-        fun = fun_Objective_functions.objective_mean_cvar_pytorch(params, W_T_vector, xi)
+        fun = fun_Objective_functions.objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi)
     
         #for output
         params["F_val"] = fun.detach().to("cpu").numpy()     #Obj func value

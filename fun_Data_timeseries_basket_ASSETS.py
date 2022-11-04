@@ -137,6 +137,18 @@ def asset_basket(basket_type,   #"asset"
 
         #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
         basket_timeseries_names = ["T30", "VWD"]
+    
+    #MC added:
+    elif basket_id == "B10_and_VWD":
+
+        #description
+        basket_desc = "CRSP data: B10 and VWD"
+
+        #SHORT label for e.g. figures
+        basket_label = "B10 and VWD"
+
+        #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
+        basket_timeseries_names = ["B10", "VWD"]
 
 
     elif basket_id == "fake_assets":

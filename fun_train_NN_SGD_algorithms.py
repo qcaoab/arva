@@ -7,12 +7,13 @@ from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun  #objecti
 from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy_pyt as objfun_pyt #pytorch objective func
 from fun_W_T_stats import fun_W_T_summary_stats
 import torch
+import fun_invest_NN_strategy
 
 from torch.optim.swa_utils import AveragedModel
 
 import json
 
-def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
+def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_options):
     
     # OBJECTIVE: Executes constant SGD and/or Adam, using pytorch implementations
 
@@ -104,20 +105,20 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
     
     if "Adam" in NN_training_options["methods"]:
         
-        #create optimizer
-        optimizer = torch.optim.Adam(NN_pyt.parameters())
-
+        #create optimizer, starting with withdrawal NN params
+        optimizer = torch.optim.Adam(NN_list.parameters())
+                
         #append xi to optimization parameters
         optimizer.param_groups[0]['params'].append(xi)
         
     #init iterate averaging model
-    swa_model = AveragedModel(NN_pyt)
+    swa_both_nns = AveragedModel(NN_list)
     
-    #init theta min
-    # theta_min = 
-    
+    #parameters for 'manual' averaging of xi:
+    N_avg = 0 
+    xi_avg = xi
+        
     #create tensor version of params
-    
     params_full_tensor = copy.deepcopy(params) 
     params_full_tensor["Y"] = torch.tensor(params["Y"], device=params["device"])
     
@@ -127,7 +128,6 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
 
     for it in np.arange(1, itbound+1, 1):   #will run inclusive of itbound
         
-
         # Select batch_indices = indices in the batch/subset of training data for SGD
         #   sample WITHOUT replacement from {0,1,...,M-1}
         batch_indices = np.random.choice(np.arange(0, params["N_d"], 1),
@@ -153,19 +153,25 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         optimizer.zero_grad()
         
         # eval obj fun with SGD batch, includes forward pass on NN with updated weights from last step
-        f_val, _ = objfun_pyt(NN_pyt, params_it, xi)
-        
+        f_val, _ = objfun_pyt(NN_list, params_it, xi)
+      
         #calc gradients
         f_val.backward()
         
         #update parameters
         optimizer.step()
-        
-        
+               
         # ----------------
         #ITERATE AVERAGING
-        if it >= nit_IterateAveragingStart:
-            swa_model.update_parameters(NN_pyt)
+        if (it - 1) >= nit_IterateAveragingStart:
+            swa_both_nns.update_parameters(NN_list)
+            
+            #xi averaging            
+            N_avg = N_avg + 1
+            xi_avg = (xi_avg*N_avg + xi.detach()) / (N_avg + 1)
+            
+        else:
+            xi_avg = xi.detach()
                           
         # ----------------
         #RUNNING MINIMUM
@@ -176,7 +182,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         if itbound >= 1000:
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
                 print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method[0])                
-                new_fval, _ = objfun_pyt(NN_pyt, params_full_tensor, xi) # uses full tensor version of params 
+                new_fval, _ = objfun_pyt(NN_list, params_full_tensor, xi) # uses full tensor version of params 
                 # supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
                 print( "objective value function right now is: " + str(float(new_fval)))
                 # print( "gradient value of function right now is: " + str(grad_theta_new_mc))
@@ -189,16 +195,49 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
 
     #--------------- SET OUTPUT VALUES ---------------
 
+    #temporary output
+    params, g, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params_full_tensor)
+    # print("Median terminal wealth: ", torch.median(g))
+    
+    
+    
+    #Append terminal wealth stats using this optimal value
+    W_T = params["W"][:, -1]
+    W_T_stats_dict = fun_W_T_summary_stats(W_T)
+    
+    
+    #convert xi from tensor to np (NOT AVERAGED YET)
+    xi_np = xi.detach().cpu().numpy()
+    
+    print("-----------------------------------------------")
+    print("Selected results: NN-strategy-on-TRAINING dataset (temp implementation")
+    print("W_T_mean: " + str(W_T_stats_dict["W_T_mean"]))
+    print("W_T_median: " + str(W_T_stats_dict["W_T_median"]))
+    print("W_T_pctile_5: " + str(W_T_stats_dict["W_T_pctile_5"]))
+    print("W_T_CVAR_5_pct: " + str(W_T_stats_dict["W_T_CVAR_5_pct"]))
+    print("Average q (qsum/M+1): ", torch.mean(qsum_T_vector).cpu().detach().numpy()/(params["N_rb"]+1))
+    print("Final xi value (not averaged): ", xi_np)
+    print("Expected(across Rb) median(across samples) p_equity: ", np.mean(np.median(params["NN_asset_prop_paths"], axis = 0)[:,1]))
+    print("-----------------------------------------------")
+    
+    
+    
+    
     # Export trained NN from pytorch to original implementation, 'NN_object' is original NN object using weights
     # from pytorch averaged model.
     
-    NN_object = swa_model.module.export_weights(NN_orig)
-
+    
+    NN_withdraw_orig = swa_both_nns.module[0].export_weights(NN_orig_list[0])
+    NN_allocation_orig = swa_both_nns.module[1].export_weights(NN_orig_list[1])
+    
     # # copy weights from layers into theta
     # NN_object.stack_NN_parameters()
     
-    #convert xi from tensor to np
-    xi_np = xi.detach().cpu().numpy()
+    
+    
+    
+    
+    # TO DO: need to implement pieter NN implementation of this.
     
     #append xi_np to NN theta for f_theta
     F_theta = np.append(NN_object.theta, xi_np)    

@@ -96,8 +96,8 @@ def RUN__wrapper_TWO_stage_optimization(
 
 def RUN__wrapper_ONE_stage_optimization(
         params,  # dictionary as setup in the main code
-        NN,  # object of class_Neural_Network with structure as setup in main code
-        NN_pyt, 
+        NN_list,  # object of class_Neural_Network with structure as setup in main code 
+        NN_orig_list, #pieter NNs
         theta0,  # initial parameter vector (weights and biases) + other parameters for objective function
         NN_training_options,  # dictionary with options to train NN, specifying algorithms and hyperparameters
         output_parameters      #Dictionary with output parameters as setup in main code
@@ -114,8 +114,8 @@ def RUN__wrapper_ONE_stage_optimization(
     params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
         RUN__wrapper_training_testing_NN(
             params=params,  # dictionary as setup in the main code
-            NN=NN,  # object of class_Neural_Network with structure as setup in main code
-            NN_pyt=NN_pyt,
+            NN_list=NN_list,  # object of class_Neural_Network with structure as setup in main code
+            NN_orig_list = NN_orig_list, # pieter NNs
             theta0=theta0,
             # initial parameter vector (weights and biases) + other parameters for objective function
             NN_training_options=NN_training_options
@@ -139,8 +139,8 @@ def RUN__wrapper_ONE_stage_optimization(
 
 def RUN__wrapper_training_testing_NN(
         params,    #dictionary as setup in the main code
-        NN,  # object of class_Neural_Network with structure as setup in main code
-        NN_pyt,
+        NN_list,  # object of class_Neural_Network with structure as setup in main code
+        NN_orig_list, 
         theta0,      # initial parameter vector (weights and biases) + other parameters for objective function
         NN_training_options  #dictionary with options to train NN, specifying algorithms and hyperparameters
 ):
@@ -162,6 +162,8 @@ def RUN__wrapper_training_testing_NN(
     # Print some key results from Benchmark strategy on TRAINING data
     print("-----------------------------------------------")
     print("Selected results: ConstProp_strategy on TRAINING dataset")
+    print("constant withdrawal: ", params["withdraw_const"])
+    print("constant allocation: ", params["benchmark_prop_const"])
     print("W_T_mean: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_mean"]))
     print("W_T_median: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_median"]))
     print("W_T_pctile_5: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_pctile_5"]))
@@ -190,8 +192,8 @@ def RUN__wrapper_training_testing_NN(
 
     # SOLVE optimization problem, or just evaluate if pre-trained
     params_TRAIN, res_BEST, _, res_ALL_dataframe = fun_train_NN.train_NN( theta0 = theta0,
-                                                            NN_object = NN,
-                                                            NN_pyt = NN_pyt,
+                                                            NN_list = NN_list,
+                                                            NN_orig_list = NN_orig_list,
                                                             params = params,
                                                             NN_training_options = NN_training_options
                                                             )
@@ -234,7 +236,8 @@ def RUN__wrapper_training_testing_NN(
 
         #NN results on TESTING data
         params_TEST = fun_test_NN.test_NN(F_theta =  params_TRAIN["F_theta"],
-                                            NN_object = NN,
+                                            NN_object = NN_list,
+                                            NN_orig_list = NN_orig_list, #pieter NNs list
                                             params = params
                                          )
         print("-----------------------------------------------")

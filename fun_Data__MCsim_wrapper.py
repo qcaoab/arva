@@ -107,6 +107,7 @@ def wrap_run_MCsim(train_test_Flag,  # "train" or "test"
             # Assign correlations: CHECK ORDER if >= 2 assets!
             rho_sb = 0.0
             MCsim_info["corr_matrix"] = np.array([[1, rho_sb], [rho_sb, 1]])
+        
 
         elif model_ID_set_identifier == "PVS_2019_benchmark_kou" and params["real_or_nominal"] == "real":
             # Order should correspond to order of params["asset_basket"]["basket_columns"]

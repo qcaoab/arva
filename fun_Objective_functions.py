@@ -4,6 +4,37 @@ from logging import raiseExceptions
 import numpy as np
 import torch
 
+def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
+    #pytorch implementation for objective function: mean cvar with decumulation
+       
+    rho = params["obj_fun_rho"]
+    alpha = params["obj_fun_alpha"]
+    # xi is passed from fun_train_SGD_algos to allow optimizer access.
+
+    # assuming no lambda smoothing 
+    # also W_T, q_sum, and xi already in tensor         
+    
+    xi_squared = torch.square(xi)
+    ind_W_T_below_xi_squared = (W_T_vector <= xi_squared) * 1   # 1 if W_T <=  xi_squared,
+                                                            # 0 if W_T >  xi_squared
+
+    # diff = W_T_vector - xi_squared
+    # bracket = torch.multiply(ind_W_T_below_xi_squared, diff)   #same as: minimum(W_T_vector - xi_squared, 0)
+
+    bracket = torch.minimum(W_T_vector - xi_squared, torch.zeros(W_T_vector.size(), device = params["device"]))
+    
+    left_side = torch.squeeze(-rho * qsum_T_vector - xi_squared) 
+    #obj Function
+    fun = left_side - (1/alpha)*bracket
+    fun = torch.mean(fun)
+
+    #return only fun
+    return fun
+
+    
+    
+    return None
+
 
 #MC added pytorch version of objective mean cvar
 def objective_mean_cvar_pytorch(params, W_T_vector, xi):

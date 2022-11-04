@@ -73,6 +73,10 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
     params["W_paths_mean"] = np.zeros([1, params["N_rb"] + 1])
     params["W_paths_std"] = np.zeros([1, params["N_rb"] + 1])
 
+    #withdrawal cumulative:    
+    num_withdrawals = 0
+    qsum_const_T = 0
+        
     #---------------------------------------------------------------------------
     # TRANSACTION COSTS: Initialize
     if params["TransCosts_TrueFalse"] is True:
@@ -93,6 +97,8 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
         #Initialize cumulative transaction costs
         TransCosts_cum = C_due.copy()    #Cumulative transaction costs initialize
         TransCosts_cum_with_interest = C_due.copy() #Cumulative transaction costs INCLUDING interest initialize
+        
+        
 
     #---------------------------------------------------------------------------
     # TIMESTEPPING
@@ -111,6 +117,16 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
         else:   #No transaction costs
             #Add cash injection to get wealth at t_{n-1}^+
             W_start = W_end + params["q"][n_index]
+                    
+            #withdraw constant withdrawal strategy
+            
+            if params["withdraw_const"] is not None:
+                
+                W_start = W_start - params["withdraw_const"]
+
+                num_withdrawals += 1 
+                qsum_const_T += params["withdraw_const"]
+
 
         #Update W to contain W(t_n+)
         params["W"][:,n_index] = W_start
@@ -135,7 +151,18 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
         #Loop over assets
         for i in np.arange(0,params["N_a"],1):
             # params["Y"][:, n, i] = Return, along sample paths :, over time period (t_n, t_n+1), for asset i
-            W_end = W_end + prop_const[i] * np.multiply(W_start, params["Y"][:,n_index,i])
+            
+            
+            #if any paths have negative wealth, make sure they only incur cost of borrowing (neg bond return)
+            if np.any(W_end < 0):
+                return_n = np.ones(N_d)
+                return_n[W_end < 0] = params["Y"][:,n_index,0][W_end < 0]
+                return_n[W_end >= 0] = params["Y"][:,n_index,1][W_end >= 0]
+                
+                W_end = W_end + prop_const[i] * np.multiply(W_start, return_n)    
+                
+            else: 
+                W_end = W_end + prop_const[i] * np.multiply(W_start, params["Y"][:,n_index,i])
 
             if params["TransCosts_TrueFalse"] is True:
                 #Calculate amount in each asset *after* rebalancing
@@ -155,6 +182,16 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
 
     #END: Loop over rebalancing events
 
+    # one last withdrawal:
+    W_end = W_end - params["withdraw_const"]
+    num_withdrawals += 1 
+    qsum_const_T += params["withdraw_const"]
+    
+
+    # print("const_prop check: ")
+    # print("num withdrawals: ", num_withdrawals)
+    # print("total withdrawals: ", qsum_const_T)
+
     #Pay transaction costs from final rebalancing event, and update cumulative TCs
     if params["TransCosts_TrueFalse"] is True:
         W_end = W_end - np.exp(TransCosts_r_b*delta_t)*C_due
@@ -162,8 +199,6 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
         # Update cumulative transaction costs
         TransCosts_cum = TransCosts_cum + C_due
         TransCosts_cum_with_interest = TransCosts_cum_with_interest + np.exp(TransCosts_r_b * delta_t) * C_due
-
-
 
     #Finally, update terminal wealth (wealth at t_N_rb^-
     params["W"][:, params["N_rb"]] = W_end
