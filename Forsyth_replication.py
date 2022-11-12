@@ -17,6 +17,7 @@ import pickle
 import sys
 import datetime
 import codecs, json
+from pathlib import Path
 
 #Import files needed (other files are imported within those files as needed)
 import fun_Data_timeseries_basket
@@ -45,18 +46,24 @@ else:
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
 
-now = datetime.datetime.now()
-print ("Starting at: ")
-print (now.strftime("%Y-%m-%d %H:%M:%S"))
 #-----------------------------------------------------------------------------------------------
 # Portfolio problem: Main structural parameters
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
 
+#time
+now = datetime.datetime.now()
+print ("Starting at: ")
+start_time = now.strftime("%d-%m-%y_%H:%M")
+print(start_time)
+
+#filepath prefixes
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
-code_title_prefix = "output/output_mc_forsyth_rep"    #used for saving output on local
+code_title_prefix = "output/mc_cutyourlosses_"+start_time   #used for saving output on local
+console_output_prefix = "mc_cutyourlosses_" +start_time
+params["console_output_prefix"] = console_output_prefix
 
 
 params["T"] = 5. #Investment time horizon, in years
@@ -79,18 +86,17 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_propcost"] = 0.5/100   #proportional TC in (0,1] of trading in any asset EXCEPT cash account
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
-
-iter_params = "real_exp"
+iter_params = "tiny"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 100000
-    batchsize_mc = 1000
+    itbound_mc = 40000
+    batchsize_mc = 2000
 
-if iter_params == "test_run":
+if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5))
-    itbound_mc = 30000
-    batchsize_mc = 500
+    itbound_mc = 10000
+    batchsize_mc = 1000
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -100,14 +106,15 @@ if iter_params == "tiny":
     params["q"] =  0. * np.ones(params["N_rb"]) 
 
 
-continuation_learn = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
+continuation_learn = True  #MC added: if True, will use weights from previous tracing parameter to initialize theta0 and xi_0. 
+log_output = True
+
+params["continuation"] = continuation_learn
 
 # pytorch stuff
 pytorch_flag = True
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 params["device"] = device
-
-
 
 #Main settings for TRAINING data
 params["N_d_train"] = n_d_train_mc #Nr of TRAINING data return sample paths to bootstrap
@@ -188,7 +195,7 @@ params["obj_fun"] = "mean_cvar_single_level"
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
-tracing_parameters_to_run = [1.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.0, 2.0, 3.0, 5.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -271,6 +278,13 @@ elif params["obj_fun"] == "te_stochastic":  # TRACKING ERROR as in Forsyth (2021
 # Output flags
 #-----------------------------------------------------------------------------------------------
 
+
+#log output
+# if log_output:
+#     filepath_log_output = f"/home/marcchen/Documents/pytorch_1/researchcode/log_output/{console_output_prefix}_{str(itbound_mc/1000)}k_kappalen-{int(len(tracing_parameters_to_run))}"
+#     with open(filepath_log_output,"w") as console_log_file:
+#         sys.stdout = console_log_file
+    
 output_parameters = {}
 
 #Basic output params
@@ -576,8 +590,8 @@ NN = class_Neural_Network.Neural_Network(n_nodes_input = params["N_phi"],
 NN.print_layers_info()  #Check what to update
 
 #Update layers info
-NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 10 , activation = "logistic_sigmoid", add_bias=False)
+NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 10, activation = "logistic_sigmoid", add_bias=False)
 # NN.update_layer_info(layer_id = 3 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 # NN.update_layer_info(layer_id = 4 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 #NN.update_layer_info(layer_id = 3 , n_nodes = 8, activation = "ELU", add_bias=False)
@@ -663,7 +677,7 @@ NN_training_options = fun_train_NN_algorithm_defaults.train_NN_algorithm_default
 NN_training_options["methods"] = [ "Adam"]
 NN_training_options["Adam_ewma_1"] = 0.9
 NN_training_options["Adam_ewma_2"] = 0.99 #0.999
-NN_training_options['nit_running_min'] = 0  # nr of iterations at the end that will be used to get the running minimum for output
+NN_training_options['nit_running_min'] = int(itbound * 0.05) # nr of iterations at the end that will be used to get the running minimum for output
 NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
@@ -677,6 +691,19 @@ if params["preTrained_TrueFalse"] is True:
     NN_training_options.update({"methods": "None_preTrained_F_theta__provided" })
 
 
+# set up pytorch NN
+if pytorch_flag:
+    
+    # copy NN structure into pytorch NN
+    NN_pyt = class_NN_Pytorch.pytorch_NN(NN)
+    NN_pyt.cuda()
+    
+    # NN_pyt.import_weights(NN, params)
+    
+# pass empty variable so other functions are happy
+else:
+    NN_pyt = None
+
 
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
@@ -686,37 +713,30 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     # - initial NN parameters [shuffle for each tracing param]
     NN_theta0 = NN.initialize_NN_parameters(initialize_scheme="glorot_bengio")
     theta0 = NN_theta0.copy()
-
-    from pathlib import Path
-
-
-    my_file = Path("NN_optimal2.json")
-    if my_file.is_file() and tracing_param != tracing_parameters_to_run[0] and continuation_learn:
-        obj_text = codecs.open("NN_optimal2.json", 'r', encoding='utf-8').read()
-        b_new = json.loads(obj_text)
-        print(b_new)
-        NN_theta0 = np.array(b_new["NN"])
-        print(NN_theta0)
-
-    # - augment NN parameters with additional parameters to be solved
+    
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
         xi_0 = 27.001 #27.744101568234655
         theta0 = np.concatenate([NN_theta0, [xi_0]])
         params["xi_0"] = xi_0
 
-    # set up pytorch NN
-    if pytorch_flag:
+    # load continuation learn model
+    model_save_path = params["console_output_prefix"]
+    my_file = Path(f"/home/marcchen/Documents/pytorch_1/researchcode/saved_models/NN_opt_{model_save_path}")
+
+    if my_file.is_file() and tracing_param != tracing_parameters_to_run[0] and continuation_learn:
         
-        # copy NN structure into pytorch NN
-        NN_pyt = class_NN_Pytorch.pytorch_NN(NN)
-        NN_pyt.cuda()
+        #NN
+        NN_pyt.load_state_dict(torch.load(my_file))
+        NN_pyt.eval()
+        print("loaded NN: ", NN_pyt.state_dict())
         
-        NN_pyt.import_weights(NN, params)
-        
-    # pass empty variable so other functions are happy
-    else:
-        NN_pyt = None
-                   
+        #xi
+        obj_text = codecs.open(f"/home/marcchen/Documents/pytorch_1/researchcode/saved_models/xi_opt_{model_save_path}.json", 
+                               'r', encoding='utf-8').read()
+        b_new = json.loads(obj_text)
+        print("loaded xi: ", b_new["xi"])
+        params["xi_0"] = float(b_new["xi"])
+
     
     # SET TRACING PARAMETERS inside params ----------------------------
     if params["obj_fun"] in ["one_sided_quadratic_target_error", "quad_target_error", "huber_loss", "ads"]:
@@ -794,6 +814,9 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     print("Tracing param: " + str(tracing_param))
     print("F value: " + str(params_TRAIN["F_val"]))
     print("-----------------------------------------------")
+    
+# if log_output:
+#     sys.stdout.close()
 
 #END: Loop over tracing_params
 

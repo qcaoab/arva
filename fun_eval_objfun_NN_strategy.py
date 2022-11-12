@@ -34,9 +34,9 @@ def eval_obj_NN_strategy_pyt(NN_pyt, params, xi):
     if params["obj_fun"] == "mean_cvar_single_level":
         
         # xi currently initialized as tensor in driver code
-        W_T_vector = g
+        #W_T_vector = g
         
-        fun = fun_Objective_functions.objective_mean_cvar_pytorch(params, W_T_vector, xi)
+        fun = fun_Objective_functions.objective_mean_cvar_pytorch(params, g, xi)
     
         #for output
         params["F_val"] = fun.detach().to("cpu").numpy()     #Obj func value

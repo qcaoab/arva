@@ -105,23 +105,25 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
     if "Adam" in NN_training_options["methods"]:
         
         #create optimizer
-        optimizer = torch.optim.Adam(NN_pyt.parameters())
+        optimizer = torch.optim.Adam(NN_pyt.parameters(), lr = NN_training_options["Adam_eta"], 
+                                     betas = (NN_training_options["Adam_ewma_1"], 
+                                     NN_training_options["Adam_ewma_2"] ))
 
         #append xi to optimization parameters
         optimizer.param_groups[0]['params'].append(xi)
         
     #init iterate averaging model
     swa_model = AveragedModel(NN_pyt)
+    v_min = np.inf
     
-    #init theta min
-    # theta_min = 
-    
+       
     #create tensor version of params
     
-    params_full_tensor = copy.deepcopy(params) 
-    params_full_tensor["Y"] = torch.tensor(params["Y"], device=params["device"])
+    #revisit if this is necessary
+    # params_full_tensor = copy.deepcopy(params) 
+    # params_full_tensor["Y"] = torch.tensor(params["Y"], device=params["device"])
     
-    params_orig = copy.deepcopy(params)
+    # params_orig = copy.deepcopy(params)
 
     # ---------------------------- MAIN LOOP --------------------------------------------
 
@@ -142,7 +144,8 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         # REPLACE training data in params_it with the subset
         # - so that we can use NN function objfun without change
         del params_it["Y"] # delete training data
-        params_it["Y"] = torch.tensor(params["Y"][batch_indices, :, :], device=params["device"]) # populate with subset of training data
+        # params_it["Y"] = torch.tensor(params["Y"][batch_indices, :, :], device=params["device"]) # populate with subset of training data
+        params_it["Y"] = params["Y"][batch_indices, :, :]
         params_it["N_d"] = batchsize
         # params_it["benchmark_W_T_vector"] = params["benchmark_W_T_vector"][batch_indices].copy()  # populate with subset
         # params_it["benchmark_W_paths"] = params["benchmark_W_paths"][batch_indices, :].copy()  # populate with subset
@@ -164,19 +167,46 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         
         # ----------------
         #ITERATE AVERAGING
-        if it >= nit_IterateAveragingStart:
+        # if it >= nit_IterateAveragingStart:
+        #     swa_model.update_parameters(NN_pyt)
+                          
+        if it == nit_IterateAveragingStart:
+            xi_avg = xi.detach().clone()
+            xi_min = xi.detach().clone()
+        
+        
+        if (it - 1) >= nit_IterateAveragingStart:
             swa_model.update_parameters(NN_pyt)
+            
+            #xi averaging            
+            N_avg = N_avg + 1
+            xi_avg = (xi_avg*N_avg + xi.detach()) / (N_avg + 1)
+            
+        else:
+            xi_avg = xi.detach()
                           
         # ----------------
         #RUNNING MINIMUM
         
+        if (it >= itbound - nit_running_min):
+            # OR, for last 'nit_running_min' iterations, calculate the newval for EVERY iteration
+
+            # newval is calculated using ALL data, not just subset
+            new_fval, _ = objfun_pyt(swa_model.module, params, xi_avg)
+        
+            if new_fval < v_min:
+                print("updated min: ")
+                print(f"obj fun: {new_fval}")
+                NN_pyt_min = copy.deepcopy(swa_model.module)
+                xi_min = xi.detach().clone()
+                v_min = new_fval.detach().clone()      
         
         # ----------------
         #Update user on progress every x% of SGD iterations
         if itbound >= 1000:
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
                 print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method[0])                
-                new_fval, _ = objfun_pyt(NN_pyt, params_full_tensor, xi) # uses full tensor version of params 
+                new_fval, _ = objfun_pyt(NN_pyt, params, xi) # uses full tensor version of params 
                 # supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
                 print( "objective value function right now is: " + str(float(new_fval)))
                 # print( "gradient value of function right now is: " + str(grad_theta_new_mc))
@@ -189,16 +219,16 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
 
     #--------------- SET OUTPUT VALUES ---------------
 
-    # Export trained NN from pytorch to original implementation, 'NN_object' is original NN object using weights
+    # Export minimum obj val trained NN from pytorch to original implementation, 'NN_object' is original NN object using weights
     # from pytorch averaged model.
     
-    NN_object = swa_model.module.export_weights(NN_orig)
+    NN_object = NN_pyt_min.export_weights(NN_orig)
 
     # # copy weights from layers into theta
     # NN_object.stack_NN_parameters()
     
     #convert xi from tensor to np
-    xi_np = xi.detach().cpu().numpy()
+    xi_np = xi_min.detach().cpu().numpy()
     
     #append xi_np to NN theta for f_theta
     F_theta = np.append(NN_object.theta, xi_np)    
@@ -217,14 +247,18 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         params["xi"] = xi
         params["gamma"] = gamma
 
-    elif params["obj_fun"] == "mean_cvar_single_level":
+    elif params["obj_fun"] == "mean_cvar_single_level" and params["continuation"]:
         NN_theta = F_theta[0:-1]
         xi = F_theta[-1]  # Last entry is xi, where (xi**2) is candidate VAR
 
-        #added theta cache
-        optimal_params = {"NN":NN_theta.tolist()}
-        with open('NN_optimal2.json', 'w') as outfile:
-            json.dump(optimal_params, outfile)
+        #save NN params and xi for continuation learning
+        model_save_path = params["console_output_prefix"]
+        torch.save(NN_pyt_min.state_dict(),f"/home/marcchen/Documents/pytorch_1/researchcode/saved_models/NN_opt_{model_save_path}")
+        
+        optimal_xi = {"xi":str(xi_np[0])}
+        
+        with open(f'/home/marcchen/Documents/pytorch_1/researchcode/saved_models/xi_opt_{model_save_path}.json', 'w') as outfile:
+            json.dump(optimal_xi, outfile)
         
         print("NN weights: " + str(NN_theta))
         print("Minimum obj value:" + str(val))
@@ -232,7 +266,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
 
 
         # Make sure parameter dictionary is updated so that e.g. fun_Objective_functions can work correctly
-        params["xi"] = xi #(xi**2) is candidate VAR
+        params["xi"] = xi_np[0] #(xi**2) is candidate VAR
 
     else:
         NN_theta = F_theta

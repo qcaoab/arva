@@ -176,3 +176,47 @@ objective value function right now is: -2121.5061847850043
 objective value function right now is: -2122.176473274143
 66.0% of gradient descent iterations done. Method = A
 objective value function right now is: -2122.5686845040113
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2122.8867054087723
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2123.005614280022
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2123.637709377073
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2123.963719125596
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2124.2655299003886
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2124.654975990381
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2124.6437629358375
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2124.7334007043237
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2125.0386071702073
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2125.119434436594
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2125.5253392591403
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2125.7423599906206
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2125.193353540138
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2125.738799386254
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2125.9605829732764
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2125.9917808915916
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2126.265211887478
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/researchcode/Forsyth_replication.py", line 759, in <module>
+  File "/home/marcchen/Documents/researchcode/fun_RUN__wrapper.py", line 115, in RUN__wrapper_ONE_stage_optimization
+  File "/home/marcchen/Documents/researchcode/fun_RUN__wrapper.py", line 192, in RUN__wrapper_training_testing_NN
+  File "/home/marcchen/Documents/researchcode/fun_train_NN.py", line 196, in train_NN
+  File "/home/marcchen/Documents/researchcode/fun_train_NN_SGD_algorithms.py", line 207, in run_Gradient_Descent_pytorch
+  File "/home/marcchen/Documents/researchcode/fun_eval_objfun_NN_strategy.py", line 117, in eval_obj_NN_strategy
+  File "/home/marcchen/Documents/researchcode/fun_invest_NN_strategy.py", line 450, in invest_NN_strategy
+  File "/home/marcchen/Documents/researchcode/class_Neural_Network.py", line 677, in forward_propagation
+ModuleNotFoundError: No module named 'fun_Activations'

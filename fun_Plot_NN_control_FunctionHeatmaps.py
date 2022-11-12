@@ -120,7 +120,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
         sns.set(font_scale=0.85)
         sns.set_style("ticks")
         
-        print(W_grid_list[::yticklabels])
+        
         h = sns.heatmap(data =z_NNopt_prop_mesh,
                         yticklabels=W_grid_list[::yticklabels],
                         xticklabels = time_to_go[::xticklabels],#time_to_go,
