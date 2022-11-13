@@ -1,0 +1,1559 @@
+Starting at: 
+2022-11-08 06:52:04
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+3.3333333333333335% of MC simulations done.
+6.666666666666667% of MC simulations done.
+10.0% of MC simulations done.
+13.333333333333334% of MC simulations done.
+16.666666666666664% of MC simulations done.
+20.0% of MC simulations done.
+23.333333333333332% of MC simulations done.
+26.666666666666668% of MC simulations done.
+30.0% of MC simulations done.
+33.33333333333333% of MC simulations done.
+36.666666666666664% of MC simulations done.
+40.0% of MC simulations done.
+43.333333333333336% of MC simulations done.
+46.666666666666664% of MC simulations done.
+50.0% of MC simulations done.
+53.333333333333336% of MC simulations done.
+56.666666666666664% of MC simulations done.
+60.0% of MC simulations done.
+63.33333333333333% of MC simulations done.
+66.66666666666666% of MC simulations done.
+70.0% of MC simulations done.
+73.33333333333333% of MC simulations done.
+76.66666666666667% of MC simulations done.
+80.0% of MC simulations done.
+83.33333333333334% of MC simulations done.
+86.66666666666667% of MC simulations done.
+90.0% of MC simulations done.
+93.33333333333333% of MC simulations done.
+96.66666666666667% of MC simulations done.
+100.0% of MC simulations done.
+Withdrawal NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       1       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       4  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       4  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       1  logistic_sigmoid   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 4)    False        None  
+2       (4, 4)    False        None  
+3       (4, 1)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+Allocation NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       4  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       4  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 4)    False        None  
+2       (4, 4)    False        None  
+3       (4, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2859.8791171021785
+W_T_median: 1758.6133590503705
+W_T_pctile_5: -229.9247752841372
+W_T_CVAR_5_pct: -436.3755466996224
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_construct_Feature_vector.py:82: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  wealth_n = torch.tensor(wealth_n, device=params["device"])
+2.0% of gradient descent iterations done. Method = A
+Current xi:  [4.8347282]
+objective value function right now is: 1020.9866056268976
+4.0% of gradient descent iterations done. Method = A
+Current xi:  [4.713905]
+objective value function right now is: 605.8352776425911
+6.0% of gradient descent iterations done. Method = A
+Current xi:  [4.621585]
+objective value function right now is: 356.36368101079347
+8.0% of gradient descent iterations done. Method = A
+Current xi:  [4.5585284]
+objective value function right now is: 224.09374303524504
+10.0% of gradient descent iterations done. Method = A
+Current xi:  [4.5150437]
+objective value function right now is: 149.5982192592899
+12.0% of gradient descent iterations done. Method = A
+Current xi:  [4.4899845]
+objective value function right now is: 105.86464007350416
+14.000000000000002% of gradient descent iterations done. Method = A
+Current xi:  [4.480358]
+objective value function right now is: 78.15295746544462
+16.0% of gradient descent iterations done. Method = A
+Current xi:  [4.483855]
+objective value function right now is: 59.623139159805994
+18.0% of gradient descent iterations done. Method = A
+Current xi:  [4.500103]
+objective value function right now is: 46.49817000172097
+20.0% of gradient descent iterations done. Method = A
+Current xi:  [4.528871]
+objective value function right now is: 36.76449690183611
+22.0% of gradient descent iterations done. Method = A
+Current xi:  [4.569728]
+objective value function right now is: 29.384463959300135
+24.0% of gradient descent iterations done. Method = A
+Current xi:  [4.6244226]
+objective value function right now is: 23.614606883347136
+26.0% of gradient descent iterations done. Method = A
+Current xi:  [4.687403]
+objective value function right now is: 18.823759521557584
+28.000000000000004% of gradient descent iterations done. Method = A
+Current xi:  [4.7663636]
+objective value function right now is: 14.857208306537045
+30.0% of gradient descent iterations done. Method = A
+Current xi:  [4.8574686]
+objective value function right now is: 11.467248081798742
+32.0% of gradient descent iterations done. Method = A
+Current xi:  [4.9608884]
+objective value function right now is: 8.465541007788655
+34.0% of gradient descent iterations done. Method = A
+Current xi:  [5.084846]
+objective value function right now is: 5.818279991610221
+36.0% of gradient descent iterations done. Method = A
+Current xi:  [5.220718]
+objective value function right now is: 3.381382807793317
+38.0% of gradient descent iterations done. Method = A
+Current xi:  [5.365118]
+objective value function right now is: 1.096603039411977
+40.0% of gradient descent iterations done. Method = A
+Current xi:  [5.5225844]
+objective value function right now is: -1.1198864675371616
+42.0% of gradient descent iterations done. Method = A
+Current xi:  [5.6926365]
+objective value function right now is: -3.1913564320633827
+44.0% of gradient descent iterations done. Method = A
+Current xi:  [5.868977]
+objective value function right now is: -5.266765120464394
+46.0% of gradient descent iterations done. Method = A
+Current xi:  [6.048368]
+objective value function right now is: -7.337859680998954
+48.0% of gradient descent iterations done. Method = A
+Current xi:  [6.2454963]
+objective value function right now is: -9.379571351402317
+50.0% of gradient descent iterations done. Method = A
+Current xi:  [6.4467463]
+objective value function right now is: -11.367872922520657
+52.0% of gradient descent iterations done. Method = A
+Current xi:  [6.644746]
+objective value function right now is: -13.452921688638774
+54.0% of gradient descent iterations done. Method = A
+Current xi:  [6.8495765]
+objective value function right now is: -15.483688353471965
+56.00000000000001% of gradient descent iterations done. Method = A
+Current xi:  [7.0565357]
+objective value function right now is: -17.55152461193923
+57.99999999999999% of gradient descent iterations done. Method = A
+Current xi:  [7.262136]
+objective value function right now is: -19.609784537214118
+60.0% of gradient descent iterations done. Method = A
+Current xi:  [7.470274]
+objective value function right now is: -21.691958396316334
+62.0% of gradient descent iterations done. Method = A
+Current xi:  [7.674836]
+objective value function right now is: -23.66683342338096
+64.0% of gradient descent iterations done. Method = A
+Current xi:  [7.8889337]
+objective value function right now is: -25.87240105927768
+66.0% of gradient descent iterations done. Method = A
+Current xi:  [8.096216]
+objective value function right now is: -27.891720985361143
+68.0% of gradient descent iterations done. Method = A
+Current xi:  [8.292904]
+objective value function right now is: -29.874246063220724
+70.0% of gradient descent iterations done. Method = A
+Current xi:  [8.495325]
+objective value function right now is: -31.814669112843934
+72.0% of gradient descent iterations done. Method = A
+Current xi:  [8.698119]
+objective value function right now is: -33.69745659554252
+74.0% of gradient descent iterations done. Method = A
+Current xi:  [8.891617]
+objective value function right now is: -35.493399546227906
+76.0% of gradient descent iterations done. Method = A
+Current xi:  [9.088436]
+objective value function right now is: -37.325438894094304
+78.0% of gradient descent iterations done. Method = A
+Current xi:  [9.289882]
+objective value function right now is: -39.0591386251264
+80.0% of gradient descent iterations done. Method = A
+Current xi:  [9.48834]
+objective value function right now is: -40.73693559901963
+82.0% of gradient descent iterations done. Method = A
+Current xi:  [9.675126]
+objective value function right now is: -42.181405824254185
+84.0% of gradient descent iterations done. Method = A
+Current xi:  [9.860866]
+objective value function right now is: -43.774027802659944
+86.0% of gradient descent iterations done. Method = A
+Current xi:  [10.051673]
+objective value function right now is: -45.40356587204374
+88.0% of gradient descent iterations done. Method = A
+Current xi:  [10.237571]
+objective value function right now is: -46.828505538622586
+90.0% of gradient descent iterations done. Method = A
+Current xi:  [10.40611]
+objective value function right now is: -48.181644548187926
+92.0% of gradient descent iterations done. Method = A
+Current xi:  [10.5844555]
+objective value function right now is: -49.533893496698106
+94.0% of gradient descent iterations done. Method = A
+Current xi:  [10.756119]
+objective value function right now is: -50.65864104793337
+96.0% of gradient descent iterations done. Method = A
+Current xi:  [10.918397]
+objective value function right now is: -51.88289226559025
+98.0% of gradient descent iterations done. Method = A
+Current xi:  [11.074148]
+objective value function right now is: -52.877153316990544
+100.0% of gradient descent iterations done. Method = A
+Current xi:  [11.24264]
+objective value function right now is: -54.11003064876127
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 1314.8130181544066
+W_T_median: 1135.183728133616
+W_T_pctile_5: 165.63603584240792
+W_T_CVAR_5_pct: 2.4376567524073605
+Average q (qsum/M+1):  35.0281982421875
+Optimal xi:  [11.24264]
+Expected(across Rb) median(across samples) p_equity:  0.2926668621599674
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.05
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2859.8791171021785
+W_T_median: 1758.6133590503705
+W_T_pctile_5: -229.9247752841372
+W_T_CVAR_5_pct: -436.3755466996224
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_construct_Feature_vector.py:82: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  wealth_n = torch.tensor(wealth_n, device=params["device"])
+2.0% of gradient descent iterations done. Method = A
+Current xi:  [4.8509593]
+objective value function right now is: -61.08473255839011
+4.0% of gradient descent iterations done. Method = A
+Current xi:  [4.829637]
+objective value function right now is: -117.06784617925508
+6.0% of gradient descent iterations done. Method = A
+Current xi:  [4.9146214]
+objective value function right now is: -140.15502061808323
+8.0% of gradient descent iterations done. Method = A
+Current xi:  [5.078954]
+objective value function right now is: -151.86454290052941
+10.0% of gradient descent iterations done. Method = A
+Current xi:  [5.282288]
+objective value function right now is: -159.13325030312367
+12.0% of gradient descent iterations done. Method = A
+Current xi:  [5.502108]
+objective value function right now is: -164.38912452837263
+14.000000000000002% of gradient descent iterations done. Method = A
+Current xi:  [5.7373996]
+objective value function right now is: -168.37729345520114
+16.0% of gradient descent iterations done. Method = A
+Current xi:  [5.971446]
+objective value function right now is: -171.80307317366717
+18.0% of gradient descent iterations done. Method = A
+Current xi:  [6.200569]
+objective value function right now is: -174.76265588458529
+20.0% of gradient descent iterations done. Method = A
+Current xi:  [6.4358964]
+objective value function right now is: -177.38702891551225
+22.0% of gradient descent iterations done. Method = A
+Current xi:  [6.6610656]
+objective value function right now is: -179.90923152555592
+24.0% of gradient descent iterations done. Method = A
+Current xi:  [6.8835554]
+objective value function right now is: -182.25383532611463
+26.0% of gradient descent iterations done. Method = A
+Current xi:  [7.1069207]
+objective value function right now is: -184.47858916216074
+28.000000000000004% of gradient descent iterations done. Method = A
+Current xi:  [7.326907]
+objective value function right now is: -186.55061898305712
+30.0% of gradient descent iterations done. Method = A
+Current xi:  [7.5387]
+objective value function right now is: -188.5748502426656
+32.0% of gradient descent iterations done. Method = A
+Current xi:  [7.759426]
+objective value function right now is: -190.46334122919268
+34.0% of gradient descent iterations done. Method = A
+Current xi:  [7.9669704]
+objective value function right now is: -192.26705422603104
+36.0% of gradient descent iterations done. Method = A
+Current xi:  [8.176629]
+objective value function right now is: -194.06552191001072
+38.0% of gradient descent iterations done. Method = A
+Current xi:  [8.379771]
+objective value function right now is: -195.6978914871262
+40.0% of gradient descent iterations done. Method = A
+Current xi:  [8.581531]
+objective value function right now is: -197.30972039338602
+42.0% of gradient descent iterations done. Method = A
+Current xi:  [8.78425]
+objective value function right now is: -198.8235254015976
+44.0% of gradient descent iterations done. Method = A
+Current xi:  [8.986867]
+objective value function right now is: -200.18396029542532
+46.0% of gradient descent iterations done. Method = A
+Current xi:  [9.1786995]
+objective value function right now is: -201.67391336843463
+48.0% of gradient descent iterations done. Method = A
+Current xi:  [9.366911]
+objective value function right now is: -202.98408480857975
+50.0% of gradient descent iterations done. Method = A
+Current xi:  [9.561204]
+objective value function right now is: -204.29999820454861
+52.0% of gradient descent iterations done. Method = A
+Current xi:  [9.741758]
+objective value function right now is: -205.359825331815
+54.0% of gradient descent iterations done. Method = A
+Current xi:  [9.906061]
+objective value function right now is: -206.446143603591
+56.00000000000001% of gradient descent iterations done. Method = A
+Current xi:  [10.089333]
+objective value function right now is: -207.68162916499568
+57.99999999999999% of gradient descent iterations done. Method = A
+Current xi:  [10.25934]
+objective value function right now is: -208.6954814980159
+60.0% of gradient descent iterations done. Method = A
+Current xi:  [10.4336405]
+objective value function right now is: -209.73442881421775
+62.0% of gradient descent iterations done. Method = A
+Current xi:  [10.596426]
+objective value function right now is: -210.63553558942286
+64.0% of gradient descent iterations done. Method = A
+Current xi:  [10.751289]
+objective value function right now is: -211.53418013854363
+66.0% of gradient descent iterations done. Method = A
+Current xi:  [10.905626]
+objective value function right now is: -212.33415690016986
+68.0% of gradient descent iterations done. Method = A
+Current xi:  [11.064656]
+objective value function right now is: -213.1803459833835
+70.0% of gradient descent iterations done. Method = A
+Current xi:  [11.216635]
+objective value function right now is: -213.7743585901213
+72.0% of gradient descent iterations done. Method = A
+Current xi:  [11.368231]
+objective value function right now is: -214.65372771803513
+74.0% of gradient descent iterations done. Method = A
+Current xi:  [11.483281]
+objective value function right now is: -215.17927181009046
+76.0% of gradient descent iterations done. Method = A
+Current xi:  [11.617224]
+objective value function right now is: -215.79587333958114
+78.0% of gradient descent iterations done. Method = A
+Current xi:  [11.752783]
+objective value function right now is: -216.32733584079693
+80.0% of gradient descent iterations done. Method = A
+Current xi:  [11.858532]
+objective value function right now is: -216.77956408045424
+82.0% of gradient descent iterations done. Method = A
+Current xi:  [11.979384]
+objective value function right now is: -217.28513938059152
+84.0% of gradient descent iterations done. Method = A
+Current xi:  [12.089988]
+objective value function right now is: -217.7318551960407
+86.0% of gradient descent iterations done. Method = A
+Current xi:  [12.186005]
+objective value function right now is: -218.05475410583543
+88.0% of gradient descent iterations done. Method = A
+Current xi:  [12.27195]
+objective value function right now is: -218.44070398372781
+90.0% of gradient descent iterations done. Method = A
+Current xi:  [12.376197]
+objective value function right now is: -218.87756475039689
+92.0% of gradient descent iterations done. Method = A
+Current xi:  [12.470858]
+objective value function right now is: -219.0340612599963
+94.0% of gradient descent iterations done. Method = A
+Current xi:  [12.548482]
+objective value function right now is: -219.25374540610818
+96.0% of gradient descent iterations done. Method = A
+Current xi:  [12.627939]
+objective value function right now is: -219.8924627543635
+98.0% of gradient descent iterations done. Method = A
+Current xi:  [12.701261]
+objective value function right now is: -220.15682133984436
+100.0% of gradient descent iterations done. Method = A
+Current xi:  [12.742987]
+objective value function right now is: -220.47514684377947
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 1398.331386690934
+W_T_median: 1192.8025245835593
+W_T_pctile_5: 170.44277734977106
+W_T_CVAR_5_pct: 3.00108641901701
+Average q (qsum/M+1):  35.00317776587702
+Optimal xi:  [12.742987]
+Expected(across Rb) median(across samples) p_equity:  0.3154942507545153
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.2
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2859.8791171021785
+W_T_median: 1758.6133590503705
+W_T_pctile_5: -229.9247752841372
+W_T_CVAR_5_pct: -436.3755466996224
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_construct_Feature_vector.py:82: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  wealth_n = torch.tensor(wealth_n, device=params["device"])
+2.0% of gradient descent iterations done. Method = A
+Current xi:  [4.8357024]
+objective value function right now is: -365.18489391426056
+4.0% of gradient descent iterations done. Method = A
+Current xi:  [4.7537475]
+objective value function right now is: -431.14990271638897
+6.0% of gradient descent iterations done. Method = A
+Current xi:  [4.7322106]
+objective value function right now is: -458.11213019567526
+8.0% of gradient descent iterations done. Method = A
+Current xi:  [4.7681117]
+objective value function right now is: -471.4292737851419
+10.0% of gradient descent iterations done. Method = A
+Current xi:  [4.8587694]
+objective value function right now is: -479.0275343293334
+12.0% of gradient descent iterations done. Method = A
+Current xi:  [4.9867353]
+objective value function right now is: -484.3489801327191
+14.000000000000002% of gradient descent iterations done. Method = A
+Current xi:  [5.152458]
+objective value function right now is: -488.35712406739333
+16.0% of gradient descent iterations done. Method = A
+Current xi:  [5.331208]
+objective value function right now is: -491.7090956098082
+18.0% of gradient descent iterations done. Method = A
+Current xi:  [5.522727]
+objective value function right now is: -494.85740935591946
+20.0% of gradient descent iterations done. Method = A
+Current xi:  [5.73997]
+objective value function right now is: -497.4307714307668
+22.0% of gradient descent iterations done. Method = A
+Current xi:  [5.9587874]
+objective value function right now is: -499.90575094154815
+24.0% of gradient descent iterations done. Method = A
+Current xi:  [6.18292]
+objective value function right now is: -502.35582858468547
+26.0% of gradient descent iterations done. Method = A
+Current xi:  [6.4026837]
+objective value function right now is: -504.6405602978919
+28.000000000000004% of gradient descent iterations done. Method = A
+Current xi:  [6.6331472]
+objective value function right now is: -506.7448169874963
+30.0% of gradient descent iterations done. Method = A
+Current xi:  [6.8562474]
+objective value function right now is: -508.82638370973444
+32.0% of gradient descent iterations done. Method = A
+Current xi:  [7.0740857]
+objective value function right now is: -510.8190766636573
+34.0% of gradient descent iterations done. Method = A
+Current xi:  [7.305541]
+objective value function right now is: -512.6592287873092
+36.0% of gradient descent iterations done. Method = A
+Current xi:  [7.5273175]
+objective value function right now is: -514.6402517621773
+38.0% of gradient descent iterations done. Method = A
+Current xi:  [7.7418876]
+objective value function right now is: -516.207895301971
+40.0% of gradient descent iterations done. Method = A
+Current xi:  [7.958768]
+objective value function right now is: -518.1965834437452
+42.0% of gradient descent iterations done. Method = A
+Current xi:  [8.167711]
+objective value function right now is: -519.636127298967
+44.0% of gradient descent iterations done. Method = A
+Current xi:  [8.376323]
+objective value function right now is: -521.4721394420051
+46.0% of gradient descent iterations done. Method = A
+Current xi:  [8.57904]
+objective value function right now is: -523.0747054654572
+48.0% of gradient descent iterations done. Method = A
+Current xi:  [8.788492]
+objective value function right now is: -524.6647732655044
+50.0% of gradient descent iterations done. Method = A
+Current xi:  [8.980937]
+objective value function right now is: -526.0370788426732
+52.0% of gradient descent iterations done. Method = A
+Current xi:  [9.175357]
+objective value function right now is: -527.584402950206
+54.0% of gradient descent iterations done. Method = A
+Current xi:  [9.369428]
+objective value function right now is: -528.9719213324543
+56.00000000000001% of gradient descent iterations done. Method = A
+Current xi:  [9.567475]
+objective value function right now is: -530.3617415399623
+57.99999999999999% of gradient descent iterations done. Method = A
+Current xi:  [9.752977]
+objective value function right now is: -531.5135841729559
+60.0% of gradient descent iterations done. Method = A
+Current xi:  [9.949329]
+objective value function right now is: -532.7741623531796
+62.0% of gradient descent iterations done. Method = A
+Current xi:  [10.118931]
+objective value function right now is: -534.0273799390802
+64.0% of gradient descent iterations done. Method = A
+Current xi:  [10.289955]
+objective value function right now is: -535.0891698265435
+66.0% of gradient descent iterations done. Method = A
+Current xi:  [10.4594965]
+objective value function right now is: -536.095356571405
+68.0% of gradient descent iterations done. Method = A
+Current xi:  [10.632464]
+objective value function right now is: -537.114146680215
+70.0% of gradient descent iterations done. Method = A
+Current xi:  [10.800244]
+objective value function right now is: -538.148346433428
+72.0% of gradient descent iterations done. Method = A
+Current xi:  [10.962265]
+objective value function right now is: -539.0394374513786
+74.0% of gradient descent iterations done. Method = A
+Current xi:  [11.132025]
+objective value function right now is: -539.8358955526177
+76.0% of gradient descent iterations done. Method = A
+Current xi:  [11.27587]
+objective value function right now is: -540.6490083263217
+78.0% of gradient descent iterations done. Method = A
+Current xi:  [11.421129]
+objective value function right now is: -541.3064820925669
+80.0% of gradient descent iterations done. Method = A
+Current xi:  [11.562527]
+objective value function right now is: -542.0584791007088
+82.0% of gradient descent iterations done. Method = A
+Current xi:  [11.712854]
+objective value function right now is: -542.6403909789134
+84.0% of gradient descent iterations done. Method = A
+Current xi:  [11.844331]
+objective value function right now is: -543.2503578526472
+86.0% of gradient descent iterations done. Method = A
+Current xi:  [11.959785]
+objective value function right now is: -543.7602702089446
+88.0% of gradient descent iterations done. Method = A
+Current xi:  [12.06874]
+objective value function right now is: -544.2148702041937
+90.0% of gradient descent iterations done. Method = A
+Current xi:  [12.183634]
+objective value function right now is: -544.6508045515377
+92.0% of gradient descent iterations done. Method = A
+Current xi:  [12.270833]
+objective value function right now is: -544.6668756467352
+94.0% of gradient descent iterations done. Method = A
+Current xi:  [12.35098]
+objective value function right now is: -545.2967558515548
+96.0% of gradient descent iterations done. Method = A
+Current xi:  [12.4417715]
+objective value function right now is: -545.5353379318922
+98.0% of gradient descent iterations done. Method = A
+Current xi:  [12.535647]
+objective value function right now is: -545.9104238286615
+100.0% of gradient descent iterations done. Method = A
+Current xi:  [12.617902]
+objective value function right now is: -546.2124434453091
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 1388.1593371125412
+W_T_median: 1196.949027758917
+W_T_pctile_5: 171.42184572052926
+W_T_CVAR_5_pct: 3.5893591108109235
+Average q (qsum/M+1):  35.00676505796371
+Optimal xi:  [12.617902]
+Expected(across Rb) median(across samples) p_equity:  0.31780003433426224
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.5
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2859.8791171021785
+W_T_median: 1758.6133590503705
+W_T_pctile_5: -229.9247752841372
+W_T_CVAR_5_pct: -436.3755466996224
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_construct_Feature_vector.py:82: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  wealth_n = torch.tensor(wealth_n, device=params["device"])
+2.0% of gradient descent iterations done. Method = A
+Current xi:  [4.8347588]
+objective value function right now is: -150.9719135575629
+4.0% of gradient descent iterations done. Method = A
+Current xi:  [4.7158628]
+objective value function right now is: -609.7063788254667
+6.0% of gradient descent iterations done. Method = A
+Current xi:  [4.6256404]
+objective value function right now is: -823.4131169972948
+8.0% of gradient descent iterations done. Method = A
+Current xi:  [4.555169]
+objective value function right now is: -920.2067235925991
+10.0% of gradient descent iterations done. Method = A
+Current xi:  [4.497052]
+objective value function right now is: -968.5850676476633
+12.0% of gradient descent iterations done. Method = A
+Current xi:  [4.4513264]
+objective value function right now is: -994.1492347021923
+14.000000000000002% of gradient descent iterations done. Method = A
+Current xi:  [4.4122777]
+objective value function right now is: -1009.7368239530648
+16.0% of gradient descent iterations done. Method = A
+Current xi:  [4.381544]
+objective value function right now is: -1019.6250951601997
+18.0% of gradient descent iterations done. Method = A
+Current xi:  [4.354826]
+objective value function right now is: -1026.6854928540583
+20.0% of gradient descent iterations done. Method = A
+Current xi:  [4.334348]
+objective value function right now is: -1031.5423837585447
+22.0% of gradient descent iterations done. Method = A
+Current xi:  [4.3185706]
+objective value function right now is: -1035.1731924942087
+24.0% of gradient descent iterations done. Method = A
+Current xi:  [4.307648]
+objective value function right now is: -1038.1054755834175
+26.0% of gradient descent iterations done. Method = A
+Current xi:  [4.302754]
+objective value function right now is: -1040.3645671022211
+28.000000000000004% of gradient descent iterations done. Method = A
+Current xi:  [4.304471]
+objective value function right now is: -1042.2937103108725
+30.0% of gradient descent iterations done. Method = A
+Current xi:  [4.3111453]
+objective value function right now is: -1043.872671129295
+32.0% of gradient descent iterations done. Method = A
+Current xi:  [4.319902]
+objective value function right now is: -1045.6339694507644
+34.0% of gradient descent iterations done. Method = A
+Current xi:  [4.34357]
+objective value function right now is: -1047.2150135236163
+36.0% of gradient descent iterations done. Method = A
+Current xi:  [4.377623]
+objective value function right now is: -1048.728596292094
+38.0% of gradient descent iterations done. Method = A
+Current xi:  [4.422828]
+objective value function right now is: -1050.3728114946268
+40.0% of gradient descent iterations done. Method = A
+Current xi:  [4.4743657]
+objective value function right now is: -1052.0830697600968
+42.0% of gradient descent iterations done. Method = A
+Current xi:  [4.5349417]
+objective value function right now is: -1053.97580019037
+44.0% of gradient descent iterations done. Method = A
+Current xi:  [4.605258]
+objective value function right now is: -1056.1099418130182
+46.0% of gradient descent iterations done. Method = A
+Current xi:  [4.68622]
+objective value function right now is: -1058.2325552334921
+48.0% of gradient descent iterations done. Method = A
+Current xi:  [4.789816]
+objective value function right now is: -1060.2613422805712
+50.0% of gradient descent iterations done. Method = A
+Current xi:  [4.884701]
+objective value function right now is: -1062.3842097928234
+52.0% of gradient descent iterations done. Method = A
+Current xi:  [5.002458]
+objective value function right now is: -1064.4572866383871
+54.0% of gradient descent iterations done. Method = A
+Current xi:  [5.119591]
+objective value function right now is: -1065.9884918127582
+56.00000000000001% of gradient descent iterations done. Method = A
+Current xi:  [5.2380624]
+objective value function right now is: -1067.9431795001574
+57.99999999999999% of gradient descent iterations done. Method = A
+Current xi:  [5.372722]
+objective value function right now is: -1069.9235602609906
+60.0% of gradient descent iterations done. Method = A
+Current xi:  [5.5014834]
+objective value function right now is: -1071.2826613869404
+62.0% of gradient descent iterations done. Method = A
+Current xi:  [5.6349573]
+objective value function right now is: -1072.4792812892608
+64.0% of gradient descent iterations done. Method = A
+Current xi:  [5.76683]
+objective value function right now is: -1072.8980964690975
+66.0% of gradient descent iterations done. Method = A
+Current xi:  [5.874091]
+objective value function right now is: -1075.3208879514154
+68.0% of gradient descent iterations done. Method = A
+Current xi:  [5.962652]
+objective value function right now is: -1076.8784758556642
+70.0% of gradient descent iterations done. Method = A
+Current xi:  [6.053935]
+objective value function right now is: -1078.9256135544874
+72.0% of gradient descent iterations done. Method = A
+Current xi:  [6.096742]
+objective value function right now is: -1083.843681713257
+74.0% of gradient descent iterations done. Method = A
+Current xi:  [6.1345096]
+objective value function right now is: -1087.5329289156693
+76.0% of gradient descent iterations done. Method = A
+Current xi:  [6.1327586]
+objective value function right now is: -1094.7504258075164
+78.0% of gradient descent iterations done. Method = A
+Current xi:  [6.0717483]
+objective value function right now is: -1106.0683661572352
+80.0% of gradient descent iterations done. Method = A
+Current xi:  [5.978493]
+objective value function right now is: -1117.9369070725445
+82.0% of gradient descent iterations done. Method = A
+Current xi:  [5.8388243]
+objective value function right now is: -1129.6023000007779
+84.0% of gradient descent iterations done. Method = A
+Current xi:  [5.6608634]
+objective value function right now is: -1141.7091407914
+86.0% of gradient descent iterations done. Method = A
+Current xi:  [5.4778137]
+objective value function right now is: -1151.3662008684719
+88.0% of gradient descent iterations done. Method = A
+Current xi:  [5.2911334]
+objective value function right now is: -1154.4387006426614
+90.0% of gradient descent iterations done. Method = A
+Current xi:  [5.113942]
+objective value function right now is: -1160.8505620593228
+92.0% of gradient descent iterations done. Method = A
+Current xi:  [4.9383235]
+objective value function right now is: -1166.2088043483589
+94.0% of gradient descent iterations done. Method = A
+Current xi:  [4.7773643]
+objective value function right now is: -1164.6781091316764
+96.0% of gradient descent iterations done. Method = A
+Current xi:  [4.610177]
+objective value function right now is: -1168.8213110721783
+98.0% of gradient descent iterations done. Method = A
+Current xi:  [4.458734]
+objective value function right now is: -1171.5040999625373
+100.0% of gradient descent iterations done. Method = A
+Current xi:  [4.305541]
+objective value function right now is: -1171.9393035894284
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 888.9358315833227
+W_T_median: 727.2564606357219
+W_T_pctile_5: -8.746670064546135
+W_T_CVAR_5_pct: -140.5594542401891
+Average q (qsum/M+1):  42.30113958543347
+Optimal xi:  [4.305541]
+Expected(across Rb) median(across samples) p_equity:  0.33539498249689736
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.0
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2859.8791171021785
+W_T_median: 1758.6133590503705
+W_T_pctile_5: -229.9247752841372
+W_T_CVAR_5_pct: -436.3755466996224
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_construct_Feature_vector.py:82: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  wealth_n = torch.tensor(wealth_n, device=params["device"])
+2.0% of gradient descent iterations done. Method = A
+Current xi:  [4.809797]
+objective value function right now is: -6085.834958878598
+4.0% of gradient descent iterations done. Method = A
+Current xi:  [4.631014]
+objective value function right now is: -6122.4409814793
+6.0% of gradient descent iterations done. Method = A
+Current xi:  [4.4536095]
+objective value function right now is: -6187.137264803992
+8.0% of gradient descent iterations done. Method = A
+Current xi:  [4.2790947]
+objective value function right now is: -6297.408897622624
+10.0% of gradient descent iterations done. Method = A
+Current xi:  [4.1089377]
+objective value function right now is: -6442.189392797255
+12.0% of gradient descent iterations done. Method = A
+Current xi:  [3.9397898]
+objective value function right now is: -6586.810574212869
+14.000000000000002% of gradient descent iterations done. Method = A
+Current xi:  [3.77184]
+objective value function right now is: -6715.233440419304
+16.0% of gradient descent iterations done. Method = A
+Current xi:  [3.6051662]
+objective value function right now is: -6824.090489993663
+18.0% of gradient descent iterations done. Method = A
+Current xi:  [3.437934]
+objective value function right now is: -6905.2492427541465
+20.0% of gradient descent iterations done. Method = A
+Current xi:  [3.271764]
+objective value function right now is: -6984.103683101813
+22.0% of gradient descent iterations done. Method = A
+Current xi:  [3.1067457]
+objective value function right now is: -7049.313239010279
+24.0% of gradient descent iterations done. Method = A
+Current xi:  [2.9437132]
+objective value function right now is: -7097.367712308855
+26.0% of gradient descent iterations done. Method = A
+Current xi:  [2.7806065]
+objective value function right now is: -7162.868784267131
+28.000000000000004% of gradient descent iterations done. Method = A
+Current xi:  [2.621549]
+objective value function right now is: -7215.618847647679
+30.0% of gradient descent iterations done. Method = A
+Current xi:  [2.4638588]
+objective value function right now is: -7270.074374609137
+32.0% of gradient descent iterations done. Method = A
+Current xi:  [2.310937]
+objective value function right now is: -7329.899584056032
+34.0% of gradient descent iterations done. Method = A
+Current xi:  [2.159507]
+objective value function right now is: -7387.158552198411
+36.0% of gradient descent iterations done. Method = A
+Current xi:  [2.012572]
+objective value function right now is: -7432.749060433871
+38.0% of gradient descent iterations done. Method = A
+Current xi:  [1.869904]
+objective value function right now is: -7474.691920392245
+40.0% of gradient descent iterations done. Method = A
+Current xi:  [1.7312248]
+objective value function right now is: -7526.66737873869
+42.0% of gradient descent iterations done. Method = A
+Current xi:  [1.5958441]
+objective value function right now is: -7576.5457449825635
+44.0% of gradient descent iterations done. Method = A
+Current xi:  [1.4665204]
+objective value function right now is: -7607.6869878168245
+46.0% of gradient descent iterations done. Method = A
+Current xi:  [1.3393686]
+objective value function right now is: -7646.778277199236
+48.0% of gradient descent iterations done. Method = A
+Current xi:  [1.2170297]
+objective value function right now is: -7671.8256984247655
+50.0% of gradient descent iterations done. Method = A
+Current xi:  [1.0977306]
+objective value function right now is: -7701.792337520017
+52.0% of gradient descent iterations done. Method = A
+Current xi:  [0.9834469]
+objective value function right now is: -7730.377783907952
+54.0% of gradient descent iterations done. Method = A
+Current xi:  [0.8751172]
+objective value function right now is: -7756.126043102131
+56.00000000000001% of gradient descent iterations done. Method = A
+Current xi:  [0.7718759]
+objective value function right now is: -7777.136578206498
+57.99999999999999% of gradient descent iterations done. Method = A
+Current xi:  [0.6748134]
+objective value function right now is: -7801.060180816
+60.0% of gradient descent iterations done. Method = A
+Current xi:  [0.58327293]
+objective value function right now is: -7811.812981647137
+62.0% of gradient descent iterations done. Method = A
+Current xi:  [0.49641854]
+objective value function right now is: -7824.866926842195
+64.0% of gradient descent iterations done. Method = A
+Current xi:  [0.4173157]
+objective value function right now is: -7849.396490462948
+66.0% of gradient descent iterations done. Method = A
+Current xi:  [0.34521982]
+objective value function right now is: -7864.86417956084
+68.0% of gradient descent iterations done. Method = A
+Current xi:  [0.28069103]
+objective value function right now is: -7875.979482947544
+70.0% of gradient descent iterations done. Method = A
+Current xi:  [0.2234912]
+objective value function right now is: -7892.865640537771
+72.0% of gradient descent iterations done. Method = A
+Current xi:  [0.17415383]
+objective value function right now is: -7905.653591769033
+74.0% of gradient descent iterations done. Method = A
+Current xi:  [0.13226871]
+objective value function right now is: -7916.463528351893
+76.0% of gradient descent iterations done. Method = A
+Current xi:  [0.09737873]
+objective value function right now is: -7925.045539325777
+78.0% of gradient descent iterations done. Method = A
+Current xi:  [0.06958745]
+objective value function right now is: -7936.027117911746
+80.0% of gradient descent iterations done. Method = A
+Current xi:  [0.04804154]
+objective value function right now is: -7952.801324997872
+82.0% of gradient descent iterations done. Method = A
+Current xi:  [0.03178408]
+objective value function right now is: -7960.889999949846
+84.0% of gradient descent iterations done. Method = A
+Current xi:  [0.01997733]
+objective value function right now is: -7964.217282932389
+86.0% of gradient descent iterations done. Method = A
+Current xi:  [0.01197374]
+objective value function right now is: -7972.11027049659
+88.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00677742]
+objective value function right now is: -7988.100704579915
+90.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00364827]
+objective value function right now is: -7995.229353879961
+92.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00182923]
+objective value function right now is: -8008.592405022749
+94.0% of gradient descent iterations done. Method = A
+Current xi:  [0.0008464]
+objective value function right now is: -8007.249482099326
+96.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00035671]
+objective value function right now is: -8012.472142798503
+98.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00013791]
+objective value function right now is: -8016.220724502036
+100.0% of gradient descent iterations done. Method = A
+Current xi:  [4.743055e-05]
+objective value function right now is: -8024.522952119544
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 493.14113089666057
+W_T_median: 231.52460841417312
+W_T_pctile_5: -111.80181640094393
+W_T_CVAR_5_pct: -239.48672694663048
+Average q (qsum/M+1):  53.800143334173384
+Optimal xi:  [4.743055e-05]
+Expected(across Rb) median(across samples) p_equity:  0.3972588653365771
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 5.0
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2859.8791171021785
+W_T_median: 1758.6133590503705
+W_T_pctile_5: -229.9247752841372
+W_T_CVAR_5_pct: -436.3755466996224
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_construct_Feature_vector.py:82: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  wealth_n = torch.tensor(wealth_n, device=params["device"])
+2.0% of gradient descent iterations done. Method = A
+Current xi:  [4.782337]
+objective value function right now is: -79991.87163152703
+4.0% of gradient descent iterations done. Method = A
+Current xi:  [4.556962]
+objective value function right now is: -82591.97038114836
+6.0% of gradient descent iterations done. Method = A
+Current xi:  [4.33674]
+objective value function right now is: -84048.2662468845
+8.0% of gradient descent iterations done. Method = A
+Current xi:  [4.1266804]
+objective value function right now is: -84874.13110380823
+10.0% of gradient descent iterations done. Method = A
+Current xi:  [3.9243202]
+objective value function right now is: -85364.91114007912
+12.0% of gradient descent iterations done. Method = A
+Current xi:  [3.7293422]
+objective value function right now is: -85666.16464982653
+14.000000000000002% of gradient descent iterations done. Method = A
+Current xi:  [3.540311]
+objective value function right now is: -85866.4457798639
+16.0% of gradient descent iterations done. Method = A
+Current xi:  [3.3586638]
+objective value function right now is: -86013.22081246393
+18.0% of gradient descent iterations done. Method = A
+Current xi:  [3.180297]
+objective value function right now is: -86133.61356765452
+20.0% of gradient descent iterations done. Method = A
+Current xi:  [3.006749]
+objective value function right now is: -86309.61639902237
+22.0% of gradient descent iterations done. Method = A
+Current xi:  [2.8371074]
+objective value function right now is: -86466.59606232366
+24.0% of gradient descent iterations done. Method = A
+Current xi:  [2.6721916]
+objective value function right now is: -86636.8060457597
+26.0% of gradient descent iterations done. Method = A
+Current xi:  [2.510768]
+objective value function right now is: -86827.01226215684
+28.000000000000004% of gradient descent iterations done. Method = A
+Current xi:  [2.3534203]
+objective value function right now is: -87035.49484936116
+30.0% of gradient descent iterations done. Method = A
+Current xi:  [2.2003713]
+objective value function right now is: -87227.4625916132
+32.0% of gradient descent iterations done. Method = A
+Current xi:  [2.0527377]
+objective value function right now is: -87382.94427886677
+34.0% of gradient descent iterations done. Method = A
+Current xi:  [1.9097456]
+objective value function right now is: -87507.34898491419
+36.0% of gradient descent iterations done. Method = A
+Current xi:  [1.7702457]
+objective value function right now is: -87604.60378477535
+38.0% of gradient descent iterations done. Method = A
+Current xi:  [1.634573]
+objective value function right now is: -87681.01125007273
+40.0% of gradient descent iterations done. Method = A
+Current xi:  [1.5041269]
+objective value function right now is: -87743.4670771975
+42.0% of gradient descent iterations done. Method = A
+Current xi:  [1.3770789]
+objective value function right now is: -87791.219429334
+44.0% of gradient descent iterations done. Method = A
+Current xi:  [1.2531141]
+objective value function right now is: -87839.59658794494
+46.0% of gradient descent iterations done. Method = A
+Current xi:  [1.1348364]
+objective value function right now is: -87874.12220743815
+48.0% of gradient descent iterations done. Method = A
+Current xi:  [1.0206728]
+objective value function right now is: -87903.44891426442
+50.0% of gradient descent iterations done. Method = A
+Current xi:  [0.9115189]
+objective value function right now is: -87931.30214819846
+52.0% of gradient descent iterations done. Method = A
+Current xi:  [0.8066764]
+objective value function right now is: -87954.5239516881
+54.0% of gradient descent iterations done. Method = A
+Current xi:  [0.7085184]
+objective value function right now is: -87976.39162460835
+56.00000000000001% of gradient descent iterations done. Method = A
+Current xi:  [0.6156973]
+objective value function right now is: -87995.31252919686
+57.99999999999999% of gradient descent iterations done. Method = A
+Current xi:  [0.5281393]
+objective value function right now is: -88011.98879574258
+60.0% of gradient descent iterations done. Method = A
+Current xi:  [0.4474698]
+objective value function right now is: -88026.6823652017
+62.0% of gradient descent iterations done. Method = A
+Current xi:  [0.37410042]
+objective value function right now is: -88041.56109902592
+64.0% of gradient descent iterations done. Method = A
+Current xi:  [0.30710077]
+objective value function right now is: -88053.29416261447
+66.0% of gradient descent iterations done. Method = A
+Current xi:  [0.24766941]
+objective value function right now is: -88064.94163022308
+68.0% of gradient descent iterations done. Method = A
+Current xi:  [0.19550142]
+objective value function right now is: -88077.12343691255
+70.0% of gradient descent iterations done. Method = A
+Current xi:  [0.1509769]
+objective value function right now is: -88087.01741238934
+72.0% of gradient descent iterations done. Method = A
+Current xi:  [0.1134941]
+objective value function right now is: -88094.91439568473
+74.0% of gradient descent iterations done. Method = A
+Current xi:  [0.08288741]
+objective value function right now is: -88103.29652070378
+76.0% of gradient descent iterations done. Method = A
+Current xi:  [0.05852709]
+objective value function right now is: -88114.08898781777
+78.0% of gradient descent iterations done. Method = A
+Current xi:  [0.03997268]
+objective value function right now is: -88123.32861791419
+80.0% of gradient descent iterations done. Method = A
+Current xi:  [0.02608783]
+objective value function right now is: -88129.31084256795
+82.0% of gradient descent iterations done. Method = A
+Current xi:  [0.01631388]
+objective value function right now is: -88139.14458091499
+84.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00970943]
+objective value function right now is: -88147.63374280701
+86.0% of gradient descent iterations done. Method = A
+Current xi:  [0.0054648]
+objective value function right now is: -88148.96099553253
+88.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00290014]
+objective value function right now is: -88163.03700196854
+90.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00142679]
+objective value function right now is: -88170.77524244747
+92.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00065123]
+objective value function right now is: -88178.79544897594
+94.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00027377]
+objective value function right now is: -88188.99230109395
+96.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00010467]
+objective value function right now is: -88197.1733761317
+98.0% of gradient descent iterations done. Method = A
+Current xi:  [3.6230238e-05]
+objective value function right now is: -88206.2171224313
+100.0% of gradient descent iterations done. Method = A
+Current xi:  [1.1147964e-05]
+objective value function right now is: -88211.49509921172
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 285.225793083497
+W_T_median: 179.99301850290078
+W_T_pctile_5: -1109.9486823649543
+W_T_CVAR_5_pct: -1446.1949918243997
+Average q (qsum/M+1):  59.99612918976815
+Optimal xi:  [1.1147964e-05]
+Expected(across Rb) median(across samples) p_equity:  0.3843285673802408
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 50.0
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        4  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 4)     False        None  
+0       (4, 4)     False        None  
+0       (4, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2859.8791171021785
+W_T_median: 1758.6133590503705
+W_T_pctile_5: -229.9247752841372
+W_T_CVAR_5_pct: -436.3755466996224
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_construct_Feature_vector.py:82: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  wealth_n = torch.tensor(wealth_n, device=params["device"])
+2.0% of gradient descent iterations done. Method = A
+Current xi:  [4.7840977]
+objective value function right now is: -8293178.138192899
+4.0% of gradient descent iterations done. Method = A
+Current xi:  [4.5446153]
+objective value function right now is: -8705247.822328532
+6.0% of gradient descent iterations done. Method = A
+Current xi:  [4.3146214]
+objective value function right now is: -8938873.45884923
+8.0% of gradient descent iterations done. Method = A
+Current xi:  [4.0969653]
+objective value function right now is: -9064036.383751115
+10.0% of gradient descent iterations done. Method = A
+Current xi:  [3.88977]
+objective value function right now is: -9134273.828752747
+12.0% of gradient descent iterations done. Method = A
+Current xi:  [3.6908078]
+objective value function right now is: -9176815.070143165
+14.000000000000002% of gradient descent iterations done. Method = A
+Current xi:  [3.5000684]
+objective value function right now is: -9204452.944501858
+16.0% of gradient descent iterations done. Method = A
+Current xi:  [3.315813]
+objective value function right now is: -9223452.077634605
+18.0% of gradient descent iterations done. Method = A
+Current xi:  [3.138438]
+objective value function right now is: -9237130.309577402
+20.0% of gradient descent iterations done. Method = A
+Current xi:  [2.9679544]
+objective value function right now is: -9247363.944060145
+22.0% of gradient descent iterations done. Method = A
+Current xi:  [2.8018484]
+objective value function right now is: -9255239.37129354
+24.0% of gradient descent iterations done. Method = A
+Current xi:  [2.6411567]
+objective value function right now is: -9261460.629164133
+26.0% of gradient descent iterations done. Method = A
+Current xi:  [2.4854715]
+objective value function right now is: -9266486.18418577
+28.000000000000004% of gradient descent iterations done. Method = A
+Current xi:  [2.3325336]
+objective value function right now is: -9270549.899191251
+30.0% of gradient descent iterations done. Method = A
+Current xi:  [2.1841805]
+objective value function right now is: -9273905.764238352
+32.0% of gradient descent iterations done. Method = A
+Current xi:  [2.0393412]
+objective value function right now is: -9276695.702646814
+34.0% of gradient descent iterations done. Method = A
+Current xi:  [1.8978488]
+objective value function right now is: -9279044.601796275
+36.0% of gradient descent iterations done. Method = A
+Current xi:  [1.7606033]
+objective value function right now is: -9281049.887741873
+38.0% of gradient descent iterations done. Method = A
+Current xi:  [1.626546]
+objective value function right now is: -9282747.126642853
+40.0% of gradient descent iterations done. Method = A
+Current xi:  [1.4955965]
+objective value function right now is: -9284239.46640428
+42.0% of gradient descent iterations done. Method = A
+Current xi:  [1.3676085]
+objective value function right now is: -9285526.37071952
+44.0% of gradient descent iterations done. Method = A
+Current xi:  [1.2443206]
+objective value function right now is: -9286646.651875092
+46.0% of gradient descent iterations done. Method = A
+Current xi:  [1.1254114]
+objective value function right now is: -9287625.462961363
+48.0% of gradient descent iterations done. Method = A
+Current xi:  [1.0117491]
+objective value function right now is: -9288488.16161539
+50.0% of gradient descent iterations done. Method = A
+Current xi:  [0.9023502]
+objective value function right now is: -9289254.226210533
+52.0% of gradient descent iterations done. Method = A
+Current xi:  [0.7981695]
+objective value function right now is: -9289926.253514335
+54.0% of gradient descent iterations done. Method = A
+Current xi:  [0.699127]
+objective value function right now is: -9290510.994530337
+56.00000000000001% of gradient descent iterations done. Method = A
+Current xi:  [0.6064734]
+objective value function right now is: -9291050.754945783
+57.99999999999999% of gradient descent iterations done. Method = A
+Current xi:  [0.5193614]
+objective value function right now is: -9291514.639988763
+60.0% of gradient descent iterations done. Method = A
+Current xi:  [0.439178]
+objective value function right now is: -9291935.261001723
+62.0% of gradient descent iterations done. Method = A
+Current xi:  [0.36612985]
+objective value function right now is: -9292303.88515939
+64.0% of gradient descent iterations done. Method = A
+Current xi:  [0.29977503]
+objective value function right now is: -9292630.17975618
+66.0% of gradient descent iterations done. Method = A
+Current xi:  [0.24120137]
+objective value function right now is: -9292920.14439895
+68.0% of gradient descent iterations done. Method = A
+Current xi:  [0.18976656]
+objective value function right now is: -9293173.15384683
+70.0% of gradient descent iterations done. Method = A
+Current xi:  [0.14552823]
+objective value function right now is: -9293400.471863756
+72.0% of gradient descent iterations done. Method = A
+Current xi:  [0.10889915]
+objective value function right now is: -9293606.313130729
+74.0% of gradient descent iterations done. Method = A
+Current xi:  [0.07905004]
+objective value function right now is: -9293787.432727704
+76.0% of gradient descent iterations done. Method = A
+Current xi:  [0.05548676]
+objective value function right now is: -9293945.220997406
+78.0% of gradient descent iterations done. Method = A
+Current xi:  [0.03749025]
+objective value function right now is: -9294086.2065721
+80.0% of gradient descent iterations done. Method = A
+Current xi:  [0.02428827]
+objective value function right now is: -9294214.962779183
+82.0% of gradient descent iterations done. Method = A
+Current xi:  [0.01499744]
+objective value function right now is: -9294325.1456723
+84.0% of gradient descent iterations done. Method = A
+Current xi:  [0.0088]
+objective value function right now is: -9294418.866803514
+86.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00489341]
+objective value function right now is: -9294519.510763116
+88.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00255025]
+objective value function right now is: -9294598.869508278
+90.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00123773]
+objective value function right now is: -9294670.693904765
+92.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00055553]
+objective value function right now is: -9294734.38196124
+94.0% of gradient descent iterations done. Method = A
+Current xi:  [0.00022791]
+objective value function right now is: -9294794.791632494
+96.0% of gradient descent iterations done. Method = A
+Current xi:  [8.495637e-05]
+objective value function right now is: -9294846.283359036
+98.0% of gradient descent iterations done. Method = A
+Current xi:  [2.8614506e-05]
+objective value function right now is: -9294892.469134305
+100.0% of gradient descent iterations done. Method = A
+Current xi:  [8.418609e-06]
+objective value function right now is: -9294925.453683527
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 126.59391170391194
+W_T_median: 117.0989288547385
+W_T_pctile_5: -1170.1064032271747
+W_T_CVAR_5_pct: -1623.0194102408768
+Average q (qsum/M+1):  59.99705849924395
+Optimal xi:  [8.418609e-06]
+Expected(across Rb) median(across samples) p_equity:  0.27881335529188317
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 5000.0
+-----------------------------------------------
