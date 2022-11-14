@@ -79,7 +79,7 @@ def construct_Feature_vector(params,                        # params dictionary 
         if pytorch:
             benchmark_W_mean_train = torch.tensor(benchmark_W_mean_train, device = params["device"])
             benchmark_W_std_train = torch.tensor(benchmark_W_std_train, device=params["device"])
-            wealth_n = torch.tensor(wealth_n, device=params["device"])
+            # wealth_n = torch.tensor(wealth_n, device=params["device"])
             
         wealth_std= (wealth_n - benchmark_W_mean_train) / benchmark_W_std_train
 

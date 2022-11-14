@@ -230,52 +230,56 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
     res_ALL_dataframe = pd.DataFrame() #initialize
 
     #Loop through res_ALL.keys() [i.e. loop through all methods run] to construct outputs
-    for key in res_ALL.keys():
+    # for key in res_ALL.keys():
 
-        #Append
-        res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+    
+    
+    # commented out for temporary output
+    #     #Append
+    #     res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
 
-        # Select result from which achieves lowest overall objective function value
-        if res_ALL[key]["val"] < val_min:
-            val_min = res_ALL[key]["val"]  # set new running min for objective function value
-            res_BEST = res_ALL[key]  # res_BEST contains the results for the new running min
-
-
-    #Finally append res_BEST to the bottom of res_ALL_dataframe
-    if params["preTrained_TrueFalse"] is False: #If we actually did training as above
-        res_BEST_temp = res_BEST #create temp copy to indicate that it has been selected
-        res_BEST_temp["summary_df"]["method"] = "SELECTED: " + res_BEST_temp["method"]
-        res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
-
-    elif params["preTrained_TrueFalse"] is True: #Otherwise just copy provided F_theta across if provided
-        res_BEST.update({"F_theta": params["preTrained_F_theta"]})
+    #     # Select result from which achieves lowest overall objective function value
+    #     if res_ALL[key]["val"] < val_min:
+    #         val_min = res_ALL[key]["val"]  # set new running min for objective function value
+    #         res_BEST = res_ALL[key]  # res_BEST contains the results for the new running min
 
 
-    # print("------------------------------------------------------")
-    # print("Contents of res_BEST:")
-    # print(res_BEST)
-    #   res_BEST = dictionary of results for the **best-performing** method in NN_training_options["methods"]
-    #               achieving the LOWEST objective function value
+    # #Finally append res_BEST to the bottom of res_ALL_dataframe
+    # if params["preTrained_TrueFalse"] is False: #If we actually did training as above
+    #     res_BEST_temp = res_BEST #create temp copy to indicate that it has been selected
+    #     res_BEST_temp["summary_df"]["method"] = "SELECTED: " + res_BEST_temp["method"]
+    #     res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
 
-    #---------------------------------------------------------------------------
-    # FINAL RESULT and do LRP/PRP if needed
-    #Implement the res_BEST trading strategy (NN parameters) and update the params dictionary
-    params["res_BEST"] = res_BEST
+    # elif params["preTrained_TrueFalse"] is True: #Otherwise just copy provided F_theta across if provided
+    #     res_BEST.update({"F_theta": params["preTrained_F_theta"]})
 
-    #Also do LRP/PRP if required
-    LRP_for_NN_TrueFalse = params["LRP_for_NN_TrueFalse"]
-    PRP_TrueFalse = params["PRP_TrueFalse"]
 
-    #   Note: this invests the NN strategy, updates all the terminal wealth and objective function values in params
-    params, _, _, _ = fun_eval_objfun_NN_strategy.eval_obj_NN_strategy(F_theta = res_BEST["F_theta"],
-                                                                       NN_object = NN_object,
-                                                                       params = params,
-                                                                       output_Gradient = True,
-                                                                       LRP_for_NN_TrueFalse = LRP_for_NN_TrueFalse,
-                                                                       PRP_TrueFalse = PRP_TrueFalse)
+    # # print("------------------------------------------------------")
+    # # print("Contents of res_BEST:")
+    # # print(res_BEST)
+    # #   res_BEST = dictionary of results for the **best-performing** method in NN_training_options["methods"]
+    # #               achieving the LOWEST objective function value
 
-    # Update  params["res_BEST"]["NN_theta"] for subsequent use
-    if params["preTrained_TrueFalse"] is True:
-        params["res_BEST"].update({"NN_theta": params["NN_theta"]})
+    # #---------------------------------------------------------------------------
+    # # FINAL RESULT and do LRP/PRP if needed
+    # #Implement the res_BEST trading strategy (NN parameters) and update the params dictionary
+    # params["res_BEST"] = res_BEST
 
-    return params, res_BEST, res_ALL, res_ALL_dataframe
+    # #Also do LRP/PRP if required
+    # LRP_for_NN_TrueFalse = params["LRP_for_NN_TrueFalse"]
+    # PRP_TrueFalse = params["PRP_TrueFalse"]
+
+    # #   Note: this invests the NN strategy, updates all the terminal wealth and objective function values in params
+    # params, _, _, _ = fun_eval_objfun_NN_strategy.eval_obj_NN_strategy(F_theta = res_BEST["F_theta"],
+    #                                                                    NN_object = NN_object,
+    #                                                                    params = params,
+    #                                                                    output_Gradient = True,
+    #                                                                    LRP_for_NN_TrueFalse = LRP_for_NN_TrueFalse,
+    #                                                                    PRP_TrueFalse = PRP_TrueFalse)
+
+    # # Update  params["res_BEST"]["NN_theta"] for subsequent use
+    # if params["preTrained_TrueFalse"] is True:
+    #     params["res_BEST"].update({"NN_theta": params["NN_theta"]})
+
+    # return params, res_BEST, res_ALL, res_ALL_dataframe
+    return res_ALL['pytorch_adam']

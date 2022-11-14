@@ -122,16 +122,16 @@ def RUN__wrapper_ONE_stage_optimization(
             # dictionary with options to train NN, specifying algorithms and hyperparameters
         )
 
-    #Do OUTPUTS
-    params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
-        RUN__wrapper_output(
-        output_parameters=output_parameters,  # Dictionary with output parameters as setup in main code
-        params_TRAIN=params_TRAIN,  # dictionary with parameters and results from NN TRAINING
-        params_CP_TRAIN=params_CP_TRAIN,
-        # dictionary with benchmark strategy results and info on the TRAINING dataset
-        params_TEST=params_TEST,  # dictionary with parameters and results from NN TESTING
-        params_CP_TEST=params_CP_TEST  # dictionary with benchmark strategy results and info on the TESTING dataset
-    )
+    # #Do OUTPUTS
+    # params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
+    #     RUN__wrapper_output(
+    #     output_parameters=output_parameters,  # Dictionary with output parameters as setup in main code
+    #     params_TRAIN=params_TRAIN,  # dictionary with parameters and results from NN TRAINING
+    #     params_CP_TRAIN=params_CP_TRAIN,
+    #     # dictionary with benchmark strategy results and info on the TRAINING dataset
+    #     params_TEST=params_TEST,  # dictionary with parameters and results from NN TESTING
+    #     params_CP_TEST=params_CP_TEST  # dictionary with benchmark strategy results and info on the TESTING dataset
+    # )
 
     return params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST
 
@@ -189,24 +189,44 @@ def RUN__wrapper_training_testing_NN(
     params_TRAIN = {}   #make sure it is empty
     res_BEST = {} #make sure it is empty
 
-
+    # commented out for temporary output
     # SOLVE optimization problem, or just evaluate if pre-trained
-    params_TRAIN, res_BEST, _, res_ALL_dataframe = fun_train_NN.train_NN( theta0 = theta0,
-                                                            NN_list = NN_list,
-                                                            NN_orig_list = NN_orig_list,
-                                                            params = params,
-                                                            NN_training_options = NN_training_options
-                                                            )
+    # params_TRAIN, res_BEST, _, res_ALL_dataframe = fun_train_NN.train_NN( theta0 = theta0,
+    #                                                         NN_list = NN_list,
+    #                                                         NN_orig_list = NN_orig_list,
+    #                                                         params = params,
+    #                                                         NN_training_options = NN_training_options
+    #                                                         )
+    
+    res_adam = fun_train_NN.train_NN( theta0 = theta0,
+                                    NN_list = NN_list,
+                                    NN_orig_list = NN_orig_list,
+                                    params = params,
+                                    NN_training_options = NN_training_options
+                                    )
 
 
     print("-----------------------------------------------")
-    print("Selected results: NN-strategy-on-TRAINING dataset")
-    print("W_T_mean: " + str(params_TRAIN["W_T_stats_dict"]["W_T_mean"]))
-    print("W_T_median: " + str(params_TRAIN["W_T_stats_dict"]["W_T_median"]))
-    print("W_T_pctile_5: " + str(params_TRAIN["W_T_stats_dict"]["W_T_pctile_5"]))
-    print("W_T_CVAR_5_pct: " + str(params_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
-    print("F value: " + str(params_TRAIN["F_val"]))
+    print("Selected results: NN-strategy-on-TRAINING dataset (temp implementation")
+    print("W_T_mean: " + str(res_adam["temp_w_output_dict"]["W_T_mean"]))
+    print("W_T_median: " + str(res_adam["temp_w_output_dict"]["W_T_median"]))
+    print("W_T_pctile_5: " + str(res_adam["temp_w_output_dict"]["W_T_pctile_5"]))
+    print("W_T_CVAR_5_pct: " + str(res_adam["temp_w_output_dict"]["W_T_CVAR_5_pct"]))
+    print("Average q (qsum/M+1): ", res_adam["q_avg"])
+    if params["xi_constant"]:
+        print("(xi held constant!)")
+    print("Optimal xi: ", res_adam["optimal_xi"])
+    print("Expected(across Rb) median(across samples) p_equity: ", res_adam["average_median_p"])
     print("-----------------------------------------------")
+
+    # print("-----------------------------------------------")
+    # print("Selected results: NN-strategy-on-TRAINING dataset")
+    # print("W_T_mean: " + str(params_TRAIN["W_T_stats_dict"]["W_T_mean"]))
+    # print("W_T_median: " + str(params_TRAIN["W_T_stats_dict"]["W_T_median"]))
+    # print("W_T_pctile_5: " + str(params_TRAIN["W_T_stats_dict"]["W_T_pctile_5"]))
+    # print("W_T_CVAR_5_pct: " + str(params_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
+    # print("F value: " + str(params_TRAIN["F_val"]))
+    # print("-----------------------------------------------")
 
 
     #----------------------------------------------------------------------------------------

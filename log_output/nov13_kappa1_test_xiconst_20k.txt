@@ -1,0 +1,1103 @@
+Starting at: 
+13-11-22_15:05
+
+ Random seed:  1  
+
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+3.3333333333333335% of MC simulations done.
+6.666666666666667% of MC simulations done.
+10.0% of MC simulations done.
+13.333333333333334% of MC simulations done.
+16.666666666666664% of MC simulations done.
+20.0% of MC simulations done.
+23.333333333333332% of MC simulations done.
+26.666666666666668% of MC simulations done.
+30.0% of MC simulations done.
+33.33333333333333% of MC simulations done.
+36.666666666666664% of MC simulations done.
+40.0% of MC simulations done.
+43.333333333333336% of MC simulations done.
+46.666666666666664% of MC simulations done.
+50.0% of MC simulations done.
+53.333333333333336% of MC simulations done.
+56.666666666666664% of MC simulations done.
+60.0% of MC simulations done.
+63.33333333333333% of MC simulations done.
+66.66666666666666% of MC simulations done.
+70.0% of MC simulations done.
+73.33333333333333% of MC simulations done.
+76.66666666666667% of MC simulations done.
+80.0% of MC simulations done.
+83.33333333333334% of MC simulations done.
+86.66666666666667% of MC simulations done.
+90.0% of MC simulations done.
+93.33333333333333% of MC simulations done.
+96.66666666666667% of MC simulations done.
+100.0% of MC simulations done.
+Withdrawal NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       1       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       8  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       8  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       1  logistic_sigmoid   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 8)    False        None  
+2       (8, 8)    False        None  
+3       (8, 1)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+Allocation NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       8  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       8  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 8)    False        None  
+2       (8, 8)    False        None  
+3       (8, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 8)     False        None  
+0       (8, 8)     False        None  
+0       (8, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 8)     False        None  
+0       (8, 8)     False        None  
+0       (8, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2868.901581870188
+W_T_median: 1766.0030338959873
+W_T_pctile_5: -227.11540476467852
+W_T_CVAR_5_pct: -434.2600137480577
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1104.6941512254439
+4.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1115.5796899796296
+6.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1434.94688998131
+8.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1512.3923977040517
+10.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1537.510900736273
+12.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1544.8576527442028
+14.000000000000002% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1547.8526696681804
+16.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1527.8237926707945
+18.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1538.5647596348763
+20.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1546.1197185479216
+22.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1544.061501581654
+24.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1541.4473646683298
+26.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1549.6312033282031
+28.000000000000004% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1550.307430533645
+30.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1546.3459889779504
+32.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1553.4383595939262
+34.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1518.7755454706003
+36.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1554.1992395930954
+38.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1552.2572828999791
+40.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1554.4918346892969
+42.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1553.8998348963257
+44.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1547.9086557184198
+46.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1558.8867275773566
+48.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1521.6700253314739
+50.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1551.9089777820714
+52.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1554.8809098178563
+54.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1554.0902150136637
+56.00000000000001% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1558.0551232211646
+57.99999999999999% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1557.9521993326277
+60.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1549.4637715793071
+62.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1538.8648751474636
+64.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1556.7226455650894
+66.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1539.9291925300872
+68.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1557.8994231670658
+70.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1550.4178449541848
+72.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1548.8144461140978
+74.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1537.6251756506686
+76.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1557.3732211541717
+78.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1555.1408212448564
+80.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1537.7432584594028
+82.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1559.0350373862032
+84.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1551.1768117694357
+86.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1554.3300921369573
+88.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1560.6191915329462
+new min fval:  2744.1325042349736
+90.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1550.930187480158
+new min fval:  -1555.4215874747745
+new min fval:  -1558.9857285971705
+new min fval:  -1561.6259755276512
+new min fval:  -1562.6496675716155
+new min fval:  -1562.9022612093595
+new min fval:  -1563.1016558117483
+new min fval:  -1563.31389496881
+new min fval:  -1563.4453509784153
+new min fval:  -1563.5588455489744
+new min fval:  -1563.6546453443896
+new min fval:  -1563.6891437838578
+new min fval:  -1563.6929823716553
+new min fval:  -1563.7002825586778
+new min fval:  -1563.7005821334567
+new min fval:  -1563.7055010555541
+new min fval:  -1563.7214971207309
+new min fval:  -1563.7375407650038
+new min fval:  -1563.7413889446264
+92.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1559.8833581497631
+94.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1563.1260802524873
+new min fval:  -1563.7435921790814
+new min fval:  -1563.745572541568
+new min fval:  -1563.7478488564645
+new min fval:  -1563.7511840098848
+new min fval:  -1563.7572472187132
+new min fval:  -1563.7599495989368
+new min fval:  -1563.7603239365626
+new min fval:  -1563.7608085684094
+new min fval:  -1563.7639326795663
+new min fval:  -1563.7702225967628
+new min fval:  -1563.7737630859767
+new min fval:  -1563.7754349990312
+new min fval:  -1563.7770016401103
+new min fval:  -1563.7807639309244
+new min fval:  -1563.78661194599
+new min fval:  -1563.790062102796
+new min fval:  -1563.7921946925321
+new min fval:  -1563.7952350183743
+new min fval:  -1563.8000356286757
+new min fval:  -1563.8049994264893
+new min fval:  -1563.8089544738586
+new min fval:  -1563.8121579780682
+new min fval:  -1563.8151677764226
+new min fval:  -1563.8193131412224
+new min fval:  -1563.823755473342
+new min fval:  -1563.8279144754192
+new min fval:  -1563.8309897618874
+new min fval:  -1563.832702637509
+new min fval:  -1563.8353434144803
+new min fval:  -1563.8393440672407
+new min fval:  -1563.8420969020215
+new min fval:  -1563.8439407491112
+new min fval:  -1563.8461894483487
+new min fval:  -1563.8506612413548
+new min fval:  -1563.8553653534295
+new min fval:  -1563.8583076248044
+new min fval:  -1563.8600681164241
+new min fval:  -1563.8618808283848
+new min fval:  -1563.8660218222276
+new min fval:  -1563.8732005200736
+new min fval:  -1563.873575914022
+new min fval:  -1563.876279714673
+new min fval:  -1563.8773253417523
+new min fval:  -1563.8784580052318
+new min fval:  -1563.8801575869684
+new min fval:  -1563.8817974625622
+new min fval:  -1563.8847396620106
+new min fval:  -1563.8884481843215
+new min fval:  -1563.8930852018614
+new min fval:  -1563.8982456415733
+new min fval:  -1563.9008554404463
+new min fval:  -1563.9019861432914
+new min fval:  -1563.9036840097488
+new min fval:  -1563.907083178749
+new min fval:  -1563.9114502502114
+new min fval:  -1563.911945120472
+new min fval:  -1563.9133176985981
+new min fval:  -1563.9197645885115
+new min fval:  -1563.9229181266678
+new min fval:  -1563.9248416446658
+new min fval:  -1563.9279361058047
+new min fval:  -1563.9317652608804
+new min fval:  -1563.936479195843
+new min fval:  -1563.9414999634942
+new min fval:  -1563.9423365664754
+new min fval:  -1563.9475123908128
+new min fval:  -1563.9561404635317
+new min fval:  -1563.9573305827194
+new min fval:  -1563.9594365919932
+new min fval:  -1563.9615939462785
+new min fval:  -1563.9641940139438
+new min fval:  -1563.9677632696303
+new min fval:  -1563.9710157105044
+new min fval:  -1563.9743834050626
+96.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1563.4442287960483
+new min fval:  -1563.977676330255
+new min fval:  -1563.980382887173
+new min fval:  -1563.982560630588
+new min fval:  -1563.984554687852
+new min fval:  -1563.9869836648818
+new min fval:  -1563.9902203193
+new min fval:  -1563.9938929800423
+new min fval:  -1563.9971492442169
+new min fval:  -1564.0006127210604
+new min fval:  -1564.0021712159748
+new min fval:  -1564.0034568280475
+new min fval:  -1564.0064421398279
+new min fval:  -1564.011421281823
+new min fval:  -1564.0120956594565
+new min fval:  -1564.0140170951597
+new min fval:  -1564.0205151606917
+new min fval:  -1564.0240041456457
+new min fval:  -1564.0248994083158
+new min fval:  -1564.0256389046635
+new min fval:  -1564.0284606720695
+new min fval:  -1564.0318166361428
+new min fval:  -1564.0347244515594
+new min fval:  -1564.0384148759133
+new min fval:  -1564.0427147300961
+new min fval:  -1564.0457683494333
+new min fval:  -1564.0481530149302
+new min fval:  -1564.0514768405212
+new min fval:  -1564.054760514173
+new min fval:  -1564.0576489169903
+new min fval:  -1564.0597667258198
+new min fval:  -1564.062957314971
+new min fval:  -1564.0660300120778
+new min fval:  -1564.0700470214897
+new min fval:  -1564.0745746879224
+new min fval:  -1564.0793362462302
+new min fval:  -1564.0825556480354
+new min fval:  -1564.0838753789044
+new min fval:  -1564.0857329240803
+new min fval:  -1564.0887310838446
+new min fval:  -1564.0918156299817
+new min fval:  -1564.0947106992096
+new min fval:  -1564.0977645953205
+new min fval:  -1564.1016143676766
+new min fval:  -1564.105165429551
+new min fval:  -1564.1081274240614
+new min fval:  -1564.1105552282586
+new min fval:  -1564.1125761653316
+new min fval:  -1564.115421496419
+new min fval:  -1564.1188936969766
+new min fval:  -1564.1233619326213
+new min fval:  -1564.1262638851074
+new min fval:  -1564.127964280104
+new min fval:  -1564.129678663317
+new min fval:  -1564.1318814978536
+new min fval:  -1564.1364667117066
+new min fval:  -1564.139139868809
+new min fval:  -1564.141221342144
+new min fval:  -1564.1442040036834
+new min fval:  -1564.1482823346964
+new min fval:  -1564.1517066834324
+new min fval:  -1564.1551684335266
+new min fval:  -1564.158981435684
+new min fval:  -1564.1638861966553
+new min fval:  -1564.168184000692
+new min fval:  -1564.1719271980642
+new min fval:  -1564.1753265825957
+new min fval:  -1564.1779982295186
+new min fval:  -1564.1806523123748
+new min fval:  -1564.1835872139056
+new min fval:  -1564.1863202976056
+new min fval:  -1564.1895630090562
+new min fval:  -1564.1932096287144
+new min fval:  -1564.197289385624
+new min fval:  -1564.200604101607
+new min fval:  -1564.2032423064313
+new min fval:  -1564.207313992446
+new min fval:  -1564.2131418089377
+new min fval:  -1564.2152321245394
+new min fval:  -1564.2159081416742
+new min fval:  -1564.2167216269045
+new min fval:  -1564.2194180546887
+new min fval:  -1564.2248532148749
+new min fval:  -1564.2276362121725
+new min fval:  -1564.2281558477334
+new min fval:  -1564.228493841764
+new min fval:  -1564.2310561945649
+new min fval:  -1564.2371556515805
+new min fval:  -1564.2378973538307
+new min fval:  -1564.2383092795415
+new min fval:  -1564.2433044135057
+new min fval:  -1564.2445104871538
+new min fval:  -1564.246064444849
+new min fval:  -1564.2496489983782
+new min fval:  -1564.2506865928394
+new min fval:  -1564.2510257339782
+new min fval:  -1564.2533588061287
+new min fval:  -1564.2578565508602
+new min fval:  -1564.2627280777301
+new min fval:  -1564.2643688443657
+new min fval:  -1564.26471763085
+new min fval:  -1564.267507373673
+new min fval:  -1564.2709274647639
+new min fval:  -1564.2746047724402
+new min fval:  -1564.2783302632301
+new min fval:  -1564.282037910996
+new min fval:  -1564.2847877808363
+new min fval:  -1564.287392504556
+new min fval:  -1564.2900254275394
+new min fval:  -1564.2934576443072
+new min fval:  -1564.2942769254078
+new min fval:  -1564.2944048400138
+new min fval:  -1564.295732875152
+new min fval:  -1564.29958009579
+new min fval:  -1564.3046985687213
+new min fval:  -1564.3076505649578
+new min fval:  -1564.3094055667482
+new min fval:  -1564.312023827473
+new min fval:  -1564.3162382550947
+new min fval:  -1564.3210726492532
+new min fval:  -1564.3250102206257
+new min fval:  -1564.3280315087436
+new min fval:  -1564.3308826405337
+new min fval:  -1564.3341924408596
+new min fval:  -1564.3377262297636
+new min fval:  -1564.3408078464176
+new min fval:  -1564.3434613084796
+new min fval:  -1564.3468118571657
+new min fval:  -1564.3496407902599
+new min fval:  -1564.3527924010004
+new min fval:  -1564.3563093411854
+new min fval:  -1564.360049610258
+new min fval:  -1564.3641059562046
+new min fval:  -1564.3683074282033
+new min fval:  -1564.3718488927836
+new min fval:  -1564.3743081467767
+new min fval:  -1564.3764506203204
+new min fval:  -1564.3793523233255
+new min fval:  -1564.3816162181
+new min fval:  -1564.383240940818
+new min fval:  -1564.384813455599
+new min fval:  -1564.3887477382725
+new min fval:  -1564.3941488870237
+new min fval:  -1564.395790372856
+new min fval:  -1564.3987830364858
+new min fval:  -1564.4042328006244
+new min fval:  -1564.4056316423798
+new min fval:  -1564.409523899851
+new min fval:  -1564.41559345527
+new min fval:  -1564.419010003069
+new min fval:  -1564.419706742741
+new min fval:  -1564.423195511603
+new min fval:  -1564.4251416565041
+new min fval:  -1564.4268912783893
+new min fval:  -1564.4295590010038
+new min fval:  -1564.433555165153
+new min fval:  -1564.438543276239
+new min fval:  -1564.4420395539144
+new min fval:  -1564.4449965645854
+new min fval:  -1564.4478840913941
+new min fval:  -1564.4514687399017
+new min fval:  -1564.4547250391572
+new min fval:  -1564.4586936337068
+new min fval:  -1564.4634972074405
+new min fval:  -1564.4681411655733
+new min fval:  -1564.4718301616906
+new min fval:  -1564.474948135987
+new min fval:  -1564.4783963880548
+new min fval:  -1564.4828593169473
+new min fval:  -1564.4864877593327
+new min fval:  -1564.4901088511372
+new min fval:  -1564.492955425277
+new min fval:  -1564.4961103651412
+new min fval:  -1564.4999971061025
+new min fval:  -1564.5031750317346
+new min fval:  -1564.5058485901761
+new min fval:  -1564.5085644202209
+new min fval:  -1564.5110154123954
+new min fval:  -1564.5138693251442
+new min fval:  -1564.517210810892
+new min fval:  -1564.5215859033392
+new min fval:  -1564.5239908726594
+new min fval:  -1564.5259200051255
+new min fval:  -1564.5288581854627
+new min fval:  -1564.5329911884442
+new min fval:  -1564.5380188308018
+new min fval:  -1564.53888186402
+new min fval:  -1564.5409308066448
+new min fval:  -1564.5476614898266
+new min fval:  -1564.547940763649
+new min fval:  -1564.5494762287456
+new min fval:  -1564.5532137985183
+new min fval:  -1564.5553447266568
+new min fval:  -1564.5573110366192
+new min fval:  -1564.5596581506898
+new min fval:  -1564.56285078364
+new min fval:  -1564.5664631921545
+new min fval:  -1564.5689130906303
+new min fval:  -1564.5702740948523
+new min fval:  -1564.5712887442344
+new min fval:  -1564.573264717524
+new min fval:  -1564.5760157486122
+new min fval:  -1564.5799232494185
+new min fval:  -1564.5829551296667
+new min fval:  -1564.5856247448671
+new min fval:  -1564.5877343539735
+new min fval:  -1564.5898519506707
+new min fval:  -1564.592750164379
+new min fval:  -1564.5960528880198
+new min fval:  -1564.5996769805956
+new min fval:  -1564.6023863756895
+new min fval:  -1564.604236847577
+new min fval:  -1564.6063413771496
+new min fval:  -1564.6089093332967
+new min fval:  -1564.6123258680027
+new min fval:  -1564.615662797691
+new min fval:  -1564.6199757801267
+new min fval:  -1564.623875092083
+new min fval:  -1564.626539254808
+new min fval:  -1564.6284841065014
+new min fval:  -1564.6305841148674
+new min fval:  -1564.6340151249456
+new min fval:  -1564.6380776704123
+new min fval:  -1564.640189092594
+new min fval:  -1564.64130782153
+new min fval:  -1564.642173465507
+new min fval:  -1564.6432452877582
+new min fval:  -1564.6452213823243
+new min fval:  -1564.6490058562076
+new min fval:  -1564.6517588436952
+new min fval:  -1564.65370827504
+new min fval:  -1564.655924900123
+new min fval:  -1564.658904401023
+new min fval:  -1564.661631893131
+new min fval:  -1564.663629923277
+new min fval:  -1564.6649217252277
+new min fval:  -1564.6658121876485
+new min fval:  -1564.667219286098
+new min fval:  -1564.669632273851
+new min fval:  -1564.6727935022764
+new min fval:  -1564.6760256196483
+new min fval:  -1564.678797193164
+new min fval:  -1564.681505914925
+new min fval:  -1564.6840640818707
+new min fval:  -1564.6867933602832
+new min fval:  -1564.6887088501621
+new min fval:  -1564.6901331903348
+new min fval:  -1564.692036227493
+new min fval:  -1564.6947378233099
+new min fval:  -1564.6979634473657
+new min fval:  -1564.7011941957198
+new min fval:  -1564.7043924440695
+new min fval:  -1564.7069642177235
+new min fval:  -1564.7099674904998
+new min fval:  -1564.7132937679496
+new min fval:  -1564.7157580531007
+new min fval:  -1564.717570796324
+new min fval:  -1564.7192119691797
+new min fval:  -1564.7213217161877
+new min fval:  -1564.723702649355
+new min fval:  -1564.726053501193
+new min fval:  -1564.7285117736246
+new min fval:  -1564.7316783783972
+new min fval:  -1564.7344182477548
+new min fval:  -1564.7368235439917
+new min fval:  -1564.7394793013646
+new min fval:  -1564.7425724629034
+new min fval:  -1564.745480179126
+new min fval:  -1564.7484179326334
+new min fval:  -1564.7514707111623
+new min fval:  -1564.754427814219
+new min fval:  -1564.7573367478174
+new min fval:  -1564.7599840670978
+new min fval:  -1564.7626016772872
+new min fval:  -1564.7656855507955
+new min fval:  -1564.768093834816
+new min fval:  -1564.7703575300318
+new min fval:  -1564.7724174056184
+new min fval:  -1564.7745378236016
+new min fval:  -1564.7767067460168
+new min fval:  -1564.777251000592
+new min fval:  -1564.7778219311497
+new min fval:  -1564.7793429662604
+new min fval:  -1564.7826308446643
+new min fval:  -1564.7871306805066
+new min fval:  -1564.7892229823467
+new min fval:  -1564.7898778901683
+new min fval:  -1564.790523286244
+new min fval:  -1564.7913412456205
+new min fval:  -1564.7930479099834
+new min fval:  -1564.7960016726558
+new min fval:  -1564.7984068808862
+new min fval:  -1564.7999932009593
+new min fval:  -1564.8018299006535
+new min fval:  -1564.8036416620087
+new min fval:  -1564.805362417794
+new min fval:  -1564.8074651091
+new min fval:  -1564.8094805378905
+new min fval:  -1564.8110832710433
+new min fval:  -1564.8125131839217
+new min fval:  -1564.8148444044614
+new min fval:  -1564.8168848409082
+new min fval:  -1564.8183613675737
+new min fval:  -1564.8208310979717
+new min fval:  -1564.824003743125
+new min fval:  -1564.8270986849427
+new min fval:  -1564.829108122766
+new min fval:  -1564.830013685486
+new min fval:  -1564.8309646333676
+new min fval:  -1564.8325132099862
+new min fval:  -1564.8331810274667
+new min fval:  -1564.8351633806326
+new min fval:  -1564.8383232374747
+new min fval:  -1564.8418645625657
+new min fval:  -1564.8448748282963
+new min fval:  -1564.84706011149
+new min fval:  -1564.8493652018747
+new min fval:  -1564.8513555661345
+new min fval:  -1564.85281555962
+new min fval:  -1564.8543445687972
+new min fval:  -1564.8562997749304
+new min fval:  -1564.8588945521187
+new min fval:  -1564.861358332864
+new min fval:  -1564.8629263431071
+new min fval:  -1564.8642053606475
+new min fval:  -1564.86575553611
+new min fval:  -1564.867746023505
+new min fval:  -1564.8694998786468
+new min fval:  -1564.8714790684046
+new min fval:  -1564.8740868324544
+new min fval:  -1564.8772828292852
+new min fval:  -1564.8796377157835
+new min fval:  -1564.880762028689
+new min fval:  -1564.881498046047
+new min fval:  -1564.8826602355655
+new min fval:  -1564.884650497435
+new min fval:  -1564.887091771117
+new min fval:  -1564.889588029808
+new min fval:  -1564.8929472575705
+new min fval:  -1564.8960850768615
+new min fval:  -1564.8986930927604
+new min fval:  -1564.901002093718
+new min fval:  -1564.902727366788
+new min fval:  -1564.9045239724296
+new min fval:  -1564.9062658236448
+new min fval:  -1564.9081655233015
+new min fval:  -1564.9107127181271
+98.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1556.5470313475844
+new min fval:  -1564.9131550712693
+new min fval:  -1564.9150214361878
+new min fval:  -1564.9168226866475
+new min fval:  -1564.9181082659477
+new min fval:  -1564.919937041274
+new min fval:  -1564.9215564418998
+new min fval:  -1564.9232049617679
+new min fval:  -1564.9254040203407
+new min fval:  -1564.9280760554523
+new min fval:  -1564.9299653240862
+new min fval:  -1564.931012527861
+new min fval:  -1564.9316613094325
+new min fval:  -1564.932712455252
+new min fval:  -1564.9336539699184
+new min fval:  -1564.9346605423227
+new min fval:  -1564.9360339914226
+new min fval:  -1564.9386856597519
+new min fval:  -1564.9414917582665
+new min fval:  -1564.9433829998825
+new min fval:  -1564.9443652028228
+new min fval:  -1564.944848375502
+new min fval:  -1564.9455141249282
+new min fval:  -1564.9462935898714
+new min fval:  -1564.9470104771185
+new min fval:  -1564.9485023358436
+new min fval:  -1564.950123753427
+new min fval:  -1564.9522686556259
+new min fval:  -1564.9542569740818
+new min fval:  -1564.955696779803
+new min fval:  -1564.9573356943995
+new min fval:  -1564.959317901918
+new min fval:  -1564.9608758233576
+new min fval:  -1564.9621870709286
+new min fval:  -1564.9631712588377
+new min fval:  -1564.9644377782065
+new min fval:  -1564.965630432805
+new min fval:  -1564.9659112225143
+new min fval:  -1564.9670128753548
+new min fval:  -1564.968967581117
+new min fval:  -1564.97068713731
+new min fval:  -1564.971976613021
+new min fval:  -1564.9728431562974
+new min fval:  -1564.973867922041
+new min fval:  -1564.975713134099
+new min fval:  -1564.9777810646642
+new min fval:  -1564.9781579045057
+new min fval:  -1564.9792858104875
+new min fval:  -1564.9825176882453
+new min fval:  -1564.9846385689943
+new min fval:  -1564.9857868673562
+new min fval:  -1564.9864132019663
+new min fval:  -1564.9872744240845
+new min fval:  -1564.988776926989
+new min fval:  -1564.9905293701058
+new min fval:  -1564.9929386196375
+new min fval:  -1564.9956289115903
+new min fval:  -1564.9972719218915
+new min fval:  -1564.9986547667372
+new min fval:  -1564.999728930229
+new min fval:  -1565.0008738536765
+new min fval:  -1565.0016579688001
+new min fval:  -1565.0022229146766
+new min fval:  -1565.0029001916173
+new min fval:  -1565.004374129473
+new min fval:  -1565.0063310254855
+new min fval:  -1565.00755971957
+new min fval:  -1565.0088929614453
+new min fval:  -1565.0102145340793
+new min fval:  -1565.0116708192127
+new min fval:  -1565.0127790482725
+new min fval:  -1565.0135939758438
+new min fval:  -1565.0142632505294
+new min fval:  -1565.0156441084719
+new min fval:  -1565.017276215993
+new min fval:  -1565.0184679635258
+new min fval:  -1565.0196574332733
+new min fval:  -1565.0211319974328
+new min fval:  -1565.0227419157727
+new min fval:  -1565.0244399672356
+new min fval:  -1565.0251184652157
+new min fval:  -1565.0258956586645
+new min fval:  -1565.0266879424182
+new min fval:  -1565.0282922325578
+new min fval:  -1565.0290379325945
+new min fval:  -1565.0294789308193
+new min fval:  -1565.0299371951703
+new min fval:  -1565.0312071177866
+new min fval:  -1565.0331347032254
+new min fval:  -1565.033988385011
+new min fval:  -1565.034334475973
+new min fval:  -1565.0348569288599
+new min fval:  -1565.0359335128949
+new min fval:  -1565.0377067852994
+new min fval:  -1565.0387869931824
+new min fval:  -1565.0395063778042
+new min fval:  -1565.0397126890016
+new min fval:  -1565.040313905767
+new min fval:  -1565.041196638221
+new min fval:  -1565.042699995631
+new min fval:  -1565.0428524353242
+new min fval:  -1565.0429201898296
+new min fval:  -1565.0446206965962
+new min fval:  -1565.04688034622
+new min fval:  -1565.0476466307707
+new min fval:  -1565.0482701145518
+new min fval:  -1565.0501200891297
+new min fval:  -1565.0524936848974
+new min fval:  -1565.052896115628
+new min fval:  -1565.0545529356064
+new min fval:  -1565.0552214520371
+new min fval:  -1565.055664216665
+new min fval:  -1565.0574446319417
+new min fval:  -1565.0574620831799
+new min fval:  -1565.0584193154523
+new min fval:  -1565.059741533861
+new min fval:  -1565.0609841348428
+new min fval:  -1565.0615212794332
+new min fval:  -1565.0617432894169
+new min fval:  -1565.0617960441407
+new min fval:  -1565.0623335454316
+new min fval:  -1565.0634082733136
+new min fval:  -1565.064498392151
+new min fval:  -1565.0655685116699
+new min fval:  -1565.06661650866
+new min fval:  -1565.0674306220483
+new min fval:  -1565.068072721544
+new min fval:  -1565.068839575331
+new min fval:  -1565.070157486938
+new min fval:  -1565.071161233097
+new min fval:  -1565.0720673452918
+new min fval:  -1565.0730164356582
+new min fval:  -1565.0736046022564
+new min fval:  -1565.074047058432
+new min fval:  -1565.0746784988855
+new min fval:  -1565.075497157426
+new min fval:  -1565.0767370356893
+new min fval:  -1565.078015999189
+new min fval:  -1565.0786175438043
+new min fval:  -1565.0795316669771
+new min fval:  -1565.0802688904516
+new min fval:  -1565.0808668831787
+new min fval:  -1565.0818381666845
+new min fval:  -1565.0826783730433
+new min fval:  -1565.083247104573
+new min fval:  -1565.0838135092672
+new min fval:  -1565.0843337252984
+new min fval:  -1565.0848210189765
+new min fval:  -1565.085323883413
+new min fval:  -1565.0863208997173
+new min fval:  -1565.0873203638307
+new min fval:  -1565.0880503525036
+new min fval:  -1565.0885841151091
+new min fval:  -1565.0894488995523
+new min fval:  -1565.090115809009
+new min fval:  -1565.0910662661854
+new min fval:  -1565.092404804674
+new min fval:  -1565.0932587178945
+new min fval:  -1565.0937184077911
+new min fval:  -1565.0942418761354
+new min fval:  -1565.094921351851
+new min fval:  -1565.0958794526637
+new min fval:  -1565.096875470051
+new min fval:  -1565.0974679299472
+new min fval:  -1565.0978725876523
+new min fval:  -1565.0979572744482
+new min fval:  -1565.0984378901417
+new min fval:  -1565.0987729778858
+new min fval:  -1565.0995637109643
+new min fval:  -1565.100426393053
+new min fval:  -1565.1011421615938
+new min fval:  -1565.1024439169703
+new min fval:  -1565.1033937873626
+new min fval:  -1565.1044424796328
+new min fval:  -1565.1053455341803
+new min fval:  -1565.1059260366621
+new min fval:  -1565.1062316416744
+new min fval:  -1565.1067115193775
+new min fval:  -1565.1073281579907
+new min fval:  -1565.1080456645786
+new min fval:  -1565.1087692692956
+new min fval:  -1565.1094357965248
+new min fval:  -1565.1097157921783
+new min fval:  -1565.1098648737193
+new min fval:  -1565.1101344788474
+new min fval:  -1565.110487610649
+new min fval:  -1565.1107495101141
+new min fval:  -1565.111073178009
+new min fval:  -1565.1120145782386
+new min fval:  -1565.112530998847
+new min fval:  -1565.1131928097498
+new min fval:  -1565.1140535459567
+new min fval:  -1565.114424688853
+new min fval:  -1565.1145765046115
+new min fval:  -1565.1148030214847
+new min fval:  -1565.114810838765
+new min fval:  -1565.115001662915
+new min fval:  -1565.1153729698863
+new min fval:  -1565.1158764335
+new min fval:  -1565.1164486258479
+new min fval:  -1565.1173533745855
+new min fval:  -1565.1179251120752
+new min fval:  -1565.1187345898904
+new min fval:  -1565.1192587983815
+new min fval:  -1565.119799752728
+new min fval:  -1565.1203530971407
+new min fval:  -1565.1210183297926
+new min fval:  -1565.1217732078276
+new min fval:  -1565.122478810006
+new min fval:  -1565.1232164799972
+new min fval:  -1565.1235365570503
+new min fval:  -1565.1243714015839
+new min fval:  -1565.1250482392659
+new min fval:  -1565.1256938973736
+new min fval:  -1565.126155599544
+new min fval:  -1565.1264371120715
+new min fval:  -1565.1266828475082
+new min fval:  -1565.1272104518216
+new min fval:  -1565.127751064664
+new min fval:  -1565.1284258990117
+new min fval:  -1565.128940673498
+new min fval:  -1565.1296770492133
+new min fval:  -1565.1306081989626
+new min fval:  -1565.1313366580846
+new min fval:  -1565.131905168496
+new min fval:  -1565.1322933456854
+new min fval:  -1565.1324408820851
+new min fval:  -1565.1329376865915
+new min fval:  -1565.133591126351
+new min fval:  -1565.134080486789
+new min fval:  -1565.1345272437977
+new min fval:  -1565.1349746152362
+new min fval:  -1565.135078501937
+new min fval:  -1565.1356049703668
+new min fval:  -1565.1357584781633
+new min fval:  -1565.1360653219945
+new min fval:  -1565.1362771817953
+new min fval:  -1565.1364884650109
+new min fval:  -1565.136756349782
+new min fval:  -1565.1371514043333
+new min fval:  -1565.1375728387045
+new min fval:  -1565.1379745109718
+new min fval:  -1565.1380866936881
+new min fval:  -1565.138141541693
+new min fval:  -1565.1383748666888
+new min fval:  -1565.1386813818199
+new min fval:  -1565.138942173393
+new min fval:  -1565.1397087301925
+new min fval:  -1565.1400333957324
+new min fval:  -1565.1404757389746
+new min fval:  -1565.1407917856627
+new min fval:  -1565.141219830499
+new min fval:  -1565.1414564644601
+new min fval:  -1565.1418126332444
+new min fval:  -1565.1420382427498
+new min fval:  -1565.142508896392
+new min fval:  -1565.143035390272
+new min fval:  -1565.1436566945683
+new min fval:  -1565.144170144569
+new min fval:  -1565.1446647603834
+new min fval:  -1565.1452011705553
+new min fval:  -1565.1457126897146
+new min fval:  -1565.146257355536
+new min fval:  -1565.1468665225427
+new min fval:  -1565.1472050883845
+new min fval:  -1565.147697155389
+new min fval:  -1565.148468978275
+new min fval:  -1565.1491663026675
+new min fval:  -1565.149969966695
+new min fval:  -1565.1507876580565
+new min fval:  -1565.152070969339
+new min fval:  -1565.1530027305655
+new min fval:  -1565.153716619365
+new min fval:  -1565.1538620298832
+new min fval:  -1565.1543700886216
+new min fval:  -1565.155048257761
+new min fval:  -1565.1555480213256
+new min fval:  -1565.155843218234
+new min fval:  -1565.155997359875
+new min fval:  -1565.156482623218
+new min fval:  -1565.1570675226294
+new min fval:  -1565.1573229364417
+new min fval:  -1565.1574475233542
+new min fval:  -1565.1576217221436
+new min fval:  -1565.1585508723335
+new min fval:  -1565.1593881959716
+new min fval:  -1565.1598722015806
+new min fval:  -1565.1603824198446
+new min fval:  -1565.160748136887
+new min fval:  -1565.161212672999
+new min fval:  -1565.1617419401744
+new min fval:  -1565.1622412849283
+new min fval:  -1565.1624257226474
+new min fval:  -1565.1629687437267
+new min fval:  -1565.1633134445526
+new min fval:  -1565.1635775040415
+new min fval:  -1565.1638479200692
+new min fval:  -1565.1641072381428
+new min fval:  -1565.1642806143896
+new min fval:  -1565.1644849657698
+new min fval:  -1565.1649629439512
+new min fval:  -1565.165184434123
+new min fval:  -1565.1653536104602
+new min fval:  -1565.165547253311
+new min fval:  -1565.1657395042419
+new min fval:  -1565.1662362681063
+new min fval:  -1565.1667644546073
+new min fval:  -1565.1672159150253
+new min fval:  -1565.1672918338074
+100.0% of gradient descent iterations done. Method = A
+Current xi:  [14.2]
+objective value function right now is: -1562.2684832870634
+min fval:  -1565.1647810441489
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 777.1673431420061
+W_T_median: 471.8333896340646
+W_T_pctile_5: 179.87039862152398
+W_T_CVAR_5_pct: 15.296219562337697
+Average q (qsum/M+1):  50.114119991179436
+(xi held constant!)
+Optimal xi:  [14.2]
+Expected(across Rb) median(across samples) p_equity:  0.3189374014735222
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.0
+-----------------------------------------------

@@ -1,0 +1,265 @@
+Starting at: 
+14-11-22_12:36
+
+ Random seed:  1  
+
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+3.3333333333333335% of MC simulations done.
+6.666666666666667% of MC simulations done.
+10.0% of MC simulations done.
+13.333333333333334% of MC simulations done.
+16.666666666666664% of MC simulations done.
+20.0% of MC simulations done.
+23.333333333333332% of MC simulations done.
+26.666666666666668% of MC simulations done.
+30.0% of MC simulations done.
+33.33333333333333% of MC simulations done.
+36.666666666666664% of MC simulations done.
+40.0% of MC simulations done.
+43.333333333333336% of MC simulations done.
+46.666666666666664% of MC simulations done.
+50.0% of MC simulations done.
+53.333333333333336% of MC simulations done.
+56.666666666666664% of MC simulations done.
+60.0% of MC simulations done.
+63.33333333333333% of MC simulations done.
+66.66666666666666% of MC simulations done.
+70.0% of MC simulations done.
+73.33333333333333% of MC simulations done.
+76.66666666666667% of MC simulations done.
+80.0% of MC simulations done.
+83.33333333333334% of MC simulations done.
+86.66666666666667% of MC simulations done.
+90.0% of MC simulations done.
+93.33333333333333% of MC simulations done.
+96.66666666666667% of MC simulations done.
+100.0% of MC simulations done.
+Withdrawal NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       1       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       8  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       8  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       1  logistic_sigmoid   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 8)    False        None  
+2       (8, 8)    False        None  
+3       (8, 1)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+Allocation NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       8  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       8  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 8)    False        None  
+2       (8, 8)    False        None  
+3       (8, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1  logistic_sigmoid   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 8)     False        None  
+0       (8, 8)     False        None  
+0       (8, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 8)     False        None  
+0       (8, 8)     False        None  
+0       (8, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-3.5763,  0.9478],
+        [ 3.5320, -1.3236],
+        [-3.5800,  0.9510],
+        [ 3.1065, -0.8570],
+        [-3.0435,  3.4488],
+        [ 5.7976,  3.9933],
+        [-3.5658,  0.9443],
+        [ 2.9335, -0.4678]], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[   3.2034, -142.8740,    3.0595, -260.3867,    1.8635,   -7.3520,
+            3.1508, -221.7617],
+        [   3.4028, -144.3072,    2.8180, -262.4556,    2.2240,   -7.6007,
+            3.0755, -221.9103],
+        [  10.0379,    1.6447,    9.9460,   -1.9634,  -14.5307,  -58.2367,
+           10.1212,   -2.8868],
+        [   5.4397,   -7.2634,    5.3767,   -4.8103,   39.9836,   31.6201,
+            5.6398,   -4.0485],
+        [  18.8930,    4.8755,   19.1155,    1.7642,  -45.4581,  -32.4503,
+           16.9764,    0.6903],
+        [  15.2466,    8.0067,   15.0851,    4.0496,  -47.6729,  -33.1953,
+           14.3173,    2.0610],
+        [ -36.2499,    9.2376,  -35.5503,    7.8680,    7.8198,  -16.8441,
+          -37.5092,    7.3380],
+        [   3.9520, -169.6011,    3.4155, -284.2158,    3.0291,  -10.9898,
+            4.1904, -239.5180]], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[-28.8181, -29.2030, -32.7268,  77.5273,  -6.7747,  -9.0567, -94.0094,
+         -60.0519]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[  -6.2521,    1.8320],
+        [-138.9432,  -19.7489],
+        [  -6.8217,    1.8188],
+        [  -6.2365,    1.8158],
+        [   9.4358,    5.5385],
+        [  -6.4281,    1.6278],
+        [ -16.2073,   -5.6212],
+        [  -6.2351,    1.8167]], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ -60.3479,  -48.6917,  -83.6353,  -59.9930,  -55.2309,  -73.8523,
+          -32.5539,  -62.1512],
+        [ -35.7481, -258.6754,  -78.9270,  -34.2642,   -4.5626,  -39.0264,
+           13.4598,  -34.9399],
+        [ -33.9276,  -53.2440,  -37.4253,  -32.4067, -100.7057,  -23.0680,
+           21.8233,  -33.1518],
+        [-156.2919,  -67.6361, -200.1629, -146.1968,  -23.4298, -163.4071,
+           12.7263, -147.8159],
+        [-151.8976,  -77.1452, -227.1859, -150.2619,   -5.2911, -182.3440,
+           -6.7217, -152.6095],
+        [  12.1824,   19.1718,   -9.3041,   29.5966,   48.4025,  -11.1747,
+           13.3614,   31.6998],
+        [ -52.1273,  -45.4509,  -71.3232,  -51.0885,  -54.4012,  -66.7168,
+          -33.9618,  -53.0489],
+        [ -51.5969,  -33.5462,  -31.8089,  -78.4900,  -53.4483,  -28.9900,
+          -26.2807,  -78.6926]], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[-10.0543, -11.1977, -36.1276,   7.2781,  13.1305,   0.9244, -11.1282,
+          -4.5856],
+        [ 11.0229,  11.7422,  36.3803,  -6.3756, -13.4251,   0.1123,  10.8408,
+           4.9642]], device='cuda:0'))])
+loaded xi:  14.2
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.4 0.6]
+W_T_mean: 2863.438394046875
+W_T_median: 1761.655571795046
+W_T_pctile_5: -229.19558496834625
+W_T_CVAR_5_pct: -436.3751909844991
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/decumulation_driver.py", line 846, in <module>
+    fun_RUN__wrapper.RUN__wrapper_ONE_stage_optimization(
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_RUN__wrapper.py", line 115, in RUN__wrapper_ONE_stage_optimization
+    RUN__wrapper_training_testing_NN(
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_RUN__wrapper.py", line 201, in RUN__wrapper_training_testing_NN
+    res_adam = fun_train_NN.train_NN( theta0 = theta0,
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_train_NN.py", line 196, in train_NN
+    result_pyt_adam = run_Gradient_Descent_pytorch(NN_list= NN_list,
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_train_NN_SGD_algorithms.py", line 212, in run_Gradient_Descent_pytorch
+    new_fval, _ = objfun_pyt(NN_list, params, xi) # uses full tensor version of params 
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_eval_objfun_NN_strategy.py", line 31, in eval_obj_NN_strategy_pyt
+    params, g, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_invest_NN_strategy.py", line 136, in withdraw_invest_NN_strategy
+    q_n_proportion = NN_list[0].forward(phi_1)
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_NN_Pytorch.py", line 90, in forward
+    return self.model(input_tensor)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/torch/nn/modules/activation.py", line 290, in forward
+    return torch.sigmoid(input)
+RuntimeError: CUDA out of memory. Tried to allocate 80.00 MiB (GPU 0; 23.69 GiB total capacity; 8.79 GiB already allocated; 22.19 MiB free; 9.11 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

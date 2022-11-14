@@ -48,18 +48,25 @@ else:
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
 
-now = datetime.datetime.now()
-print ("Starting at: ")
-print (now.strftime("%Y-%m-%d %H:%M:%S"))
 #-----------------------------------------------------------------------------------------------
 # Portfolio problem: Main structural parameters
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
 
+#time
+now = datetime.datetime.now()
+print ("Starting at: ")
+start_time = now.strftime("%d-%m-%y_%H:%M")
+print(start_time)
+
+#filepath prefixes
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
-code_title_prefix = "decum_output/output_mc_dec"    #used for saving output on local
+code_title_prefix = "output/mc_decum_"+start_time   #used for saving output on local
+console_output_prefix = "mc_decum_" +start_time
+params["console_output_prefix"] = console_output_prefix
+
 
 params["T"] = 30. #Investment time horizon, in years
 params["N_rb"] = 30  #Nr of equally-spaced rebalancing events in [0,T]
@@ -80,12 +87,22 @@ params["q_max"] = 60.0 #max withdrawal per Rb
 params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
 # ^TO DO: need to implement borrowing interest when wealth is negative
 
+# hold xi constant?
+
+params["xi_constant"] = True
+
 #set seed
-# seed_mc = 1
-# np.random.seed(seed_mc)
-# print("\n Random seed: ", seed_mc, " \n")
+seed_mc = 1
+np.random.seed(seed_mc)
+print("\n Random seed: ", seed_mc, " \n")
 
 continuation_learn = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
+
+# preload saved model
+preload = True
+nn_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_mc_decum_13-11-22_22:13")    
+xi_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_mc_decum_13-11-22_22:13.json")
+
 
 #Specify TRANSACTION COSTS parameters
 params["TransCosts_TrueFalse"] = False #If True, incorporate transaction costs
@@ -96,17 +113,17 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 # iteration dashboard --------------------------
-iter_params = "test"
+iter_params = "tiny"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 80000
-    batchsize_mc = 1000
+    itbound_mc = 30000
+    batchsize_mc = 2000
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 10000
-    batchsize_mc = 1000
+    itbound_mc = 20000
+    batchsize_mc = 2000
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -186,6 +203,8 @@ if params["use_trading_signals_TrueFalse"] is True:
 # -----------------------------------------------------------------------------------------------
 params["obj_fun"] = "mean_cvar_single_level"
 
+params["obj_fun_epsilon"] = 10**-6
+
 # STANDARD objective functions of W(T): obj_fun options include:
 # "mean_cvar_single_level",
 # "one_sided_quadratic_target_error",
@@ -202,7 +221,7 @@ params["obj_fun"] = "mean_cvar_single_level"
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
-tracing_parameters_to_run = [1.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.0] #[0.05, 0.2, 0.5, 1.0, 5.0, 50., 5000.] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -387,6 +406,7 @@ if params["use_trading_signals_TrueFalse"] is True:
                                 basket_id=params["trading_signal_basket_id"],
                                 real_or_nominal = params["trading_signal_real_or_nominal"],
                                 underlying_asset_basket_id = params["trading_signal_underlying_asset_basket_id"])
+#27.744101568234655
 
     #Adjust number of features (input nodes to reflect trading signals
     params["N_phi"] = params["N_phi"] + len(params["trading_signal_basket"]["basket_columns"])  #Nr of input nodes
@@ -596,8 +616,8 @@ print("Withdrawal NN:")
 NN_withdraw_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-NN_withdraw_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
-NN_withdraw_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+NN_withdraw_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
+NN_withdraw_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
 NN_withdraw_orig.update_layer_info(layer_id = 3, activation = "logistic_sigmoid", add_bias= False)
 
 NN_withdraw_orig.print_layers_info() #Check if structure is correct
@@ -619,12 +639,28 @@ print("Allocation NN:")
 NN_allocate_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-NN_allocate_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
-NN_allocate_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+NN_allocate_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
+NN_allocate_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
 NN_allocate_orig.update_layer_info(layer_id = 3, activation = "softmax", add_bias= False)
 
 NN_allocate_orig.print_layers_info() #Check if structure is correct
 #---------------------------------------------------------------------
+
+
+#put original NNs in list:
+    
+NN_orig_list = [NN_withdraw_orig, NN_allocate_orig]
+    
+# copy NN structures into pytorch NN
+NN_withdraw = class_NN_Pytorch.pytorch_NN(NN_withdraw_orig)
+NN_withdraw.to(device)
+NN_withdraw.import_weights(NN_withdraw_orig, params)
+
+NN_allocate = class_NN_Pytorch.pytorch_NN(NN_allocate_orig)
+NN_allocate.to(device)
+NN_allocate.import_weights(NN_allocate_orig, params)
+
+NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
 
 
 # L2 weight regularization (only weights, not biases)
@@ -705,7 +741,8 @@ NN_training_options = fun_train_NN_algorithm_defaults.train_NN_algorithm_default
 NN_training_options["methods"] = [ "Adam"]
 NN_training_options["Adam_ewma_1"] = 0.9
 NN_training_options["Adam_ewma_2"] = 0.99 #0.999
-NN_training_options['nit_running_min'] = 0  # nr of iterations at the end that will be used to get the running minimum for output
+NN_training_options["Adam_eta"] = 0.1 #override 0.1
+NN_training_options['nit_running_min'] = int(itbound / 10)  # nr of iterations at the end that will be used to get the running minimum for output
 NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
@@ -729,42 +766,44 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     NN_theta0_allocate = NN_allocate_orig.initialize_NN_parameters(initialize_scheme="glorot_bengio")
     NN_theta0_withdraw = NN_withdraw_orig.initialize_NN_parameters(initialize_scheme="glorot_bengio")
     
-    # theta0 = NN_theta0_allocate.copy()
-
-    #import weights into original allocation NN
-    my_file = Path("NN_optimal2_allocate.json")
-    if my_file.is_file() and tracing_param != tracing_parameters_to_run[0] and continuation_learn:
-        obj_text = codecs.open("NN_optimal2_allocate.json", 'r', encoding='utf-8').read()
-        b_new = json.loads(obj_text)
-        print(b_new)
-        NN_theta0_allocate = np.array(b_new["NN"])
-        print(NN_theta0_allocate)
-        #TO DO: need function to get this into pytorch weights
-
-
-    # - augment NN parameters with additional parameters to be solved
+     # - augment NN parameters with additional parameters to be solved
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
-        xi_0 = 10.0 #27.744101568234655
-        # theta0 = np.concatenate([NN_theta0, [xi_0]])
+        if tracing_param == 1.0:
+            xi_0 = 14.2 
+        else: #different xi_0 depending on first kappa
+            xi_0 = 16.0
+        
         params["xi_0"] = xi_0
 
-    
-    #put original NNs in list:
-    
-    NN_orig_list = [NN_withdraw_orig, NN_allocate_orig]
+    # load continuation learn model
+    model_save_path = params["console_output_prefix"]
+    nn_saved_model = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}")
+    xi_saved = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}.json")
+    if nn_saved_model.is_file() and tracing_param != tracing_parameters_to_run[0] and continuation_learn:
         
-    # copy NN structures into pytorch NN
-    NN_withdraw = class_NN_Pytorch.pytorch_NN(NN_withdraw_orig)
-    NN_withdraw.to(device)
-    NN_withdraw.import_weights(NN_withdraw_orig, params)
-    
-    NN_allocate = class_NN_Pytorch.pytorch_NN(NN_allocate_orig)
-    NN_allocate.to(device)
-    NN_allocate.import_weights(NN_allocate_orig, params)
-    
-    NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
+        #NN
+        NN_list.load_state_dict(torch.load(nn_saved_model))
+        NN_list.eval()
+        print("loaded continuation NN: ", NN_list.state_dict())
         
-                      
+        #xi
+        obj_text = codecs.open(xi_saved,'r', encoding='utf-8').read()
+        b_new = json.loads(obj_text)
+        print("loaded xi: ", b_new["xi"])
+        params["xi_0"] = float(b_new["xi"])
+
+    # manual preload:
+    if preload:
+        
+        NN_list.load_state_dict(torch.load(nn_preload))
+        NN_list.eval()
+        print("pre-loaded NN: ", NN_list.state_dict())
+        
+        obj_text = codecs.open(xi_preload,'r', encoding='utf-8').read()
+        b_new = json.loads(obj_text)
+        print("loaded xi: ", b_new["xi"])
+        params["xi_0"] = float(b_new["xi"])
+         
     
     # SET TRACING PARAMETERS inside params ----------------------------
     if params["obj_fun"] in ["one_sided_quadratic_target_error", "quad_target_error", "huber_loss", "ads"]:
@@ -840,7 +879,7 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     print("Asset basket ID: " + params["asset_basket_id"])
     print("Objective function: " + params["obj_fun"])
     print("Tracing param: " + str(tracing_param))
-    print("F value: " + str(params_TRAIN["F_val"]))
+    # print("F value: " + str(params_TRAIN["F_val"]))
     print("-----------------------------------------------")
 
 #END: Loop over tracing_params

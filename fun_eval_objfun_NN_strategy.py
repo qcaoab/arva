@@ -40,8 +40,8 @@ def eval_obj_NN_strategy_pyt(NN_list, params, xi):
         fun = fun_Objective_functions.objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi)
     
         #for output
-        params["F_val"] = fun.detach().to("cpu").numpy()     #Obj func value
-        params["xi"] = xi
+        # params["F_val"] = fun.detach().to("cpu").numpy()     #Obj func value
+        # params["xi"] = xi
         
     return fun, params
 

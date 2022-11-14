@@ -7,65 +7,59 @@ from os import listdir
 from os.path import isfile, join
 import re
 
-### read kappa logs and plot efficient frontier
 
 
-os.chdir("/home/ma3chen/Documents/marc_branch2/researchcode/log_output")
-files = [f for f in listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
+with open("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/log_output/nov9_smallfrontier_dc_20K.txt", 'r') as f:
+    text = f.read()
 
+split = re.split('\n| ', text)
 
 kappa_list = []
 cvar_05 = []
 expected_wealth = []
 median_wealth = []
 function_value = []
-
-for file in files:
-
-    with open(file, 'r') as f:
-        text = f.read()
-
-    split = re.split('\n| ', text)
-
-    split = split[split.index("FINISHED:")-18:]
+qsum_avg = []
+p_med_avg = []
 
 
-    for i, item in enumerate(split):
-
-        if item == "param:":
-            kappa_list.append(float(split[i+1]))
-        # if item == "value:":
-        #     function_value.append(float(split[i+1]))
-        if item == "W_T_mean:":
-            expected_wealth.append(float(split[i+1]))
-        # if item == "W_T_median:":
-        #     median_wealth.append(float(split[i+1]))
-        if item == "W_T_CVAR_5_pct:":
-            cvar_05.append(float(split[i+1]))
-
-
-df = pd.DataFrame({'kappa': kappa_list, 'cvar_05': cvar_05, 'expected_wealth': expected_wealth}) 
+for i, item in enumerate(split):
+    if item == 'NN-strategy-on-TRAINING':
+       
+        kappa_list.append(float(split[i+42]))
+        expected_wealth.append(float(split[i+5]))
+        cvar_05.append(float(split[i+11]))
+        median_wealth.append(float(split[i+7]))
+        # function_value.append(float(split[i+11+1]))
+        qsum_avg.append(float(split[i+16]))
+        p_med_avg.append(float(split[i+27])) 
+    
+df_cont = pd.DataFrame({'kappa': kappa_list, 'cvar_05': cvar_05, 'expected_wealth': expected_wealth, 
+'median_wealth': median_wealth, 'qsum_avg': qsum_avg, 'p_med_avg': p_med_avg}) 
 # 'median': median_wealth, 'f_val': function_value})
-df.sort_values(by=['kappa'], ignore_index=True, inplace=True)
+df_cont.sort_values(by=['kappa'], ignore_index=True, inplace=True)
+
+forsyth_df = pd.read_csv("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/forsyth_results.csv")
 
 
+plt.clf()
+plt.plot(forsyth_df["Qsum_avg"], forsyth_df["ES(W_T)"],marker='o', label = "Forsyth PDE results")
+for i, val in enumerate(forsyth_df['kappa']):
+    plt.annotate(str(val), (forsyth_df['Qsum_avg'][i], forsyth_df["ES(W_T)"][i]))
 
-# import forsyth data
-forsyth_df = pd.read_excel(r'/home/ma3chen/Documents/marc_branch2/researchcode/forsyth_efficient_frontier_data.xlsx')
+plt.plot(df_cont["qsum_avg"], df_cont["cvar_05"], marker = 's', label = "MC NN replication")
+for i, val in enumerate(df_cont['kappa']):
+    plt.annotate(str(val), (df_cont['qsum_avg'][i], df_cont["cvar_05"][i]))
 
 
-# plt.show()
-plt.plot(forsyth_df["EW"], forsyth_df["ES"],marker='o', label = "Forsyth 2022 results")
-
-plt.plot(df["expected_wealth"], df["cvar_05"], marker = 'o', label = "MC NN replication")
-
-plt.title("Efficient frontier results: Forsyth, Vetza 2022 vs. MC NN approximation")
-plt.xlabel("Expected Wealth")
+plt.title("DC Efficient frontier results: Forsyth 2021 vs. MC NN approximation")
+plt.xlabel("Expected Average Withdrawals")
 plt.ylabel("Expected Shortfall (cvar 0.05)")
 plt.legend()
 
 plt.show()
 
-# plt.savefig('/home/ma3chen/Documents/marc_branch2/researchcode/output/efficient_frontier_plot.png')
+plt.savefig('/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/efficient_frontier_plot.png')
 
-df.to_excel("/home/ma3chen/Documents/marc_branch2/researchcode/output/mc_efficient_frontier.xlsx")
+
+# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dc_efficient_frontier_nov9.xlsx")

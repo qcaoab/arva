@@ -37,7 +37,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
     #   params = parameter dictionary 
     #   NN_object = object of class pytorch NN (which gives control) with structure as setup in main code
     
-    params = copy.deepcopy(params)
+    # params = copy.deepcopy(params)
     
     # Append for output
     params["strategy_description"] = "invest_NN_strategy"
@@ -74,8 +74,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
     params["Feature_phi_paths_allocation"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
     params["NN_asset_prop_paths"] = np.zeros([N_d, N_rb, N_a])  #Paths for the proportions or wealth in each asset for given dataset
 
-    params["q_matrix"] = torch.zeros([N_d, N_rb+1], device = params["device"]) #withdrawals for all paths at each Rb step
-    params["qsum_T_vector"] = torch.zeros([N_d, 1], device = params["device"])     #cumsum of withdrawals for each path
+    params["q_matrix"] = np.zeros([N_d, N_rb+1]) #withdrawals for all paths at each Rb step
+    qsum_T_vector = torch.zeros([N_d, 1], device = params["device"])     #cumsum of withdrawals for each path
     
        
     # ---------------------INITIALIZE values for timestepping loop -------------------
@@ -119,7 +119,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
 
         #--------------------------- CONSTRUCT FEATURE VECTOR and standardize, for withdrawal ---------------------------
 
-        phi = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
+        phi_1 = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
                                  wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                                     # but *before* rebalancing at time t_n for (t_n, t_n+1)
@@ -127,19 +127,19 @@ def withdraw_invest_NN_strategy(NN_list, params):
                                  )
 
         for feature_index in np.arange(0,N_phi,1):  #loop over feature index
-            params["Feature_phi_paths_withdrawal"][:,n_index,feature_index] =  phi[:,feature_index].detach().cpu().numpy()
+            params["Feature_phi_paths_withdrawal"][:,n_index,feature_index] =  phi_1[:,feature_index].detach().cpu().numpy()
             #    phi[j,i] = index i=0,...,(N_phi - 1) value of (standardized) feature i along sample path j
 
         # ---------------------------WITHDRAW---------------------------------------
         
         #get withdrawal NN output as value in [0,1], to multiply with the range.
-        q_n_proportion = NN_list[0].forward(phi)
+        q_n_proportion = NN_list[0].forward(phi_1)
         
         q_n = params["q_min"] + (params["q_max"] - params["q_min"]) * q_n_proportion
         
         #save withdrawals
-        params["q_matrix"][:,n_index]  = q_n.T
-        params["qsum_T_vector"] += q_n
+        params["q_matrix"][:,n_index]  = q_n.T.detach().cpu().numpy()
+        qsum_T_vector += q_n
 
         g_prev_withdrawn = g_prev - q_n.T[0]
         
@@ -152,7 +152,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
         #Construct matrix from training data using the subset of returns for (t_n^+, t_n+1^-)
         #   params["Y"][j, n_index, i] = Return, along sample path j, over time period (t_n, t_n+1),
         #                           for asset i
-        Y_t_n = params["Y"][:, n_index, :]
+        # Y_t_n = params["Y"][:, n_index, :]
+        Y_t_n = torch.tensor(params["Y"][:, n_index, :], device=params["device"]) 
         # Y_t_n[j,i] = return for asset i, along sample path j, over time period (t_n, t_n+1)
         
         #wondering about effect of negative wealth on allocation NN
@@ -160,7 +161,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
 
         #--------------------------- CONSTRUCT FEATURE VECTOR and standardize, for allocation ---------------------------
 
-        phi = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
+        phi_2 = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
                                  wealth_n = g_prev_withdrawn,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                                     # but *before* rebalancing at time t_n for (t_n, t_n+1)
@@ -168,7 +169,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
                                  )
 
         for feature_index in np.arange(0,N_phi,1):  #loop over feature index
-            params["Feature_phi_paths_allocation"][:,n_index,feature_index] =  phi[:,feature_index].detach().cpu().numpy()
+            params["Feature_phi_paths_allocation"][:,n_index,feature_index] =  phi_2[:,feature_index].detach().cpu().numpy()
             #    phi[j,i] = index i=0,...,(N_phi - 1) value of (standardized) feature i along sample path j
 
 
@@ -176,7 +177,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
         #Get proportions to invest in each asset at time t_n^+
         #   a_t_n[j,i] = proportion to invest in asset i along sample path j
 
-        a_t_n_output = NN_list[1].forward(phi)
+        a_t_n_output = NN_list[1].forward(phi_2)
         
         
         #------------------------negative portfolios only incur borrowing cost (bond, not stock yield)----
@@ -219,7 +220,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
     # ------------------------------------------------- 
     
 
-    return params, g, params["qsum_T_vector"]
+    return params, g, qsum_T_vector
 
 def invest_NN_strategy_pyt(NN_pyt, params):
     

@@ -9,31 +9,29 @@ def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
        
     rho = params["obj_fun_rho"]
     alpha = params["obj_fun_alpha"]
+    qsum_T_vector = torch.squeeze(qsum_T_vector) # remove dimension to save memory
     # xi is passed from fun_train_SGD_algos to allow optimizer access.
 
     # assuming no lambda smoothing 
     # also W_T, q_sum, and xi already in tensor         
     
     xi_squared = torch.square(xi)
-    ind_W_T_below_xi_squared = (W_T_vector <= xi_squared) * 1   # 1 if W_T <=  xi_squared,
-                                                            # 0 if W_T >  xi_squared
+    # ind_W_T_below_xi_squared = (W_T_vector <= xi_squared) * 1   # 1 if W_T <=  xi_squared,
+    #                                                         # 0 if W_T >  xi_squared
 
     # diff = W_T_vector - xi_squared
     # bracket = torch.multiply(ind_W_T_below_xi_squared, diff)   #same as: minimum(W_T_vector - xi_squared, 0)
 
-    bracket = torch.minimum(W_T_vector - xi_squared, torch.zeros(W_T_vector.size(), device = params["device"]))
+    bracket = xi_squared + (1/alpha) * torch.minimum(W_T_vector - xi_squared, torch.zeros(W_T_vector.size(), device = params["device"]))
     
-    left_side = torch.squeeze(-rho * qsum_T_vector - xi_squared) 
-    #obj Function
-    fun = left_side - (1/alpha)*bracket
+    fun = -qsum_T_vector - rho*bracket #formulate as minimization
+    
+    fun = fun + params["obj_fun_epsilon"]*W_T_vector  #stabilization
     fun = torch.mean(fun)
 
     #return only fun
     return fun
 
-    
-    
-    return None
 
 
 #MC added pytorch version of objective mean cvar

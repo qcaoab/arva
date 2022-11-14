@@ -87,7 +87,7 @@ class pytorch_NN(nn.Module):
        
 
     def forward(self, input_tensor):
-        return self.model(input_tensor.float())
+        return self.model(input_tensor)
     
     
     def import_weights(self, original_NN, params):
