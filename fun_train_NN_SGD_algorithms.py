@@ -256,7 +256,7 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     res["q_avg"] = torch.mean(qsum_T_vector).cpu().detach().numpy()/(params["N_rb"]+1)
     res["optimal_xi"] = xi_np
     res["average_median_p"] = np.mean(np.median(params["NN_asset_prop_paths"], axis = 0)[:,1])
-    
+    res["objfun_final"] = min_fval
     
     # save model for continuation learning
     if params["obj_fun"] == "mean_cvar_single_level":
