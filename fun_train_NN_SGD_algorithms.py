@@ -182,8 +182,8 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
             N_avg = N_avg + 1
             xi_avg = (xi_avg*N_avg + xi.detach()) / (N_avg + 1)
             
-        else:
-            xi_avg = xi.detach()
+        # else:
+        #     xi_avg = xi.detach()
                           
         # ----------------
         #RUNNING MINIMUM
@@ -198,7 +198,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
                 print("updated min: ")
                 print(f"obj fun: {new_fval}")
                 NN_pyt_min = copy.deepcopy(swa_model.module)
-                xi_min = xi.detach().clone()
+                xi_min = xi_avg.detach().clone()
                 v_min = new_fval.detach().clone()      
         
         # ----------------
@@ -233,6 +233,8 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
     #append xi_np to NN theta for f_theta
     F_theta = np.append(NN_object.theta, xi_np)    
     
+    
+    #need to double check the exporting of optimal params and calculations in old NN
     #calc original objfun
     (params, val, _, grad) = objfun(F_theta = F_theta,   # record the objective function value
                                  NN_object = NN_object, params = params, output_Gradient=True)

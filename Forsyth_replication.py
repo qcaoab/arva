@@ -90,13 +90,13 @@ iter_params = "tiny"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 40000
+    itbound_mc = 20000
     batchsize_mc = 2000
 
 if iter_params == "test":
-    n_d_train_mc = int(2.56* (10**5))
-    itbound_mc = 10000
-    batchsize_mc = 1000
+    n_d_train_mc = int(2.56* (10**4))
+    itbound_mc = 1000
+    batchsize_mc = 500
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -195,7 +195,7 @@ params["obj_fun"] = "mean_cvar_single_level"
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
-tracing_parameters_to_run = [1.0, 2.0, 3.0, 5.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.0, 2.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -590,8 +590,8 @@ NN = class_Neural_Network.Neural_Network(n_nodes_input = params["N_phi"],
 NN.print_layers_info()  #Check what to update
 
 #Update layers info
-NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 10 , activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 10, activation = "logistic_sigmoid", add_bias=False)
+NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
+NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
 # NN.update_layer_info(layer_id = 3 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 # NN.update_layer_info(layer_id = 4 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 #NN.update_layer_info(layer_id = 3 , n_nodes = 8, activation = "ELU", add_bias=False)
@@ -677,10 +677,10 @@ NN_training_options = fun_train_NN_algorithm_defaults.train_NN_algorithm_default
 NN_training_options["methods"] = [ "Adam"]
 NN_training_options["Adam_ewma_1"] = 0.9
 NN_training_options["Adam_ewma_2"] = 0.99 #0.999
-NN_training_options['nit_running_min'] = int(itbound * 0.05) # nr of iterations at the end that will be used to get the running minimum for output
+NN_training_options['nit_running_min'] = int(itbound * 0.02) # nr of iterations at the end that will be used to get the running minimum for output
 NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
-NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
+NN_training_options["nit_IterateAveragingStart"] = int(itbound * 95 / 100)  # Start IA 95% of the way in
 
 #MC pytorch addition:
 NN_training_options["pytorch"] = pytorch_flag  
@@ -696,7 +696,7 @@ if pytorch_flag:
     
     # copy NN structure into pytorch NN
     NN_pyt = class_NN_Pytorch.pytorch_NN(NN)
-    NN_pyt.cuda()
+    NN_pyt.to(device)
     
     # NN_pyt.import_weights(NN, params)
     
@@ -715,7 +715,10 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     theta0 = NN_theta0.copy()
     
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
-        xi_0 = 27.001 #27.744101568234655
+        if tracing_param == 1.0:
+            xi_0 = 27.7 #27.744101568234655
+        else:
+            xi_0 = 31.0
         theta0 = np.concatenate([NN_theta0, [xi_0]])
         params["xi_0"] = xi_0
 

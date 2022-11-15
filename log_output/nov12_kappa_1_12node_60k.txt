@@ -196,3 +196,908 @@ objective value function right now is: -2131.4546206109
 objective value function right now is: -2119.4769674466456
 88.0% of gradient descent iterations done. Method = A
 objective value function right now is: -2125.7484460458013
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.240003021457
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.705696298903
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.8944474075674
+updated min: 
+obj fun: -2133.3980795018138
+updated min: 
+obj fun: -2133.3982858403015
+updated min: 
+obj fun: -2133.3985624872766
+updated min: 
+obj fun: -2133.398663445294
+updated min: 
+obj fun: -2133.3986813192814
+updated min: 
+obj fun: -2133.398825971121
+updated min: 
+obj fun: -2133.399390939324
+updated min: 
+obj fun: -2133.400061356814
+updated min: 
+obj fun: -2133.4005841090316
+updated min: 
+obj fun: -2133.4012081021488
+updated min: 
+obj fun: -2133.401532167598
+updated min: 
+obj fun: -2133.4018583517977
+updated min: 
+obj fun: -2133.40216808954
+updated min: 
+obj fun: -2133.4026892890374
+updated min: 
+obj fun: -2133.4027281568005
+updated min: 
+obj fun: -2133.4028894645407
+updated min: 
+obj fun: -2133.403032893988
+updated min: 
+obj fun: -2133.4031900329555
+updated min: 
+obj fun: -2133.4036664806877
+updated min: 
+obj fun: -2133.403718580265
+updated min: 
+obj fun: -2133.4040770566266
+updated min: 
+obj fun: -2133.4042052711457
+updated min: 
+obj fun: -2133.404364782698
+updated min: 
+obj fun: -2133.404391662073
+updated min: 
+obj fun: -2133.4044933642244
+updated min: 
+obj fun: -2133.4046797959245
+updated min: 
+obj fun: -2133.4049845726604
+updated min: 
+obj fun: -2133.4052625798504
+updated min: 
+obj fun: -2133.4055345019183
+updated min: 
+obj fun: -2133.4060686467114
+updated min: 
+obj fun: -2133.4063562311176
+updated min: 
+obj fun: -2133.406563401005
+updated min: 
+obj fun: -2133.406801930082
+updated min: 
+obj fun: -2133.407091583095
+updated min: 
+obj fun: -2133.4075620479493
+updated min: 
+obj fun: -2133.407750219125
+updated min: 
+obj fun: -2133.4078108764425
+updated min: 
+obj fun: -2133.408027576861
+updated min: 
+obj fun: -2133.4081093187006
+updated min: 
+obj fun: -2133.4082773968294
+updated min: 
+obj fun: -2133.408740698885
+updated min: 
+obj fun: -2133.409088401549
+updated min: 
+obj fun: -2133.4092874557086
+updated min: 
+obj fun: -2133.4096141654522
+updated min: 
+obj fun: -2133.4098132628565
+updated min: 
+obj fun: -2133.4101709681177
+updated min: 
+obj fun: -2133.4105020927614
+updated min: 
+obj fun: -2133.410873077018
+updated min: 
+obj fun: -2133.4112908593297
+updated min: 
+obj fun: -2133.41193414055
+updated min: 
+obj fun: -2133.4125328190908
+updated min: 
+obj fun: -2133.412852904883
+updated min: 
+obj fun: -2133.4135481133885
+updated min: 
+obj fun: -2133.4137168879615
+updated min: 
+obj fun: -2133.414029497762
+updated min: 
+obj fun: -2133.41424118201
+updated min: 
+obj fun: -2133.4144145999553
+updated min: 
+obj fun: -2133.4145191406365
+updated min: 
+obj fun: -2133.414829557806
+updated min: 
+obj fun: -2133.4151260790563
+updated min: 
+obj fun: -2133.4151904883392
+updated min: 
+obj fun: -2133.415362697851
+updated min: 
+obj fun: -2133.4154598976866
+updated min: 
+obj fun: -2133.415590181765
+updated min: 
+obj fun: -2133.4157218389473
+updated min: 
+obj fun: -2133.416063935434
+updated min: 
+obj fun: -2133.4163502794477
+updated min: 
+obj fun: -2133.4164255718115
+updated min: 
+obj fun: -2133.4168960212055
+updated min: 
+obj fun: -2133.4172621791636
+updated min: 
+obj fun: -2133.417535918103
+updated min: 
+obj fun: -2133.4179443603557
+updated min: 
+obj fun: -2133.418213473337
+updated min: 
+obj fun: -2133.4186870614826
+updated min: 
+obj fun: -2133.4192674539886
+updated min: 
+obj fun: -2133.4198545337736
+updated min: 
+obj fun: -2133.420482088607
+updated min: 
+obj fun: -2133.4212361607474
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2129.879120447825
+updated min: 
+obj fun: -2133.4218452150258
+updated min: 
+obj fun: -2133.4225099244
+updated min: 
+obj fun: -2133.42326313025
+updated min: 
+obj fun: -2133.424050722477
+updated min: 
+obj fun: -2133.42438540631
+updated min: 
+obj fun: -2133.42488243017
+updated min: 
+obj fun: -2133.425304492414
+updated min: 
+obj fun: -2133.4256198243665
+updated min: 
+obj fun: -2133.4257496707924
+updated min: 
+obj fun: -2133.425839857264
+updated min: 
+obj fun: -2133.4259555086196
+updated min: 
+obj fun: -2133.426056624111
+updated min: 
+obj fun: -2133.426446151709
+updated min: 
+obj fun: -2133.426778845084
+updated min: 
+obj fun: -2133.4268883215436
+updated min: 
+obj fun: -2133.426976514445
+updated min: 
+obj fun: -2133.4270196114853
+updated min: 
+obj fun: -2133.4270964422176
+updated min: 
+obj fun: -2133.427130457806
+updated min: 
+obj fun: -2133.4271353166832
+updated min: 
+obj fun: -2133.427184270895
+updated min: 
+obj fun: -2133.4272294220514
+updated min: 
+obj fun: -2133.4276660844744
+updated min: 
+obj fun: -2133.4281054265953
+updated min: 
+obj fun: -2133.4284666937174
+updated min: 
+obj fun: -2133.429018147439
+updated min: 
+obj fun: -2133.429406087122
+updated min: 
+obj fun: -2133.4297725538127
+updated min: 
+obj fun: -2133.4300037788744
+updated min: 
+obj fun: -2133.4300581038947
+updated min: 
+obj fun: -2133.4301034592377
+updated min: 
+obj fun: -2133.4301536029006
+updated min: 
+obj fun: -2133.430571139163
+updated min: 
+obj fun: -2133.431246398448
+updated min: 
+obj fun: -2133.432117035755
+updated min: 
+obj fun: -2133.432737063326
+updated min: 
+obj fun: -2133.433118238816
+updated min: 
+obj fun: -2133.433659066245
+updated min: 
+obj fun: -2133.4339077895515
+updated min: 
+obj fun: -2133.433956537966
+updated min: 
+obj fun: -2133.4341263905644
+updated min: 
+obj fun: -2133.4342994829613
+updated min: 
+obj fun: -2133.4343485821805
+updated min: 
+obj fun: -2133.434554473465
+updated min: 
+obj fun: -2133.434747385613
+updated min: 
+obj fun: -2133.435016196295
+updated min: 
+obj fun: -2133.435404308608
+updated min: 
+obj fun: -2133.4355916445807
+updated min: 
+obj fun: -2133.4357088552
+updated min: 
+obj fun: -2133.435987450551
+updated min: 
+obj fun: -2133.436119062172
+updated min: 
+obj fun: -2133.436217048664
+updated min: 
+obj fun: -2133.436447494893
+updated min: 
+obj fun: -2133.4365126066305
+updated min: 
+obj fun: -2133.4366872869587
+updated min: 
+obj fun: -2133.4368922883696
+updated min: 
+obj fun: -2133.4373043617434
+updated min: 
+obj fun: -2133.437740052982
+updated min: 
+obj fun: -2133.4380613370877
+updated min: 
+obj fun: -2133.4384361787684
+updated min: 
+obj fun: -2133.438780175175
+updated min: 
+obj fun: -2133.439073510822
+updated min: 
+obj fun: -2133.43917004191
+updated min: 
+obj fun: -2133.4392577821213
+updated min: 
+obj fun: -2133.439324958826
+updated min: 
+obj fun: -2133.4394620509643
+updated min: 
+obj fun: -2133.4397470338567
+updated min: 
+obj fun: -2133.439993550833
+updated min: 
+obj fun: -2133.440085188405
+updated min: 
+obj fun: -2133.440303298086
+updated min: 
+obj fun: -2133.4406502005872
+updated min: 
+obj fun: -2133.44112666525
+updated min: 
+obj fun: -2133.4418897641863
+updated min: 
+obj fun: -2133.4424582025695
+updated min: 
+obj fun: -2133.443059646604
+updated min: 
+obj fun: -2133.4438173456238
+updated min: 
+obj fun: -2133.4441706833536
+updated min: 
+obj fun: -2133.4444641397345
+updated min: 
+obj fun: -2133.444818529782
+updated min: 
+obj fun: -2133.4453235742635
+updated min: 
+obj fun: -2133.445835233753
+updated min: 
+obj fun: -2133.4461144568045
+updated min: 
+obj fun: -2133.446599165666
+updated min: 
+obj fun: -2133.44679627965
+updated min: 
+obj fun: -2133.4470149468398
+updated min: 
+obj fun: -2133.447503216027
+updated min: 
+obj fun: -2133.44752109319
+updated min: 
+obj fun: -2133.4476735485127
+updated min: 
+obj fun: -2133.448071579369
+updated min: 
+obj fun: -2133.4483165222455
+updated min: 
+obj fun: -2133.448476206793
+updated min: 
+obj fun: -2133.448622878943
+updated min: 
+obj fun: -2133.4487050199077
+updated min: 
+obj fun: -2133.4487841571904
+updated min: 
+obj fun: -2133.448937602748
+updated min: 
+obj fun: -2133.4491370304568
+updated min: 
+obj fun: -2133.4494431353232
+updated min: 
+obj fun: -2133.449841516853
+updated min: 
+obj fun: -2133.4500264372095
+updated min: 
+obj fun: -2133.4502699935088
+updated min: 
+obj fun: -2133.4504242612443
+updated min: 
+obj fun: -2133.450858422027
+updated min: 
+obj fun: -2133.451025485547
+updated min: 
+obj fun: -2133.4513774644083
+updated min: 
+obj fun: -2133.4517660797574
+updated min: 
+obj fun: -2133.4521897716145
+updated min: 
+obj fun: -2133.4526119004972
+updated min: 
+obj fun: -2133.4528947067897
+updated min: 
+obj fun: -2133.4529398865097
+updated min: 
+obj fun: -2133.4530979151145
+updated min: 
+obj fun: -2133.4534632302643
+updated min: 
+obj fun: -2133.4535796278515
+updated min: 
+obj fun: -2133.4539823194928
+updated min: 
+obj fun: -2133.454030076411
+updated min: 
+obj fun: -2133.4542915978805
+updated min: 
+obj fun: -2133.4543226567503
+updated min: 
+obj fun: -2133.4546721848506
+updated min: 
+obj fun: -2133.454738534683
+updated min: 
+obj fun: -2133.45483475459
+updated min: 
+obj fun: -2133.4550465711395
+updated min: 
+obj fun: -2133.455360411371
+updated min: 
+obj fun: -2133.45579617557
+updated min: 
+obj fun: -2133.456236555459
+updated min: 
+obj fun: -2133.4565803878077
+updated min: 
+obj fun: -2133.4567112370664
+updated min: 
+obj fun: -2133.456900953711
+updated min: 
+obj fun: -2133.457078883624
+updated min: 
+obj fun: -2133.4572010771612
+updated min: 
+obj fun: -2133.4575517551193
+updated min: 
+obj fun: -2133.457899322956
+updated min: 
+obj fun: -2133.4583084795777
+updated min: 
+obj fun: -2133.45849632303
+updated min: 
+obj fun: -2133.4586780212817
+updated min: 
+obj fun: -2133.458807215213
+updated min: 
+obj fun: -2133.458890525018
+updated min: 
+obj fun: -2133.459137411342
+updated min: 
+obj fun: -2133.4593479430478
+updated min: 
+obj fun: -2133.4594280744905
+updated min: 
+obj fun: -2133.459634717739
+updated min: 
+obj fun: -2133.459874739248
+updated min: 
+obj fun: -2133.459901291472
+updated min: 
+obj fun: -2133.460019762175
+updated min: 
+obj fun: -2133.4600679270284
+updated min: 
+obj fun: -2133.460210861229
+updated min: 
+obj fun: -2133.4604826109717
+updated min: 
+obj fun: -2133.4606501928483
+updated min: 
+obj fun: -2133.460920607643
+updated min: 
+obj fun: -2133.4611757650114
+updated min: 
+obj fun: -2133.461354313577
+updated min: 
+obj fun: -2133.4617048922532
+updated min: 
+obj fun: -2133.4619366576585
+updated min: 
+obj fun: -2133.4623520996565
+updated min: 
+obj fun: -2133.46252444789
+updated min: 
+obj fun: -2133.46274666201
+updated min: 
+obj fun: -2133.4628723272344
+updated min: 
+obj fun: -2133.4632763413633
+updated min: 
+obj fun: -2133.4636554461003
+updated min: 
+obj fun: -2133.464471335324
+updated min: 
+obj fun: -2133.465084806326
+updated min: 
+obj fun: -2133.4656832032233
+updated min: 
+obj fun: -2133.4664199651547
+updated min: 
+obj fun: -2133.4669600602006
+updated min: 
+obj fun: -2133.467569146107
+updated min: 
+obj fun: -2133.467759317822
+updated min: 
+obj fun: -2133.4679080877463
+updated min: 
+obj fun: -2133.468043707835
+updated min: 
+obj fun: -2133.4681591446133
+updated min: 
+obj fun: -2133.4681791822613
+updated min: 
+obj fun: -2133.468226206639
+updated min: 
+obj fun: -2133.468368506927
+updated min: 
+obj fun: -2133.4685540107475
+updated min: 
+obj fun: -2133.4685882450763
+updated min: 
+obj fun: -2133.468595733002
+updated min: 
+obj fun: -2133.468662189229
+updated min: 
+obj fun: -2133.468811783766
+updated min: 
+obj fun: -2133.4689970753448
+updated min: 
+obj fun: -2133.4692037195905
+updated min: 
+obj fun: -2133.4693442949233
+updated min: 
+obj fun: -2133.469606797647
+updated min: 
+obj fun: -2133.469667973032
+updated min: 
+obj fun: -2133.469810720815
+updated min: 
+obj fun: -2133.4700354264396
+updated min: 
+obj fun: -2133.4701343793686
+updated min: 
+obj fun: -2133.4702461023567
+updated min: 
+obj fun: -2133.470289512834
+updated min: 
+obj fun: -2133.470421890301
+updated min: 
+obj fun: -2133.4705884249556
+updated min: 
+obj fun: -2133.4706789431425
+updated min: 
+obj fun: -2133.470889811677
+updated min: 
+obj fun: -2133.471095617571
+updated min: 
+obj fun: -2133.4711622575774
+updated min: 
+obj fun: -2133.4712750589388
+updated min: 
+obj fun: -2133.471595406175
+updated min: 
+obj fun: -2133.4718843448327
+updated min: 
+obj fun: -2133.4719373062403
+updated min: 
+obj fun: -2133.4722181365933
+updated min: 
+obj fun: -2133.472255421508
+updated min: 
+obj fun: -2133.472270590931
+updated min: 
+obj fun: -2133.472392987101
+updated min: 
+obj fun: -2133.472413048987
+updated min: 
+obj fun: -2133.472477480803
+updated min: 
+obj fun: -2133.472555244381
+updated min: 
+obj fun: -2133.4727148395186
+updated min: 
+obj fun: -2133.4728210510248
+updated min: 
+obj fun: -2133.4728462521525
+updated min: 
+obj fun: -2133.4730672164387
+updated min: 
+obj fun: -2133.473270712261
+updated min: 
+obj fun: -2133.473326714658
+updated min: 
+obj fun: -2133.4734193864224
+updated min: 
+obj fun: -2133.4734450640663
+updated min: 
+obj fun: -2133.473724757497
+updated min: 
+obj fun: -2133.4742069043236
+updated min: 
+obj fun: -2133.4743639986273
+updated min: 
+obj fun: -2133.4747803461687
+updated min: 
+obj fun: -2133.474989262797
+updated min: 
+obj fun: -2133.475069113281
+updated min: 
+obj fun: -2133.4751256948653
+updated min: 
+obj fun: -2133.4754780746202
+updated min: 
+obj fun: -2133.475672294143
+updated min: 
+obj fun: -2133.4757761087603
+updated min: 
+obj fun: -2133.4761149351134
+updated min: 
+obj fun: -2133.4765173622686
+updated min: 
+obj fun: -2133.4766161422003
+updated min: 
+obj fun: -2133.4768454720274
+updated min: 
+obj fun: -2133.4768848665526
+updated min: 
+obj fun: -2133.4768869732966
+updated min: 
+obj fun: -2133.4769565135257
+updated min: 
+obj fun: -2133.4771621717955
+updated min: 
+obj fun: -2133.4774869661583
+updated min: 
+obj fun: -2133.4775044630064
+updated min: 
+obj fun: -2133.4776207511513
+updated min: 
+obj fun: -2133.477906484452
+updated min: 
+obj fun: -2133.4780821964196
+updated min: 
+obj fun: -2133.478138878296
+updated min: 
+obj fun: -2133.47825330537
+updated min: 
+obj fun: -2133.4785689780824
+updated min: 
+obj fun: -2133.4786139451876
+updated min: 
+obj fun: -2133.4786583948708
+updated min: 
+obj fun: -2133.4786793744397
+updated min: 
+obj fun: -2133.4788264826575
+updated min: 
+obj fun: -2133.4790497419804
+updated min: 
+obj fun: -2133.479282018437
+updated min: 
+obj fun: -2133.4796154422074
+updated min: 
+obj fun: -2133.4798323027744
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.328551962318
+updated min: 
+obj fun: -2133.4800859977827
+updated min: 
+obj fun: -2133.4802705030233
+updated min: 
+obj fun: -2133.480410802936
+updated min: 
+obj fun: -2133.4805528547445
+updated min: 
+obj fun: -2133.480579557098
+updated min: 
+obj fun: -2133.4806411409695
+updated min: 
+obj fun: -2133.4807176273353
+updated min: 
+obj fun: -2133.4810741212796
+updated min: 
+obj fun: -2133.4811687493766
+updated min: 
+obj fun: -2133.4815047109428
+updated min: 
+obj fun: -2133.481775160396
+updated min: 
+obj fun: -2133.482331410028
+updated min: 
+obj fun: -2133.482626131826
+updated min: 
+obj fun: -2133.4831475208516
+updated min: 
+obj fun: -2133.4833365660593
+updated min: 
+obj fun: -2133.4839201553364
+updated min: 
+obj fun: -2133.484240510989
+updated min: 
+obj fun: -2133.484454581358
+updated min: 
+obj fun: -2133.484930582992
+updated min: 
+obj fun: -2133.485042891053
+updated min: 
+obj fun: -2133.48525291784
+updated min: 
+obj fun: -2133.4853090567744
+updated min: 
+obj fun: -2133.4853370950664
+updated min: 
+obj fun: -2133.48563601072
+updated min: 
+obj fun: -2133.485666574888
+updated min: 
+obj fun: -2133.485755202331
+updated min: 
+obj fun: -2133.485875188562
+updated min: 
+obj fun: -2133.4859624710234
+updated min: 
+obj fun: -2133.4859703287657
+updated min: 
+obj fun: -2133.486010014841
+updated min: 
+obj fun: -2133.486167513836
+updated min: 
+obj fun: -2133.486324110951
+updated min: 
+obj fun: -2133.486528013918
+updated min: 
+obj fun: -2133.486716138319
+updated min: 
+obj fun: -2133.4870282903084
+updated min: 
+obj fun: -2133.4872275383386
+updated min: 
+obj fun: -2133.4873496806867
+updated min: 
+obj fun: -2133.487529349901
+updated min: 
+obj fun: -2133.4876190926157
+updated min: 
+obj fun: -2133.487979270324
+updated min: 
+obj fun: -2133.488207432504
+updated min: 
+obj fun: -2133.4882886642276
+updated min: 
+obj fun: -2133.488615941592
+updated min: 
+obj fun: -2133.488728194201
+updated min: 
+obj fun: -2133.4888984486856
+updated min: 
+obj fun: -2133.4889076263194
+updated min: 
+obj fun: -2133.4891769646697
+updated min: 
+obj fun: -2133.4894128935375
+updated min: 
+obj fun: -2133.489540280996
+updated min: 
+obj fun: -2133.489664468117
+updated min: 
+obj fun: -2133.4898784238885
+updated min: 
+obj fun: -2133.4901838324595
+updated min: 
+obj fun: -2133.4906904927484
+updated min: 
+obj fun: -2133.4910068622344
+updated min: 
+obj fun: -2133.4912031077306
+updated min: 
+obj fun: -2133.4916156413437
+updated min: 
+obj fun: -2133.4918221050716
+updated min: 
+obj fun: -2133.49224503673
+updated min: 
+obj fun: -2133.4927001506203
+updated min: 
+obj fun: -2133.4930098428886
+updated min: 
+obj fun: -2133.493195832762
+updated min: 
+obj fun: -2133.4936257670834
+updated min: 
+obj fun: -2133.49388350259
+updated min: 
+obj fun: -2133.4940882231745
+updated min: 
+obj fun: -2133.4943672661975
+updated min: 
+obj fun: -2133.494649816011
+updated min: 
+obj fun: -2133.49484503278
+updated min: 
+obj fun: -2133.495026074776
+updated min: 
+obj fun: -2133.4953794100793
+updated min: 
+obj fun: -2133.4957665923403
+updated min: 
+obj fun: -2133.4959463482674
+updated min: 
+obj fun: -2133.496300315293
+updated min: 
+obj fun: -2133.496357038467
+updated min: 
+obj fun: -2133.496474907063
+updated min: 
+obj fun: -2133.49657468294
+updated min: 
+obj fun: -2133.496912642642
+updated min: 
+obj fun: -2133.496964885159
+updated min: 
+obj fun: -2133.4972714722126
+updated min: 
+obj fun: -2133.49745693526
+updated min: 
+obj fun: -2133.4977223214582
+updated min: 
+obj fun: -2133.4980925706827
+updated min: 
+obj fun: -2133.4984397781313
+updated min: 
+obj fun: -2133.4986997429696
+updated min: 
+obj fun: -2133.499173911127
+updated min: 
+obj fun: -2133.4995974688923
+updated min: 
+obj fun: -2133.50003414014
+updated min: 
+obj fun: -2133.500311008171
+updated min: 
+obj fun: -2133.5006828585924
+updated min: 
+obj fun: -2133.5009987112426
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.756611809913
+NN weights: [-1.13942671e+01 -6.85477781e+00  1.28605499e+01 -1.53104372e+01
+  1.34180403e+01  1.28269796e+01 -1.06174183e+00 -6.45178032e+00
+ -5.05983305e+00 -7.08672476e+00  1.65148020e+00  1.49710298e+00
+  1.15708046e+01 -2.86931491e+00 -1.28139887e+01  1.62275867e+01
+ -1.36091681e+01 -1.25818825e+01  9.36898649e-01  5.63251209e+00
+  1.64049315e+00  5.90107679e+00 -2.52702737e+00 -1.55452764e+00
+ -2.40523291e+00 -8.73279285e+00 -3.75363898e+00 -3.35579991e+00
+ -3.61049347e+01 -4.84232216e+01 -6.28349638e+00 -5.99500704e+00
+ -5.86647654e+00 -1.77045937e+01 -8.75104523e+01 -8.23929825e+01
+ -1.96666546e+01  1.31358042e-01 -2.23942161e+00 -5.20526171e-01
+  4.09421146e-01 -2.80198383e+01  6.16521895e-01 -1.51225674e+00
+  6.99742377e-01 -4.09818906e-03 -1.12296743e+01  1.79263000e+01
+ -4.38478994e+00 -7.00497208e+01 -9.06630783e+01 -1.21833710e+02
+ -4.64491386e+01 -1.43830547e+01 -7.95250092e+01 -7.65045853e+01
+ -8.05753021e+01 -5.40111771e+01 -1.06552330e+02 -6.82722473e+01
+ -2.61647582e+00 -2.97172699e+01 -1.29333000e+01 -5.41103220e+00
+ -7.11151505e+01 -4.35364799e+01 -2.24207859e+01 -2.48604202e+01
+ -2.20719280e+01 -4.46293755e+01 -8.42140045e+01 -1.03309677e+02
+ -4.97804832e+00 -7.19365921e+01 -8.43909912e+01 -1.22084381e+02
+ -5.15234489e+01 -1.43802996e+01 -8.04483414e+01 -7.58529892e+01
+ -8.18015060e+01 -5.75328293e+01 -1.01484856e+02 -7.46996155e+01
+ -5.72777987e+00 -6.56892014e+01 -8.30401230e+01 -1.21856903e+02
+ -4.00340652e+01 -1.45067816e+01 -7.57221375e+01 -7.00106049e+01
+ -7.72150574e+01 -4.97701836e+01 -9.24801941e+01 -6.15613022e+01
+ -1.10734522e+00  4.01327095e+01  2.60309792e+01  2.35718937e+01
+  1.23773598e+02 -6.49961138e+00  3.44886398e+01  3.47411842e+01
+  3.38079300e+01  5.29390259e+01  4.50202656e+00  8.86683884e+01
+ -2.29493523e+00 -8.06407700e+01 -6.63223877e+01 -6.36749840e+01
+ -1.28921448e+02  5.25784302e+00 -8.15457916e+01 -6.98184128e+01
+ -8.09062958e+01 -7.72822876e+01 -6.78979337e-01 -4.41990738e+01
+ -1.80114174e+01  1.05397141e+00 -4.25161934e+00 -1.74333537e+00
+ -2.03752112e+00 -2.59912243e+01  1.00447440e+00 -4.62304068e+00
+  1.05826907e-01 -8.17205906e-01 -2.00038319e+01  3.87882710e+00
+ -4.17450447e+01  4.53400469e+00  4.27564621e-01 -2.15931416e+00
+  4.32575989e+00 -5.70974693e+01  3.86869526e+00  2.58866549e+00
+  3.44490051e+00  3.95405245e+00 -7.16194630e+00  1.57185497e+01
+ -2.18873940e+01 -1.48904190e+01 -3.56009178e+01 -3.41013870e+01
+ -8.43591118e+00 -9.06262016e+00 -1.77097931e+01 -2.24020576e+01
+ -1.92493267e+01 -1.10574512e+01 -1.29157753e+01 -9.50294018e+00
+  8.52150381e-01 -1.00982535e+00 -9.72055554e-01 -3.45502114e+00
+  3.52887058e+00  2.29079533e+00 -1.31807375e+00 -7.67107129e-01
+ -1.33257425e+00  4.22447145e-01 -5.30482578e+00  3.48897052e+00
+  6.64352846e+00 -1.08287058e+01 -1.77414834e+00  3.10238910e+00
+ -1.26727831e+00  3.12593508e+00  1.74879301e+00  2.85251355e+00
+ -3.83257318e+00  3.87856627e+00 -6.45620775e+00 -1.22751677e+00
+ -1.24670374e+00  3.03735614e+00 -1.91281712e+00  3.17879462e+00
+ -1.18172073e+00  3.03533578e+00 -3.17713189e+00  3.56771183e+00
+ -1.05511694e+01  1.87187886e+00 -1.94093151e+01  5.56628036e+00]
+Minimum obj value:-2133.250673707659
+Optimal xi: 28.077612
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1444.0060522442277
+W_T_median: 1226.2990179763615
+W_T_pctile_5: 783.8785719485136
+W_T_CVAR_5_pct: 689.5290911292641
+F value: -2133.250673707659
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.0
+F value: -2133.250673707659
+-----------------------------------------------

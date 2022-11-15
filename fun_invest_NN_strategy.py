@@ -300,10 +300,10 @@ def invest_NN_strategy_pyt(NN_pyt, params):
         # --------------------------- WEALTH (t_n^+) ---------------------------
         # g_prev will construct_Feature_vector
         #cash injection
-        g_prev = g_prev + q[n_index] #g_prev now contains W(t_n^+)
+        # g_prev = g_prev + q[n_index] #g_prev now contains W(t_n^+)
 
         params["W"][:,n_index] = g_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
-        params["W_paths_mean"][0,n_index] = torch.mean(g_prev)
+        params["W_paths_mean"][0,n_index] = torch.mean(g_prev).detach().cpu().numpy()
 
         if torch.std(g_prev) > 0.0:
             params["W_paths_std"][0, n_index] = torch.std(g_prev, unbiased=True) #ddof=1 for (N_d -1) in denominator (bessels correction)

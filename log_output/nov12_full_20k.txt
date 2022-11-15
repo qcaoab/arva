@@ -1,0 +1,3625 @@
+Starting at: 
+12-11-22_23:00
+
+ Random seed:  1  
+
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = basic_T30_VWD
+timeseries_basket['basket_desc'] = CRSP data: T30 and VWD
+timeseries_basket['basket_columns'] = 
+['T30_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+5.0% of MC simulations done.
+10.0% of MC simulations done.
+15.0% of MC simulations done.
+20.0% of MC simulations done.
+25.0% of MC simulations done.
+30.0% of MC simulations done.
+35.0% of MC simulations done.
+40.0% of MC simulations done.
+45.0% of MC simulations done.
+50.0% of MC simulations done.
+55.00000000000001% of MC simulations done.
+60.0% of MC simulations done.
+65.0% of MC simulations done.
+70.0% of MC simulations done.
+75.0% of MC simulations done.
+80.0% of MC simulations done.
+85.0% of MC simulations done.
+90.0% of MC simulations done.
+95.0% of MC simulations done.
+100.0% of MC simulations done.
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_1/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_1/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer       8  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer       8  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1       (2, 8)    False        None  
+2       (8, 8)    False        None  
+3       (8, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer        8  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0       (2, 8)     False        None  
+0       (8, 8)     False        None  
+0       (8, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1038.1459187717428
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1043.7296878349875
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1043.3748267046951
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1043.3619370931228
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1044.4655843042865
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.8662043094794
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.2342258558608
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.6933513844067
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.4324015966445
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.0565268904795
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.6105947122778
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1043.2956124149691
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.4192914006235
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.6776840102154
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.5065624433332
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.1956836297998
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1043.905176051287
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.889532016044
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.2179803778429
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.1490017488845
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.33535271348
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.40499476498
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.2838965684978
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.086688004542
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.5404559098001
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.6585955436572
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.7885845383428
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.2566109952513
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.7630471881116
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.7118667730272
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.674287914218
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1047.085810597184
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.9342836421667
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.2093074790303
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1047.1707766242855
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.357868829867
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.9797804691445
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.7941845562393
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.5130760290765
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.0138761104686
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.000977321557
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.412576237502
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.6156270789718
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.8891140268045
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.005863450791
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.5897764294152
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.7136278982025
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.8077058641175
+updated min: 
+obj fun: -1047.1500645257172
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1045.7863347536493
+updated min: 
+obj fun: -1047.1504612011654
+updated min: 
+obj fun: -1047.1510836379025
+updated min: 
+obj fun: -1047.151598513087
+updated min: 
+obj fun: -1047.152095833901
+updated min: 
+obj fun: -1047.1525309136405
+updated min: 
+obj fun: -1047.1528927166323
+updated min: 
+obj fun: -1047.1531505389366
+updated min: 
+obj fun: -1047.1533279020769
+updated min: 
+obj fun: -1047.1533926410073
+updated min: 
+obj fun: -1047.1536275397075
+updated min: 
+obj fun: -1047.154125443353
+updated min: 
+obj fun: -1047.154825235586
+updated min: 
+obj fun: -1047.1554959645932
+updated min: 
+obj fun: -1047.1563349395353
+updated min: 
+obj fun: -1047.1568158749935
+updated min: 
+obj fun: -1047.1569891944443
+updated min: 
+obj fun: -1047.1571349110081
+updated min: 
+obj fun: -1047.1574796356854
+updated min: 
+obj fun: -1047.1578044236608
+updated min: 
+obj fun: -1047.1578471611342
+updated min: 
+obj fun: -1047.1579270313214
+updated min: 
+obj fun: -1047.1582347252154
+updated min: 
+obj fun: -1047.15853838314
+updated min: 
+obj fun: -1047.1589374951245
+updated min: 
+obj fun: -1047.1592644584978
+updated min: 
+obj fun: -1047.1594274006245
+updated min: 
+obj fun: -1047.1594625660716
+updated min: 
+obj fun: -1047.1599561161706
+updated min: 
+obj fun: -1047.1604933913195
+updated min: 
+obj fun: -1047.1609948542603
+updated min: 
+obj fun: -1047.1615936517485
+updated min: 
+obj fun: -1047.1619825340847
+updated min: 
+obj fun: -1047.1622833877996
+updated min: 
+obj fun: -1047.1625524240974
+updated min: 
+obj fun: -1047.1629168998975
+updated min: 
+obj fun: -1047.1633077030856
+updated min: 
+obj fun: -1047.1636865023827
+updated min: 
+obj fun: -1047.1641332292247
+updated min: 
+obj fun: -1047.1643569494672
+updated min: 
+obj fun: -1047.1644118891904
+updated min: 
+obj fun: -1047.164504009858
+updated min: 
+obj fun: -1047.1645816344867
+updated min: 
+obj fun: -1047.1647651383382
+updated min: 
+obj fun: -1047.1649753854279
+updated min: 
+obj fun: -1047.165306182423
+updated min: 
+obj fun: -1047.165746589331
+updated min: 
+obj fun: -1047.1660297883172
+updated min: 
+obj fun: -1047.1662338703281
+updated min: 
+obj fun: -1047.166292142497
+updated min: 
+obj fun: -1047.166510714537
+updated min: 
+obj fun: -1047.1667098631792
+updated min: 
+obj fun: -1047.1669966237378
+updated min: 
+obj fun: -1047.167345405759
+updated min: 
+obj fun: -1047.168014549426
+updated min: 
+obj fun: -1047.168783032839
+updated min: 
+obj fun: -1047.1697328377825
+updated min: 
+obj fun: -1047.1706187552263
+updated min: 
+obj fun: -1047.171315395422
+updated min: 
+obj fun: -1047.1718028433793
+updated min: 
+obj fun: -1047.1719377784923
+updated min: 
+obj fun: -1047.172365395535
+updated min: 
+obj fun: -1047.1730090440349
+updated min: 
+obj fun: -1047.1735649243194
+updated min: 
+obj fun: -1047.173899513966
+updated min: 
+obj fun: -1047.1742420911023
+updated min: 
+obj fun: -1047.174584441608
+updated min: 
+obj fun: -1047.1748808589969
+updated min: 
+obj fun: -1047.175096828859
+updated min: 
+obj fun: -1047.1753681937023
+updated min: 
+obj fun: -1047.175744823847
+updated min: 
+obj fun: -1047.1761597234026
+updated min: 
+obj fun: -1047.1766473081288
+updated min: 
+obj fun: -1047.1771192394629
+updated min: 
+obj fun: -1047.1773364208486
+updated min: 
+obj fun: -1047.1774252746457
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1046.6238157204311
+NN weights: [ 1.4909986e+00 -5.0508466e+00  6.4971609e+00  6.6420144e-01
+ -6.5480101e-01 -1.1417941e+00 -3.8357887e+00  1.0137720e+01
+ -1.0261509e+00  4.8935542e+00 -6.8702106e+00 -6.0927796e-01
+  8.3980180e-02  7.8551656e-01  4.3098063e+00 -1.0117171e+01
+ -3.1993411e-02  4.6998978e+01  4.7188061e+01  4.7269386e+01
+  4.6254135e+01  4.7375660e+01  4.6589157e+01 -1.1703460e+01
+ -2.6293819e+01 -1.4463536e+01 -1.2981834e+01 -1.4055571e+01
+ -2.8739523e+01 -1.3628129e+01 -1.2054089e+01  1.5131036e+00
+ -1.7859480e+01 -1.8758257e+01 -1.8512831e+01 -1.7882580e+01
+ -2.1289251e+01 -1.8196941e+01 -1.8070137e+01 -1.4110968e+01
+ -4.6992745e+00  1.4549777e+01  1.6925516e+01  1.5584898e+01
+ -1.6761664e+00  1.6052391e+01  1.7216444e+01  7.2289664e-01
+ -6.1675954e+00  4.4809198e+00  5.6485167e+00  4.9539914e+00
+ -2.1623509e+00  5.1578956e+00  6.3873067e+00 -8.7841444e+00
+ -5.0671592e+00  1.3794291e+01  1.5757674e+01  1.4570652e+01
+  6.9156027e-01  1.4996182e+01  1.6067451e+01 -6.6698232e+00
+ -8.8188877e+00 -9.6494455e+00 -9.6317158e+00 -9.7356110e+00
+ -8.3382835e+00 -9.2949505e+00 -1.0006675e+01 -9.1500540e+00
+ -9.1686144e+00 -3.8698330e+01 -3.8447910e+01 -3.8035210e+01
+ -3.7617558e+01 -3.7919659e+01 -3.7967461e+01 -2.5905151e+01
+  4.3253713e+00  3.0560915e+00 -3.3869727e+00  3.4359248e+00
+ -3.4827800e+00  3.4101374e+00 -3.4198771e+00  3.4248149e+00
+ -2.1994970e+00  3.6618588e+00 -3.4433703e+00  3.4209492e+00
+ -3.5232499e+00  3.4048302e+00 -5.6560979e+00 -1.4732379e+00]
+Minimum obj value:-1046.7949975524753
+Optimal xi: 31.196783
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1060.7936400705914
+W_T_median: 1049.1592515442321
+W_T_pctile_5: 969.509281037484
+W_T_CVAR_5_pct: 941.1021875938503
+F value: -1046.7949975524753
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.1
+F value: -1046.7949975524753
+-----------------------------------------------
+loaded NN:  OrderedDict([('model.hidden_layer_1.weight', tensor([[ 4.3254,  3.0561],
+        [-3.3870,  3.4359],
+        [-3.4828,  3.4101],
+        [-3.4199,  3.4248],
+        [-2.1995,  3.6619],
+        [-3.4434,  3.4209],
+        [-3.5232,  3.4048],
+        [-5.6561, -1.4732]], device='cuda:0')), ('model.hidden_layer_2.weight', tensor([[-3.1993e-02,  4.6999e+01,  4.7188e+01,  4.7269e+01,  4.6254e+01,
+          4.7376e+01,  4.6589e+01, -1.1703e+01],
+        [-2.6294e+01, -1.4464e+01, -1.2982e+01, -1.4056e+01, -2.8740e+01,
+         -1.3628e+01, -1.2054e+01,  1.5131e+00],
+        [-1.7859e+01, -1.8758e+01, -1.8513e+01, -1.7883e+01, -2.1289e+01,
+         -1.8197e+01, -1.8070e+01, -1.4111e+01],
+        [-4.6993e+00,  1.4550e+01,  1.6926e+01,  1.5585e+01, -1.6762e+00,
+          1.6052e+01,  1.7216e+01,  7.2290e-01],
+        [-6.1676e+00,  4.4809e+00,  5.6485e+00,  4.9540e+00, -2.1624e+00,
+          5.1579e+00,  6.3873e+00, -8.7841e+00],
+        [-5.0672e+00,  1.3794e+01,  1.5758e+01,  1.4571e+01,  6.9156e-01,
+          1.4996e+01,  1.6067e+01, -6.6698e+00],
+        [-8.8189e+00, -9.6494e+00, -9.6317e+00, -9.7356e+00, -8.3383e+00,
+         -9.2950e+00, -1.0007e+01, -9.1501e+00],
+        [-9.1686e+00, -3.8698e+01, -3.8448e+01, -3.8035e+01, -3.7618e+01,
+         -3.7920e+01, -3.7967e+01, -2.5905e+01]], device='cuda:0')), ('model.output_layer_3.weight', tensor([[  1.4910,  -5.0508,   6.4972,   0.6642,  -0.6548,  -1.1418,  -3.8358,
+          10.1377],
+        [ -1.0262,   4.8936,  -6.8702,  -0.6093,   0.0840,   0.7855,   4.3098,
+         -10.1172]], device='cuda:0'))])
+loaded xi:  31.196783
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.988993732376
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.2655334254991
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.8153167856954
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1204.8684069297733
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1204.302803021201
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1205.579856688231
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.8052337208733
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1208.0730435491942
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.8245451354815
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1204.7090851750795
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1204.6039139683598
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1202.2042594234922
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.986842354745
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.2246674236794
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.8358882844882
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.4602080253255
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.2871495929935
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.8540182732597
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.155324771367
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1205.885306589138
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1205.5651080147704
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1208.1355947256384
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.9853313965998
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.6102400499021
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.4573019293844
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.795503645814
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1205.8723464226398
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -1205.8523063111154
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.071179503653
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.8712005359912
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.0805256672415
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.8594073666898
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1200.4604063804018
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.8498244718496
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.1190908448
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.3075678409282
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1205.6876641342292
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.849424601439
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.1239238421347
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1205.7345722239822
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1202.5937899277608
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.9668693037422
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1204.5933121053088
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.4559232682257
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.5588280260458
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1204.3958325052886
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.79822532834
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.317290673642
+updated min: 
+obj fun: -1207.6475254233392
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1206.5757945289247
+updated min: 
+obj fun: -1207.6480619144347
+updated min: 
+obj fun: -1207.649920579478
+updated min: 
+obj fun: -1207.651895470676
+updated min: 
+obj fun: -1207.6538063098842
+updated min: 
+obj fun: -1207.6552344339618
+updated min: 
+obj fun: -1207.6560109152551
+updated min: 
+obj fun: -1207.6563322634952
+updated min: 
+obj fun: -1207.6576859776496
+updated min: 
+obj fun: -1207.659592628673
+updated min: 
+obj fun: -1207.6613378915872
+updated min: 
+obj fun: -1207.6627348105471
+updated min: 
+obj fun: -1207.6639686257204
+updated min: 
+obj fun: -1207.6649058297685
+updated min: 
+obj fun: -1207.6656958181693
+updated min: 
+obj fun: -1207.666373844801
+updated min: 
+obj fun: -1207.6667196198664
+updated min: 
+obj fun: -1207.6672515739397
+updated min: 
+obj fun: -1207.668086270355
+updated min: 
+obj fun: -1207.6692230058804
+updated min: 
+obj fun: -1207.6710255453859
+updated min: 
+obj fun: -1207.673316791118
+updated min: 
+obj fun: -1207.6766175684643
+updated min: 
+obj fun: -1207.6804384015147
+updated min: 
+obj fun: -1207.684217839367
+updated min: 
+obj fun: -1207.6869644606115
+updated min: 
+obj fun: -1207.688839090058
+updated min: 
+obj fun: -1207.689784003162
+updated min: 
+obj fun: -1207.6899428633483
+updated min: 
+obj fun: -1207.6901484663167
+updated min: 
+obj fun: -1207.6907778741074
+updated min: 
+obj fun: -1207.6921764363829
+updated min: 
+obj fun: -1207.6939641767167
+updated min: 
+obj fun: -1207.6959303703338
+updated min: 
+obj fun: -1207.697326834922
+updated min: 
+obj fun: -1207.698309945065
+updated min: 
+obj fun: -1207.6990747450218
+updated min: 
+obj fun: -1207.6991845437933
+updated min: 
+obj fun: -1207.7004660732364
+updated min: 
+obj fun: -1207.7026015408314
+updated min: 
+obj fun: -1207.7047192483985
+updated min: 
+obj fun: -1207.706108247415
+updated min: 
+obj fun: -1207.7061652409923
+updated min: 
+obj fun: -1207.7071289739847
+updated min: 
+obj fun: -1207.7084880519212
+updated min: 
+obj fun: -1207.7094422259033
+updated min: 
+obj fun: -1207.7103236689704
+updated min: 
+obj fun: -1207.711449626856
+updated min: 
+obj fun: -1207.712364902821
+updated min: 
+obj fun: -1207.713253962731
+updated min: 
+obj fun: -1207.7145297084219
+updated min: 
+obj fun: -1207.7158745803858
+updated min: 
+obj fun: -1207.7169593258814
+updated min: 
+obj fun: -1207.7177213089699
+updated min: 
+obj fun: -1207.718320731351
+updated min: 
+obj fun: -1207.7188146607918
+updated min: 
+obj fun: -1207.7195335815568
+updated min: 
+obj fun: -1207.720441289647
+updated min: 
+obj fun: -1207.7219140281236
+updated min: 
+obj fun: -1207.723698888688
+updated min: 
+obj fun: -1207.7255835324188
+updated min: 
+obj fun: -1207.727778382003
+updated min: 
+obj fun: -1207.7298502915592
+updated min: 
+obj fun: -1207.7312554163364
+updated min: 
+obj fun: -1207.7322400576636
+updated min: 
+obj fun: -1207.7324720935692
+updated min: 
+obj fun: -1207.7338547626132
+updated min: 
+obj fun: -1207.7354953025763
+updated min: 
+obj fun: -1207.7374028747395
+updated min: 
+obj fun: -1207.7391676284428
+updated min: 
+obj fun: -1207.7407064407978
+updated min: 
+obj fun: -1207.7419785008633
+updated min: 
+obj fun: -1207.74299073735
+updated min: 
+obj fun: -1207.7435183136909
+updated min: 
+obj fun: -1207.7436924563544
+updated min: 
+obj fun: -1207.7439639902693
+updated min: 
+obj fun: -1207.7445310198777
+updated min: 
+obj fun: -1207.745504747943
+updated min: 
+obj fun: -1207.7473163176687
+updated min: 
+obj fun: -1207.7487103180906
+updated min: 
+obj fun: -1207.749971512337
+updated min: 
+obj fun: -1207.7512773849453
+updated min: 
+obj fun: -1207.7521535844048
+updated min: 
+obj fun: -1207.7531038637899
+updated min: 
+obj fun: -1207.7536959203442
+updated min: 
+obj fun: -1207.7543379681908
+updated min: 
+obj fun: -1207.7549750128214
+updated min: 
+obj fun: -1207.7553110882138
+updated min: 
+obj fun: -1207.7555656138818
+updated min: 
+obj fun: -1207.7559118237161
+updated min: 
+obj fun: -1207.7561277610432
+updated min: 
+obj fun: -1207.7566680035518
+updated min: 
+obj fun: -1207.7574700156752
+updated min: 
+obj fun: -1207.7583548674188
+updated min: 
+obj fun: -1207.7593398443091
+updated min: 
+obj fun: -1207.7606352357866
+updated min: 
+obj fun: -1207.7619405745031
+updated min: 
+obj fun: -1207.7631223563692
+updated min: 
+obj fun: -1207.7637628923014
+updated min: 
+obj fun: -1207.7640375111826
+updated min: 
+obj fun: -1207.7640766098555
+updated min: 
+obj fun: -1207.7644598737434
+updated min: 
+obj fun: -1207.765923403527
+updated min: 
+obj fun: -1207.767134804306
+updated min: 
+obj fun: -1207.7680580160802
+updated min: 
+obj fun: -1207.768950032271
+updated min: 
+obj fun: -1207.769611039135
+updated min: 
+obj fun: -1207.7702010673536
+updated min: 
+obj fun: -1207.7706554328158
+updated min: 
+obj fun: -1207.7714123478893
+updated min: 
+obj fun: -1207.7724539727656
+updated min: 
+obj fun: -1207.7738883884601
+updated min: 
+obj fun: -1207.7757581105209
+updated min: 
+obj fun: -1207.7780121906005
+updated min: 
+obj fun: -1207.7801393816576
+updated min: 
+obj fun: -1207.7821432980584
+updated min: 
+obj fun: -1207.783484255945
+updated min: 
+obj fun: -1207.7845022446213
+updated min: 
+obj fun: -1207.7852311759111
+updated min: 
+obj fun: -1207.7856724754045
+updated min: 
+obj fun: -1207.7856795505702
+updated min: 
+obj fun: -1207.7858107097413
+updated min: 
+obj fun: -1207.7874555957176
+updated min: 
+obj fun: -1207.789245546713
+updated min: 
+obj fun: -1207.790710996243
+updated min: 
+obj fun: -1207.7919227796988
+updated min: 
+obj fun: -1207.7928520042994
+updated min: 
+obj fun: -1207.793833231707
+updated min: 
+obj fun: -1207.7947549762273
+updated min: 
+obj fun: -1207.7957989651413
+updated min: 
+obj fun: -1207.7967796329458
+updated min: 
+obj fun: -1207.797236864017
+updated min: 
+obj fun: -1207.7974438496624
+updated min: 
+obj fun: -1207.7976052983322
+updated min: 
+obj fun: -1207.7977303363296
+updated min: 
+obj fun: -1207.798029234939
+updated min: 
+obj fun: -1207.7985775734994
+updated min: 
+obj fun: -1207.799569578385
+updated min: 
+obj fun: -1207.800760936377
+updated min: 
+obj fun: -1207.8024056603276
+updated min: 
+obj fun: -1207.8042662208234
+updated min: 
+obj fun: -1207.8062177084573
+updated min: 
+obj fun: -1207.807855773361
+updated min: 
+obj fun: -1207.8090311664216
+updated min: 
+obj fun: -1207.8097297296656
+updated min: 
+obj fun: -1207.810226136368
+updated min: 
+obj fun: -1207.8107503101326
+updated min: 
+obj fun: -1207.8114378213174
+updated min: 
+obj fun: -1207.8119354097512
+updated min: 
+obj fun: -1207.8122031243622
+updated min: 
+obj fun: -1207.8126510048226
+updated min: 
+obj fun: -1207.8130450815224
+updated min: 
+obj fun: -1207.8139338474232
+updated min: 
+obj fun: -1207.8154144254931
+updated min: 
+obj fun: -1207.8171848132044
+updated min: 
+obj fun: -1207.819231001344
+updated min: 
+obj fun: -1207.820810148123
+updated min: 
+obj fun: -1207.821890632909
+updated min: 
+obj fun: -1207.822373306508
+updated min: 
+obj fun: -1207.8231528360236
+updated min: 
+obj fun: -1207.8236936380335
+updated min: 
+obj fun: -1207.8244262840585
+updated min: 
+obj fun: -1207.8250187959645
+updated min: 
+obj fun: -1207.8252622158852
+updated min: 
+obj fun: -1207.8253765069485
+updated min: 
+obj fun: -1207.82540702145
+updated min: 
+obj fun: -1207.826054906752
+updated min: 
+obj fun: -1207.82657824492
+updated min: 
+obj fun: -1207.8272089989416
+updated min: 
+obj fun: -1207.8278639295904
+updated min: 
+obj fun: -1207.8289148848057
+updated min: 
+obj fun: -1207.8293253330785
+updated min: 
+obj fun: -1207.8295559071116
+updated min: 
+obj fun: -1207.8301516302358
+updated min: 
+obj fun: -1207.831125681896
+updated min: 
+obj fun: -1207.831970556246
+updated min: 
+obj fun: -1207.8324389105924
+updated min: 
+obj fun: -1207.8326547939403
+updated min: 
+obj fun: -1207.8328092089457
+updated min: 
+obj fun: -1207.833237311361
+updated min: 
+obj fun: -1207.8335976750714
+updated min: 
+obj fun: -1207.8342669482206
+updated min: 
+obj fun: -1207.8352041224528
+updated min: 
+obj fun: -1207.8365057278677
+updated min: 
+obj fun: -1207.8378891703112
+updated min: 
+obj fun: -1207.8386640597073
+updated min: 
+obj fun: -1207.8390264190643
+updated min: 
+obj fun: -1207.8393380855923
+updated min: 
+obj fun: -1207.8395428734534
+updated min: 
+obj fun: -1207.8397949023167
+updated min: 
+obj fun: -1207.8400620107573
+updated min: 
+obj fun: -1207.8404780828694
+updated min: 
+obj fun: -1207.8411814805647
+updated min: 
+obj fun: -1207.8420034466017
+updated min: 
+obj fun: -1207.843093707276
+updated min: 
+obj fun: -1207.8438736424218
+updated min: 
+obj fun: -1207.844084848291
+updated min: 
+obj fun: -1207.8446211169296
+updated min: 
+obj fun: -1207.8459058163335
+updated min: 
+obj fun: -1207.8471186778227
+updated min: 
+obj fun: -1207.8482664405726
+updated min: 
+obj fun: -1207.84912624562
+updated min: 
+obj fun: -1207.849813119231
+updated min: 
+obj fun: -1207.849985309873
+updated min: 
+obj fun: -1207.8501845349645
+updated min: 
+obj fun: -1207.85088151838
+updated min: 
+obj fun: -1207.8521223250461
+updated min: 
+obj fun: -1207.8533288347535
+updated min: 
+obj fun: -1207.854410295115
+updated min: 
+obj fun: -1207.8553263412805
+updated min: 
+obj fun: -1207.855920295591
+updated min: 
+obj fun: -1207.856518884911
+updated min: 
+obj fun: -1207.8568547061445
+updated min: 
+obj fun: -1207.8569184809069
+updated min: 
+obj fun: -1207.856944426068
+updated min: 
+obj fun: -1207.8570452418921
+updated min: 
+obj fun: -1207.8574813860807
+updated min: 
+obj fun: -1207.8584295240532
+updated min: 
+obj fun: -1207.8598332418733
+updated min: 
+obj fun: -1207.8612765082576
+updated min: 
+obj fun: -1207.8624173670855
+updated min: 
+obj fun: -1207.8630853417885
+updated min: 
+obj fun: -1207.8640643335996
+updated min: 
+obj fun: -1207.8649084886865
+updated min: 
+obj fun: -1207.8656817639803
+updated min: 
+obj fun: -1207.8660621919423
+updated min: 
+obj fun: -1207.8662770528717
+updated min: 
+obj fun: -1207.8665682793874
+updated min: 
+obj fun: -1207.8667312299717
+updated min: 
+obj fun: -1207.8670809167177
+updated min: 
+obj fun: -1207.867515962022
+updated min: 
+obj fun: -1207.8681594602474
+updated min: 
+obj fun: -1207.868741991683
+updated min: 
+obj fun: -1207.8694145732068
+updated min: 
+obj fun: -1207.869905145313
+updated min: 
+obj fun: -1207.8700848300755
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1207.4395347479428
+NN weights: [  1.5557013   -6.1587157   15.066354     0.47160247   0.22512335
+  -1.3802426   -3.1587994    1.0739065   -1.0909827    6.0018597
+ -15.439401    -0.41666442  -0.7959541    1.023939     3.6327991
+  -1.0533847    0.3028354   63.766754    61.67711     63.08196
+  75.78621     62.76648     60.16279    -13.280027   -38.99837
+ -24.26505    -21.526508   -23.256483   -55.58091    -22.677439
+ -20.199928     1.4220097  -26.652039   -18.85235    -18.608234
+ -18.004875   -19.7085     -18.294027   -18.188795    -8.041695
+  -3.3178513   13.63306     15.914479    14.615044    -6.655815
+  15.077457    16.05444      5.541956   -19.55956     -3.3918147
+  -1.5145223   -2.6568723  -10.249565    -2.3022304   -0.5538496
+ -24.458675    -2.1578138    7.9365163   10.501907     9.004524
+  -2.7789807    9.503539    11.174824    -5.453798    -9.099015
+ -34.47353    -34.151833   -34.38877    -31.29398    -33.952244
+ -34.358677    -3.9504921  -22.051653   -55.99812    -55.668648
+ -55.317513   -58.283844   -55.164486   -55.244617   -41.584465
+   5.600048     3.5533123   -3.5668254    3.6283572   -3.6723795
+   3.4675725   -3.614364     3.559587    -2.233583     4.2884483
+  -3.635061     3.529933    -3.7075584    3.4214537   -5.7185445
+  -1.335705  ]
+Minimum obj value:-1207.8604717973813
+Optimal xi: 31.125404
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1074.0372459810646
+W_T_median: 1051.7592504768966
+W_T_pctile_5: 967.8073736207447
+W_T_CVAR_5_pct: 939.3765330623918
+F value: -1207.8604717973813
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:156: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.25
+F value: -1207.8604717973813
+-----------------------------------------------
+loaded NN:  OrderedDict([('model.hidden_layer_1.weight', tensor([[ 5.6000,  3.5533],
+        [-3.5668,  3.6284],
+        [-3.6724,  3.4676],
+        [-3.6144,  3.5596],
+        [-2.2336,  4.2884],
+        [-3.6351,  3.5299],
+        [-3.7076,  3.4215],
+        [-5.7185, -1.3357]], device='cuda:0')), ('model.hidden_layer_2.weight', tensor([[  0.3028,  63.7668,  61.6771,  63.0820,  75.7862,  62.7665,  60.1628,
+         -13.2800],
+        [-38.9984, -24.2651, -21.5265, -23.2565, -55.5809, -22.6774, -20.1999,
+           1.4220],
+        [-26.6520, -18.8524, -18.6082, -18.0049, -19.7085, -18.2940, -18.1888,
+          -8.0417],
+        [ -3.3179,  13.6331,  15.9145,  14.6150,  -6.6558,  15.0775,  16.0544,
+           5.5420],
+        [-19.5596,  -3.3918,  -1.5145,  -2.6569, -10.2496,  -2.3022,  -0.5538,
+         -24.4587],
+        [ -2.1578,   7.9365,  10.5019,   9.0045,  -2.7790,   9.5035,  11.1748,
+          -5.4538],
+        [ -9.0990, -34.4735, -34.1518, -34.3888, -31.2940, -33.9522, -34.3587,
+          -3.9505],
+        [-22.0517, -55.9981, -55.6686, -55.3175, -58.2838, -55.1645, -55.2446,
+         -41.5845]], device='cuda:0')), ('model.output_layer_3.weight', tensor([[  1.5557,  -6.1587,  15.0664,   0.4716,   0.2251,  -1.3802,  -3.1588,
+           1.0739],
+        [ -1.0910,   6.0019, -15.4394,  -0.4167,  -0.7960,   1.0239,   3.6328,
+          -1.0534]], device='cuda:0'))])
+loaded xi:  31.125404
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.451849864503
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.48212706727
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.0035714120966
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.178756261023
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1369.0423143074127
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.7862573213802
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.1362868634128
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.446098182445
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.465735860979
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1369.0517579296154
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.441173083077
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1368.5275977930826
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1369.9493805643524
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -1369.62345597182
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.876217568079
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.5891938306447
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1367.6395261624411
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1369.6408945582834
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.8049771182266
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.770764412689
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.301568612047
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.9785235519444
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1361.6402187090341
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.0865468700658
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.6546015910958
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.6955647186887
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.1980109195463
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.7526059950144
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -1372.0404366636892
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.4301456826213
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1369.8162410248538
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1368.7093714369053
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1372.423064060738
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1365.498719400653
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.9821831292304
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1368.3844424761285
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1372.4278339147895
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.6885694171685
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.1174910949496
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1366.0041130872848
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.8630121704505
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1373.0650369734399
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1372.633904928803
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1365.9311609857393
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.6244182810294
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1371.9495301084048
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1372.622614554457
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1372.4595004701973
+updated min: 
+obj fun: -1373.0134610369873
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1370.9174196248762
+updated min: 
+obj fun: -1373.01730666893
+updated min: 
+obj fun: -1373.020389688438
+updated min: 
+obj fun: -1373.0234976359618
+updated min: 
+obj fun: -1373.0263562776383
+updated min: 
+obj fun: -1373.02907874165
+updated min: 
+obj fun: -1373.0319955243808
+updated min: 
+obj fun: -1373.0337897785473
+updated min: 
+obj fun: -1373.0350480167228
+updated min: 
+obj fun: -1373.0362665123318
+updated min: 
+obj fun: -1373.0377183115913
+updated min: 
+obj fun: -1373.040043289075
+updated min: 
+obj fun: -1373.0417522375546
+updated min: 
+obj fun: -1373.0420704563444
+updated min: 
+obj fun: -1373.042278816168
+updated min: 
+obj fun: -1373.044635713863
+updated min: 
+obj fun: -1373.0462365573555
+updated min: 
+obj fun: -1373.0473136073863
+updated min: 
+obj fun: -1373.0477048159453
+updated min: 
+obj fun: -1373.0478520932406
+updated min: 
+obj fun: -1373.047933457512
+updated min: 
+obj fun: -1373.0482726076211
+updated min: 
+obj fun: -1373.0492290017771
+updated min: 
+obj fun: -1373.0511336088307
+updated min: 
+obj fun: -1373.0540116340806
+updated min: 
+obj fun: -1373.0574192701656
+updated min: 
+obj fun: -1373.0613848037162
+updated min: 
+obj fun: -1373.0651473968908
+updated min: 
+obj fun: -1373.0682762242918
+updated min: 
+obj fun: -1373.070022003777
+updated min: 
+obj fun: -1373.0726157020138
+updated min: 
+obj fun: -1373.0786883684177
+updated min: 
+obj fun: -1373.0840263290665
+updated min: 
+obj fun: -1373.0874398655133
+updated min: 
+obj fun: -1373.0892956524551
+updated min: 
+obj fun: -1373.0900522591323
+updated min: 
+obj fun: -1373.0903187632307
+updated min: 
+obj fun: -1373.090364952615
+updated min: 
+obj fun: -1373.0907412162219
+updated min: 
+obj fun: -1373.0915624266422
+updated min: 
+obj fun: -1373.0926442300522
+updated min: 
+obj fun: -1373.0945915998775
+updated min: 
+obj fun: -1373.0953676629026
+updated min: 
+obj fun: -1373.0954198460022
+updated min: 
+obj fun: -1373.0960735195893
+updated min: 
+obj fun: -1373.0980258850434
+updated min: 
+obj fun: -1373.1012885786527
+updated min: 
+obj fun: -1373.1055344375013
+updated min: 
+obj fun: -1373.110828616815
+updated min: 
+obj fun: -1373.1158105819854
+updated min: 
+obj fun: -1373.1198604781246
+updated min: 
+obj fun: -1373.1218473618028
+updated min: 
+obj fun: -1373.1222322367616
+updated min: 
+obj fun: -1373.1231335220878
+updated min: 
+obj fun: -1373.127526130977
+updated min: 
+obj fun: -1373.1316048856245
+updated min: 
+obj fun: -1373.1352471142
+updated min: 
+obj fun: -1373.1387003646212
+updated min: 
+obj fun: -1373.141802942139
+updated min: 
+obj fun: -1373.144844244788
+updated min: 
+obj fun: -1373.1468192729326
+updated min: 
+obj fun: -1373.1479126090176
+updated min: 
+obj fun: -1373.1482697174836
+updated min: 
+obj fun: -1373.1484049064
+updated min: 
+obj fun: -1373.1490898409404
+updated min: 
+obj fun: -1373.1502769032268
+updated min: 
+obj fun: -1373.152414631815
+updated min: 
+obj fun: -1373.154838455258
+updated min: 
+obj fun: -1373.157027216131
+updated min: 
+obj fun: -1373.1590173397951
+updated min: 
+obj fun: -1373.160211233217
+updated min: 
+obj fun: -1373.160986946264
+updated min: 
+obj fun: -1373.1616775745647
+updated min: 
+obj fun: -1373.1628030296217
+updated min: 
+obj fun: -1373.164462650475
+updated min: 
+obj fun: -1373.1672947472607
+updated min: 
+obj fun: -1373.1690581644439
+updated min: 
+obj fun: -1373.1704970505614
+updated min: 
+obj fun: -1373.171021357041
+updated min: 
+obj fun: -1373.171062780372
+updated min: 
+obj fun: -1373.1717885911764
+updated min: 
+obj fun: -1373.1732333909742
+updated min: 
+obj fun: -1373.1755275015403
+updated min: 
+obj fun: -1373.1790906691288
+updated min: 
+obj fun: -1373.1831835714775
+updated min: 
+obj fun: -1373.1876735531205
+updated min: 
+obj fun: -1373.192001096853
+updated min: 
+obj fun: -1373.1959770570088
+updated min: 
+obj fun: -1373.198348749306
+updated min: 
+obj fun: -1373.1986928188232
+updated min: 
+obj fun: -1373.199346214233
+updated min: 
+obj fun: -1373.2004496747606
+updated min: 
+obj fun: -1373.2008283079601
+updated min: 
+obj fun: -1373.201098133078
+updated min: 
+obj fun: -1373.2014186386507
+updated min: 
+obj fun: -1373.2018488787098
+updated min: 
+obj fun: -1373.202922683891
+updated min: 
+obj fun: -1373.2047544040847
+updated min: 
+obj fun: -1373.206894595426
+updated min: 
+obj fun: -1373.2090494939644
+updated min: 
+obj fun: -1373.2109704941574
+updated min: 
+obj fun: -1373.2121374809808
+updated min: 
+obj fun: -1373.2126171434563
+updated min: 
+obj fun: -1373.2126602405604
+updated min: 
+obj fun: -1373.2139392886245
+updated min: 
+obj fun: -1373.214457289827
+updated min: 
+obj fun: -1373.214499721112
+updated min: 
+obj fun: -1373.2163046560056
+updated min: 
+obj fun: -1373.2183216511048
+updated min: 
+obj fun: -1373.219770146237
+updated min: 
+obj fun: -1373.2211503206966
+updated min: 
+obj fun: -1373.222299333463
+updated min: 
+obj fun: -1373.2235361714327
+updated min: 
+obj fun: -1373.2238975904506
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1372.4989318916555
+NN weights: [  1.509763    -6.1428356   10.466997     0.6052661   -3.544245
+  -1.414027    -3.4252613   -3.5495107   -1.045117     5.9878206
+ -10.83992     -0.55030453   2.9733684    1.0576862    3.8999636
+   3.5698721    0.59894484  55.14801     60.312603    83.69746
+ 166.25832     74.81181     54.59674    -14.620773   -62.554695
+ -22.43387     -9.215263   -26.985697   -76.72878    -24.300644
+  -6.5510044    0.29865503 -12.693751   -14.623381     9.269484
+ -11.624443   -32.85774     -4.3973494   16.812775    -8.704579
+  -2.6540194   -4.3571777    1.5228145    5.0545354  -10.96952
+   6.8445754   -2.5411196    4.122519   -21.966644    -7.826051
+   9.547387     8.216661    -5.788309     8.413977    10.7704525
+ -23.401348    -1.4502561  -12.607584    14.160945     3.5177128
+  -8.552806     4.4072576   19.55681     -5.609032    -8.952681
+ -71.00494    -39.791706   -52.84371    -82.83877    -48.25706
+ -37.66829      0.45067438 -28.122705   -57.139557   -55.19174
+ -58.9566     -56.028915   -57.623486   -54.205982   -46.094288
+   8.218273     4.2781997  -10.346847     7.528803    -4.084344
+   2.8991418   -1.9668849    3.8305278   -3.8742585    5.0606155
+  -1.9740224    3.7470684   -4.860975     2.6505322   -4.865754
+  -1.0709956 ]
+Minimum obj value:-1371.2639257640426
+Optimal xi: 30.874916
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1102.5082252104767
+W_T_median: 1057.9682615590673
+W_T_pctile_5: 962.7212470489
+W_T_CVAR_5_pct: 932.2561974677175
+F value: -1371.2639257640426
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:156: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.4
+F value: -1371.2639257640426
+-----------------------------------------------
+loaded NN:  OrderedDict([('model.hidden_layer_1.weight', tensor([[  8.2183,   4.2782],
+        [-10.3468,   7.5288],
+        [ -4.0843,   2.8991],
+        [ -1.9669,   3.8305],
+        [ -3.8743,   5.0606],
+        [ -1.9740,   3.7471],
+        [ -4.8610,   2.6505],
+        [ -4.8658,  -1.0710]], device='cuda:0')), ('model.hidden_layer_2.weight', tensor([[  0.5989,  55.1480,  60.3126,  83.6975, 166.2583,  74.8118,  54.5967,
+         -14.6208],
+        [-62.5547, -22.4339,  -9.2153, -26.9857, -76.7288, -24.3006,  -6.5510,
+           0.2987],
+        [-12.6938, -14.6234,   9.2695, -11.6244, -32.8577,  -4.3973,  16.8128,
+          -8.7046],
+        [ -2.6540,  -4.3572,   1.5228,   5.0545, -10.9695,   6.8446,  -2.5411,
+           4.1225],
+        [-21.9666,  -7.8261,   9.5474,   8.2167,  -5.7883,   8.4140,  10.7705,
+         -23.4013],
+        [ -1.4503, -12.6076,  14.1609,   3.5177,  -8.5528,   4.4073,  19.5568,
+          -5.6090],
+        [ -8.9527, -71.0049, -39.7917, -52.8437, -82.8388, -48.2571, -37.6683,
+           0.4507],
+        [-28.1227, -57.1396, -55.1917, -58.9566, -56.0289, -57.6235, -54.2060,
+         -46.0943]], device='cuda:0')), ('model.output_layer_3.weight', tensor([[  1.5098,  -6.1428,  10.4670,   0.6053,  -3.5442,  -1.4140,  -3.4253,
+          -3.5495],
+        [ -1.0451,   5.9878, -10.8399,  -0.5503,   2.9734,   1.0577,   3.9000,
+           3.5699]], device='cuda:0'))])
+loaded xi:  30.874916
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1597.9643810134835
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1592.4814074428946
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1591.5948584377034
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1599.113889477455
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.0626324857697
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.0326976921785
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.6593092415733
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1598.9764359277915
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1593.9124750133583
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.4650472630403
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1602.3577954220086
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1599.6454290091897
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.2747727875405
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -1598.961536911608
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1598.4454050506506
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.6936529145908
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1597.1448747002828
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1602.2672223739833
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1601.3270729119424
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1595.9896458647481
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1601.452445447465
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1598.9046564349346
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.2087869807121
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1592.6667470236719
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1601.345586243141
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1596.470518049826
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1590.127029370185
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -1601.341272299242
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -1568.953912486381
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1598.4849551782513
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1597.0017140116424
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1599.5826419867687
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1597.0536844812473
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1601.0335765587472
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1602.037443849301
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1601.22150084789
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1602.3906232644524
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1602.0617943298191
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1602.0552157619227
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1601.987178957725
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1599.4963075571911
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.5833812286194
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.5467087099003
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1600.544573082213
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1598.3596267782427
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1557.9399269101914
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1602.3647409229973
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1598.352379410202
+updated min: 
+obj fun: -1603.3561303242516
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1598.33132398941
+updated min: 
+obj fun: -1603.356482508924
+updated min: 
+obj fun: -1603.357098391801
+updated min: 
+obj fun: -1603.3575735901793
+updated min: 
+obj fun: -1603.3577131029647
+updated min: 
+obj fun: -1603.3578102405697
+updated min: 
+obj fun: -1603.3578244624998
+updated min: 
+obj fun: -1603.3578502832358
+updated min: 
+obj fun: -1603.3579185848253
+updated min: 
+obj fun: -1603.3582619100878
+updated min: 
+obj fun: -1603.3588834658947
+updated min: 
+obj fun: -1603.3595075917865
+updated min: 
+obj fun: -1603.360274984692
+updated min: 
+obj fun: -1603.3607679490838
+updated min: 
+obj fun: -1603.361517523776
+updated min: 
+obj fun: -1603.3621126454545
+updated min: 
+obj fun: -1603.3629425768636
+updated min: 
+obj fun: -1603.36389591901
+updated min: 
+obj fun: -1603.3647980138976
+updated min: 
+obj fun: -1603.365787708223
+updated min: 
+obj fun: -1603.3670986635677
+updated min: 
+obj fun: -1603.368563807858
+updated min: 
+obj fun: -1603.3702427934543
+updated min: 
+obj fun: -1603.3718422304894
+updated min: 
+obj fun: -1603.373380027488
+updated min: 
+obj fun: -1603.3750736350103
+updated min: 
+obj fun: -1603.3765359413974
+updated min: 
+obj fun: -1603.3779853198653
+updated min: 
+obj fun: -1603.3796025713334
+updated min: 
+obj fun: -1603.3808507788242
+updated min: 
+obj fun: -1603.382240479473
+updated min: 
+obj fun: -1603.383619754104
+updated min: 
+obj fun: -1603.3847376028812
+updated min: 
+obj fun: -1603.3856482379956
+updated min: 
+obj fun: -1603.3862711301651
+updated min: 
+obj fun: -1603.3867250417052
+updated min: 
+obj fun: -1603.386978220379
+updated min: 
+obj fun: -1603.387239931122
+updated min: 
+obj fun: -1603.3873495931296
+updated min: 
+obj fun: -1603.3874391772742
+updated min: 
+obj fun: -1603.3876877911046
+updated min: 
+obj fun: -1603.3879173264038
+updated min: 
+obj fun: -1603.3882583658155
+updated min: 
+obj fun: -1603.3887740175408
+updated min: 
+obj fun: -1603.389505448448
+updated min: 
+obj fun: -1603.3902715526126
+updated min: 
+obj fun: -1603.390821175833
+updated min: 
+obj fun: -1603.3914729656055
+updated min: 
+obj fun: -1603.3919279235477
+updated min: 
+obj fun: -1603.39231921734
+updated min: 
+obj fun: -1603.3926873141477
+updated min: 
+obj fun: -1603.392970641138
+updated min: 
+obj fun: -1603.3932226856505
+updated min: 
+obj fun: -1603.3935261197103
+updated min: 
+obj fun: -1603.3936118314627
+updated min: 
+obj fun: -1603.393952964092
+updated min: 
+obj fun: -1603.3941959987749
+updated min: 
+obj fun: -1603.3946470914436
+updated min: 
+obj fun: -1603.394987516699
+updated min: 
+obj fun: -1603.3955511284819
+updated min: 
+obj fun: -1603.3961766461168
+updated min: 
+obj fun: -1603.3969067747248
+updated min: 
+obj fun: -1603.397796049244
+updated min: 
+obj fun: -1603.3985029230155
+updated min: 
+obj fun: -1603.399360217096
+updated min: 
+obj fun: -1603.4001834332535
+updated min: 
+obj fun: -1603.400918666485
+updated min: 
+obj fun: -1603.4014999726796
+updated min: 
+obj fun: -1603.402081022485
+updated min: 
+obj fun: -1603.4023934706943
+updated min: 
+obj fun: -1603.4029572875656
+updated min: 
+obj fun: -1603.4036045666676
+updated min: 
+obj fun: -1603.404137520477
+updated min: 
+obj fun: -1603.4045522255344
+updated min: 
+obj fun: -1603.4047026556266
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1597.9891632543226
+NN weights: [ 1.15320420e+00 -5.07068348e+00  7.52912998e+00  1.17260718e+00
+ -2.32564378e+00 -1.35148907e+00 -2.48496509e+00 -8.88856411e+00
+ -6.88530445e-01  4.92011595e+00 -7.90198565e+00 -1.11754072e+00
+  1.75480998e+00  9.95165825e-01  2.96096206e+00  8.90895081e+00
+  1.10462618e+00  1.13838669e+02  6.17508698e+01  9.89697113e+01
+  2.53698761e+02  9.20450439e+01  5.46588936e+01 -1.43226070e+01
+ -7.01186142e+01 -4.01222763e+01  1.36953938e+00 -6.76100063e+00
+ -8.32263794e+01 -3.04326782e+01  4.53476995e-01  6.71083033e-01
+ -1.38653278e+01 -1.87711544e+01  3.08237038e+01 -9.70838833e+00
+ -4.57094307e+01 -2.37226048e+01  4.32038803e+01 -9.35602093e+00
+ -3.42048436e-01 -1.45983350e+00 -9.83535647e-01 -1.50617445e+00
+ -2.06099415e+00  9.62745965e-01 -8.00659955e-01  2.41742849e+00
+ -2.24868870e+01 -3.59392381e+00  9.13653469e+00  8.18288517e+00
+ -5.92357063e+00  8.46233463e+00  1.00800514e+01 -2.20369167e+01
+  7.52560422e-02  1.33340950e+01  2.35206051e+01  1.86880169e+01
+ -3.16667628e+00  7.52855110e+00  2.58191357e+01 -5.70444393e+00
+ -7.71441650e+00 -1.19188019e+02 -3.45145531e+01 -4.68665543e+01
+ -1.08616066e+02 -4.03739319e+01 -3.36798019e+01  1.12267959e+00
+ -2.53981762e+01 -1.99475651e+01  5.25564384e+00  8.90330017e-01
+ -1.52378683e+01 -3.25772820e+01  7.44822264e+00 -4.65183105e+01
+  6.80303574e+00  3.82461929e+00 -4.57874489e+00  4.35620642e+00
+ -5.18222380e+00  3.26569009e+00 -4.72907257e+00  3.49765205e+00
+ -2.01336908e+00  4.34954357e+00 -3.86242509e-01  3.70483756e+00
+ -5.35763502e+00  3.12815142e+00 -4.32108116e+00 -8.97015214e-01]
+Minimum obj value:-1602.202089124474
+Optimal xi: 30.392733
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1196.4722702411177
+W_T_median: 1080.72760069985
+W_T_pctile_5: 931.4910858101296
+W_T_CVAR_5_pct: 885.5358297701067
+F value: -1602.202089124474
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:156: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.6
+F value: -1602.202089124474
+-----------------------------------------------
+loaded NN:  OrderedDict([('model.hidden_layer_1.weight', tensor([[ 6.8030,  3.8246],
+        [-4.5787,  4.3562],
+        [-5.1822,  3.2657],
+        [-4.7291,  3.4977],
+        [-2.0134,  4.3495],
+        [-0.3862,  3.7048],
+        [-5.3576,  3.1282],
+        [-4.3211, -0.8970]], device='cuda:0')), ('model.hidden_layer_2.weight', tensor([[ 1.1046e+00,  1.1384e+02,  6.1751e+01,  9.8970e+01,  2.5370e+02,
+          9.2045e+01,  5.4659e+01, -1.4323e+01],
+        [-7.0119e+01, -4.0122e+01,  1.3695e+00, -6.7610e+00, -8.3226e+01,
+         -3.0433e+01,  4.5348e-01,  6.7108e-01],
+        [-1.3865e+01, -1.8771e+01,  3.0824e+01, -9.7084e+00, -4.5709e+01,
+         -2.3723e+01,  4.3204e+01, -9.3560e+00],
+        [-3.4205e-01, -1.4598e+00, -9.8354e-01, -1.5062e+00, -2.0610e+00,
+          9.6275e-01, -8.0066e-01,  2.4174e+00],
+        [-2.2487e+01, -3.5939e+00,  9.1365e+00,  8.1829e+00, -5.9236e+00,
+          8.4623e+00,  1.0080e+01, -2.2037e+01],
+        [ 7.5256e-02,  1.3334e+01,  2.3521e+01,  1.8688e+01, -3.1667e+00,
+          7.5286e+00,  2.5819e+01, -5.7044e+00],
+        [-7.7144e+00, -1.1919e+02, -3.4515e+01, -4.6867e+01, -1.0862e+02,
+         -4.0374e+01, -3.3680e+01,  1.1227e+00],
+        [-2.5398e+01, -1.9948e+01,  5.2556e+00,  8.9033e-01, -1.5238e+01,
+         -3.2577e+01,  7.4482e+00, -4.6518e+01]], device='cuda:0')), ('model.output_layer_3.weight', tensor([[ 1.1532, -5.0707,  7.5291,  1.1726, -2.3256, -1.3515, -2.4850, -8.8886],
+        [-0.6885,  4.9201, -7.9020, -1.1175,  1.7548,  0.9952,  2.9610,  8.9090]],
+       device='cuda:0'))])
+loaded xi:  30.392733
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.286856724518
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1719.1640704995968
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.0824763098017
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.4379954463122
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1713.446918938184
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1725.060874544993
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.9174889616766
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.3246496979204
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1723.9545809712533
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1722.5782458388226
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.5866920599674
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1723.8667170018725
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1721.7336253585393
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -1723.609385032255
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1721.278968701802
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1720.3007030813137
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1722.954647697628
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1715.6041712825415
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1717.3774033186407
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1719.9688014424046
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1718.9667012757936
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1718.8774786972415
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1717.276760087233
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.423569785246
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1721.544882324781
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1717.9709706266287
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1725.8275869685365
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.4543397395921
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -1722.2637642526568
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1723.4369729668547
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1716.9841481731282
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.1865447245737
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1722.1623170712837
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1719.6630705002462
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1721.6050629481524
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1722.817620100888
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1725.2591595880785
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1720.016719655014
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1719.2140837924146
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.9719218367677
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1725.5892627697372
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1719.8546538828857
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1723.99481584394
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1715.6329476417457
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1725.3205626984989
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.5048439707616
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1718.2117237346251
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1725.4771587222588
+updated min: 
+obj fun: -1726.6508808549413
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1724.410232520453
+updated min: 
+obj fun: -1726.6511630086954
+updated min: 
+obj fun: -1726.6514314044095
+updated min: 
+obj fun: -1726.6516624147803
+updated min: 
+obj fun: -1726.6518043529013
+updated min: 
+obj fun: -1726.652165332027
+updated min: 
+obj fun: -1726.6523905383945
+updated min: 
+obj fun: -1726.6525098556274
+updated min: 
+obj fun: -1726.6526856995122
+updated min: 
+obj fun: -1726.6526937075676
+updated min: 
+obj fun: -1726.653191553627
+updated min: 
+obj fun: -1726.6538182353834
+updated min: 
+obj fun: -1726.6543568124541
+updated min: 
+obj fun: -1726.6547482685462
+updated min: 
+obj fun: -1726.6549916028641
+updated min: 
+obj fun: -1726.6551904257917
+updated min: 
+obj fun: -1726.65539137839
+updated min: 
+obj fun: -1726.6555404950902
+updated min: 
+obj fun: -1726.6560026665793
+updated min: 
+obj fun: -1726.6569169239715
+updated min: 
+obj fun: -1726.6576004234942
+updated min: 
+obj fun: -1726.6582924150418
+updated min: 
+obj fun: -1726.6587471019723
+updated min: 
+obj fun: -1726.6592335540147
+updated min: 
+obj fun: -1726.6592760096796
+updated min: 
+obj fun: -1726.6592826320966
+updated min: 
+obj fun: -1726.659609461457
+updated min: 
+obj fun: -1726.6602557239562
+updated min: 
+obj fun: -1726.6609242639993
+updated min: 
+obj fun: -1726.6617667821088
+updated min: 
+obj fun: -1726.6627035678623
+updated min: 
+obj fun: -1726.6634434898428
+updated min: 
+obj fun: -1726.6641682188977
+updated min: 
+obj fun: -1726.6647257329994
+updated min: 
+obj fun: -1726.6652417823207
+updated min: 
+obj fun: -1726.6657562899452
+updated min: 
+obj fun: -1726.6659936373949
+updated min: 
+obj fun: -1726.6662859397463
+updated min: 
+obj fun: -1726.6665299404667
+updated min: 
+obj fun: -1726.6669934449383
+updated min: 
+obj fun: -1726.667426599242
+updated min: 
+obj fun: -1726.6678272965971
+updated min: 
+obj fun: -1726.6682179591023
+updated min: 
+obj fun: -1726.6684868379243
+updated min: 
+obj fun: -1726.6687128831268
+updated min: 
+obj fun: -1726.6690805467167
+updated min: 
+obj fun: -1726.669409708293
+updated min: 
+obj fun: -1726.6696998299592
+updated min: 
+obj fun: -1726.6701504570344
+updated min: 
+obj fun: -1726.6709560318598
+updated min: 
+obj fun: -1726.6716506401615
+updated min: 
+obj fun: -1726.6722975670395
+updated min: 
+obj fun: -1726.6728694614374
+updated min: 
+obj fun: -1726.6733054329932
+updated min: 
+obj fun: -1726.6734493951337
+updated min: 
+obj fun: -1726.673517168822
+updated min: 
+obj fun: -1726.6753600553573
+updated min: 
+obj fun: -1726.676844380937
+updated min: 
+obj fun: -1726.6782467603748
+updated min: 
+obj fun: -1726.6792822743887
+updated min: 
+obj fun: -1726.6800862015084
+updated min: 
+obj fun: -1726.6806582382098
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1716.999410044104
+NN weights: [ 1.21052539e+00 -2.73644114e+00  7.47884369e+00  2.36475825e+00
+ -9.53578115e-01 -1.34646046e+00 -3.04111886e+00 -3.41399431e+00
+ -7.45664835e-01  2.58813357e+00 -7.85164642e+00 -2.30967140e+00
+  3.87247950e-01  9.90337789e-01  3.51770830e+00  3.48101401e+00
+  1.54134870e-01  1.69738098e+02  7.94040146e+01  1.37231155e+02
+  3.05911865e+02  1.22777275e+02  7.11212997e+01 -1.38011761e+01
+ -7.63502808e+01 -3.51087570e+01  9.03003395e-01 -9.63856220e+00
+ -8.12921600e+01 -8.58165207e+01 -1.47350121e+00  2.96567726e+00
+ -2.96534500e+01 -6.00057144e+01  1.09677877e+01 -4.60978127e+01
+ -1.01406158e+02 -6.98217163e+01  2.44248447e+01 -2.62544613e+01
+ -1.63678622e+00 -3.16666031e+00  1.83605826e+00 -2.07825613e+00
+ -3.49937940e+00 -7.30577111e-01  2.83326125e+00 -7.18041420e-01
+ -1.58616915e+01  7.68180192e-01  2.22674584e+00  1.57100010e+00
+ -4.34274673e-01  1.43413515e+01  2.71723080e+00 -1.96291199e+01
+  1.29816866e+00  3.77676506e+01  2.64489403e+01  2.69535446e+01
+  2.62285290e+01  1.14727535e+01  2.85380173e+01 -6.41136122e+00
+ -1.16453333e+01 -1.25324547e+02 -4.10486908e+01 -5.50745964e+01
+ -1.15978699e+02 -5.78262711e+01 -4.04579926e+01  7.69192576e-01
+ -2.96458874e+01 -8.24150622e-01  2.33071098e+01  1.90239334e+01
+ -2.07472205e+00 -2.92686234e+01  2.51554985e+01 -4.97843246e+01
+  3.97483993e+00  3.03916693e+00 -4.47242498e+00  3.91977048e+00
+ -6.56630421e+00  3.24788809e+00 -6.06702662e+00  3.36228752e+00
+ -2.63240576e+00  3.99296093e+00 -2.72637308e-01  4.16425085e+00
+ -6.58650064e+00  3.22963071e+00 -7.34584045e+00 -1.02579665e+00]
+Minimum obj value:-1658.6043578971119
+Optimal xi: 30.856232
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1260.7725862659597
+W_T_median: 1101.5644210608598
+W_T_pctile_5: 901.3580789421716
+W_T_CVAR_5_pct: 844.1400081659906
+F value: -1658.6043578971119
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:156: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.7
+F value: -1658.6043578971119
+-----------------------------------------------
+loaded NN:  OrderedDict([('model.hidden_layer_1.weight', tensor([[ 3.9748,  3.0392],
+        [-4.4724,  3.9198],
+        [-6.5663,  3.2479],
+        [-6.0670,  3.3623],
+        [-2.6324,  3.9930],
+        [-0.2726,  4.1643],
+        [-6.5865,  3.2296],
+        [-7.3458, -1.0258]], device='cuda:0')), ('model.hidden_layer_2.weight', tensor([[ 1.5413e-01,  1.6974e+02,  7.9404e+01,  1.3723e+02,  3.0591e+02,
+          1.2278e+02,  7.1121e+01, -1.3801e+01],
+        [-7.6350e+01, -3.5109e+01,  9.0300e-01, -9.6386e+00, -8.1292e+01,
+         -8.5817e+01, -1.4735e+00,  2.9657e+00],
+        [-2.9653e+01, -6.0006e+01,  1.0968e+01, -4.6098e+01, -1.0141e+02,
+         -6.9822e+01,  2.4425e+01, -2.6254e+01],
+        [-1.6368e+00, -3.1667e+00,  1.8361e+00, -2.0783e+00, -3.4994e+00,
+         -7.3058e-01,  2.8333e+00, -7.1804e-01],
+        [-1.5862e+01,  7.6818e-01,  2.2267e+00,  1.5710e+00, -4.3427e-01,
+          1.4341e+01,  2.7172e+00, -1.9629e+01],
+        [ 1.2982e+00,  3.7768e+01,  2.6449e+01,  2.6954e+01,  2.6229e+01,
+          1.1473e+01,  2.8538e+01, -6.4114e+00],
+        [-1.1645e+01, -1.2532e+02, -4.1049e+01, -5.5075e+01, -1.1598e+02,
+         -5.7826e+01, -4.0458e+01,  7.6919e-01],
+        [-2.9646e+01, -8.2415e-01,  2.3307e+01,  1.9024e+01, -2.0747e+00,
+         -2.9269e+01,  2.5155e+01, -4.9784e+01]], device='cuda:0')), ('model.output_layer_3.weight', tensor([[ 1.2105, -2.7364,  7.4788,  2.3648, -0.9536, -1.3465, -3.0411, -3.4140],
+        [-0.7457,  2.5881, -7.8516, -2.3097,  0.3872,  0.9903,  3.5177,  3.4810]],
+       device='cuda:0'))])
+loaded xi:  30.856232
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.8355067574978
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.2280904403733
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1844.1534381734812
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1851.8742665140444
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.9111687939633
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.1125105799072
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.1549245184483
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1849.4112461016864
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1850.0593035596241
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1853.4816915209026
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1853.5218734285666
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1852.1807456664421
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1855.2507794165545
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -1849.9572218322844
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.6790597088159
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1855.7166203745232
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1847.651274941237
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1855.0886827639845
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1855.4881893206962
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1848.3568392593131
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1855.974153678614
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1851.2129698781207
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.2415800519982
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1852.0701412401543
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.716767112241
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1852.137565992724
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1854.3058140677404
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -1851.9252460628443
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -1855.4780843457595
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1851.0271567976386
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1852.0860589631313
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1850.8421263235748
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1848.6730465742094
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1853.4960877040896
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1853.6839299651842
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1853.1631380973345
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1842.666671892205
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1851.5161757654453
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1849.1095486543015
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1851.0997943994705
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1855.212587888773
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1844.2742686899526
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1852.2442054878295
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1735.818314400384
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1817.470772658886
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1846.943035333846
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1849.8067877143076
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1853.6311792708993
+updated min: 
+obj fun: -1854.6998021958814
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1846.9451026179509
+updated min: 
+obj fun: -1854.700370429492
+updated min: 
+obj fun: -1854.7026367536293
+updated min: 
+obj fun: -1854.705388857365
+updated min: 
+obj fun: -1854.708652126594
+updated min: 
+obj fun: -1854.7126176323488
+updated min: 
+obj fun: -1854.7170987560564
+updated min: 
+obj fun: -1854.7216289224123
+updated min: 
+obj fun: -1854.726423938328
+updated min: 
+obj fun: -1854.7307685352632
+updated min: 
+obj fun: -1854.7348399297448
+updated min: 
+obj fun: -1854.7379303816226
+updated min: 
+obj fun: -1854.7405609049995
+updated min: 
+obj fun: -1854.7426339017895
+updated min: 
+obj fun: -1854.7439377438147
+updated min: 
+obj fun: -1854.7450226340793
+updated min: 
+obj fun: -1854.7459688011495
+updated min: 
+obj fun: -1854.7470283843793
+updated min: 
+obj fun: -1854.7484169050874
+updated min: 
+obj fun: -1854.749142570089
+updated min: 
+obj fun: -1854.749928069071
+updated min: 
+obj fun: -1854.750896315761
+updated min: 
+obj fun: -1854.7513629589107
+updated min: 
+obj fun: -1854.7520197507158
+updated min: 
+obj fun: -1854.752698376763
+updated min: 
+obj fun: -1854.7539388606854
+updated min: 
+obj fun: -1854.75582662232
+updated min: 
+obj fun: -1854.758023677402
+updated min: 
+obj fun: -1854.7604979183875
+updated min: 
+obj fun: -1854.7625138054475
+updated min: 
+obj fun: -1854.764675493949
+updated min: 
+obj fun: -1854.766494821216
+updated min: 
+obj fun: -1854.7678441498847
+updated min: 
+obj fun: -1854.7693604035685
+updated min: 
+obj fun: -1854.7708921690041
+updated min: 
+obj fun: -1854.7715280361472
+updated min: 
+obj fun: -1854.772033538793
+updated min: 
+obj fun: -1854.772644667544
+updated min: 
+obj fun: -1854.7730096533876
+updated min: 
+obj fun: -1854.7743500192582
+updated min: 
+obj fun: -1854.7758736833223
+updated min: 
+obj fun: -1854.777816309813
+updated min: 
+obj fun: -1854.7801582991542
+updated min: 
+obj fun: -1854.7823016435173
+updated min: 
+obj fun: -1854.7844785792374
+updated min: 
+obj fun: -1854.7862824804895
+updated min: 
+obj fun: -1854.7878402838105
+updated min: 
+obj fun: -1854.7891380567705
+updated min: 
+obj fun: -1854.7899726564817
+updated min: 
+obj fun: -1854.790853757574
+updated min: 
+obj fun: -1854.7923840495614
+updated min: 
+obj fun: -1854.794447363098
+updated min: 
+obj fun: -1854.7966913004839
+updated min: 
+obj fun: -1854.7994322330558
+updated min: 
+obj fun: -1854.803372084877
+updated min: 
+obj fun: -1854.8075790026949
+updated min: 
+obj fun: -1854.8120110292502
+updated min: 
+obj fun: -1854.8161095421642
+updated min: 
+obj fun: -1854.8192613048905
+updated min: 
+obj fun: -1854.8219046800923
+updated min: 
+obj fun: -1854.82352132177
+updated min: 
+obj fun: -1854.824394146606
+updated min: 
+obj fun: -1854.8249158834342
+updated min: 
+obj fun: -1854.8254556604018
+updated min: 
+obj fun: -1854.8261684823708
+updated min: 
+obj fun: -1854.8273342456189
+updated min: 
+obj fun: -1854.8287474305716
+updated min: 
+obj fun: -1854.8297428025064
+updated min: 
+obj fun: -1854.8310473476113
+updated min: 
+obj fun: -1854.8321791758322
+updated min: 
+obj fun: -1854.832814800144
+updated min: 
+obj fun: -1854.832969043552
+updated min: 
+obj fun: -1854.833268366776
+updated min: 
+obj fun: -1854.8334355973993
+updated min: 
+obj fun: -1854.8335950057638
+updated min: 
+obj fun: -1854.8342108030738
+updated min: 
+obj fun: -1854.8352570641805
+updated min: 
+obj fun: -1854.8365833366506
+updated min: 
+obj fun: -1854.8381669989483
+updated min: 
+obj fun: -1854.8396421603188
+updated min: 
+obj fun: -1854.840757979619
+updated min: 
+obj fun: -1854.841832265144
+updated min: 
+obj fun: -1854.8426656281458
+updated min: 
+obj fun: -1854.8430017090197
+updated min: 
+obj fun: -1854.843165052338
+updated min: 
+obj fun: -1854.8441154877717
+updated min: 
+obj fun: -1854.8458754263945
+updated min: 
+obj fun: -1854.8479588171379
+updated min: 
+obj fun: -1854.8505646824308
+updated min: 
+obj fun: -1854.8534321641819
+updated min: 
+obj fun: -1854.8558040652597
+updated min: 
+obj fun: -1854.8578244773762
+updated min: 
+obj fun: -1854.8596910187766
+updated min: 
+obj fun: -1854.860704697645
+updated min: 
+obj fun: -1854.8612215227902
+updated min: 
+obj fun: -1854.8617045077087
+updated min: 
+obj fun: -1854.8625559671716
+updated min: 
+obj fun: -1854.8629851064184
+updated min: 
+obj fun: -1854.863634629515
+updated min: 
+obj fun: -1854.8644974625931
+updated min: 
+obj fun: -1854.8660332560437
+updated min: 
+obj fun: -1854.8688233986193
+updated min: 
+obj fun: -1854.8719185831972
+updated min: 
+obj fun: -1854.875674961347
+updated min: 
+obj fun: -1854.8789522408815
+updated min: 
+obj fun: -1854.8820586731138
+updated min: 
+obj fun: -1854.8839781220984
+updated min: 
+obj fun: -1854.8850554551286
+updated min: 
+obj fun: -1854.885383100889
+updated min: 
+obj fun: -1854.887503689915
+updated min: 
+obj fun: -1854.8896836433921
+updated min: 
+obj fun: -1854.891658677701
+updated min: 
+obj fun: -1854.893199681917
+updated min: 
+obj fun: -1854.8942187130683
+updated min: 
+obj fun: -1854.8950364241098
+updated min: 
+obj fun: -1854.8960796680165
+updated min: 
+obj fun: -1854.8974239034844
+updated min: 
+obj fun: -1854.8994219845677
+updated min: 
+obj fun: -1854.901713290331
+updated min: 
+obj fun: -1854.9038303254285
+updated min: 
+obj fun: -1854.9053673538815
+updated min: 
+obj fun: -1854.9063907464438
+updated min: 
+obj fun: -1854.907386147446
+updated min: 
+obj fun: -1854.9077991504223
+updated min: 
+obj fun: -1854.9093666766591
+updated min: 
+obj fun: -1854.9117928671972
+updated min: 
+obj fun: -1854.9147667281334
+updated min: 
+obj fun: -1854.9182125363723
+updated min: 
+obj fun: -1854.9213508477421
+updated min: 
+obj fun: -1854.92337563584
+updated min: 
+obj fun: -1854.924726717702
+updated min: 
+obj fun: -1854.9253132672325
+updated min: 
+obj fun: -1854.9258295406048
+updated min: 
+obj fun: -1854.926046234762
+updated min: 
+obj fun: -1854.9263071814878
+updated min: 
+obj fun: -1854.9271687160904
+updated min: 
+obj fun: -1854.9283469749535
+updated min: 
+obj fun: -1854.9303192828045
+updated min: 
+obj fun: -1854.9326904951156
+updated min: 
+obj fun: -1854.9353682622832
+updated min: 
+obj fun: -1854.9382840378728
+updated min: 
+obj fun: -1854.9412620237895
+updated min: 
+obj fun: -1854.9438446586244
+updated min: 
+obj fun: -1854.9454885110758
+updated min: 
+obj fun: -1854.9461843779322
+updated min: 
+obj fun: -1854.9465725678128
+updated min: 
+obj fun: -1854.9478626437046
+updated min: 
+obj fun: -1854.948552325517
+updated min: 
+obj fun: -1854.9490327024996
+updated min: 
+obj fun: -1854.9491166945504
+updated min: 
+obj fun: -1854.9492168573977
+updated min: 
+obj fun: -1854.9498872213696
+updated min: 
+obj fun: -1854.9507993431666
+updated min: 
+obj fun: -1854.9517710964953
+updated min: 
+obj fun: -1854.9528264316366
+updated min: 
+obj fun: -1854.9543862458443
+updated min: 
+obj fun: -1854.9560054935394
+updated min: 
+obj fun: -1854.9572206050768
+updated min: 
+obj fun: -1854.9579371066993
+updated min: 
+obj fun: -1854.958309982323
+updated min: 
+obj fun: -1854.9583777318032
+updated min: 
+obj fun: -1854.960907090612
+updated min: 
+obj fun: -1854.963523779975
+updated min: 
+obj fun: -1854.9653697117917
+updated min: 
+obj fun: -1854.966065916802
+updated min: 
+obj fun: -1854.9672298549553
+updated min: 
+obj fun: -1854.9687418958456
+updated min: 
+obj fun: -1854.9703813703552
+updated min: 
+obj fun: -1854.9720224305363
+updated min: 
+obj fun: -1854.9737527691966
+updated min: 
+obj fun: -1854.9755069821952
+updated min: 
+obj fun: -1854.9770956311647
+updated min: 
+obj fun: -1854.9788632292025
+updated min: 
+obj fun: -1854.9808995295932
+updated min: 
+obj fun: -1854.9834801010818
+updated min: 
+obj fun: -1854.986786818427
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1851.7357050294117
+NN weights: [ 1.15314519e+00 -3.47813988e+00  9.48539543e+00  2.96469784e+00
+ -8.80896375e-02 -1.79385364e+00 -3.31269884e+00 -4.65805817e+00
+ -6.87411606e-01  3.33138466e+00 -9.85819149e+00 -2.90955067e+00
+ -4.73165631e-01  1.43863022e+00  3.78984404e+00  4.80492067e+00
+ -2.52928048e-01  2.27147430e+02  1.27974709e+02  1.74187637e+02
+  3.53412781e+02  1.61166946e+02  1.17560928e+02 -1.70397301e+01
+ -1.04582901e+02 -4.93441467e+01 -8.33061028e+00 -1.39104548e+01
+ -1.06278404e+02 -1.41295273e+02 -1.82148094e+01  3.56466913e+00
+ -4.07025681e+01 -1.36847305e+02 -8.56187210e+01 -1.42504776e+02
+ -1.64219482e+02 -1.00128670e+02 -7.64639893e+01 -3.12934685e+01
+ -1.71844363e+00 -3.49790549e+00 -2.62527496e-01  2.27281660e-01
+ -1.86163366e+00 -1.53556991e+00  4.21672153e+00 -1.18992710e+00
+ -3.93675079e+01 -2.22498226e+00 -1.19078455e+01 -1.19896851e+01
+ -1.03340073e+01  1.05922270e+01 -1.10436192e+01 -4.57312126e+01
+  2.61307979e+00  3.32537575e+01  7.18190193e+00  1.78404598e+01
+  4.75652199e+01  1.58375378e+01  7.48155355e+00 -5.09633064e+00
+ -1.91638184e+01 -1.36046371e+02 -5.03097038e+01 -5.69366074e+01
+ -1.15073456e+02 -8.34268951e+01 -5.95221443e+01  1.26799941e+00
+ -3.42586823e+01  5.17782116e+00  2.50058727e+01  2.22176495e+01
+  2.18739343e+00 -2.79325466e+01  2.68093262e+01 -6.32177658e+01
+  3.79190683e+00  2.81814337e+00 -6.96490955e+00  6.21749687e+00
+ -2.08644700e+00  3.16564012e+00 -2.51388264e+00  3.05399108e+00
+ -2.70727134e+00  3.13291287e+00 -1.71444273e+00  6.20614862e+00
+ -5.21325493e+00  3.29215217e+00 -6.30685711e+00 -6.48550987e-01]
+Minimum obj value:-1854.1286326628294
+Optimal xi: 29.289234
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1356.2580692272845
+W_T_median: 1140.1148002649618
+W_T_pctile_5: 850.9842789016118
+W_T_CVAR_5_pct: 769.9983392955328
+F value: -1854.1286326628294
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:156: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.8
+F value: -1854.1286326628294
+-----------------------------------------------
+loaded NN:  OrderedDict([('model.hidden_layer_1.weight', tensor([[ 3.7919,  2.8181],
+        [-6.9649,  6.2175],
+        [-2.0864,  3.1656],
+        [-2.5139,  3.0540],
+        [-2.7073,  3.1329],
+        [-1.7144,  6.2061],
+        [-5.2133,  3.2922],
+        [-6.3069, -0.6486]], device='cuda:0')), ('model.hidden_layer_2.weight', tensor([[-2.5293e-01,  2.2715e+02,  1.2797e+02,  1.7419e+02,  3.5341e+02,
+          1.6117e+02,  1.1756e+02, -1.7040e+01],
+        [-1.0458e+02, -4.9344e+01, -8.3306e+00, -1.3910e+01, -1.0628e+02,
+         -1.4130e+02, -1.8215e+01,  3.5647e+00],
+        [-4.0703e+01, -1.3685e+02, -8.5619e+01, -1.4250e+02, -1.6422e+02,
+         -1.0013e+02, -7.6464e+01, -3.1293e+01],
+        [-1.7184e+00, -3.4979e+00, -2.6253e-01,  2.2728e-01, -1.8616e+00,
+         -1.5356e+00,  4.2167e+00, -1.1899e+00],
+        [-3.9368e+01, -2.2250e+00, -1.1908e+01, -1.1990e+01, -1.0334e+01,
+          1.0592e+01, -1.1044e+01, -4.5731e+01],
+        [ 2.6131e+00,  3.3254e+01,  7.1819e+00,  1.7840e+01,  4.7565e+01,
+          1.5838e+01,  7.4816e+00, -5.0963e+00],
+        [-1.9164e+01, -1.3605e+02, -5.0310e+01, -5.6937e+01, -1.1507e+02,
+         -8.3427e+01, -5.9522e+01,  1.2680e+00],
+        [-3.4259e+01,  5.1778e+00,  2.5006e+01,  2.2218e+01,  2.1874e+00,
+         -2.7933e+01,  2.6809e+01, -6.3218e+01]], device='cuda:0')), ('model.output_layer_3.weight', tensor([[ 1.1531, -3.4781,  9.4854,  2.9647, -0.0881, -1.7939, -3.3127, -4.6581],
+        [-0.6874,  3.3314, -9.8582, -2.9096, -0.4732,  1.4386,  3.7898,  4.8049]],
+       device='cuda:0'))])
+loaded xi:  29.289234
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.1691704388418
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.5997771854438
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.1500571321765
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.5524047911867
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.3514495776192
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.5507521044337
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.9336975189794
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1980.1200877924969
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.4080622128697
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.09957496216
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.762946878125
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.278914554248
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.1595252402806
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -1991.295016480906
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.4030329061643
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.368786549475
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.3183618950002
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.9860405251836
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1987.948152272717
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1986.7453919714608
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.2270851017097
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.8852102680617
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.2070861462914
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1991.7582525215173
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.9685650905833
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.2139262617716
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1991.8278771179525
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -1991.1595845642419
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -1991.2371742611253
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1991.2946205499345
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.070972942813
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1987.6914570571669
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1985.7725285541378
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.903767626473
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1983.147478568741
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.6121882330658
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1987.1508994464841
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1989.1560950551548
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.5313397294224
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.7790125280135
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1984.4301501794212
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1987.4330340786107
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1986.6980582017118
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.9766890084777
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1988.4050669273306
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.0065628401128
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1987.9591232270614
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1991.1195912706567
+updated min: 
+obj fun: -1992.416494747884
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1991.2835777717416
+updated min: 
+obj fun: -1992.4166335607447
+updated min: 
+obj fun: -1992.4175458449272
+updated min: 
+obj fun: -1992.4189529907153
+updated min: 
+obj fun: -1992.420492621864
+updated min: 
+obj fun: -1992.4227266460462
+updated min: 
+obj fun: -1992.424433982876
+updated min: 
+obj fun: -1992.4253957118915
+updated min: 
+obj fun: -1992.425758673619
+updated min: 
+obj fun: -1992.4262020991907
+updated min: 
+obj fun: -1992.4279044270513
+updated min: 
+obj fun: -1992.4287594796588
+updated min: 
+obj fun: -1992.4293933378212
+updated min: 
+obj fun: -1992.4297313601726
+updated min: 
+obj fun: -1992.4301160893835
+updated min: 
+obj fun: -1992.4302139357721
+updated min: 
+obj fun: -1992.430902663882
+updated min: 
+obj fun: -1992.4321867154838
+updated min: 
+obj fun: -1992.4332613960162
+updated min: 
+obj fun: -1992.4343946209856
+updated min: 
+obj fun: -1992.4351962036164
+updated min: 
+obj fun: -1992.4358420988908
+updated min: 
+obj fun: -1992.4364540450485
+updated min: 
+obj fun: -1992.4366099373938
+updated min: 
+obj fun: -1992.4367300537524
+updated min: 
+obj fun: -1992.4369396393747
+updated min: 
+obj fun: -1992.437359730106
+updated min: 
+obj fun: -1992.4380436695267
+updated min: 
+obj fun: -1992.4387815368295
+updated min: 
+obj fun: -1992.4395100077083
+updated min: 
+obj fun: -1992.4404123800423
+updated min: 
+obj fun: -1992.4408327943802
+updated min: 
+obj fun: -1992.4414626167886
+updated min: 
+obj fun: -1992.441596299
+updated min: 
+obj fun: -1992.4416519544516
+updated min: 
+obj fun: -1992.4419630652837
+updated min: 
+obj fun: -1992.4420801886106
+updated min: 
+obj fun: -1992.4426536419326
+updated min: 
+obj fun: -1992.4429130027079
+updated min: 
+obj fun: -1992.443174081288
+updated min: 
+obj fun: -1992.4435384790966
+updated min: 
+obj fun: -1992.4440315351635
+updated min: 
+obj fun: -1992.445533625804
+updated min: 
+obj fun: -1992.4463841918928
+updated min: 
+obj fun: -1992.4468951344372
+updated min: 
+obj fun: -1992.4476901344674
+updated min: 
+obj fun: -1992.4482558434033
+updated min: 
+obj fun: -1992.4487451674238
+updated min: 
+obj fun: -1992.4498968974196
+updated min: 
+obj fun: -1992.4502174229194
+updated min: 
+obj fun: -1992.4503799514578
+updated min: 
+obj fun: -1992.4506721628347
+updated min: 
+obj fun: -1992.4507310902031
+updated min: 
+obj fun: -1992.4508785421372
+updated min: 
+obj fun: -1992.4510508678825
+updated min: 
+obj fun: -1992.4520267525413
+updated min: 
+obj fun: -1992.4520474384697
+updated min: 
+obj fun: -1992.4521540796977
+updated min: 
+obj fun: -1992.4522237951817
+updated min: 
+obj fun: -1992.4524648948764
+updated min: 
+obj fun: -1992.4525090728582
+updated min: 
+obj fun: -1992.4525135938213
+updated min: 
+obj fun: -1992.4525275584863
+updated min: 
+obj fun: -1992.4526727182292
+updated min: 
+obj fun: -1992.4527750621796
+updated min: 
+obj fun: -1992.4528685014748
+updated min: 
+obj fun: -1992.4530210727055
+updated min: 
+obj fun: -1992.4534398426385
+updated min: 
+obj fun: -1992.453471974416
+updated min: 
+obj fun: -1992.453802069209
+updated min: 
+obj fun: -1992.454180454722
+updated min: 
+obj fun: -1992.4548438097813
+updated min: 
+obj fun: -1992.4555665079392
+updated min: 
+obj fun: -1992.4560026613758
+updated min: 
+obj fun: -1992.4563278462224
+updated min: 
+obj fun: -1992.4565435899017
+updated min: 
+obj fun: -1992.456672064823
+updated min: 
+obj fun: -1992.457252357331
+updated min: 
+obj fun: -1992.4578148211328
+updated min: 
+obj fun: -1992.459123943025
+updated min: 
+obj fun: -1992.4600252683
+updated min: 
+obj fun: -1992.4604992247557
+updated min: 
+obj fun: -1992.4608893827804
+updated min: 
+obj fun: -1992.4612290775315
+updated min: 
+obj fun: -1992.4616834702538
+updated min: 
+obj fun: -1992.4618285860763
+updated min: 
+obj fun: -1992.461944745211
+updated min: 
+obj fun: -1992.4620844239616
+updated min: 
+obj fun: -1992.4623533592226
+updated min: 
+obj fun: -1992.4628019301415
+updated min: 
+obj fun: -1992.4631725033514
+updated min: 
+obj fun: -1992.463940148924
+updated min: 
+obj fun: -1992.4645253190433
+updated min: 
+obj fun: -1992.4648177523625
+updated min: 
+obj fun: -1992.4651124769964
+updated min: 
+obj fun: -1992.4652461476574
+updated min: 
+obj fun: -1992.4654737547223
+updated min: 
+obj fun: -1992.4664974591599
+updated min: 
+obj fun: -1992.4668091514707
+updated min: 
+obj fun: -1992.4673564745706
+updated min: 
+obj fun: -1992.4679009472713
+updated min: 
+obj fun: -1992.4684435559632
+updated min: 
+obj fun: -1992.4689014469864
+updated min: 
+obj fun: -1992.4691754988523
+updated min: 
+obj fun: -1992.4691936260417
+updated min: 
+obj fun: -1992.4692480763551
+updated min: 
+obj fun: -1992.4693937487975
+updated min: 
+obj fun: -1992.4698291165428
+updated min: 
+obj fun: -1992.4708451187325
+updated min: 
+obj fun: -1992.4711622858786
+updated min: 
+obj fun: -1992.471243910231
+updated min: 
+obj fun: -1992.4713431014457
+updated min: 
+obj fun: -1992.472050279416
+updated min: 
+obj fun: -1992.4729876282
+updated min: 
+obj fun: -1992.473737835873
+updated min: 
+obj fun: -1992.4746017597822
+updated min: 
+obj fun: -1992.4753099680902
+updated min: 
+obj fun: -1992.4759832508767
+updated min: 
+obj fun: -1992.476579938239
+updated min: 
+obj fun: -1992.477227028035
+updated min: 
+obj fun: -1992.4778576223791
+updated min: 
+obj fun: -1992.4786433191389
+updated min: 
+obj fun: -1992.479378478756
+updated min: 
+obj fun: -1992.4793793279432
+updated min: 
+obj fun: -1992.480441464495
+updated min: 
+obj fun: -1992.4814464586048
+updated min: 
+obj fun: -1992.4824191174837
+updated min: 
+obj fun: -1992.4834713545367
+updated min: 
+obj fun: -1992.4843774239273
+updated min: 
+obj fun: -1992.485154990277
+updated min: 
+obj fun: -1992.485823052256
+updated min: 
+obj fun: -1992.486525703414
+updated min: 
+obj fun: -1992.487116457093
+updated min: 
+obj fun: -1992.4875552776164
+updated min: 
+obj fun: -1992.4876026559962
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -1990.263333359562
+NN weights: [ 1.15137720e+00 -3.50735545e+00  8.25548077e+00  3.02721620e+00
+  2.84350753e+00 -1.89954054e+00 -4.08394384e+00 -4.74463749e+00
+ -6.84681177e-01  3.36521626e+00 -8.62827682e+00 -2.97183251e+00
+ -3.40476441e+00  1.54530680e+00  4.56290579e+00  4.95493269e+00
+ -1.23630390e-01  2.73819641e+02  1.70098404e+02  2.16076294e+02
+  4.00384277e+02  1.12515656e+02  1.88827911e+02 -1.70567551e+01
+ -1.40440353e+02 -7.29401855e+01 -9.50670815e+00 -9.56931877e+00
+ -8.27558517e+01 -1.92920715e+02 -1.45372190e+01  2.67669773e+00
+ -4.28346138e+01 -1.36253098e+02 -1.16723839e+02 -1.77110641e+02
+ -1.99226990e+02 -9.50648880e+01 -1.27246269e+02 -3.66316719e+01
+ -1.84474325e+00 -3.34136438e+00 -1.03261530e+00 -8.10704350e-01
+ -1.66872144e+00 -7.72543609e-01  9.87480164e-01 -3.53329211e-01
+ -1.25166870e+02 -1.64216077e+00 -1.15789810e+02 -1.19786980e+02
+ -1.12868599e+02  8.40088367e+00 -1.28564438e+02 -1.00235153e+02
+  2.71289611e+00 -1.63823929e+01  2.27722759e+01  3.12481537e+01
+  7.32469025e+01  4.76806107e+01  2.94552269e+01 -5.24866676e+00
+ -2.37024555e+01 -1.70440109e+02 -5.82965508e+01 -6.24606934e+01
+ -1.09784363e+02 -1.50829712e+02 -8.70472641e+01  1.32537985e+00
+ -3.74702454e+01  5.78786945e+00  2.54341373e+01  2.25713463e+01
+  1.06328726e+01 -2.80560799e+01  2.12873745e+01 -7.62659607e+01
+  4.78883505e+00  2.96087766e+00 -1.37586823e+01  3.18117180e+01
+ -2.59108329e+00  2.76312232e+00 -2.88440466e+00  2.77939057e+00
+ -4.20046234e+00  3.20696902e+00  1.99193263e+00  1.85818977e+01
+ -3.75425792e+00  2.93665171e+00 -8.76526546e+00 -1.05235529e+00]
+Minimum obj value:-1992.4135200126052
+Optimal xi: 28.681393
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:236: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_ALL[key]["summary_df"], ignore_index=True)
+/home/marcchen/Documents/pytorch_1/researchcode/fun_train_NN.py:248: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  res_ALL_dataframe = res_ALL_dataframe.append(res_BEST_temp["summary_df"], ignore_index=True)
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset
+W_T_mean: 1396.5011130130486
+W_T_median: 1178.3112461263809
+W_T_pctile_5: 820.3489432279224
+W_T_CVAR_5_pct: 735.6545630366213
+F value: -1992.4135200126052
+-----------------------------------------------
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:156: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+/home/marcchen/Documents/pytorch_1/researchcode/fun_Plot_NN_control_DataHeatmaps.py:157: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: basic_T30_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.9
+F value: -1992.4135200126052
+-----------------------------------------------
+loaded NN:  OrderedDict([('model.hidden_layer_1.weight', tensor([[  4.7888,   2.9609],
+        [-13.7587,  31.8117],
+        [ -2.5911,   2.7631],
+        [ -2.8844,   2.7794],
+        [ -4.2005,   3.2070],
+        [  1.9919,  18.5819],
+        [ -3.7543,   2.9367],
+        [ -8.7653,  -1.0524]], device='cuda:0')), ('model.hidden_layer_2.weight', tensor([[-1.2363e-01,  2.7382e+02,  1.7010e+02,  2.1608e+02,  4.0038e+02,
+          1.1252e+02,  1.8883e+02, -1.7057e+01],
+        [-1.4044e+02, -7.2940e+01, -9.5067e+00, -9.5693e+00, -8.2756e+01,
+         -1.9292e+02, -1.4537e+01,  2.6767e+00],
+        [-4.2835e+01, -1.3625e+02, -1.1672e+02, -1.7711e+02, -1.9923e+02,
+         -9.5065e+01, -1.2725e+02, -3.6632e+01],
+        [-1.8447e+00, -3.3414e+00, -1.0326e+00, -8.1070e-01, -1.6687e+00,
+         -7.7254e-01,  9.8748e-01, -3.5333e-01],
+        [-1.2517e+02, -1.6422e+00, -1.1579e+02, -1.1979e+02, -1.1287e+02,
+          8.4009e+00, -1.2856e+02, -1.0024e+02],
+        [ 2.7129e+00, -1.6382e+01,  2.2772e+01,  3.1248e+01,  7.3247e+01,
+          4.7681e+01,  2.9455e+01, -5.2487e+00],
+        [-2.3702e+01, -1.7044e+02, -5.8297e+01, -6.2461e+01, -1.0978e+02,
+         -1.5083e+02, -8.7047e+01,  1.3254e+00],
+        [-3.7470e+01,  5.7879e+00,  2.5434e+01,  2.2571e+01,  1.0633e+01,
+         -2.8056e+01,  2.1287e+01, -7.6266e+01]], device='cuda:0')), ('model.output_layer_3.weight', tensor([[ 1.1514, -3.5074,  8.2555,  3.0272,  2.8435, -1.8995, -4.0839, -4.7446],
+        [-0.6847,  3.3652, -8.6283, -2.9718, -3.4048,  1.5453,  4.5629,  4.9549]],
+       device='cuda:0'))])
+loaded xi:  28.681393
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+W_T_mean: 1261.0877712339752
+W_T_median: 1222.733226526609
+W_T_pctile_5: 834.028380700438
+W_T_CVAR_5_pct: 747.2411321494716
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.222426193176
+4.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.498162536694
+6.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2129.4301271313757
+8.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.3974193616596
+10.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.2070763992706
+12.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.5484737383176
+14.000000000000002% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.657162315094
+16.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.5352142235415
+18.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.1762830202497
+20.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.7812434591197
+22.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.836919548733
+24.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.676125472328
+26.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.2852351025867
+28.000000000000004% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.2136005957072
+30.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.541027719185
+32.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.3771696630324
+34.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2130.1615115503723
+36.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2130.1062280040296
+38.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.194466660415
+40.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.384074091406
+42.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.0213723270435
+44.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.6360007082408
+46.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.4956679581137
+48.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.417089436567
+50.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.5826960098952
+52.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2122.4877112079034
+54.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.0560218998876
+56.00000000000001% of gradient descent iterations done. Method = A
+objective value function right now is: -2129.943543035928
+57.99999999999999% of gradient descent iterations done. Method = A
+objective value function right now is: -2127.2082469389857
+60.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.078403355817
+62.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.4006880233997
+64.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.4705601608657
+66.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.6906975564243
+68.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.549314187669
+70.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.6277841380916
+72.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.2779750649356
+74.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.915813851314
+76.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.2993076452403
+78.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.6604615499123
+80.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2129.2507214937314
+82.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2130.861348148994
+84.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2130.7216128936034
+86.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2127.435149949246
+88.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2128.833306888489
+90.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2128.602730703427
+92.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2122.0727648890256
+94.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2133.2008767852158
+96.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2132.057452486593
+updated min: 
+obj fun: -2134.287579392112
+98.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2127.948648826421
+updated min: 
+obj fun: -2134.2902822097335
+updated min: 
+obj fun: -2134.2926983539924
+updated min: 
+obj fun: -2134.2945313711657
+updated min: 
+obj fun: -2134.2961530477296
+updated min: 
+obj fun: -2134.2970601507227
+updated min: 
+obj fun: -2134.297627079743
+updated min: 
+obj fun: -2134.2985043970557
+updated min: 
+obj fun: -2134.2992250781185
+updated min: 
+obj fun: -2134.3002648081274
+updated min: 
+obj fun: -2134.3014070477425
+updated min: 
+obj fun: -2134.3029871098993
+updated min: 
+obj fun: -2134.3044913334425
+updated min: 
+obj fun: -2134.3059881814943
+updated min: 
+obj fun: -2134.3073390010386
+updated min: 
+obj fun: -2134.3080869590076
+updated min: 
+obj fun: -2134.308603987235
+updated min: 
+obj fun: -2134.308818952986
+updated min: 
+obj fun: -2134.308906628384
+updated min: 
+obj fun: -2134.3092445221364
+updated min: 
+obj fun: -2134.310527948301
+updated min: 
+obj fun: -2134.311660465042
+updated min: 
+obj fun: -2134.312610064472
+updated min: 
+obj fun: -2134.312808987738
+updated min: 
+obj fun: -2134.313250993886
+updated min: 
+obj fun: -2134.3133617837875
+updated min: 
+obj fun: -2134.313918226525
+updated min: 
+obj fun: -2134.3147571903182
+updated min: 
+obj fun: -2134.3157588184986
+updated min: 
+obj fun: -2134.3167913460793
+updated min: 
+obj fun: -2134.3181539141247
+updated min: 
+obj fun: -2134.318427035349
+updated min: 
+obj fun: -2134.3202085482403
+updated min: 
+obj fun: -2134.3220476408883
+updated min: 
+obj fun: -2134.32352083723
+updated min: 
+obj fun: -2134.3244517818125
+updated min: 
+obj fun: -2134.3251354382783
+updated min: 
+obj fun: -2134.325613945752
+updated min: 
+obj fun: -2134.3256610128396
+updated min: 
+obj fun: -2134.3259777653057
+updated min: 
+obj fun: -2134.3260024283036
+updated min: 
+obj fun: -2134.3261518427366
+updated min: 
+obj fun: -2134.3263342779856
+updated min: 
+obj fun: -2134.3265796306446
+updated min: 
+obj fun: -2134.3275739831893
+updated min: 
+obj fun: -2134.3288766953738
+updated min: 
+obj fun: -2134.3303158927315
+updated min: 
+obj fun: -2134.3314620709184
+updated min: 
+obj fun: -2134.332476081597
+updated min: 
+obj fun: -2134.3331241384267
+updated min: 
+obj fun: -2134.3334299448516
+updated min: 
+obj fun: -2134.3334925599634
+updated min: 
+obj fun: -2134.334120282742
+updated min: 
+obj fun: -2134.3347567808864
+updated min: 
+obj fun: -2134.335689518866
+updated min: 
+obj fun: -2134.336606870752
+updated min: 
+obj fun: -2134.3377205276565
+updated min: 
+obj fun: -2134.3390246583194
+updated min: 
+obj fun: -2134.340182961021
+updated min: 
+obj fun: -2134.341503731347
+updated min: 
+obj fun: -2134.342647963766
+updated min: 
+obj fun: -2134.3435119065343
+updated min: 
+obj fun: -2134.3441560999872
+updated min: 
+obj fun: -2134.344380380245
+updated min: 
+obj fun: -2134.344453580961
+updated min: 
+obj fun: -2134.344635726318
+updated min: 
+obj fun: -2134.3447274921973
+updated min: 
+obj fun: -2134.3448936942696
+updated min: 
+obj fun: -2134.345036334726
+updated min: 
+obj fun: -2134.345438100408
+updated min: 
+obj fun: -2134.34618464718
+updated min: 
+obj fun: -2134.347107115154
+updated min: 
+obj fun: -2134.3484669899044
+updated min: 
+obj fun: -2134.3498446203807
+updated min: 
+obj fun: -2134.35108242293
+updated min: 
+obj fun: -2134.3523146908597
+updated min: 
+obj fun: -2134.3530520592462
+updated min: 
+obj fun: -2134.3536904095436
+updated min: 
+obj fun: -2134.354387732268
+updated min: 
+obj fun: -2134.3550472133866
+updated min: 
+obj fun: -2134.3553990772407
+updated min: 
+obj fun: -2134.355971509216
+updated min: 
+obj fun: -2134.356426360072
+updated min: 
+obj fun: -2134.3567650603914
+updated min: 
+obj fun: -2134.357371827231
+updated min: 
+obj fun: -2134.3582368125685
+updated min: 
+obj fun: -2134.359123332595
+updated min: 
+obj fun: -2134.36021483843
+updated min: 
+obj fun: -2134.3611988784223
+updated min: 
+obj fun: -2134.361953794696
+updated min: 
+obj fun: -2134.3622474094304
+updated min: 
+obj fun: -2134.362695631916
+updated min: 
+obj fun: -2134.363591916944
+updated min: 
+obj fun: -2134.3646258051167
+updated min: 
+obj fun: -2134.3654973213766
+updated min: 
+obj fun: -2134.36585694879
+updated min: 
+obj fun: -2134.3659914817235
+updated min: 
+obj fun: -2134.366089470829
+updated min: 
+obj fun: -2134.366797685573
+updated min: 
+obj fun: -2134.3670827225806
+updated min: 
+obj fun: -2134.3672851325096
+updated min: 
+obj fun: -2134.3673434261673
+updated min: 
+obj fun: -2134.367967381525
+updated min: 
+obj fun: -2134.369035168862
+updated min: 
+obj fun: -2134.370317116029
+updated min: 
+obj fun: -2134.3718546081195
+updated min: 
+obj fun: -2134.373256131382
+updated min: 
+obj fun: -2134.3751140844397
+updated min: 
+obj fun: -2134.376656109223
+updated min: 
+obj fun: -2134.3778748909845
+updated min: 
+obj fun: -2134.378933062673
+updated min: 
+obj fun: -2134.379513490867
+updated min: 
+obj fun: -2134.379826394507
+updated min: 
+obj fun: -2134.3803029492997
+updated min: 
+obj fun: -2134.3805152336545
+updated min: 
+obj fun: -2134.3807823839666
+updated min: 
+obj fun: -2134.3810895344304
+updated min: 
+obj fun: -2134.381803583532
+updated min: 
+obj fun: -2134.3822315728107
+updated min: 
+obj fun: -2134.3831289560358
+updated min: 
+obj fun: -2134.3841304540006
+updated min: 
+obj fun: -2134.3850955115477
+updated min: 
+obj fun: -2134.3860476005443
+updated min: 
+obj fun: -2134.386777718705
+updated min: 
+obj fun: -2134.387570609326
+updated min: 
+obj fun: -2134.3882399536437
+updated min: 
+obj fun: -2134.3887726082557
+updated min: 
+obj fun: -2134.3889662076513
+updated min: 
+obj fun: -2134.3891832423164
+updated min: 
+obj fun: -2134.3893710394545
+updated min: 
+obj fun: -2134.389412537015
+updated min: 
+obj fun: -2134.390038795276
+updated min: 
+obj fun: -2134.390814062732
+updated min: 
+obj fun: -2134.391362256891
+updated min: 
+obj fun: -2134.391511970991
+updated min: 
+obj fun: -2134.3915311393903
+updated min: 
+obj fun: -2134.3920037411176
+updated min: 
+obj fun: -2134.3926114831947
+updated min: 
+obj fun: -2134.393429788811
+updated min: 
+obj fun: -2134.3940368277244
+updated min: 
+obj fun: -2134.3943807993182
+updated min: 
+obj fun: -2134.394967878575
+updated min: 
+obj fun: -2134.3952167780913
+updated min: 
+obj fun: -2134.3953974060887
+updated min: 
+obj fun: -2134.395613454338
+updated min: 
+obj fun: -2134.3962574385705
+updated min: 
+obj fun: -2134.396972052684
+updated min: 
+obj fun: -2134.3977462285593
+updated min: 
+obj fun: -2134.3982969989047
+updated min: 
+obj fun: -2134.3989604218573
+updated min: 
+obj fun: -2134.399257537016
+updated min: 
+obj fun: -2134.399447077133
+updated min: 
+obj fun: -2134.3997167498032
+updated min: 
+obj fun: -2134.399777997737
+updated min: 
+obj fun: -2134.4000183381527
+updated min: 
+obj fun: -2134.400300778507
+updated min: 
+obj fun: -2134.400439978178
+updated min: 
+obj fun: -2134.400483579819
+updated min: 
+obj fun: -2134.400767615605
+updated min: 
+obj fun: -2134.401037123775
+updated min: 
+obj fun: -2134.4017791167253
+updated min: 
+obj fun: -2134.401940586558
+updated min: 
+obj fun: -2134.402215952142
+updated min: 
+obj fun: -2134.4022254645765
+updated min: 
+obj fun: -2134.402439834106
+updated min: 
+obj fun: -2134.4024422316456
+updated min: 
+obj fun: -2134.4024566313246
+updated min: 
+obj fun: -2134.402537465695
+updated min: 
+obj fun: -2134.4027670616583
+updated min: 
+obj fun: -2134.4028526622874
+updated min: 
+obj fun: -2134.4030605943576
+updated min: 
+obj fun: -2134.40331948626
+updated min: 
+obj fun: -2134.4035197613166
+updated min: 
+obj fun: -2134.4040528674655
+updated min: 
+obj fun: -2134.404543740601
+updated min: 
+obj fun: -2134.405273969352
+updated min: 
+obj fun: -2134.4059343804065
+updated min: 
+obj fun: -2134.4063550652677
+updated min: 
+obj fun: -2134.4066192467153
+updated min: 
+obj fun: -2134.4067319309192
+updated min: 
+obj fun: -2134.408646727757
+updated min: 
+obj fun: -2134.4099628407816
+updated min: 
+obj fun: -2134.410688550833
+updated min: 
+obj fun: -2134.411327438954
+updated min: 
+obj fun: -2134.4115794683057
+updated min: 
+obj fun: -2134.4119661431946
+updated min: 
+obj fun: -2134.412084317644
+updated min: 
+obj fun: -2134.412230859936
+updated min: 
+obj fun: -2134.412490753186
+updated min: 
+obj fun: -2134.4127331676195
+updated min: 
+obj fun: -2134.4137265375894
+updated min: 
+obj fun: -2134.414122567482
+updated min: 
+obj fun: -2134.4148512590195
+updated min: 
+obj fun: -2134.4155714100652
+updated min: 
+obj fun: -2134.4161395799792
+updated min: 
+obj fun: -2134.416549790548
+updated min: 
+obj fun: -2134.4170701723597
+updated min: 
+obj fun: -2134.4173799458995
+updated min: 
+obj fun: -2134.417582505984
+updated min: 
+obj fun: -2134.4177195752154
+100.0% of gradient descent iterations done. Method = A
+objective value function right now is: -2131.086757026826

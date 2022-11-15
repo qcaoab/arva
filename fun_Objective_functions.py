@@ -30,26 +30,19 @@ def objective_mean_cvar_pytorch(params, W_T_vector, xi):
     
     
     xi_squared = torch.square(xi)
-    ind_W_T_below_xi_squared = (W_T_vector <= xi_squared) * 1   # 1 if W_T <=  xi_squared,
+    # ind_W_T_below_xi_squared = (W_T_vector <= xi_squared) * 1   # 1 if W_T <=  xi_squared,
                                                             # 0 if W_T >  xi_squared
 
-    diff = W_T_vector - xi_squared
-    bracket = torch.multiply(ind_W_T_below_xi_squared, diff)   #same as: minimum(W_T_vector - xi_squared, 0)
+    zeros = torch.zeros(W_T_vector.size(), device = params["device"])
+    
+    bracket = torch.minimum(W_T_vector - xi_squared, zeros)
+    
+    # diff = W_T_vector - xi_squared
+    # bracket = torch.multiply(ind_W_T_below_xi_squared, diff)   #same as: minimum(W_T_vector - xi_squared, 0)
 
-    
-    
     #obj Function
     fun = -(rho * W_T_vector) - xi_squared - (1/alpha)*bracket
     fun = torch.mean(fun)
-
-
-    # diff = W_T_vector - xi_squared
-
-    #     bracket = np.multiply(ind_W_T_below_xi_squared, diff)   #same as: np.minimum(W_T_vector - xi_squared, 0)
-
-    #     #Function
-    #     fun = -rho * W_T_vector - xi_squared - (1/alpha)*bracket
-        
 
 
     #return only fun
