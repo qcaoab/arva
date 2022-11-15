@@ -74,9 +74,11 @@ def withdraw_invest_NN_strategy(NN_list, params):
     params["Feature_phi_paths_allocation"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
     params["NN_asset_prop_paths"] = np.zeros([N_d, N_rb, N_a])  #Paths for the proportions or wealth in each asset for given dataset
 
-    params["q_matrix"] = np.zeros([N_d, N_rb+1]) #withdrawals for all paths at each Rb step
-    qsum_T_vector = torch.zeros([N_d, 1], device = params["device"])     #cumsum of withdrawals for each path
+    # params["q_matrix"] = np.zeros([N_d, N_rb+1]) #withdrawals for all paths at each Rb step
+    qsum_T_vector = torch.zeros([N_d], device = params["device"])     #cumsum of withdrawals for each path
     
+    q_min = torch.tensor(params["q_min"], device= params["device"])
+    q_range = torch.tensor(params["q_max"] - params["q_min"], device= params["device"])
        
     # ---------------------INITIALIZE values for timestepping loop -------------------
     g = W0 * torch.ones(N_d, requires_grad=True, device=params["device"])  # Initialize g for g_prev (initial wealth) below for first rebalancing time
@@ -110,7 +112,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
         # g_prev = g_prev + q[n_index] #g_prev now contains W(t_n^+)
 
         params["W"][:,n_index] = g_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
-        params["W_paths_mean"][0,n_index] = torch.mean(g_prev)
+        params["W_paths_mean"][0,n_index] = torch.mean(g_prev).detach().cpu().numpy()
 
         if torch.std(g_prev) > 0.0:
             params["W_paths_std"][0, n_index] = torch.std(g_prev, unbiased=True) #ddof=1 for (N_d -1) in denominator (bessels correction)
@@ -133,15 +135,15 @@ def withdraw_invest_NN_strategy(NN_list, params):
         # ---------------------------WITHDRAW---------------------------------------
         
         #get withdrawal NN output as value in [0,1], to multiply with the range.
-        q_n_proportion = NN_list[0].forward(phi_1)
+        q_n_proportion = torch.squeeze(NN_list[0].forward(phi_1))
         
-        q_n = params["q_min"] + (params["q_max"] - params["q_min"]) * q_n_proportion
+        q_n = torch.add(q_min, torch.mul(q_range, q_n_proportion))
         
         #save withdrawals
-        params["q_matrix"][:,n_index]  = q_n.T.detach().cpu().numpy()
+        # params["q_matrix"][:,n_index]  = q_n.detach().cpu().numpy()
         qsum_T_vector += q_n
 
-        g_prev_withdrawn = g_prev - q_n.T[0]
+        g_prev_withdrawn = g_prev - q_n
         
         #check if last withdrawal, break out of loop if so:
         if n == N_rb + 1:

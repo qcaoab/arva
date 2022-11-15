@@ -172,7 +172,7 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         # ----------------
         #ITERATE AVERAGING
         
-        if it == nit_IterateAveragingStart:
+        if it == nit_IterateAveragingStart: #initialize
             xi_avg = xi.detach().clone()
             xi_min = xi.detach().clone()
         
@@ -184,8 +184,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
             N_avg = N_avg + 1
             xi_avg = (xi_avg*N_avg + xi.detach()) / (N_avg + 1)
             
-        else:
-            xi_avg = xi.detach()
+        # else:
+        #     xi_avg = xi.detach()
                           
         # ----------------
         #RUNNING MINIMUM
@@ -199,7 +199,7 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
             if new_fval < v_min:
                 
                 NN_list_min = copy.deepcopy(swa_both_nns.module)
-                xi_min = xi.detach().clone()
+                xi_min = xi_avg.detach().clone()
                 
                 v_min = new_fval.detach().clone()      
                 print("new min fval: ", new_fval.detach().cpu().numpy())
@@ -208,7 +208,7 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         #Update user on progress every x% of SGD iterations
         if itbound >= 1000:
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
-                print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method[0])                
+                print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)                
                 new_fval, _ = objfun_pyt(NN_list, params, xi) # uses full tensor version of params 
                 # supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
                 print("Current xi: ", xi.detach().cpu().numpy())
@@ -222,9 +222,11 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     # ---------------------------- End: MAIN LOOP --------------------------------------------
 
     #--------------- SET OUTPUT VALUES ---------------
+    
+    torch.cuda.empty_cache()
 
     #temporary output
-    params, g, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list_min, params)
+    params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list_min, params)
     # print("Median terminal wealth: ", torch.median(g))
     min_fval, _ = objfun_pyt(NN_list_min, params, xi_min)
     

@@ -99,7 +99,7 @@ print("\n Random seed: ", seed_mc, " \n")
 continuation_learn = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
 
 # preload saved model
-preload = True
+preload = False
 nn_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_mc_decum_13-11-22_22:13")    
 xi_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_mc_decum_13-11-22_22:13.json")
 
@@ -113,7 +113,7 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 # iteration dashboard --------------------------
-iter_params = "tiny"
+iter_params = "real_exp"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
@@ -122,8 +122,13 @@ if iter_params == "real_exp":
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 20000
-    batchsize_mc = 2000
+    itbound_mc = 10000
+    batchsize_mc = 1000
+
+if iter_params == "smol":
+    n_d_train_mc = int(2.56* (10**4)) 
+    itbound_mc = 1000
+    batchsize_mc = 100
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -616,8 +621,8 @@ print("Withdrawal NN:")
 NN_withdraw_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-NN_withdraw_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
-NN_withdraw_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
+NN_withdraw_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
+NN_withdraw_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 NN_withdraw_orig.update_layer_info(layer_id = 3, activation = "logistic_sigmoid", add_bias= False)
 
 NN_withdraw_orig.print_layers_info() #Check if structure is correct
@@ -639,8 +644,8 @@ print("Allocation NN:")
 NN_allocate_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-NN_allocate_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
-NN_allocate_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
+NN_allocate_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
+NN_allocate_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 NN_allocate_orig.update_layer_info(layer_id = 3, activation = "softmax", add_bias= False)
 
 NN_allocate_orig.print_layers_info() #Check if structure is correct
@@ -654,11 +659,11 @@ NN_orig_list = [NN_withdraw_orig, NN_allocate_orig]
 # copy NN structures into pytorch NN
 NN_withdraw = class_NN_Pytorch.pytorch_NN(NN_withdraw_orig)
 NN_withdraw.to(device)
-NN_withdraw.import_weights(NN_withdraw_orig, params)
+# NN_withdraw.import_weights(NN_withdraw_orig, params)
 
 NN_allocate = class_NN_Pytorch.pytorch_NN(NN_allocate_orig)
 NN_allocate.to(device)
-NN_allocate.import_weights(NN_allocate_orig, params)
+# NN_allocate.import_weights(NN_allocate_orig, params)
 
 NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
 
@@ -769,7 +774,7 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
      # - augment NN parameters with additional parameters to be solved
     if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
         if tracing_param == 1.0:
-            xi_0 = 14.2 
+            xi_0 = 14.3 
         else: #different xi_0 depending on first kappa
             xi_0 = 16.0
         

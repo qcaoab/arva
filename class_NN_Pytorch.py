@@ -14,14 +14,7 @@ class pytorch_NN(nn.Module):
         super(pytorch_NN, self).__init__()
         self.flatten = nn.Flatten()
 
-        # initialize from parameters/structure of original NN object
-        n_nodes_input_orig = original_NN.n_nodes_input  #nr of input nodes = size of feature vector
-        n_nodes_output_orig = original_NN.n_nodes_output    #nr of output nodes
-        n_layers_hidden_orig = original_NN.L   # nr of hidden layers
-        n_layers_total_orig = original_NN.n_layers_total
-        
-        #activation function helper
-        
+        #activation function helper        
         def activation_function(name):
             if name == "logistic_sigmoid":
                 return nn.Sigmoid()
@@ -74,7 +67,7 @@ class pytorch_NN(nn.Module):
         
         
         activation = {}
-        def get_activation(name):
+        def get_activation(name): #old code for testing
             def hook(model, input, output):
                 activation[name] = output.detach()
             return hook

@@ -9,7 +9,7 @@ def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
        
     rho = params["obj_fun_rho"]
     alpha = params["obj_fun_alpha"]
-    qsum_T_vector = torch.squeeze(qsum_T_vector) # remove dimension to save memory
+
     # xi is passed from fun_train_SGD_algos to allow optimizer access.
 
     # assuming no lambda smoothing 
