@@ -1,5 +1,5 @@
 Starting at: 
-14-11-22_20:04
+15-11-22_08:23
 
  Random seed:  1  
 
@@ -187,6 +187,18 @@ W_T_pctile_5: -229.19558496834625
 W_T_CVAR_5_pct: -436.3751909844991
 -----------------------------------------------
 2.0% of gradient descent iterations done. Method = Adam
+Current xi:  [14.3]
+objective value function right now is: -1102.4468942352094
+4.0% of gradient descent iterations done. Method = Adam
+Current xi:  [14.3]
+objective value function right now is: -1320.36082332637
+6.0% of gradient descent iterations done. Method = Adam
+Current xi:  [14.3]
+objective value function right now is: -1330.7499309414093
+8.0% of gradient descent iterations done. Method = Adam
+Current xi:  [14.3]
+objective value function right now is: -1341.8194859135458
+10.0% of gradient descent iterations done. Method = Adam
 Traceback (most recent call last):
   File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/decumulation_driver.py", line 851, in <module>
     fun_RUN__wrapper.RUN__wrapper_ONE_stage_optimization(
@@ -200,8 +212,8 @@ Traceback (most recent call last):
     new_fval, _ = objfun_pyt(NN_list, params, xi) # uses full tensor version of params 
   File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_eval_objfun_NN_strategy.py", line 31, in eval_obj_NN_strategy_pyt
     params, g, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
-  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_invest_NN_strategy.py", line 182, in withdraw_invest_NN_strategy
-    a_t_n_output = NN_list[1].forward(phi_2)
+  File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/fun_invest_NN_strategy.py", line 138, in withdraw_invest_NN_strategy
+    q_n_proportion = torch.squeeze(NN_list[0].forward(phi_1))
   File "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_NN_Pytorch.py", line 83, in forward
     return self.model(input_tensor)
   File "/home/marcchen/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
@@ -212,4 +224,4 @@ Traceback (most recent call last):
     return forward_call(*input, **kwargs)
   File "/home/marcchen/.local/lib/python3.10/site-packages/torch/nn/modules/activation.py", line 290, in forward
     return torch.sigmoid(input)
-RuntimeError: CUDA out of memory. Tried to allocate 40.00 MiB (GPU 0; 23.69 GiB total capacity; 1.57 GiB already allocated; 16.19 MiB free; 1.59 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+RuntimeError: CUDA out of memory. Tried to allocate 40.00 MiB (GPU 0; 23.69 GiB total capacity; 14.86 GiB already allocated; 14.19 MiB free; 14.91 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

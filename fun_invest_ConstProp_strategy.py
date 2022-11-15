@@ -122,7 +122,7 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
             
             if params["withdraw_const"] is not None:
                 
-                W_start = W_start - params["withdraw_const"]
+                W_withdrawn = W_start - params["withdraw_const"]
 
                 num_withdrawals += 1 
                 qsum_const_T += params["withdraw_const"]
@@ -159,14 +159,14 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
                 return_n[W_end < 0] = params["Y"][:,n_index,0][W_end < 0]
                 return_n[W_end >= 0] = params["Y"][:,n_index,1][W_end >= 0]
                 
-                W_end = W_end + prop_const[i] * np.multiply(W_start, return_n)    
+                W_end = W_end + prop_const[i] * np.multiply(W_withdrawn, return_n)    
                 
             else: 
-                W_end = W_end + prop_const[i] * np.multiply(W_start, params["Y"][:,n_index,i])
+                W_end = W_end + prop_const[i] * np.multiply(W_withdrawn, params["Y"][:,n_index,i])
 
             if params["TransCosts_TrueFalse"] is True:
                 #Calculate amount in each asset *after* rebalancing
-                Amounts_plus[:,i] = prop_const[i] * W_start
+                Amounts_plus[:,i] = prop_const[i] * W_withdrawn
                 delta_Amounts[:,i] = Amounts_plus[:,i] - Amounts_end[:,i]
                 abs_delta_Amounts[:,i], _ = fun_utilities.abs_value_smooth_quad(x = delta_Amounts[:,i],
                                                                              lambda_param = TransCosts_lambda,
