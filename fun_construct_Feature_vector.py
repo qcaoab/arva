@@ -8,8 +8,8 @@ def construct_Feature_vector(params,                        # params dictionary 
                              wealth_n,                      #  Wealth vector W(t_n^+), usually of length params["N_d"]
                                                             #       *after* contribution at t_n but
                                                             #       *before* rebalancing at time t_n for (t_n, t_n+1)
-                             feature_calc_option = None     # Set calc_option = "matlab" to match matlab code
-                             ):
+                             feature_calc_option = None,    # Set calc_option = "matlab" to match matlab code
+                             withdraw=True):              # set to True if creating features based on wealth *before* withdrawal
 
     #OUTPUTS: phi = standardized feature vector
     # - phi.shape(len(wealth_n), N_phi)
@@ -70,9 +70,15 @@ def construct_Feature_vector(params,                        # params dictionary 
                              "params['benchmark_W_std_train'] missing. ")
 
         else:  # Values are all there
-            benchmark_W_mean_train = params["benchmark_W_mean_train"][:, n_index]
-            benchmark_W_std_train = params["benchmark_W_std_train"][:, n_index]
-
+            if withdraw: #use constprop stats from before withdrawal
+                benchmark_W_mean_train = params["benchmark_W_mean_train"][:, n_index]
+                benchmark_W_std_train = params["benchmark_W_std_train"][:, n_index]
+    
+            else: #use constprop stats after withdrawal    
+                benchmark_W_mean_train = params["benchmark_W_mean_train_post_withdraw"][:, n_index]
+                benchmark_W_std_train = params["benchmark_W_std_train_post_withdraw"][:, n_index]
+                
+                
         if benchmark_W_std_train == 0:  # Correct division by zero (for example no variance at time zero)
             benchmark_W_std_train = 1.0
 

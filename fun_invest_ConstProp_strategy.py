@@ -70,8 +70,12 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
     #Append wealth W outcomes to params, and initialize
     params["W"] = np.zeros([N_d, params["N_rb"]+1])
     #   W contains PATHS, so W.shape = (N_d, N_rb+1)
-    params["W_paths_mean"] = np.zeros([1, params["N_rb"] + 1])
-    params["W_paths_std"] = np.zeros([1, params["N_rb"] + 1])
+    params["W_paths_mean"] = np.zeros([1, params["N_rb"] + 1]) #pre-withdraw
+    params["W_paths_std"] = np.zeros([1, params["N_rb"] + 1]) #pre-withdraw
+    
+    #post-withdraw
+    params["W_paths_mean_post_withdraw"] = np.zeros([1, params["N_rb"] + 1])
+    params["W_paths_std_post_withdraw"] = np.zeros([1, params["N_rb"] + 1])
 
     #withdrawal cumulative:    
     num_withdrawals = 0
@@ -118,18 +122,11 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
             #Add cash injection to get wealth at t_{n-1}^+
             W_start = W_end + params["q"][n_index]
                     
-            #withdraw constant withdrawal strategy
             
-            if params["withdraw_const"] is not None:
-                
-                W_withdrawn = W_start - params["withdraw_const"]
-
-                num_withdrawals += 1 
-                qsum_const_T += params["withdraw_const"]
-
-
         #Update W to contain W(t_n+)
         params["W"][:,n_index] = W_start
+        
+        #standardization stats pre-withdraw
         params["W_paths_mean"][:,n_index] = np.mean(W_start)
 
         if np.std(W_start) > 0.0:   #to correct for problems if only one data path
@@ -137,6 +134,24 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
         else:
             params["W_paths_std"][:, n_index] = np.std(W_start)
 
+
+        #withdraw constant withdrawal strategy
+        if params["withdraw_const"] is not None:
+        
+            W_withdrawn = W_start - params["withdraw_const"]
+            num_withdrawals += 1 
+            qsum_const_T += params["withdraw_const"]
+
+
+        #standardization stats POST-withdraw
+        params["W_paths_mean_post_withdraw"][:,n_index] = np.mean(W_withdrawn)
+
+        if np.std(W_start) > 0.0:   #to correct for problems if only one data path
+            params["W_paths_std_post_withdraw"][:, n_index] = np.std(W_withdrawn, ddof = 1) #ddof=1 for (N_d -1) in denominator
+        else:
+            params["W_paths_std_post_withdraw"][:, n_index] = np.std(W_withdrawn)
+        
+        
         # Update W_end using prop_const[k] and return paths in params["Y"][:,:,k]
         W_end = np.zeros(W_start.shape) #Initialize
 

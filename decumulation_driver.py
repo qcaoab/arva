@@ -89,10 +89,10 @@ params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wea
 
 # hold xi constant?
 
-params["xi_constant"] = True
+params["xi_constant"] = False
 
 #set seed
-seed_mc = 1
+seed_mc = 2
 np.random.seed(seed_mc)
 print("\n Random seed: ", seed_mc, " \n")
 
@@ -100,8 +100,8 @@ continuation_learn = False  #MC added: if True, will use weights from previous t
 
 # preload saved model
 preload = False
-nn_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_mc_decum_13-11-22_22:13")    
-xi_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_mc_decum_13-11-22_22:13.json")
+nn_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_mc_decum_15-11-22_15:41")    
+xi_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_mc_decum_15-11-22_15:41.json")
 
 
 #Specify TRANSACTION COSTS parameters
@@ -113,7 +113,7 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 # iteration dashboard --------------------------
-iter_params = "real_exp"
+iter_params = "test"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
@@ -127,8 +127,8 @@ if iter_params == "test":
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 1000
-    batchsize_mc = 100
+    itbound_mc = 3000
+    batchsize_mc = 500
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -141,7 +141,7 @@ if iter_params == "tiny":
 
 # manually specify prop_const;
 
-prop_const = np.array([0.4,0.6])
+prop_const = np.array([0.6,0.4])
 withdraw_const = 40.0
 
 #Main settings for TRAINING data

@@ -125,8 +125,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
                                  wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                                     # but *before* rebalancing at time t_n for (t_n, t_n+1)
-                                 feature_calc_option= None  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
-                                 )
+                                 feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
+                                 withdraw= True)
 
         for feature_index in np.arange(0,N_phi,1):  #loop over feature index
             params["Feature_phi_paths_withdrawal"][:,n_index,feature_index] =  phi_1[:,feature_index].detach().cpu().numpy()
@@ -167,8 +167,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
                                  wealth_n = g_prev_withdrawn,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                                     # but *before* rebalancing at time t_n for (t_n, t_n+1)
-                                 feature_calc_option= None  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
-                                 )
+                                 feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
+                                 withdraw=False) #use 
 
         for feature_index in np.arange(0,N_phi,1):  #loop over feature index
             params["Feature_phi_paths_allocation"][:,n_index,feature_index] =  phi_2[:,feature_index].detach().cpu().numpy()

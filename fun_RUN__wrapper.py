@@ -175,7 +175,13 @@ def RUN__wrapper_training_testing_NN(
     params["benchmark_W_mean_train"] = params_CP_TRAIN["W_paths_mean"].copy()
     params["benchmark_W_std_train"] = params_CP_TRAIN["W_paths_std"].copy()
 
-
+    #stats for post-withdrawal
+    params["benchmark_W_mean_train_post_withdraw"] = params_CP_TRAIN["W_paths_mean_post_withdraw"].copy()
+    params["benchmark_W_std_train_post_withdraw"] = params_CP_TRAIN["W_paths_std_post_withdraw"].copy()
+    
+    
+    
+    
     #Also add terminal wealth vector from constant proportion strategy (for ADS and IR objectives)
     if params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:
         params["benchmark_W_T_vector_train"] =  params_CP_TRAIN["W_T"].copy()  #terminal wealth as a vector (one entry for each path)
@@ -217,6 +223,7 @@ def RUN__wrapper_training_testing_NN(
         print("(xi held constant!)")
     print("Optimal xi: ", res_adam["optimal_xi"])
     print("Expected(across Rb) median(across samples) p_equity: ", res_adam["average_median_p"])
+    print("obj fun: ", res_adam["objfun_final"])
     print("-----------------------------------------------")
 
     # print("-----------------------------------------------")
@@ -288,7 +295,7 @@ def RUN__wrapper_training_testing_NN(
         print(params_TEST['gen_error_dict'])
 
 
-    return params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST
+    return params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST #, res_adam
 
 
 def RUN__wrapper_output(
