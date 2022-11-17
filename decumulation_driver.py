@@ -83,7 +83,7 @@ params["device"] = device
 
 #decumulation params
 params["q_min"] = 35.0 #min withdrawawl per Rb
-params["q_max"] = 60.0 #max withdrawal per Rb
+params["q_max"] = 35.0 #max withdrawal per Rb
 params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
 # ^TO DO: need to implement borrowing interest when wealth is negative
 
@@ -100,8 +100,9 @@ continuation_learn = False  #MC added: if True, will use weights from previous t
 
 # preload saved model
 preload = False
-nn_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_mc_decum_15-11-22_15:41")    
-xi_preload = Path("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_mc_decum_15-11-22_15:41.json")
+params["local_path"] = str(os.getcwd())
+nn_preload = Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_15-11-22_15:41")    
+xi_preload = Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_15-11-22_15:41.json")
 
 
 #Specify TRANSACTION COSTS parameters
@@ -113,12 +114,12 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 # iteration dashboard --------------------------
-iter_params = "test"
+iter_params = "real_exp"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
     itbound_mc = 30000
-    batchsize_mc = 2000
+    batchsize_mc = 1000
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
@@ -226,7 +227,8 @@ params["obj_fun_epsilon"] = 10**-6
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
-tracing_parameters_to_run = [0.05, 0.2, 0.5, 1.0, 5.0, 50., 5000.] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+#for DC, use 9999.0 as tracing param as placeholder for 'NA'
+tracing_parameters_to_run = [0.05, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 50., 5000.] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 

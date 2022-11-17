@@ -9,7 +9,7 @@ import re
 
 
 
-with open("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/log_output/nov9_smallfrontier_dc_20K.txt", 'r') as f:
+with open("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/log_output/nov16_dc_full_nocont_gpu_10k.txt", 'r') as f:
     text = f.read()
 
 split = re.split('\n| ', text)
@@ -26,7 +26,7 @@ p_med_avg = []
 for i, item in enumerate(split):
     if item == 'NN-strategy-on-TRAINING':
        
-        kappa_list.append(float(split[i+42]))
+        kappa_list.append(float(split[i+56]))
         expected_wealth.append(float(split[i+5]))
         cvar_05.append(float(split[i+11]))
         median_wealth.append(float(split[i+7]))
@@ -43,23 +43,26 @@ forsyth_df = pd.read_csv("/home/marcchen/Documents/pytorch_decumulation_mc/resea
 
 
 plt.clf()
-plt.plot(forsyth_df["Qsum_avg"], forsyth_df["ES(W_T)"],marker='o', label = "Forsyth PDE results")
+plt.plot(forsyth_df["ES(W_T)"],forsyth_df["Qsum_avg"], marker='o', label = "Forsyth PDE results")
 for i, val in enumerate(forsyth_df['kappa']):
-    plt.annotate(str(val), (forsyth_df['Qsum_avg'][i], forsyth_df["ES(W_T)"][i]))
+    plt.annotate(str(val), (forsyth_df["ES(W_T)"][i], forsyth_df['Qsum_avg'][i]))
 
-plt.plot(df_cont["qsum_avg"], df_cont["cvar_05"], marker = 's', label = "MC NN replication")
+plt.plot(df_cont["cvar_05"],df_cont["qsum_avg"],  marker = 's', label = "MC NN replication")
 for i, val in enumerate(df_cont['kappa']):
-    plt.annotate(str(val), (df_cont['qsum_avg'][i], df_cont["cvar_05"][i]))
+    plt.annotate(str(val), (df_cont["cvar_05"][i], df_cont['qsum_avg'][i]))
 
 
 plt.title("DC Efficient frontier results: Forsyth 2021 vs. MC NN approximation")
-plt.xlabel("Expected Average Withdrawals")
-plt.ylabel("Expected Shortfall (cvar 0.05)")
-plt.legend()
+plt.xlabel("Expected Shortfall (cvar 0.05)")
+plt.ylabel("Expected Average Withdrawals")
+plt.legend(loc='lower left')
 
 plt.show()
 
-plt.savefig('/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/efficient_frontier_plot.png')
+plt.savefig('/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/efficient_frontier_plot.png', dpi = 200)
 
 
-# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dc_efficient_frontier_nov9.xlsx")
+# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dc_mc_efficient_frontier_nov16.xlsx")
+
+# forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dc_forsyth_efficient_frontier_nov16.xlsx")
+

@@ -223,6 +223,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
 
     #--------------- SET OUTPUT VALUES ---------------
     
+    optimizer.zero_grad()
+    
     torch.cuda.empty_cache()
 
     #temporary output
@@ -265,11 +267,12 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
 
         #save NN params and xi for continuation learning
         model_save_path = params["console_output_prefix"]
-        torch.save(NN_list_min.state_dict(),f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}")
+        local_path = params["local_path"]
+        torch.save(NN_list_min.state_dict(),f"{local_path}/saved_models/NN_opt_{model_save_path}")
         
         optimal_xi = {"xi":str(xi_np[0])}
         
-        with open(f'/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}.json', 'w') as outfile:
+        with open(f'{local_path}/saved_models/xi_opt_{model_save_path}.json', 'w') as outfile:
             json.dump(optimal_xi, outfile)
 
 
