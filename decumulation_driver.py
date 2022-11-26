@@ -18,7 +18,7 @@ import sys
 import datetime
 import codecs, json
 from pathlib import Path
-    
+import time
 
 #Import files needed (other files are imported within those files as needed)
 import fun_Data_timeseries_basket
@@ -53,6 +53,9 @@ else:
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
 
+#sleep timer
+
+
 #time
 now = datetime.datetime.now()
 print ("Starting at: ")
@@ -83,7 +86,7 @@ params["device"] = device
 
 #decumulation params
 params["q_min"] = 35.0 #min withdrawawl per Rb
-params["q_max"] = 35.0 #max withdrawal per Rb
+params["q_max"] = 60.0 #max withdrawal per Rb
 params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
 # ^TO DO: need to implement borrowing interest when wealth is negative
 
@@ -114,17 +117,17 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 # iteration dashboard --------------------------
-iter_params = "real_exp"
+iter_params = "test"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
     itbound_mc = 30000
-    batchsize_mc = 1000
+    batchsize_mc = 2000
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 10000
-    batchsize_mc = 1000
+    itbound_mc = 15000
+    batchsize_mc = 2000
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
@@ -228,7 +231,7 @@ params["obj_fun_epsilon"] = 10**-6
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
 #for DC, use 9999.0 as tracing param as placeholder for 'NA'
-tracing_parameters_to_run = [0.05, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 50., 5000.] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.0] #[0.05, 0.2, 0.5, 1.0, 1.5,3.0 , 5.0, 50., 5000.] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -623,8 +626,8 @@ print("Withdrawal NN:")
 NN_withdraw_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-NN_withdraw_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
-NN_withdraw_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+NN_withdraw_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
+NN_withdraw_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
 NN_withdraw_orig.update_layer_info(layer_id = 3, activation = "logistic_sigmoid", add_bias= False)
 
 NN_withdraw_orig.print_layers_info() #Check if structure is correct
@@ -646,8 +649,8 @@ print("Allocation NN:")
 NN_allocate_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-NN_allocate_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 2 , activation = "logistic_sigmoid", add_bias=False)
-NN_allocate_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
+NN_allocate_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
+NN_allocate_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
 NN_allocate_orig.update_layer_info(layer_id = 3, activation = "softmax", add_bias= False)
 
 NN_allocate_orig.print_layers_info() #Check if structure is correct

@@ -25,10 +25,7 @@ def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
     bracket = xi_squared + (1/alpha) * torch.minimum(W_T_vector - xi_squared, torch.zeros(W_T_vector.size(), device = params["device"]))
     
     
-    if rho == 9999:
-        fun = -qsum_T_vector  # use rho =9999 as place holder for 'NA'
-    else:
-        fun = -qsum_T_vector - rho*bracket #formulate as minimization
+    fun = -qsum_T_vector - rho*bracket #formulate as minimization
             
     fun = fun + params["obj_fun_epsilon"]*W_T_vector  #stabilization
     fun = torch.mean(fun)

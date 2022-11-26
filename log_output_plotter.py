@@ -9,7 +9,7 @@ import re
 
 
 
-with open("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/log_output/nov16_dc_full_nocont_gpu_10k.txt", 'r') as f:
+with open("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/log_output/nov24_dc_ef_test_8node.txt", 'r') as f:
     text = f.read()
 
 split = re.split('\n| ', text)
@@ -39,13 +39,13 @@ df_cont = pd.DataFrame({'kappa': kappa_list, 'cvar_05': cvar_05, 'expected_wealt
 # 'median': median_wealth, 'f_val': function_value})
 df_cont.sort_values(by=['kappa'], ignore_index=True, inplace=True)
 
-forsyth_df = pd.read_csv("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/forsyth_results.csv")
+forsyth_df = pd.read_csv("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/forsyth_a1_corrected.txt")
 
 
 plt.clf()
-plt.plot(forsyth_df["ES(W_T)"],forsyth_df["Qsum_avg"], marker='o', label = "Forsyth PDE results")
+plt.plot(forsyth_df["ES"],forsyth_df["Sum q_i/(M+1)"], marker='o', label = "Forsyth PDE results")
 for i, val in enumerate(forsyth_df['kappa']):
-    plt.annotate(str(val), (forsyth_df["ES(W_T)"][i], forsyth_df['Qsum_avg'][i]))
+    plt.annotate(str(val), (forsyth_df["ES"][i], forsyth_df['Sum q_i/(M+1)'][i]))
 
 plt.plot(df_cont["cvar_05"],df_cont["qsum_avg"],  marker = 's', label = "MC NN replication")
 for i, val in enumerate(df_cont['kappa']):
@@ -59,10 +59,10 @@ plt.legend(loc='lower left')
 
 plt.show()
 
-plt.savefig('/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/efficient_frontier_plot.png', dpi = 200)
+plt.savefig('/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/efficient_frontier_plot_nov25.png', dpi = 200)
 
 
-# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dc_mc_efficient_frontier_nov16.xlsx")
+df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dc_mc_efficient_frontier_nov25.xlsx")
 
 # forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dc_forsyth_efficient_frontier_nov16.xlsx")
 

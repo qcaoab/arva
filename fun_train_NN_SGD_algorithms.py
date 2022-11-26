@@ -194,7 +194,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
             # OR, for last 'nit_running_min' iterations, calculate the newval for EVERY iteration
 
             # newval is calculated using ALL data, not just subset
-            new_fval, _ = objfun_pyt(swa_both_nns.module, params, xi_avg)
+            with torch.no_grad():
+                new_fval, _ = objfun_pyt(swa_both_nns.module, params, xi_avg)
         
             if new_fval < v_min:
                 
@@ -209,7 +210,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         if itbound >= 1000:
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
                 print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)                
-                new_fval, _ = objfun_pyt(NN_list, params, xi) # uses full tensor version of params 
+                with torch.no_grad():
+                    new_fval, _ = objfun_pyt(NN_list, params, xi) # uses full tensor version of params 
                 # supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
                 print("Current xi: ", xi.detach().cpu().numpy())
                 print( "objective value function right now is: " + str(float(new_fval)))
@@ -224,8 +226,9 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     #--------------- SET OUTPUT VALUES ---------------
     
     optimizer.zero_grad()
-    
+    del NN_list
     torch.cuda.empty_cache()
+    torch.no_grad()
 
     #temporary output
     params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list_min, params)

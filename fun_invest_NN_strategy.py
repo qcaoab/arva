@@ -184,8 +184,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
         
         #------------------------negative portfolios only incur borrowing cost (bond, not stock yield)----
         
-        if torch.any(g < 0):
-            Y_t_n[g<0][:,1] = Y_t_n[g<0][:,0]          
+        neg_indices = g_prev < 0 
+        Y_t_n[neg_indices][:,1] = Y_t_n[neg_indices][:,0]              
         
         # --------------------------- PROPORTIONS INVESTED in EACH ASSET ALONG EACH PATH-------------------
 
