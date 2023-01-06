@@ -59,6 +59,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     nit_running_min = NN_training_options["nit_running_min"]
     nit_IterateAveragingStart=NN_training_options["nit_IterateAveragingStart"]
     method = NN_training_options["methods"][0]
+    running_min_from_avg = NN_training_options["running_min_from_avg"]
+    running_min_from_sgd = NN_training_options["running_min_from_sgd"]
     
     #Adam options
     Adam_ewma_1 = NN_training_options["Adam_ewma_1"]
@@ -194,17 +196,30 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
             # OR, for last 'nit_running_min' iterations, calculate the newval for EVERY iteration
 
             # newval is calculated using ALL data, not just subset
-            with torch.no_grad():
-                new_fval, _ = objfun_pyt(swa_both_nns.module, params, xi_avg)
+            if running_min_from_avg:
+                with torch.no_grad():
+                    new_fval, _ = objfun_pyt(swa_both_nns.module, params, xi_avg)
+            
+                if new_fval < v_min:
+                    
+                    NN_list_min = copy.deepcopy(swa_both_nns.module)
+                    xi_min = xi_avg.detach().clone()
+                    
+                    v_min = new_fval.detach().clone()      
+                    print("new min fval from swa: ", new_fval.detach().cpu().numpy())
         
-            if new_fval < v_min:
+            if running_min_from_sgd:
+                with torch.no_grad():
+                    new_fval, _ = objfun_pyt(NN_list, params, xi)
+            
+                if new_fval < v_min:
+                    
+                    NN_list_min = copy.deepcopy(NN_list)
+                    xi_min = xi.detach().clone()
+                    
+                    v_min = new_fval.detach().clone()      
+                    print("new min fval from sgd: ", v_min.cpu().numpy())
                 
-                NN_list_min = copy.deepcopy(swa_both_nns.module)
-                xi_min = xi_avg.detach().clone()
-                
-                v_min = new_fval.detach().clone()      
-                print("new min fval: ", new_fval.detach().cpu().numpy())
-        
         # ----------------
         #Update user on progress every x% of SGD iterations
         if itbound >= 1000:
@@ -212,6 +227,11 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
                 print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)                
                 with torch.no_grad():
                     new_fval, _ = objfun_pyt(NN_list, params, xi) # uses full tensor version of params 
+                    if new_fval < v_min:
+                        NN_list_min = copy.deepcopy(NN_list)
+                        xi_min = xi.detach().clone()
+                        v_min = new_fval.detach().clone()
+                        print("new min fval: ", v_min.cpu().numpy())
                 # supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
                 print("Current xi: ", xi.detach().cpu().numpy())
                 print( "objective value function right now is: " + str(float(new_fval)))
@@ -264,23 +284,25 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     res["objfun_final"] = min_fval
     
     # save model for continuation learning
-    if params["obj_fun"] == "mean_cvar_single_level":
         # NN_theta = F_theta[0:-1]
         # xi = F_theta[-1]  # Last entry is xi, where (xi**2) is candidate VAR
 
         #save NN params and xi for continuation learning
-        model_save_path = params["console_output_prefix"]
-        local_path = params["local_path"]
-        torch.save(NN_list_min.state_dict(),f"{local_path}/saved_models/NN_opt_{model_save_path}")
-        
-        optimal_xi = {"xi":str(xi_np[0])}
-        
-        with open(f'{local_path}/saved_models/xi_opt_{model_save_path}.json', 'w') as outfile:
-            json.dump(optimal_xi, outfile)
+    model_save_path = params["console_output_prefix"]
+    local_path = params["local_path"]
+    torch.save(NN_list_min.state_dict(),f"{local_path}/saved_models/NN_opt_{model_save_path}")
+    
+    optimal_xi = {"xi":str(xi_np[0])}
+    
+    with open(f'{local_path}/saved_models/xi_opt_{model_save_path}.json', 'w') as outfile:
+        json.dump(optimal_xi, outfile)
 
-
-        # Make sure parameter dictionary is updated so that e.g. fun_Objective_functions can work correctly
-        params["xi"] = xi_np[0] #(xi**2) is candidate VAR
+    print("saved model: ")
+    print(NN_list_min.state_dict())
+    print("xi: ", xi_np)
+    
+    # Make sure parameter dictionary is updated so that e.g. fun_Objective_functions can work correctly
+    params["xi"] = xi_np[0] #(xi**2) is candidate VAR
     
     
     

@@ -27,7 +27,6 @@ import fun_Data__MCsim_wrapper
 import class_Neural_Network
 import fun_train_NN_algorithm_defaults
 import fun_RUN__wrapper
-import torch
 import class_NN_Pytorch
 import torch
 
@@ -54,7 +53,9 @@ else:
 params = {} #Initialize empty dictionary
 
 #sleep timer
-
+# sleep_hrs = 1
+# print(f"sleeping {sleep_hrs} hrs")
+# time.sleep(60*60*sleep_hrs)
 
 #time
 now = datetime.datetime.now()
@@ -69,7 +70,7 @@ os.chdir(dname)
 code_title_prefix = "output/mc_decum_"+start_time   #used for saving output on local
 console_output_prefix = "mc_decum_" +start_time
 params["console_output_prefix"] = console_output_prefix
-
+params["start_time"] = start_time
 
 params["T"] = 30. #Investment time horizon, in years
 params["N_rb"] = 30  #Nr of equally-spaced rebalancing events in [0,T]
@@ -85,7 +86,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 params["device"] = device
 
 #decumulation params
-params["q_min"] = 35.0 #min withdrawawl per Rb
+params["q_min"] = 35.0 #min withdrawal per Rb
 params["q_max"] = 60.0 #max withdrawal per Rb
 params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
 # ^TO DO: need to implement borrowing interest when wealth is negative
@@ -100,13 +101,19 @@ np.random.seed(seed_mc)
 print("\n Random seed: ", seed_mc, " \n")
 
 continuation_learn = False  #MC added: if True, will use weights from previous tracing parameter to initialize theta0. 
+cont_start = 2  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
 preload = False
 params["local_path"] = str(os.getcwd())
-nn_preload = Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_15-11-22_15:41")    
-xi_preload = Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_15-11-22_15:41.json")
+nn_preload = Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_30-11-22_14:40")    
+xi_preload = Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_30-11-22_14:40.json")
 
+#control export params
+params["output_control"] = False
+params["w_grid_min"] = 0
+params["w_grid_max"] = 10000
+params["nx"] = 4096
 
 #Specify TRANSACTION COSTS parameters
 params["TransCosts_TrueFalse"] = False #If True, incorporate transaction costs
@@ -117,22 +124,22 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 # iteration dashboard --------------------------
-iter_params = "test"
+iter_params = "tiny"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 30000
-    batchsize_mc = 2000
+    itbound_mc = 50000
+    batchsize_mc = 1000
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 15000
-    batchsize_mc = 2000
+    itbound_mc = 20000
+    batchsize_mc = 1000
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
     itbound_mc = 3000
-    batchsize_mc = 500
+    batchsize_mc = 1000
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -231,7 +238,7 @@ params["obj_fun_epsilon"] = 10**-6
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
 #for DC, use 9999.0 as tracing param as placeholder for 'NA'
-tracing_parameters_to_run = [1.0] #[0.05, 0.2, 0.5, 1.0, 1.5,3.0 , 5.0, 50., 5000.] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [50.0, 5.0, 3.0, 1.5, 1.0, 0.5, 0.2, 0.05] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -626,8 +633,8 @@ print("Withdrawal NN:")
 NN_withdraw_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-NN_withdraw_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
-NN_withdraw_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
+NN_withdraw_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 8 , activation = "logistic_sigmoid", add_bias=False)
+NN_withdraw_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 8, activation = "logistic_sigmoid", add_bias=False)
 NN_withdraw_orig.update_layer_info(layer_id = 3, activation = "logistic_sigmoid", add_bias= False)
 
 NN_withdraw_orig.print_layers_info() #Check if structure is correct
@@ -649,8 +656,8 @@ print("Allocation NN:")
 NN_allocate_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-NN_allocate_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
-NN_allocate_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
+NN_allocate_orig.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 8 , activation = "logistic_sigmoid", add_bias=False)
+NN_allocate_orig.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 8, activation = "logistic_sigmoid", add_bias=False)
 NN_allocate_orig.update_layer_info(layer_id = 3, activation = "softmax", add_bias= False)
 
 NN_allocate_orig.print_layers_info() #Check if structure is correct
@@ -756,6 +763,8 @@ NN_training_options['nit_running_min'] = int(itbound / 10)  # nr of iterations a
 NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
+NN_training_options["running_min_from_avg"] = False #if true, take running min from avg
+NN_training_options["running_min_from_sgd"] = True #if true, take running min from sgd, both can be true
 
 #MC pytorch addition:
 NN_training_options["pytorch"] = pytorch_flag  
@@ -776,20 +785,36 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     NN_theta0_allocate = NN_allocate_orig.initialize_NN_parameters(initialize_scheme="glorot_bengio")
     NN_theta0_withdraw = NN_withdraw_orig.initialize_NN_parameters(initialize_scheme="glorot_bengio")
     
-     # - augment NN parameters with additional parameters to be solved
-    if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
-        if tracing_param == 1.0:
-            xi_0 = 14.3 
-        else: #different xi_0 depending on first kappa
-            xi_0 = 16.0
+    # RESET PYTORCH NNs------------------------------- 
+    # (random initialization independent from orig NNs by default)
+    
+    #put original NNs in list:
+    NN_orig_list = [NN_withdraw_orig, NN_allocate_orig]
         
-        params["xi_0"] = xi_0
+    # copy NN structures into pytorch NN
+    NN_withdraw = class_NN_Pytorch.pytorch_NN(NN_withdraw_orig)
+    NN_withdraw.to(device)
+    # NN_withdraw.import_weights(NN_withdraw_orig, params)
+
+    NN_allocate = class_NN_Pytorch.pytorch_NN(NN_allocate_orig)
+    NN_allocate.to(device)
+    # NN_allocate.import_weights(NN_allocate_orig, params)
+
+    NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
+  
+    
+     # - augment NN parameters with additional parameters to be solved
+    # if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
+    #     if tracing_param == 1.0:
+    
+    xi_0 = 1. 
+    params["xi_0"] = xi_0
 
     # load continuation learn model
     model_save_path = params["console_output_prefix"]
     nn_saved_model = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}")
     xi_saved = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}.json")
-    if nn_saved_model.is_file() and tracing_param != tracing_parameters_to_run[0] and continuation_learn:
+    if nn_saved_model.is_file() and tracing_param not in tracing_parameters_to_run[0:cont_start] and continuation_learn:
         
         #NN
         NN_list.load_state_dict(torch.load(nn_saved_model))

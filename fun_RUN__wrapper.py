@@ -19,6 +19,7 @@ import fun_eval_objfun_NN_strategy
 import fun_W_T_stats
 import fun_BM_vs_NN_comparison
 import class_NN_Pytorch
+import export_control_from_NN
 
 
 def RUN__wrapper_TWO_stage_optimization(
@@ -180,14 +181,22 @@ def RUN__wrapper_training_testing_NN(
     params["benchmark_W_std_train_post_withdraw"] = params_CP_TRAIN["W_paths_std_post_withdraw"].copy()
     
     
-    
-    
     #Also add terminal wealth vector from constant proportion strategy (for ADS and IR objectives)
     if params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:
         params["benchmark_W_T_vector_train"] =  params_CP_TRAIN["W_T"].copy()  #terminal wealth as a vector (one entry for each path)
         params["benchmark_W_paths_train"] = params_CP_TRAIN["W"].copy()
 
-
+    
+    #----------------------------------------------------------------------------------------
+    # EXPORT CONTROL EXPLICITLY, if required
+    #----------------------------------------------------------------------------------------
+    
+    if params["output_control"]:
+        
+        export_control_from_NN.export_controls(NN_list, params)
+        
+        print("Explicit control exported from preloaded model. Quitting program.")
+        exit()
     # ----------------------------------------------------------------------------------------
     # TRAINING of NN
     # ----------------------------------------------------------------------------------------

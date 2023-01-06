@@ -143,10 +143,11 @@ def withdraw_invest_NN_strategy(NN_list, params):
         # params["q_matrix"][:,n_index]  = q_n.detach().cpu().numpy()
         qsum_T_vector += q_n
 
-        g_prev_withdrawn = g_prev - q_n
+        g_prev = g_prev - q_n
         
         #check if last withdrawal, break out of loop if so:
         if n == N_rb + 1:
+            g =g_prev
             break
         
         
@@ -165,7 +166,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
 
         phi_2 = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
-                                 wealth_n = g_prev_withdrawn,  # Wealth vector W(t_n^+), *after* contribution at t_n
+                                 wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                                     # but *before* rebalancing at time t_n for (t_n, t_n+1)
                                  feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
                                  withdraw=False) #use 
@@ -214,11 +215,30 @@ def withdraw_invest_NN_strategy(NN_list, params):
         #Calculate wealth at (t_n+1^-)
         #       g = g(t_n) = Wealth at time (t_n+1)^-
         #       g_prev includes cash injection at time t_n
-        g = torch.multiply(g_prev_withdrawn, h)
+        g = torch.multiply(g_prev, h)
 
             
     #end: TIMESTEPPING
+    
+    #-------------------------------------------------------------------------------
+    #Update terminal wealth # Should probably add another column to these arrays to store withdrawal step instead of 
+    # overwriting?
+    g_np = g.detach().to('cpu').numpy()
+    params["W"][:, N_rb] = g_np.copy()
 
+    #Mean and std of paths
+    params["W_paths_mean"][0, N_rb] = np.mean(g_np)
+
+    if np.std(g_np) > 0.0: #to avoid errors with ddof
+        params["W_paths_std"][0, N_rb] = np.std(g_np, ddof=1)  # ddof=1 for (N_d -1) in denominator
+    else:
+        params["W_paths_std"][0, N_rb] = np.std(g_np)
+
+
+
+    # TERMINAL WEALTH: possible modification for possibly cash withdrawal at T^-
+    W_T = g_np.copy()  #terminal wealth
+    params["W_T"] = W_T.copy()
     # ------------------------------------------------- 
     
 

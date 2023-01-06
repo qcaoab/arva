@@ -15,14 +15,16 @@ def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
     # assuming no lambda smoothing 
     # also W_T, q_sum, and xi already in tensor         
     
-    xi_squared = torch.square(xi)
+    # xi_cubed = torch.pow(xi,3)
     # ind_W_T_below_xi_squared = (W_T_vector <= xi_squared) * 1   # 1 if W_T <=  xi_squared,
     #                                                         # 0 if W_T >  xi_squared
 
     # diff = W_T_vector - xi_squared
     # bracket = torch.multiply(ind_W_T_below_xi_squared, diff)   #same as: minimum(W_T_vector - xi_squared, 0)
+    
+    # xi_10 = torch.mul(xi,10) # multiply by 50 for 
 
-    bracket = xi_squared + (1/alpha) * torch.minimum(W_T_vector - xi_squared, torch.zeros(W_T_vector.size(), device = params["device"]))
+    bracket = xi + (1/alpha) * torch.minimum(W_T_vector - xi, torch.zeros(W_T_vector.size(), device = params["device"]))
     
     
     fun = -qsum_T_vector - rho*bracket #formulate as minimization
