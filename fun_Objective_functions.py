@@ -29,7 +29,7 @@ def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
     
     fun = -qsum_T_vector - rho*bracket #formulate as minimization
             
-    fun = fun + params["obj_fun_epsilon"]*W_T_vector  #stabilization
+    fun = fun - params["obj_fun_epsilon"]*W_T_vector  #stabilization
     fun = torch.mean(fun)
 
     #return only fun

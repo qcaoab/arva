@@ -67,6 +67,7 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     Adam_ewma_2 = NN_training_options["Adam_ewma_2"]
     Adam_eta = NN_training_options["Adam_eta"]
     Adam_epsilon = NN_training_options["Adam_epsilon"]
+    weight_decay = NN_training_options["Adam_weight_decay"]
     
     
     #Check that batch size does NOT exceed N_d
@@ -108,13 +109,21 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     if "Adam" in NN_training_options["methods"]:
         
         #create optimizer, starting with withdrawal NN params
-        optimizer = torch.optim.Adam(NN_list.parameters(), lr = NN_training_options["Adam_eta"], 
-                                     betas = (NN_training_options["Adam_ewma_1"], 
-                                     NN_training_options["Adam_ewma_2"] ))
-                
+        optimizer = torch.optim.Adam([{'params': NN_list.parameters(), 
+                                        'lr': NN_training_options["Adam_eta"], 
+                                        'betas': (NN_training_options["Adam_ewma_1"], NN_training_options["Adam_ewma_2"] ),
+                                        'weight_decay': weight_decay},
+                                      {'params': xi,
+                                       'lr': params["xi_lr"]}                                    
+                                      ])
+        
+        if NN_training_options["lr_schedule"]:
+            scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, [int(itbound*0.70), int(itbound*0.97)], 
+                                                 gamma=0.2, last_epoch=-1, verbose=False)
+            
         #append xi to optimization parameters
-        if not params["xi_constant"]: 
-            optimizer.param_groups[0]['params'].append(xi)
+        # if not params["xi_constant"]: 
+        #     optimizer.param_groups[0]['params'].append(xi)
         
     #init iterate averaging model
     swa_both_nns = AveragedModel(NN_list)
@@ -167,6 +176,10 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         
         #update parameters
         optimizer.step()
+        
+        #lr scheduler step
+        if NN_training_options["lr_schedule"]:
+            scheduler.step()
         
         #try to clean up memory, lol
         torch.cuda.empty_cache()

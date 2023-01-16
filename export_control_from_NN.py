@@ -63,7 +63,7 @@ def export_controls(NN_list, params):
         Bplus[:,n] = torch.multiply(a_t_n_output[:,0], w_grid_vector)
     
     #write file
-    filepath = f"control_files/control_file_dc_kappa_inf_nov30.txt"
+    filepath = params["control_filepath"]
     open(filepath, "w").close()
     
     with open(filepath,"a+") as f:

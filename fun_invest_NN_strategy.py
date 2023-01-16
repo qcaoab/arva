@@ -136,9 +136,13 @@ def withdraw_invest_NN_strategy(NN_list, params):
         
         #get withdrawal NN output as value in [0,1], to multiply with the range.
         q_n_proportion = torch.squeeze(NN_list[0].forward(phi_1))
-        
         q_n = torch.add(q_min, torch.mul(q_range, q_n_proportion))
         
+        # set q_n to q_min for paths where wealth is negative:
+        if params["constrain_w_neg"]:
+            neg_indices = g_prev < 0 
+            q_n[neg_indices] = q_min  
+                
         #save withdrawals
         # params["q_matrix"][:,n_index]  = q_n.detach().cpu().numpy()
         qsum_T_vector += q_n
@@ -161,7 +165,12 @@ def withdraw_invest_NN_strategy(NN_list, params):
         
         #wondering about effect of negative wealth on allocation NN
 
-
+        #------------------------negative portfolios only incur borrowing cost (bond, not stock yield)----
+        
+        neg_indices = g_prev < 0 
+        Y_t_n[neg_indices][:,1] = Y_t_n[neg_indices][:,0]  
+        
+        
         #--------------------------- CONSTRUCT FEATURE VECTOR and standardize, for allocation ---------------------------
 
         phi_2 = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
@@ -183,11 +192,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
         a_t_n_output = NN_list[1].forward(phi_2)
         
         
-        #------------------------negative portfolios only incur borrowing cost (bond, not stock yield)----
-        
-        neg_indices = g_prev < 0 
-        Y_t_n[neg_indices][:,1] = Y_t_n[neg_indices][:,0]              
-        
+            
         # --------------------------- PROPORTIONS INVESTED in EACH ASSET ALONG EACH PATH-------------------
 
         # params["NN_asset_prop_paths"].shape = [N_d, N_rb+1, N_a]  Paths for the proportions in each asset for given dataset
@@ -217,12 +222,10 @@ def withdraw_invest_NN_strategy(NN_list, params):
         #       g_prev includes cash injection at time t_n
         g = torch.multiply(g_prev, h)
 
+        #end: TIMESTEPPING
             
-    #end: TIMESTEPPING
-    
-    #-------------------------------------------------------------------------------
-    #Update terminal wealth # Should probably add another column to these arrays to store withdrawal step instead of 
-    # overwriting?
+   #-------------------------------------------------------------------------------
+    #Update terminal wealth
     g_np = g.detach().to('cpu').numpy()
     params["W"][:, N_rb] = g_np.copy()
 
@@ -235,13 +238,11 @@ def withdraw_invest_NN_strategy(NN_list, params):
         params["W_paths_std"][0, N_rb] = np.std(g_np)
 
 
-
     # TERMINAL WEALTH: possible modification for possibly cash withdrawal at T^-
     W_T = g_np.copy()  #terminal wealth
     params["W_T"] = W_T.copy()
-    # ------------------------------------------------- 
-    
 
+              
     return params, g, qsum_T_vector
 
 def invest_NN_strategy_pyt(NN_pyt, params):
