@@ -8,6 +8,13 @@ import torch.nn.functional as F
 import torch.optim as optim
 from collections import OrderedDict
 
+
+# def sigmoid_w_constrain(nn_output,phi_2):
+#     torch.sigmoid(phi_2*torch.maximum(0,nn_output))
+#     return
+    
+
+
 class pytorch_NN(nn.Module):
     def __init__(self, original_NN):
 
@@ -22,6 +29,8 @@ class pytorch_NN(nn.Module):
                 return nn.ReLU()
             elif name == "softmax":
                 return nn.Softmax(dim=1)
+            elif name == "none":
+                return nn.Identity()
             else:
                 raise("activation function not included yet")
 

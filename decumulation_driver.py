@@ -90,11 +90,13 @@ params["q_min"] = 35.0 #min withdrawal per Rb
 params["q_max"] = 60.0 #max withdrawal per Rb
 params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
 # ^TO DO: need to implement borrowing interest when wealth is negative
-params["constrain_w_neg"] = True # set q to q_min for all paths where wealth is negative
+# params["constrain_w_neg"] = True # HARDCODED FOR NOW
 
 # hold xi constant?
-
 params["xi_constant"] = False
+
+#remove negative paths from NN training?
+params["remove_neg"] = False
 
 #set seed
 seed_mc = 2
@@ -147,7 +149,7 @@ if iter_params == "test":
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 3000
+    itbound_mc = 5000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
@@ -166,6 +168,7 @@ print("Key parameters-------")
 print(f"paths: {n_d_train_mc}")
 print(f"iterations: {itbound_mc}")
 print(f"batchsize: {batchsize_mc}")
+print(f"remove neg: ", params["remove_neg"])
 
 
 # manually specify prop_const;
@@ -256,7 +259,7 @@ params["obj_fun_epsilon"] = 10**-6
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
 #for DC, use 9999.0 as tracing param as placeholder for 'NA'
-tracing_parameters_to_run = [0.05]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
 
@@ -655,9 +658,9 @@ NN_withdraw_orig.print_layers_info()  #Check what to update
 #Update layers info
 
 for l in range(1, layers_mc+1):
-    NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=False)
+    NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=True)
     
-NN_withdraw_orig.update_layer_info(layer_id = layers_mc+1, activation = "logistic_sigmoid", add_bias= False)
+NN_withdraw_orig.update_layer_info(layer_id = layers_mc+1, activation = "none", add_bias= False)
 
 NN_withdraw_orig.print_layers_info() #Check if structure is correct
 # ---------------------------------------------------------------------
@@ -679,7 +682,7 @@ NN_allocate_orig.print_layers_info()  #Check what to update
 
 #Update layers info
 for l in range(1, layers_mc+1):
-    NN_allocate_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=False)
+    NN_allocate_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=True)
 
 NN_allocate_orig.update_layer_info(layer_id = layers_mc+1, activation = "softmax", add_bias= False)
 
@@ -835,9 +838,12 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     # if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
     #     if tracing_param == 1.0:
     
-    xi_0 = -400. #start at roughly 200 for kappa=50 start. xi_cont should take care of rest 
+    xi_0 = -1.  
     params["xi_0"] = xi_0
     params["xi_lr"] = 0.05
+    
+    if params["xi_constant"]:
+        params["xi_lr"] = 0.0
     
     # load continuation learn model
     model_save_path = params["console_output_prefix"]
