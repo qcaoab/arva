@@ -78,8 +78,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
     qsum_T_vector = torch.zeros([N_d], device = params["device"])     #cumsum of withdrawals for each path
     
     q_min = torch.tensor(params["q_min"], device= params["device"])
-    q_range = torch.tensor(params["q_max"] - params["q_min"], device= params["device"])
-       
+    # q_range = torch.tensor(params["q_max"] - params["q_min"], device= params["device"])
+    q_max = torch.tensor(params["q_min"], device= params["device"])
     # ---------------------INITIALIZE values for timestepping loop -------------------
     g = W0 * torch.ones(N_d, requires_grad=True, device=params["device"])  # Initialize g for g_prev (initial wealth) below for first rebalancing time
                         # MC note: this is the initialization of the wealth at t=0 that will be used to run 
@@ -153,7 +153,12 @@ def withdraw_invest_NN_strategy(NN_list, params):
         custom_sigmoid = torch.sigmoid(torch.maximum(torch.zeros(g_prev.size(), device = params["device"]), 
                                                      g_prev*torch.exp(nn_output)))
         
-        q_n = q_min + 2*q_range*(custom_sigmoid - 0.5)
+        
+        q_n = q_min + 2*(q_max - q_min)*(custom_sigmoid - 0.5)
+        
+        
+        # case for q_min <= w <= q_max
+        # torch.where(g_prev <= q_max and g_prev >= q_min, , )
         
         # #construct q_n, same size as full wealth tensor
         # q_n = torch.ones(g_prev.size(),device = params["device"])
