@@ -79,7 +79,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
     
     q_min = torch.tensor(params["q_min"], device= params["device"])
     # q_range = torch.tensor(params["q_max"] - params["q_min"], device= params["device"])
-    q_max = torch.tensor(params["q_min"], device= params["device"])
+    q_max = torch.tensor(params["q_max"], device= params["device"])
     # ---------------------INITIALIZE values for timestepping loop -------------------
     g = W0 * torch.ones(N_d, requires_grad=True, device=params["device"])  # Initialize g for g_prev (initial wealth) below for first rebalancing time
                         # MC note: this is the initialization of the wealth at t=0 that will be used to run 
@@ -119,57 +119,41 @@ def withdraw_invest_NN_strategy(NN_list, params):
         else:
             params["W_paths_std"][0, n_index] = torch.std(g_prev)
 
-        # REMOVE NEGATIVE WEALTH
-        # Since paths will always have q_n = q_min and p = 0 once they go negative, remove negative wealth paths from training. 
-        if params["remove_neg"]:
-            g_prev_phi1 = g_prev[g_prev > 0]        
-        else:
-            g_prev_phi1 = g_prev 
-                
         #--------------------------- CONSTRUCT FEATURE VECTOR and standardize, for withdrawal ---------------------------
 
         phi_1 = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
-                                 wealth_n = g_prev_phi1,  # Wealth vector W(t_n^+), *after* contribution at t_n
+                                 wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                                     # but *before* rebalancing at time t_n for (t_n, t_n+1)
                                  feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
                                  withdraw= True)
 
-        # Commented out for 'remove_neg' to work
-        # for feature_index in np.arange(0,N_phi,1):  #loop over feature index
-        #     params["Feature_phi_paths_withdrawal"][:,n_index,feature_index] =  phi_1[:,feature_index].detach().cpu().numpy()
+        for feature_index in np.arange(0,N_phi,1):  #loop over feature index
+            params["Feature_phi_paths_withdrawal"][:,n_index,feature_index] =  phi_1[:,feature_index].detach().cpu().numpy()
             #    phi[j,i] = index i=0,...,(N_phi - 1) value of (standardized) feature i along sample path j
 
         # ---------------------------WITHDRAW---------------------------------------
         
-        # #get withdrawal NN output as value in [0,1], to multiply with the range.
-        # q_n_proportion = torch.squeeze(NN_list[0].forward(phi_1))
-        # q_n = torch.add(q_min, torch.mul(q_range, q_n_proportion))
+        #get withdrawal NN output as value in [0,1], to multiply with the range.
+        nn_out = torch.squeeze(NN_list[0].forward(phi_1))
         
-        # new method of creating soft constraint on withdrawals when wealth is negative, replaces activation function
+        #yuying fix v1
+        # custom_sigmoid = torch.sigmoid(torch.maximum(torch.zeros(g_prev.size(), device = params["device"]), 
+        #                                              g_prev*torch.exp(nn_out)))
+       
+        # q_n = q_min + 2*(q_max - q_min)*(custom_sigmoid - 0.5)
         
-        nn_output = torch.squeeze(NN_list[0].forward(phi_1))
-        
+        #yuying fix v2, with border addendum
         custom_sigmoid = torch.sigmoid(torch.maximum(torch.zeros(g_prev.size(), device = params["device"]), 
-                                                     g_prev*torch.exp(nn_output)))
+                                                      g_prev*torch.exp(nn_out)))
+
+        max_qmin_w = torch.maximum(torch.ones(g_prev.size(), device=params["device"])*q_min, g_prev)
+        min_outer_qmax = torch.minimum(max_qmin_w, torch.ones(g_prev.size(), device=params["device"])*q_max)
         
+        q_n = q_min + 2*(min_outer_qmax - q_min)*(custom_sigmoid - 0.5)
+    
         
-        q_n = q_min + 2*(q_max - q_min)*(custom_sigmoid - 0.5)
-        
-        
-        # case for q_min <= w <= q_max
-        # torch.where(g_prev <= q_max and g_prev >= q_min, , )
-        
-        # #construct q_n, same size as full wealth tensor
-        # q_n = torch.ones(g_prev.size(),device = params["device"])
-        
-        # if params["remove_neg"]:
-        #     q_n[g_prev > 0] = q_n_nn
-        # else:
-        #     q_n = q_n_nn
-        # # set q_n to q_min for paths where wealth is negative:
-        # q_n[g_prev <= 0] = q_min
-        
+                
         #save withdrawals
         # params["q_matrix"][:,n_index]  = q_n.detach().cpu().numpy()
         qsum_T_vector += q_n
