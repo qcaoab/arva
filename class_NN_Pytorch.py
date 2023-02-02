@@ -113,9 +113,17 @@ class pytorch_NN(nn.Module):
         
         pyt_state_dict = self.state_dict()
         
-        for i, layer in enumerate(pyt_state_dict.keys()):
+        pyt_state_key_list = list(pyt_state_dict.keys())
+        pyt_state_weights = filter(lambda k: '.weight' in k, pyt_state_key_list)
+        pyt_state_biases = filter(lambda k: '.bias' in k, pyt_state_key_list)
+        
+        
+        for i, layer in enumerate(pyt_state_weights):
             original_NN.layers[i+1].x_l = pyt_state_dict[layer].detach().cpu().numpy().T
         
+        for i, layer in enumerate(pyt_state_biases):
+            original_NN.layers[i+1].b_l = pyt_state_dict[layer].detach().cpu().numpy().T
+           
         #copy from layers to theta vector
         original_NN.stack_NN_parameters()
         

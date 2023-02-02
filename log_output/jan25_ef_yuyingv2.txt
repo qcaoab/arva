@@ -1,0 +1,2555 @@
+Starting at: 
+25-01-23_16:01
+
+ Random seed:  2  
+
+Key parameters-------
+paths: 256000
+iterations: 40000
+batchsize: 1000
+remove neg:  False
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+3.3333333333333335% of MC simulations done.
+6.666666666666667% of MC simulations done.
+10.0% of MC simulations done.
+13.333333333333334% of MC simulations done.
+16.666666666666664% of MC simulations done.
+20.0% of MC simulations done.
+23.333333333333332% of MC simulations done.
+26.666666666666668% of MC simulations done.
+30.0% of MC simulations done.
+33.33333333333333% of MC simulations done.
+36.666666666666664% of MC simulations done.
+40.0% of MC simulations done.
+43.333333333333336% of MC simulations done.
+46.666666666666664% of MC simulations done.
+50.0% of MC simulations done.
+53.333333333333336% of MC simulations done.
+56.666666666666664% of MC simulations done.
+60.0% of MC simulations done.
+63.33333333333333% of MC simulations done.
+66.66666666666666% of MC simulations done.
+70.0% of MC simulations done.
+73.33333333333333% of MC simulations done.
+76.66666666666667% of MC simulations done.
+80.0% of MC simulations done.
+83.33333333333334% of MC simulations done.
+86.66666666666667% of MC simulations done.
+90.0% of MC simulations done.
+93.33333333333333% of MC simulations done.
+96.66666666666667% of MC simulations done.
+100.0% of MC simulations done.
+Withdrawal NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       1       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer      10  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer      10  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       1              none   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1      (2, 10)     True          10  
+2     (10, 10)     True          10  
+3      (10, 1)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+Allocation NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer      10  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer      10  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1      (2, 10)     True          10  
+2     (10, 10)     True          10  
+3      (10, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+{'methods': ['Adam'], 'output_progress': False, 'tol': 1e-06, 'itbound_scipy_algorithms': 1000, 'check_exit_criteria': False, 'nit_running_min': 4000, 'itbound_SGD_algorithms': 40000, 'nit_IterateAveragingStart': 36000, 'batchsize': 1000, 'SGD_learningrate': 50.0, 'Adagrad_epsilon': 1e-08, 'Adagrad_eta': 1.0, 'Adadelta_ewma': 0.9, 'Adadelta_epsilon': 1e-08, 'RMSprop_ewma': 0.8, 'RMSprop_epsilon': 1e-08, 'RMSprop_eta': 0.1, 'Adam_ewma_1': 0.9, 'Adam_ewma_2': 0.998, 'Adam_eta': 0.05, 'Adam_epsilon': 1e-08, 'Adam_weight_decay': 0.0001, 'running_min_from_avg': False, 'running_min_from_sgd': True, 'lr_schedule': True}
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1576.8182150775267
+W_T_median: 1136.7449346433505
+W_T_pctile_5: -127.64084552288806
+W_T_CVAR_5_pct: -295.72244238283764
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1655.0622578435584
+Current xi:  [-38.184868]
+objective value function right now is: -1655.0622578435584
+4.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1667.7496906164372
+Current xi:  [-74.590904]
+objective value function right now is: -1667.7496906164372
+6.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1676.7227782251528
+Current xi:  [-110.61437]
+objective value function right now is: -1676.7227782251528
+8.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1686.1011326780022
+Current xi:  [-146.8343]
+objective value function right now is: -1686.1011326780022
+10.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1693.4163478388996
+Current xi:  [-182.79526]
+objective value function right now is: -1693.4163478388996
+12.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1700.7756296508076
+Current xi:  [-218.58783]
+objective value function right now is: -1700.7756296508076
+14.000000000000002% of gradient descent iterations done. Method = Adam
+new min fval:  -1706.4946354406882
+Current xi:  [-253.91142]
+objective value function right now is: -1706.4946354406882
+16.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1712.3690804980556
+Current xi:  [-288.63422]
+objective value function right now is: -1712.3690804980556
+18.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1716.7044448877261
+Current xi:  [-322.686]
+objective value function right now is: -1716.7044448877261
+20.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1720.742376982993
+Current xi:  [-356.1076]
+objective value function right now is: -1720.742376982993
+22.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1723.9430233171754
+Current xi:  [-388.73776]
+objective value function right now is: -1723.9430233171754
+24.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1726.7432143862882
+Current xi:  [-420.65268]
+objective value function right now is: -1726.7432143862882
+26.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1729.2461308629634
+Current xi:  [-451.6574]
+objective value function right now is: -1729.2461308629634
+28.000000000000004% of gradient descent iterations done. Method = Adam
+new min fval:  -1731.1181026890986
+Current xi:  [-481.2249]
+objective value function right now is: -1731.1181026890986
+30.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1731.8002181229795
+Current xi:  [-509.94833]
+objective value function right now is: -1731.8002181229795
+32.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1733.3672597241089
+Current xi:  [-536.9772]
+objective value function right now is: -1733.3672597241089
+34.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1734.701223520978
+Current xi:  [-561.9992]
+objective value function right now is: -1734.701223520978
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-585.29]
+objective value function right now is: -1734.163735182739
+38.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-606.09814]
+objective value function right now is: -1733.950764829638
+40.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-622.62836]
+objective value function right now is: -1733.9741685004249
+42.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1735.4487264948646
+Current xi:  [-634.7724]
+objective value function right now is: -1735.4487264948646
+44.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1735.4572754014835
+Current xi:  [-643.0142]
+objective value function right now is: -1735.4572754014835
+46.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1735.750229171727
+Current xi:  [-644.74316]
+objective value function right now is: -1735.750229171727
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.735]
+objective value function right now is: -1735.0037384788034
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-648.0036]
+objective value function right now is: -1735.19755546579
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-648.0652]
+objective value function right now is: -1735.7348781472786
+54.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1735.8486549355584
+Current xi:  [-647.84393]
+objective value function right now is: -1735.8486549355584
+56.00000000000001% of gradient descent iterations done. Method = Adam
+Current xi:  [-648.2792]
+objective value function right now is: -1735.7533254518407
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.7566]
+objective value function right now is: -1734.8375318145256
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-647.1157]
+objective value function right now is: -1735.6588071991905
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-649.5174]
+objective value function right now is: -1735.6427103998626
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-648.5517]
+objective value function right now is: -1735.5150571966046
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-648.57446]
+objective value function right now is: -1735.5319874727434
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-649.36597]
+objective value function right now is: -1735.6539022727284
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-647.6554]
+objective value function right now is: -1734.6652256960874
+72.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1736.0255797060436
+Current xi:  [-647.474]
+objective value function right now is: -1736.0255797060436
+74.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1736.158648169563
+Current xi:  [-647.46674]
+objective value function right now is: -1736.158648169563
+76.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-647.222]
+objective value function right now is: -1735.9075738380473
+78.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-647.01984]
+objective value function right now is: -1736.0386309575597
+80.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1736.1829489507284
+Current xi:  [-647.0372]
+objective value function right now is: -1736.1829489507284
+82.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.5115]
+objective value function right now is: -1736.0862953626693
+84.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.378]
+objective value function right now is: -1736.1778272933288
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.7196]
+objective value function right now is: -1736.1056525259232
+88.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1736.206518353992
+Current xi:  [-646.8643]
+objective value function right now is: -1736.206518353992
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.3521]
+objective value function right now is: -1735.8895173688131
+new min fval from sgd:  -1736.2088709355212
+new min fval from sgd:  -1736.2105549648363
+new min fval from sgd:  -1736.215522780605
+new min fval from sgd:  -1736.2165388094807
+new min fval from sgd:  -1736.221541133659
+new min fval from sgd:  -1736.2250506845542
+new min fval from sgd:  -1736.232990491991
+new min fval from sgd:  -1736.2397761966358
+new min fval from sgd:  -1736.2415543629643
+new min fval from sgd:  -1736.2423790898831
+new min fval from sgd:  -1736.2436263794168
+new min fval from sgd:  -1736.2442122170628
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.41736]
+objective value function right now is: -1736.0718806850646
+new min fval from sgd:  -1736.2466641338533
+new min fval from sgd:  -1736.2476422057434
+new min fval from sgd:  -1736.2490753120856
+new min fval from sgd:  -1736.2543438372716
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.4723]
+objective value function right now is: -1736.223351735096
+new min fval from sgd:  -1736.2566185372327
+new min fval from sgd:  -1736.2612454718687
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-646.13434]
+objective value function right now is: -1736.1270411066646
+new min fval from sgd:  -1736.261269384823
+new min fval from sgd:  -1736.2627439942676
+new min fval from sgd:  -1736.2646679323495
+new min fval from sgd:  -1736.2650560535765
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-645.8947]
+objective value function right now is: -1736.242846507501
+new min fval from sgd:  -1736.265839093486
+new min fval from sgd:  -1736.2660972639362
+new min fval from sgd:  -1736.2662822650123
+new min fval from sgd:  -1736.267098765216
+new min fval from sgd:  -1736.2684154000483
+new min fval from sgd:  -1736.2691987816888
+new min fval from sgd:  -1736.2699268180527
+new min fval from sgd:  -1736.2707769851363
+new min fval from sgd:  -1736.2708418170203
+new min fval from sgd:  -1736.2714454830775
+new min fval from sgd:  -1736.2732087876145
+new min fval from sgd:  -1736.2733342886
+new min fval from sgd:  -1736.2744044943713
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-645.94666]
+objective value function right now is: -1736.237133505918
+min fval:  -1736.2744044943713
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ 1.1485e-32,  2.2723e-31],
+        [ 1.1963e-27, -3.9307e-28],
+        [-6.8626e-32, -1.2555e-30],
+        [-3.6371e-27,  2.1330e-27],
+        [ 3.5741e-31, -4.2692e-31],
+        [ 1.7950e-28, -8.6515e-32],
+        [-3.0387e-30,  4.7241e-28],
+        [-2.9696e-29,  8.5607e-32],
+        [-9.7823e-28,  3.1810e-28],
+        [-7.9718e-32, -3.7123e-27]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([-1.3578e-33,  5.4307e-28, -3.2786e-30, -2.4473e-30, -1.7305e-30,
+         3.5461e-30,  1.0214e-27, -1.2192e-27,  2.7522e-29,  2.8278e-32],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[ 2.1728e-25,  1.7723e-25,  9.9472e-26, -7.8897e-26, -1.2427e-25,
+         -6.9982e-26,  3.5029e-25, -6.4721e-26, -5.6563e-26,  3.3418e-25],
+        [ 6.6329e-25,  4.1375e-25,  7.3152e-25,  8.2365e-25,  3.9495e-25,
+          3.7498e-25,  6.0836e-25,  5.3287e-25,  3.3236e-25,  3.5889e-25],
+        [-2.4343e-26,  1.1660e-25,  1.5381e-25,  1.7064e-25,  4.8589e-26,
+         -8.8030e-26,  3.8008e-25, -1.1266e-25,  2.2382e-25,  3.8918e-25],
+        [-8.0130e-26,  7.0669e-25,  5.9013e-25, -8.0330e-26,  5.0789e-25,
+          8.3477e-25, -5.3112e-26,  7.5182e-25, -1.8913e-26,  3.9751e-25],
+        [ 6.4287e-26,  1.2846e-25,  9.3156e-26,  2.3374e-25,  5.5398e-26,
+          3.1679e-25,  5.9978e-26,  2.5091e-25,  5.5666e-26,  5.9949e-26],
+        [-2.5440e-26,  3.8782e-25, -7.3123e-26, -7.5144e-26, -8.1798e-26,
+          4.4308e-25,  4.2673e-25,  2.7706e-25,  6.2293e-25, -7.2642e-26],
+        [-1.3458e-25,  1.2361e-25, -5.8434e-26,  4.0122e-25, -1.2097e-25,
+          1.6514e-25,  5.6580e-26, -1.3313e-25,  1.1778e-25, -1.3459e-25],
+        [-1.2076e-25,  7.4629e-25,  5.4624e-25,  3.8475e-25, -1.2976e-25,
+         -1.1941e-25,  4.4172e-25, -3.9145e-26,  6.2758e-25,  4.4469e-25],
+        [-9.8395e-26, -1.2924e-25,  1.2563e-25, -1.3022e-25, -1.1166e-25,
+          2.1615e-25,  1.3340e-25, -5.0612e-26,  1.8438e-26,  5.9580e-25],
+        [-8.5856e-26, -8.5921e-26, -8.9599e-26,  1.8620e-25, -8.8885e-26,
+          2.0427e-25, -2.8162e-26,  9.0285e-26, -3.7878e-26,  3.1685e-25]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-2.4760e-25,  7.1485e-25, -2.3871e-25,  4.8636e-25,  4.0891e-25,
+         1.9216e-25, -2.7324e-25,  6.2016e-25,  8.4216e-25, -1.9836e-25],
+       device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[1.2289e-12, 1.3380e-12, 1.2492e-12, 1.2447e-12, 1.2072e-12, 1.2501e-12,
+         1.2378e-12, 1.2476e-12, 1.2465e-12, 1.2120e-12]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ -7.8777, -10.6599],
+        [ -8.5671,   1.6579],
+        [ 11.9151,   0.6278],
+        [  1.8062,   4.1491],
+        [-20.3765,  -5.6314],
+        [-14.5986,  -1.7556],
+        [ -1.4735,   2.6298],
+        [ -0.8958,   9.3441],
+        [ -8.7150,  -7.5719],
+        [-12.7552,  -8.7250]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([-11.3613,   6.2182,  -9.9848,  11.1802,  -0.0668,   4.6511,  -2.8861,
+          7.2709,  -4.5394,  -3.7423], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-6.3382e+00, -4.6266e+00, -2.8008e-01,  2.6987e+00, -4.1235e+00,
+         -2.3774e+00,  1.4778e+00, -4.8287e+00,  2.1128e+00,  1.7021e+00],
+        [ 4.4812e+00,  1.6692e+00,  5.6416e+00, -1.6802e+00,  4.4077e+00,
+         -2.6069e-01,  1.2836e-01,  8.3768e+00, -1.4357e+00, -2.8967e+00],
+        [ 1.0038e+00, -1.9614e+00, -1.0793e+00, -5.5704e+00,  1.8386e+00,
+          9.5657e-01,  2.4533e-02, -8.7798e-02,  2.2232e-01,  1.0125e-01],
+        [-1.1597e+00,  2.0307e+00,  1.5320e+00,  8.0470e+00, -2.5554e+00,
+         -2.7951e-01, -1.5627e-03, -1.3603e-01, -5.5427e-01, -4.7262e-01],
+        [-4.1700e-01,  2.0362e+00,  1.5321e+00,  8.2579e+00, -2.2969e+00,
+         -4.4404e-01,  9.0215e-03,  5.8799e-02, -1.0123e+00, -1.1470e+00],
+        [-1.0998e+01,  2.6128e+00, -1.4720e+01, -2.6957e+00, -3.4741e+00,
+         -8.0325e+00,  5.1800e-02, -1.5779e+01,  5.2903e+00,  1.1560e+01],
+        [-1.0045e+01,  3.0379e+00,  1.4689e+00,  1.9046e+00, -1.3360e+01,
+         -2.8521e+00, -6.5325e-02,  4.9973e-01,  3.7630e+00,  2.8632e+00],
+        [-4.5573e-01, -2.5640e-01, -5.3100e-01, -1.7604e+00, -4.3881e-01,
+         -5.0846e-01, -1.1415e-02, -6.8002e-01, -4.7276e-01, -4.6983e-01],
+        [-4.5497e-01, -2.5621e-01, -5.3068e-01, -1.7567e+00, -4.3750e-01,
+         -5.0760e-01, -1.1411e-02, -6.7975e-01, -4.7232e-01, -4.6916e-01],
+        [-4.5573e-01, -2.5639e-01, -5.3100e-01, -1.7604e+00, -4.3881e-01,
+         -5.0845e-01, -1.1415e-02, -6.8002e-01, -4.7276e-01, -4.6983e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ 4.1212, -0.4600,  0.1861, -0.5737, -0.2971,  0.0818,  6.4181, -2.3240,
+        -2.3287, -2.3240], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[-7.5718e-01,  7.1281e-01, -6.0786e-01,  2.2258e+00,  2.0374e+00,
+         -8.0172e+00, -3.8559e+00,  5.0985e-02, -4.1752e-02,  1.2339e-03],
+        [ 7.7935e-01, -5.7376e-01,  4.7814e-01, -1.8532e+00, -2.1286e+00,
+          7.9907e+00,  4.1876e+00,  4.7150e-02, -4.5581e-02, -2.6008e-03]],
+       device='cuda:0'))])
+xi:  [-645.9228]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 251.14686468784086
+W_T_median: 105.67433887931985
+W_T_pctile_5: -645.4420942872131
+W_T_CVAR_5_pct: -806.1571919950834
+Average q (qsum/M+1):  57.309097782258064
+Optimal xi:  [-645.9228]
+Expected(across Rb) median(across samples) p_equity:  0.2947779370161394
+obj fun:  tensor(-1736.2744, device='cuda:0', dtype=torch.float64,
+       grad_fn=<MeanBackward0>)
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.05
+-----------------------------------------------
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1576.8182150775267
+W_T_median: 1136.7449346433505
+W_T_pctile_5: -127.64084552288806
+W_T_CVAR_5_pct: -295.72244238283764
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1314.965018565074
+Current xi:  [-40.619034]
+objective value function right now is: -1314.965018565074
+4.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1359.7787749079596
+Current xi:  [-78.92854]
+objective value function right now is: -1359.7787749079596
+6.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1396.8312191451407
+Current xi:  [-116.36686]
+objective value function right now is: -1396.8312191451407
+8.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1432.1679362820664
+Current xi:  [-153.17062]
+objective value function right now is: -1432.1679362820664
+10.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1464.7886211606929
+Current xi:  [-189.30957]
+objective value function right now is: -1464.7886211606929
+12.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1491.9736292784653
+Current xi:  [-224.76387]
+objective value function right now is: -1491.9736292784653
+14.000000000000002% of gradient descent iterations done. Method = Adam
+new min fval:  -1511.88778770705
+Current xi:  [-259.8259]
+objective value function right now is: -1511.88778770705
+16.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1536.87635896359
+Current xi:  [-294.00946]
+objective value function right now is: -1536.87635896359
+18.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1557.1152583287596
+Current xi:  [-327.39322]
+objective value function right now is: -1557.1152583287596
+20.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1573.8522655921838
+Current xi:  [-359.97327]
+objective value function right now is: -1573.8522655921838
+22.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1585.9090008441538
+Current xi:  [-391.69913]
+objective value function right now is: -1585.9090008441538
+24.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1595.6517913516252
+Current xi:  [-422.07697]
+objective value function right now is: -1595.6517913516252
+26.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1602.4539092020839
+Current xi:  [-451.42734]
+objective value function right now is: -1602.4539092020839
+28.000000000000004% of gradient descent iterations done. Method = Adam
+new min fval:  -1610.6047533690446
+Current xi:  [-478.89597]
+objective value function right now is: -1610.6047533690446
+30.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1611.7907731271898
+Current xi:  [-504.6975]
+objective value function right now is: -1611.7907731271898
+32.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1617.6970327311349
+Current xi:  [-528.9603]
+objective value function right now is: -1617.6970327311349
+34.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1618.6845874029739
+Current xi:  [-551.7412]
+objective value function right now is: -1618.6845874029739
+36.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1619.6578472039805
+Current xi:  [-569.81964]
+objective value function right now is: -1619.6578472039805
+38.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1619.906291347512
+Current xi:  [-585.322]
+objective value function right now is: -1619.906291347512
+40.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1620.5158127459451
+Current xi:  [-594.584]
+objective value function right now is: -1620.5158127459451
+42.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1621.1817085765465
+Current xi:  [-600.79913]
+objective value function right now is: -1621.1817085765465
+44.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-602.3398]
+objective value function right now is: -1620.9561442993372
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-603.7343]
+objective value function right now is: -1620.79909469488
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-603.1267]
+objective value function right now is: -1620.2228759915758
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-603.4327]
+objective value function right now is: -1616.8451966472198
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-602.69763]
+objective value function right now is: -1618.617627141165
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-603.55237]
+objective value function right now is: -1620.498762929469
+56.00000000000001% of gradient descent iterations done. Method = Adam
+Current xi:  [-604.2458]
+objective value function right now is: -1620.971655468532
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [-603.2561]
+objective value function right now is: -1620.2927363934177
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-603.9018]
+objective value function right now is: -1621.0815067218837
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-605.0264]
+objective value function right now is: -1620.2036422866913
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-605.7387]
+objective value function right now is: -1620.48999065706
+66.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1621.311872129188
+Current xi:  [-604.8243]
+objective value function right now is: -1621.311872129188
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-604.3836]
+objective value function right now is: -1619.392566060189
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-603.0275]
+objective value function right now is: -1620.3262359028236
+72.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1621.3719485456263
+Current xi:  [-602.7209]
+objective value function right now is: -1621.3719485456263
+74.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1621.5142304678386
+Current xi:  [-602.6465]
+objective value function right now is: -1621.5142304678386
+76.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-602.2332]
+objective value function right now is: -1621.4118107753106
+78.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1621.5862696162098
+Current xi:  [-602.1042]
+objective value function right now is: -1621.5862696162098
+80.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1621.609505865794
+Current xi:  [-602.4931]
+objective value function right now is: -1621.609505865794
+82.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-602.20825]
+objective value function right now is: -1621.432569303039
+84.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-602.19366]
+objective value function right now is: -1621.415792401169
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-601.9221]
+objective value function right now is: -1621.052769656656
+88.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-601.6564]
+objective value function right now is: -1621.5611571224867
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-601.6425]
+objective value function right now is: -1621.0943621622207
+new min fval from sgd:  -1621.6269063498796
+new min fval from sgd:  -1621.6295107517872
+new min fval from sgd:  -1621.6347564091975
+new min fval from sgd:  -1621.6442660360187
+new min fval from sgd:  -1621.6523427806749
+new min fval from sgd:  -1621.6631343946704
+new min fval from sgd:  -1621.6638798284325
+new min fval from sgd:  -1621.6695251582223
+new min fval from sgd:  -1621.6696574175855
+new min fval from sgd:  -1621.6703167105984
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-602.0687]
+objective value function right now is: -1621.420282451313
+new min fval from sgd:  -1621.6705484639476
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-601.52423]
+objective value function right now is: -1621.4946178001921
+new min fval from sgd:  -1621.6707529071546
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-601.48346]
+objective value function right now is: -1621.4808789631822
+new min fval from sgd:  -1621.6709872223196
+new min fval from sgd:  -1621.6715217716044
+new min fval from sgd:  -1621.6720833533611
+new min fval from sgd:  -1621.6727970699835
+new min fval from sgd:  -1621.673374661684
+new min fval from sgd:  -1621.673424222555
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-601.5349]
+objective value function right now is: -1621.6522478646234
+new min fval from sgd:  -1621.6751157004185
+new min fval from sgd:  -1621.6755556946418
+new min fval from sgd:  -1621.6760641305136
+new min fval from sgd:  -1621.6764776092562
+new min fval from sgd:  -1621.6798290338245
+new min fval from sgd:  -1621.6808763259362
+new min fval from sgd:  -1621.6823217409867
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-601.51764]
+objective value function right now is: -1621.6579146611127
+min fval:  -1621.6823217409867
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-5.0186e-15,  4.2931e-17],
+        [ 7.8824e-18, -1.5303e-18],
+        [-3.1536e-19, -2.5136e-17],
+        [ 4.9262e-20, -9.4552e-18],
+        [ 5.4807e-15,  7.5214e-19],
+        [-4.0470e-19, -9.9620e-17],
+        [ 2.3474e-18,  8.0344e-16],
+        [-5.2563e-18,  2.5514e-19],
+        [-4.2792e-15,  7.8024e-17],
+        [-3.9683e-15,  6.5468e-15]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ 1.1729e-14, -4.2216e-19,  2.2436e-16, -1.1967e-17,  1.3015e-17,
+         9.4205e-17,  2.6337e-17, -1.2367e-19, -7.4812e-19, -1.8514e-18],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-1.8646e-18, -2.0736e-19, -1.7239e-17,  3.5721e-16,  2.1135e-16,
+          2.2736e-15,  2.3660e-17,  1.6445e-18, -6.2723e-19, -2.4533e-15],
+        [-7.7432e-16,  1.5386e-19, -4.6816e-16,  1.0961e-16,  1.2156e-18,
+         -2.3772e-15,  1.5719e-19, -1.1749e-17, -5.2128e-18,  1.0020e-14],
+        [-2.0288e-18, -4.4459e-16, -1.8562e-16,  3.0363e-17,  2.3725e-15,
+         -4.3476e-16, -2.9963e-16,  6.8280e-17, -1.5367e-18,  8.4552e-18],
+        [ 6.5641e-20,  5.7630e-16, -6.0786e-18, -1.0942e-19, -6.5107e-20,
+         -1.5084e-16,  7.0956e-18,  8.4006e-19,  6.4838e-17, -1.7967e-15],
+        [ 1.5635e-15, -1.3341e-20, -4.6530e-17, -1.1726e-17, -1.5969e-17,
+         -3.1454e-18, -2.5109e-15, -1.2439e-19,  8.1231e-16, -1.4050e-17],
+        [-8.1229e-19, -1.8147e-18, -8.4441e-16, -1.5720e-18,  1.2550e-16,
+          2.4862e-17,  1.6947e-17, -4.5146e-16,  7.8082e-18, -1.0641e-18],
+        [-2.6761e-16, -9.6460e-17,  2.4827e-17, -1.8699e-14,  7.7913e-17,
+          3.6370e-19,  1.7182e-18,  1.5902e-16, -4.2310e-17, -5.1313e-16],
+        [ 1.9884e-17,  2.2116e-17, -6.2067e-19, -3.4503e-18, -6.9886e-17,
+         -1.1549e-22, -2.3987e-17,  2.3658e-16,  1.1705e-18, -3.0931e-15],
+        [-1.1814e-15,  5.3503e-16,  1.9550e-15,  1.2901e-15,  2.6108e-18,
+         -1.7163e-18, -9.7918e-18, -2.1163e-18, -1.0337e-15,  4.7643e-16],
+        [ 9.1014e-15,  3.5979e-19,  3.1771e-15,  1.6566e-20,  9.0568e-17,
+          5.4629e-17,  7.8988e-16, -5.0525e-15,  7.5814e-21,  1.9011e-18]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([ 3.9557e-19, -9.6780e-16, -6.6227e-20, -2.4301e-17, -6.8549e-19,
+        -1.1794e-17,  8.2163e-20,  5.8680e-17,  5.9527e-18,  2.7521e-14],
+       device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ 7.9642e-13,  1.0791e-12, -1.3115e-12,  1.1857e-12,  1.0940e-12,
+          9.7216e-13,  1.0454e-12,  4.1772e-13, -4.9732e-13, -1.4245e-13]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[-12.1433, -10.6857],
+        [  1.7698,   0.7351],
+        [ 15.9022,   0.6843],
+        [  3.5989,   0.6806],
+        [-26.2327,  -4.9303],
+        [-15.9832,  -0.6436],
+        [ -8.0383,   8.5920],
+        [  0.5495,  12.5154],
+        [-13.2230,  -8.5659],
+        [-15.8705,  -9.2290]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([-11.2983,   4.5336, -12.4191,   3.8932,   4.5317,   9.1035,   8.4380,
+         10.4355,  -5.2372,  -6.9266], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ -3.4050,   1.2120,  -4.5990,   0.2602,  -4.3924,  -0.9361, -10.2042,
+          -1.6858,   4.8813,  -1.4455],
+        [ -2.9371,   3.8040,   8.9877,   0.8412,   6.0135,  -2.1087,  -0.7574,
+           2.6226,  -2.2520,  -2.8472],
+        [ -2.8554,  -1.1751,  -2.0763,  -4.1137,   0.6286,   3.7686,   6.0165,
+           4.2439,   1.2173,   0.4939],
+        [ -4.1783,   3.2645,   4.1655,   3.1796,   4.5654,  -3.5976,   0.7235,
+           3.2276,  -1.3706,   2.1466],
+        [ 13.0681,  -4.0011,  13.2714,  12.4730,  -1.2965,  -6.3101,   5.9314,
+          11.9323,  -2.3982,  -3.4320],
+        [ -0.6767,   1.4281, -14.5860,  -0.0713, -11.1915,  -0.7189,   3.5976,
+          -0.5681,   4.7732,   7.3518],
+        [-11.9972,   5.8709,   4.3808,   8.1438, -14.4738,  -3.9205,   7.1046,
+           3.6897,  -1.5663,  -6.2508],
+        [ -0.5414,  -1.4752,  -0.6180,  -1.4788,  -0.5504,  -0.7687,  -0.0833,
+          -0.5525,  -0.5686,  -0.5406],
+        [ -0.5414,  -1.4752,  -0.6180,  -1.4788,  -0.5504,  -0.7687,  -0.0833,
+          -0.5525,  -0.5686,  -0.5406],
+        [ -0.5414,  -1.4752,  -0.6180,  -1.4788,  -0.5504,  -0.7687,  -0.0833,
+          -0.5525,  -0.5686,  -0.5406]], device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ 0.5973, -0.5920, -4.1247, -1.9202, -4.2783, -5.5953, 10.6675, -2.1161,
+        -2.1161, -2.1161], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[-5.7937e-01,  8.9334e-01,  5.5554e-01,  2.4008e+00,  3.8298e+00,
+         -2.0884e+00, -6.5276e+00,  3.7901e-03,  3.7900e-03,  3.7902e-03],
+        [ 6.0088e-01, -7.5619e-01, -6.7311e-01, -2.0330e+00, -3.9203e+00,
+          2.0870e+00,  6.8554e+00, -3.7945e-03, -3.7946e-03, -3.7944e-03]],
+       device='cuda:0'))])
+xi:  [-601.5257]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 198.89858173746853
+W_T_median: 63.508725869902115
+W_T_pctile_5: -601.3993916038576
+W_T_CVAR_5_pct: -735.4044257773048
+Average q (qsum/M+1):  57.05687295236895
+Optimal xi:  [-601.5257]
+Expected(across Rb) median(across samples) p_equity:  0.32276512930790585
+obj fun:  tensor(-1621.6823, device='cuda:0', dtype=torch.float64,
+       grad_fn=<MeanBackward0>)
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.2
+-----------------------------------------------
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1576.8182150775267
+W_T_median: 1136.7449346433505
+W_T_pctile_5: -127.64084552288806
+W_T_CVAR_5_pct: -295.72244238283764
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  -622.7992176051322
+Current xi:  [-40.684864]
+objective value function right now is: -622.7992176051322
+4.0% of gradient descent iterations done. Method = Adam
+new min fval:  -739.1747017258139
+Current xi:  [-78.95326]
+objective value function right now is: -739.1747017258139
+6.0% of gradient descent iterations done. Method = Adam
+new min fval:  -836.9843172904793
+Current xi:  [-116.64793]
+objective value function right now is: -836.9843172904793
+8.0% of gradient descent iterations done. Method = Adam
+new min fval:  -919.827049979297
+Current xi:  [-153.5791]
+objective value function right now is: -919.827049979297
+10.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1006.8055750989083
+Current xi:  [-189.87305]
+objective value function right now is: -1006.8055750989083
+12.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1087.1815075159136
+Current xi:  [-225.24928]
+objective value function right now is: -1087.1815075159136
+14.000000000000002% of gradient descent iterations done. Method = Adam
+new min fval:  -1145.6830465336666
+Current xi:  [-259.8881]
+objective value function right now is: -1145.6830465336666
+16.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1206.3481984899315
+Current xi:  [-293.976]
+objective value function right now is: -1206.3481984899315
+18.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1245.2906017086134
+Current xi:  [-327.03754]
+objective value function right now is: -1245.2906017086134
+20.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1293.1802078952917
+Current xi:  [-360.1451]
+objective value function right now is: -1293.1802078952917
+22.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1321.5864140340075
+Current xi:  [-390.96143]
+objective value function right now is: -1321.5864140340075
+24.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1346.690573064067
+Current xi:  [-420.82797]
+objective value function right now is: -1346.690573064067
+26.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1370.7616626700606
+Current xi:  [-449.7597]
+objective value function right now is: -1370.7616626700606
+28.000000000000004% of gradient descent iterations done. Method = Adam
+new min fval:  -1379.1849726047683
+Current xi:  [-476.71902]
+objective value function right now is: -1379.1849726047683
+30.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1391.5959891853195
+Current xi:  [-501.7818]
+objective value function right now is: -1391.5959891853195
+32.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1400.0227355289749
+Current xi:  [-524.0925]
+objective value function right now is: -1400.0227355289749
+34.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1403.4223085901156
+Current xi:  [-543.0382]
+objective value function right now is: -1403.4223085901156
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-558.6282]
+objective value function right now is: -1403.37367161023
+38.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1407.1782238259736
+Current xi:  [-569.87616]
+objective value function right now is: -1407.1782238259736
+40.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-576.3207]
+objective value function right now is: -1407.0419051952767
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-579.23676]
+objective value function right now is: -1406.6402225266709
+44.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-580.87366]
+objective value function right now is: -1406.1559789203152
+46.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1407.3897665391028
+Current xi:  [-581.441]
+objective value function right now is: -1407.3897665391028
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-589.85956]
+objective value function right now is: -1389.9487524351212
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-583.9365]
+objective value function right now is: -1406.7373817589269
+52.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1407.5819324183467
+Current xi:  [-581.0824]
+objective value function right now is: -1407.5819324183467
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-581.7472]
+objective value function right now is: -1407.3091474343803
+56.00000000000001% of gradient descent iterations done. Method = Adam
+new min fval:  -1407.7439385536068
+Current xi:  [-581.8609]
+objective value function right now is: -1407.7439385536068
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [-582.01196]
+objective value function right now is: -1405.6933601684473
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-581.841]
+objective value function right now is: -1402.8120025048174
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-582.5099]
+objective value function right now is: -1405.295331925456
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-581.4302]
+objective value function right now is: -1407.3101573309975
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-582.48816]
+objective value function right now is: -1404.6878456845566
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-582.0085]
+objective value function right now is: -1404.3640630447235
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-580.62244]
+objective value function right now is: -1407.7198195584488
+72.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-580.2982]
+objective value function right now is: -1407.7230783678415
+74.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1408.0850536378898
+Current xi:  [-580.29663]
+objective value function right now is: -1408.0850536378898
+76.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1408.2128206450273
+Current xi:  [-580.2586]
+objective value function right now is: -1408.2128206450273
+78.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1408.5977125789932
+Current xi:  [-580.19293]
+objective value function right now is: -1408.5977125789932
+80.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-579.91956]
+objective value function right now is: -1408.1053634291477
+82.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-579.7491]
+objective value function right now is: -1407.312955755795
+84.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-579.73755]
+objective value function right now is: -1407.465260722921
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-579.2897]
+objective value function right now is: -1408.374534985266
+88.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-579.18365]
+objective value function right now is: -1406.8253616569684
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-578.92456]
+objective value function right now is: -1408.2658629347538
+new min fval from sgd:  -1408.5980971512467
+new min fval from sgd:  -1408.6168522553066
+new min fval from sgd:  -1408.6220682243713
+new min fval from sgd:  -1408.6229902643013
+new min fval from sgd:  -1408.6333657469359
+new min fval from sgd:  -1408.6397806332527
+new min fval from sgd:  -1408.6414251247597
+new min fval from sgd:  -1408.681585776711
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-578.9503]
+objective value function right now is: -1406.8776186801733
+new min fval from sgd:  -1408.6888501588944
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-578.8361]
+objective value function right now is: -1408.589998148175
+new min fval from sgd:  -1408.6895926388534
+new min fval from sgd:  -1408.6989861183474
+new min fval from sgd:  -1408.7079812322963
+new min fval from sgd:  -1408.714701587528
+new min fval from sgd:  -1408.7166464576787
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-578.76324]
+objective value function right now is: -1408.2960168703148
+new min fval from sgd:  -1408.7178016954442
+new min fval from sgd:  -1408.7233200099315
+new min fval from sgd:  -1408.7250431896393
+new min fval from sgd:  -1408.7258554920647
+new min fval from sgd:  -1408.7262612792117
+new min fval from sgd:  -1408.7264548766534
+new min fval from sgd:  -1408.7265937761367
+new min fval from sgd:  -1408.7267521489562
+new min fval from sgd:  -1408.7274743771056
+new min fval from sgd:  -1408.7277437896112
+new min fval from sgd:  -1408.7282663162462
+new min fval from sgd:  -1408.7284859185838
+new min fval from sgd:  -1408.7320824222504
+new min fval from sgd:  -1408.7336998572557
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-578.7158]
+objective value function right now is: -1408.7088499005856
+new min fval from sgd:  -1408.7361455663886
+new min fval from sgd:  -1408.7377570649405
+new min fval from sgd:  -1408.7400262815827
+new min fval from sgd:  -1408.740502768065
+new min fval from sgd:  -1408.740947506216
+new min fval from sgd:  -1408.7410957163322
+new min fval from sgd:  -1408.742687611233
+new min fval from sgd:  -1408.74335218593
+new min fval from sgd:  -1408.745115040751
+new min fval from sgd:  -1408.7459714064864
+new min fval from sgd:  -1408.7461649188938
+new min fval from sgd:  -1408.7477535291164
+new min fval from sgd:  -1408.7543296846193
+new min fval from sgd:  -1408.7563121444819
+new min fval from sgd:  -1408.7613635802315
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-578.6667]
+objective value function right now is: -1408.738241066816
+min fval:  -1408.7613635802315
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-2.6928e-23, -7.8360e-23],
+        [-5.5195e-22, -1.4575e-24],
+        [ 3.8867e-22, -4.1201e-25],
+        [-7.5036e-21, -1.6697e-25],
+        [ 1.9240e-25,  6.0616e-23],
+        [ 4.6114e-22, -2.4897e-23],
+        [ 3.1255e-21,  5.3614e-24],
+        [-1.1590e-24, -1.1178e-23],
+        [ 2.3902e-25, -9.9691e-25],
+        [ 5.0445e-27, -3.3032e-23]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([-3.6298e-21, -1.0759e-21,  1.8406e-22,  2.7725e-22, -3.3732e-22,
+         1.4434e-21,  2.0219e-24,  2.7858e-21, -1.6042e-23, -6.8841e-22],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[ 4.0566e-23,  2.9236e-23,  3.4578e-22,  7.7402e-23,  3.3479e-23,
+         -8.0020e-21,  3.1534e-21, -3.9689e-23,  1.7273e-23,  3.3838e-23],
+        [ 2.4557e-22,  8.0410e-23,  2.1445e-22, -1.1341e-23,  3.9083e-23,
+          1.9635e-23,  5.2879e-23,  2.1055e-23, -2.3464e-21, -3.2510e-21],
+        [-3.8260e-25,  1.2579e-23,  2.0180e-22,  1.0368e-23, -3.7519e-23,
+          4.3258e-21, -1.8139e-21, -1.2534e-21,  1.2271e-23,  4.3943e-21],
+        [ 1.2021e-23, -1.0290e-23,  8.5202e-23,  7.2335e-24,  1.3104e-23,
+         -2.4320e-21, -3.9478e-22, -2.9068e-21,  1.0356e-23, -9.5745e-24],
+        [ 2.6443e-23, -5.4432e-22, -2.2362e-21,  1.6961e-23,  9.5722e-23,
+         -4.7885e-21, -3.4696e-25,  6.0230e-21,  1.7235e-23,  1.2785e-22],
+        [-6.0679e-22, -6.9005e-22, -3.2959e-23,  2.7708e-21,  9.3188e-24,
+          1.2643e-22,  7.9366e-24,  3.3104e-23,  7.4615e-24,  1.0889e-23],
+        [ 1.5060e-23,  7.6471e-21, -6.5733e-23,  1.4025e-23,  1.0273e-23,
+         -1.9641e-21,  1.4273e-23,  1.4215e-23,  3.5736e-22,  1.4183e-23],
+        [-1.1335e-21,  1.5396e-23, -3.2195e-21,  1.5529e-23,  2.4518e-23,
+          1.3071e-23,  2.0077e-22,  8.4191e-23, -2.2813e-20, -7.0689e-23],
+        [ 1.0522e-23, -7.2909e-23,  1.8944e-23, -1.4733e-21,  1.9029e-23,
+         -1.9399e-22,  7.0938e-23, -2.2286e-21,  1.1214e-22,  7.0926e-22],
+        [ 1.0009e-23,  1.0538e-23,  2.2090e-24, -4.8722e-23,  9.2853e-22,
+         -2.9317e-23,  1.0712e-23,  1.7843e-23,  1.0227e-23, -1.0921e-23]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([ 7.7237e-21,  3.9074e-23, -2.2089e-21,  1.0516e-21,  1.0382e-22,
+         1.4775e-23,  2.8795e-23,  3.6110e-23,  2.4912e-22, -8.5405e-22],
+       device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[-7.3811e-12, -6.4831e-12, -8.4246e-12, -8.5037e-12, -6.7191e-12,
+         -8.1118e-12, -8.3999e-12, -7.8472e-12, -6.2648e-12, -8.2897e-12]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[-2.0418e+01, -1.0704e+01],
+        [-9.1719e-03, -5.0093e+00],
+        [ 1.8650e+01,  6.3726e-01],
+        [ 5.2386e-01, -2.7525e+00],
+        [-2.2483e+01, -7.7498e-01],
+        [-1.7253e+01,  1.0142e-01],
+        [-5.6384e+00,  1.2481e+01],
+        [ 7.6766e+00,  1.1465e+01],
+        [-8.1136e+00, -1.1870e+01],
+        [-2.4827e+01, -7.7586e+00]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ -8.7704,   0.4806, -15.5821,   2.7246,  10.4800,  11.3422,  12.2851,
+         15.1827, -11.8831,  -1.0765], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ -0.3060,  -1.4717,  -0.4253,  -1.6435,  -0.3452,  -0.1145,  -0.4138,
+          -1.2446,  -0.4356,  -0.3193],
+        [  3.6834,   1.6146,   3.1619,  -0.6430,  -4.1723,  -3.7470,   0.8190,
+           0.2422,  -1.7087,  -3.0935],
+        [ -2.7762,   1.1110,   9.2577,  -1.6755,  -3.6605,  -3.6777,  18.4040,
+           6.8031,   3.0381,  -8.2245],
+        [ -3.7151,   2.0897,  10.4823,   5.0283,  -0.6141,   7.5366,  -0.0815,
+           2.4825,  -2.4891,  -3.4696],
+        [  0.4351,  -2.2136,   3.0761,   9.4083,   3.8136,  -1.5802,   0.1069,
+           2.0961,  -3.8757,   0.9822],
+        [  1.3468,   0.1662,  -7.4113,  -0.6137,   2.5632, -11.8063,  -0.2525,
+           0.7799,   4.1765,   4.9653],
+        [-13.4854,   7.3084,  -2.6528,   8.7939, -15.7742,  -7.5286,  11.5738,
+          10.3312,  -4.9639,  -9.6779],
+        [ -0.3060,  -1.4717,  -0.4253,  -1.6435,  -0.3452,  -0.1145,  -0.4138,
+          -1.2446,  -0.4356,  -0.3193],
+        [ -4.6127,  -3.7525,  -4.0651,  -0.9590,   1.7365,   2.8454,   8.9715,
+          -3.4756,  -6.0682,   2.5981],
+        [ -0.3060,  -1.4717,  -0.4253,  -1.6435,  -0.3452,  -0.1145,  -0.4138,
+          -1.2446,  -0.4356,  -0.3193]], device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-1.6895, -1.9168, -1.9667, -2.5233, -1.7298, -5.9000, 11.0274, -1.6895,
+        -2.8753, -1.6895], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ 0.0148,  0.4394,  3.4500,  1.6120,  3.4125, -3.0801, -8.1987,  0.0148,
+          0.7838,  0.0148],
+        [-0.0148, -0.3033, -3.5667, -1.2465, -3.5028,  3.0808,  8.5246, -0.0148,
+         -0.7838, -0.0148]], device='cuda:0'))])
+xi:  [-578.70636]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 129.99371715639757
+W_T_median: 25.19969640399166
+W_T_pctile_5: -578.3973222969422
+W_T_CVAR_5_pct: -695.8382222474689
+Average q (qsum/M+1):  56.6671142578125
+Optimal xi:  [-578.70636]
+Expected(across Rb) median(across samples) p_equity:  0.323610075066487
+obj fun:  tensor(-1408.7614, device='cuda:0', dtype=torch.float64,
+       grad_fn=<MeanBackward0>)
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.5
+-----------------------------------------------
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1576.8182150775267
+W_T_median: 1136.7449346433505
+W_T_pctile_5: -127.64084552288806
+W_T_CVAR_5_pct: -295.72244238283764
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  723.9255634491863
+Current xi:  [-41.038597]
+objective value function right now is: 723.9255634491863
+4.0% of gradient descent iterations done. Method = Adam
+new min fval:  334.20748920604524
+Current xi:  [-79.23265]
+objective value function right now is: 334.20748920604524
+6.0% of gradient descent iterations done. Method = Adam
+new min fval:  107.96519475224248
+Current xi:  [-116.26848]
+objective value function right now is: 107.96519475224248
+8.0% of gradient descent iterations done. Method = Adam
+new min fval:  -90.61062367229545
+Current xi:  [-153.28674]
+objective value function right now is: -90.61062367229545
+10.0% of gradient descent iterations done. Method = Adam
+new min fval:  -229.1649581492786
+Current xi:  [-189.27814]
+objective value function right now is: -229.1649581492786
+12.0% of gradient descent iterations done. Method = Adam
+new min fval:  -390.2081347462465
+Current xi:  [-224.85835]
+objective value function right now is: -390.2081347462465
+14.000000000000002% of gradient descent iterations done. Method = Adam
+new min fval:  -546.8298019115902
+Current xi:  [-259.8062]
+objective value function right now is: -546.8298019115902
+16.0% of gradient descent iterations done. Method = Adam
+new min fval:  -658.4329820378506
+Current xi:  [-294.26117]
+objective value function right now is: -658.4329820378506
+18.0% of gradient descent iterations done. Method = Adam
+new min fval:  -761.6061787771312
+Current xi:  [-327.32104]
+objective value function right now is: -761.6061787771312
+20.0% of gradient descent iterations done. Method = Adam
+new min fval:  -843.6068836014434
+Current xi:  [-359.4226]
+objective value function right now is: -843.6068836014434
+22.0% of gradient descent iterations done. Method = Adam
+new min fval:  -903.2649667022794
+Current xi:  [-390.5997]
+objective value function right now is: -903.2649667022794
+24.0% of gradient descent iterations done. Method = Adam
+new min fval:  -947.6193852572267
+Current xi:  [-420.01938]
+objective value function right now is: -947.6193852572267
+26.0% of gradient descent iterations done. Method = Adam
+new min fval:  -986.7403500084614
+Current xi:  [-447.84933]
+objective value function right now is: -986.7403500084614
+28.000000000000004% of gradient descent iterations done. Method = Adam
+new min fval:  -1011.2348331920393
+Current xi:  [-474.22928]
+objective value function right now is: -1011.2348331920393
+30.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1037.6729131106572
+Current xi:  [-498.1412]
+objective value function right now is: -1037.6729131106572
+32.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1049.041594413971
+Current xi:  [-520.07245]
+objective value function right now is: -1049.041594413971
+34.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1057.0312851822418
+Current xi:  [-538.79193]
+objective value function right now is: -1057.0312851822418
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-553.5584]
+objective value function right now is: -1054.8841271231925
+38.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1057.2283172499945
+Current xi:  [-563.0126]
+objective value function right now is: -1057.2283172499945
+40.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1062.2357560771843
+Current xi:  [-568.0614]
+objective value function right now is: -1062.2357560771843
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.8396]
+objective value function right now is: -1055.323023594455
+44.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1063.7511996199996
+Current xi:  [-571.9088]
+objective value function right now is: -1063.7511996199996
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-570.19214]
+objective value function right now is: -1061.290686904069
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.051]
+objective value function right now is: -1020.7186277354336
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.22144]
+objective value function right now is: -1062.70631264165
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.14325]
+objective value function right now is: -1062.9125390261577
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.22906]
+objective value function right now is: -1062.4623036124208
+56.00000000000001% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.4714]
+objective value function right now is: -1059.2971937994255
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [-572.33594]
+objective value function right now is: -1063.4315176549317
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.0723]
+objective value function right now is: -1059.2271092457765
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-572.8036]
+objective value function right now is: -1063.659956941688
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-570.4816]
+objective value function right now is: -1063.7433505248148
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-572.27655]
+objective value function right now is: -1063.6868671593604
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-570.9209]
+objective value function right now is: -1060.660768902725
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.84814]
+objective value function right now is: -1061.3171667597055
+72.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1063.948840887701
+Current xi:  [-571.85895]
+objective value function right now is: -1063.948840887701
+74.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1064.0780836384388
+Current xi:  [-570.72375]
+objective value function right now is: -1064.0780836384388
+76.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-570.30255]
+objective value function right now is: -1062.7688738600878
+78.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.96405]
+objective value function right now is: -1062.5322219520117
+80.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.8194]
+objective value function right now is: -1063.3297630114923
+82.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1064.7004970033543
+Current xi:  [-569.9961]
+objective value function right now is: -1064.7004970033543
+84.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.64685]
+objective value function right now is: -1059.8860681765768
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.87494]
+objective value function right now is: -1064.3503243600774
+88.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.606]
+objective value function right now is: -1063.2539621593482
+new min fval from sgd:  -1065.028136954757
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.9449]
+objective value function right now is: -1065.028136954757
+new min fval from sgd:  -1065.04847177959
+new min fval from sgd:  -1065.0678820689343
+new min fval from sgd:  -1065.1109241338909
+new min fval from sgd:  -1065.1141439135579
+new min fval from sgd:  -1065.1226112220963
+new min fval from sgd:  -1065.1319476609308
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.9149]
+objective value function right now is: -1064.963825082387
+new min fval from sgd:  -1065.1399346826915
+new min fval from sgd:  -1065.1560936426954
+new min fval from sgd:  -1065.1680321563194
+new min fval from sgd:  -1065.1684976037823
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.16656]
+objective value function right now is: -1063.5280461189584
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.7974]
+objective value function right now is: -1064.9978238715275
+new min fval from sgd:  -1065.171219757331
+new min fval from sgd:  -1065.1728585924564
+new min fval from sgd:  -1065.1739123468399
+new min fval from sgd:  -1065.1758919198849
+new min fval from sgd:  -1065.1764821603522
+new min fval from sgd:  -1065.1800826473243
+new min fval from sgd:  -1065.1834418933001
+new min fval from sgd:  -1065.1852501960802
+new min fval from sgd:  -1065.1903209177185
+new min fval from sgd:  -1065.196132602206
+new min fval from sgd:  -1065.2002221735818
+new min fval from sgd:  -1065.2034458094308
+new min fval from sgd:  -1065.2066638117974
+new min fval from sgd:  -1065.2071111428736
+new min fval from sgd:  -1065.2080601205942
+new min fval from sgd:  -1065.2126255127132
+new min fval from sgd:  -1065.21279732658
+new min fval from sgd:  -1065.230340949961
+new min fval from sgd:  -1065.2413807942296
+new min fval from sgd:  -1065.2433547622966
+new min fval from sgd:  -1065.2450359912389
+new min fval from sgd:  -1065.2454781173262
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.983]
+objective value function right now is: -1065.0841910783681
+new min fval from sgd:  -1065.2535676186499
+new min fval from sgd:  -1065.2599908593857
+new min fval from sgd:  -1065.26307874198
+new min fval from sgd:  -1065.2663937561285
+new min fval from sgd:  -1065.2693255154418
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.98895]
+objective value function right now is: -1065.1691194835691
+min fval:  -1065.2693255154418
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ 4.3653e-28,  1.0028e-27],
+        [ 1.5017e-28,  4.2183e-29],
+        [ 2.5126e-27,  2.2148e-26],
+        [-1.3375e-25,  6.5732e-27],
+        [ 1.3715e-27,  5.1325e-29],
+        [ 6.7362e-27, -1.9035e-30],
+        [-3.2539e-29,  3.3040e-27],
+        [-9.2328e-30, -1.0494e-25],
+        [ 2.7687e-26, -3.8168e-25],
+        [-1.4311e-26,  2.6822e-28]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ 9.8874e-27,  3.9863e-28, -6.4699e-28, -4.3402e-29,  1.0733e-26,
+         4.3859e-29,  1.2670e-26, -1.4541e-25,  2.3531e-27, -3.9744e-29],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[5.1358e-23, 5.6388e-23, 4.7916e-23, 5.8242e-23, 5.7311e-23, 5.4677e-23,
+         5.6983e-23, 5.1585e-23, 5.8917e-23, 5.5588e-23],
+        [6.2152e-23, 6.3845e-23, 5.2574e-23, 7.0609e-23, 7.3817e-23, 7.3096e-23,
+         5.7636e-23, 7.3185e-23, 7.3669e-23, 7.1811e-23],
+        [7.3572e-23, 7.2203e-23, 5.4226e-23, 6.7502e-23, 6.0200e-23, 6.3582e-23,
+         6.5080e-23, 6.9654e-23, 5.6507e-23, 5.6223e-23],
+        [6.8684e-23, 7.0831e-23, 7.1448e-23, 6.4574e-23, 5.9122e-23, 6.9367e-23,
+         6.9539e-23, 6.9326e-23, 6.9672e-23, 7.1350e-23],
+        [7.2378e-23, 8.1755e-23, 6.9252e-23, 8.1845e-23, 6.4482e-23, 5.7008e-23,
+         3.2642e-23, 6.9889e-23, 4.7264e-23, 6.5025e-23],
+        [4.7631e-23, 6.0018e-23, 5.4618e-23, 6.0491e-23, 6.0337e-23, 5.0459e-23,
+         5.8859e-23, 5.2971e-23, 5.1873e-23, 6.0964e-23],
+        [2.9890e-23, 8.1560e-23, 6.9574e-23, 7.8755e-23, 7.0432e-23, 7.6474e-23,
+         6.3262e-23, 8.1191e-23, 3.1580e-23, 4.9717e-23],
+        [6.5931e-23, 6.6026e-23, 5.8701e-23, 6.5900e-23, 6.0675e-23, 6.3326e-23,
+         6.5754e-23, 6.6030e-23, 6.2676e-23, 6.4887e-23],
+        [6.4486e-23, 5.8637e-23, 6.2667e-23, 5.7369e-23, 6.4993e-23, 6.5896e-23,
+         6.5957e-23, 6.5619e-23, 5.8577e-23, 6.5755e-23],
+        [6.9598e-23, 6.2100e-23, 5.5847e-23, 6.9652e-23, 6.3004e-23, 6.4909e-23,
+         6.8918e-23, 5.8162e-23, 6.5154e-23, 6.7565e-23]], device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([1.1914e-22, 1.4741e-22, 1.2038e-22, 1.3688e-22, 1.2639e-22, 1.2181e-22,
+        7.4100e-23, 1.2503e-22, 1.2840e-22, 1.3924e-22], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[-9.7893e-13,  4.1285e-12,  4.4508e-12,  3.1017e-12,  9.4606e-12,
+         -6.7754e-13,  9.6189e-12,  1.1175e-12,  1.1054e-12,  2.3972e-12]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[-25.9851, -10.8893],
+        [ -6.4309, -10.5356],
+        [ 21.6901,   0.7864],
+        [  5.3767,  -1.0054],
+        [-20.0378,   3.5827],
+        [-20.0539,  -2.0398],
+        [  3.7130,  11.5032],
+        [ 13.8626,  12.9064],
+        [ -4.2978,  -1.5020],
+        [-29.7879,  -6.4358]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ -3.4365,  -8.7369, -18.2090,   1.9945,  14.3166,  10.4683,  16.0067,
+         13.0304,  -7.9220,   3.9383], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-4.2136e-01, -1.1025e+00, -5.9717e-01, -2.0731e+00,  9.5025e-04,
+         -4.6090e-01, -1.0615e+00, -1.1826e+00, -3.3532e-01, -3.4038e-01],
+        [-4.2136e-01, -1.1024e+00, -5.9717e-01, -2.0731e+00,  9.5042e-04,
+         -4.6090e-01, -1.0614e+00, -1.1825e+00, -3.3532e-01, -3.4039e-01],
+        [-3.3552e+00,  1.9186e+00,  1.4387e+01,  7.4984e-03, -3.1764e+00,
+         -4.1509e+00,  5.5130e+00,  9.0792e+00,  1.6386e-01, -7.8360e+00],
+        [-4.1282e+00,  6.9478e+00,  1.0809e+01, -1.5901e+00, -2.2772e+00,
+         -8.1126e+00,  1.9921e-01,  1.6515e+00,  1.1633e+00,  1.0444e+01],
+        [ 8.1493e-01, -1.0503e+00,  3.2832e+00,  5.4596e+00, -7.8099e+00,
+          7.7985e-02,  1.9896e+00,  6.5745e-01, -1.1583e+01,  2.4443e+00],
+        [-4.2139e-01, -1.1027e+00, -5.9721e-01, -2.0729e+00,  9.4749e-04,
+         -4.6089e-01, -1.0615e+00, -1.1826e+00, -3.3533e-01, -3.4040e-01],
+        [-1.8362e+01,  7.5119e+00,  1.4005e+00,  1.1009e+01, -1.2566e+01,
+         -9.4943e+00,  1.2188e+01,  1.8727e+01,  3.8878e-01, -1.6319e+01],
+        [ 2.8723e+00, -1.1940e+01, -3.8452e+00, -7.5297e+00,  7.1749e+00,
+         -3.4413e-01,  1.6743e+00,  2.2661e+00, -2.4742e-02, -2.8724e-02],
+        [-3.2932e-01, -1.4701e+00,  2.3997e+00, -2.6051e+00,  1.0977e+00,
+         -1.4719e+00,  5.2710e+00, -3.3866e+00, -1.0266e-01, -7.4145e-01],
+        [ 5.7615e-01, -4.6904e+00,  1.4087e-01, -2.2747e+00,  6.5438e+00,
+          6.5396e-01, -3.4983e+00, -8.0095e+00, -9.7417e+00,  8.9072e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-2.0743, -2.0744, -0.0860,  0.3977, -3.5255, -2.0742, 13.3843, -0.4569,
+        -3.9362, -1.0898], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[-0.0401, -0.0394,  4.1757,  0.6272,  3.5445, -0.0401, -7.7439,  4.2552,
+          1.4766,  4.8982],
+        [ 0.0401,  0.0408, -4.2920, -0.2632, -3.6351,  0.0401,  8.0689, -4.2554,
+         -1.4770, -4.9224]], device='cuda:0'))])
+xi:  [-569.0177]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 70.22169932907421
+W_T_median: 0.0
+W_T_pctile_5: -569.4995958614451
+W_T_CVAR_5_pct: -681.4916185740137
+Average q (qsum/M+1):  56.34716403099798
+Optimal xi:  [-569.0177]
+Expected(across Rb) median(across samples) p_equity:  0.2937193069106191
+obj fun:  tensor(-1065.2693, device='cuda:0', dtype=torch.float64,
+       grad_fn=<MeanBackward0>)
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.0
+-----------------------------------------------
+loaded xi:  -569.0177
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1576.8182150775267
+W_T_median: 1136.7449346433505
+W_T_pctile_5: -127.64084552288806
+W_T_CVAR_5_pct: -295.72244238283764
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  -722.6241671046812
+Current xi:  [-568.50195]
+objective value function right now is: -722.6241671046812
+4.0% of gradient descent iterations done. Method = Adam
+new min fval:  -723.0049018192988
+Current xi:  [-569.41205]
+objective value function right now is: -723.0049018192988
+6.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.85754]
+objective value function right now is: -722.4092180241347
+8.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.1007]
+objective value function right now is: -720.9667439339577
+10.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.8993]
+objective value function right now is: -722.1324830357212
+12.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.75653]
+objective value function right now is: -720.6696536798212
+14.000000000000002% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.3138]
+objective value function right now is: -719.7251851774014
+16.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.849]
+objective value function right now is: -721.7434777631138
+18.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.2713]
+objective value function right now is: -722.1844540442625
+20.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.6698]
+objective value function right now is: -714.2165622369643
+22.0% of gradient descent iterations done. Method = Adam
+new min fval:  -723.1673162242183
+Current xi:  [-569.7838]
+objective value function right now is: -723.1673162242183
+24.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.28723]
+objective value function right now is: -717.3503327277356
+26.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.4235]
+objective value function right now is: -723.054215806695
+28.000000000000004% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.7138]
+objective value function right now is: -721.0040995535378
+30.0% of gradient descent iterations done. Method = Adam
+new min fval:  -723.8594651416428
+Current xi:  [-567.7832]
+objective value function right now is: -723.8594651416428
+32.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.85364]
+objective value function right now is: -722.6986768137291
+34.0% of gradient descent iterations done. Method = Adam
+new min fval:  -724.1549085510147
+Current xi:  [-568.86847]
+objective value function right now is: -724.1549085510147
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.9144]
+objective value function right now is: -723.3613891853133
+38.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.7967]
+objective value function right now is: -720.0665643616702
+40.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.6755]
+objective value function right now is: -722.6693651916906
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.9618]
+objective value function right now is: -705.4812240682543
+44.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.4584]
+objective value function right now is: -718.1271372755273
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.2476]
+objective value function right now is: -717.8670063908478
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.3674]
+objective value function right now is: -720.589868750878
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.55896]
+objective value function right now is: -722.8782018807577
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.1556]
+objective value function right now is: -721.1068964982571
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.2042]
+objective value function right now is: -713.0272123259961
+56.00000000000001% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.5667]
+objective value function right now is: -723.7004772701918
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.9309]
+objective value function right now is: -723.6239796343048
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.78986]
+objective value function right now is: -720.934154433456
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-596.12537]
+objective value function right now is: -635.4870190090835
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-589.03784]
+objective value function right now is: -682.5740483609341
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-579.21704]
+objective value function right now is: -713.8424966069048
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-576.54126]
+objective value function right now is: -666.46973122398
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-586.6179]
+objective value function right now is: -677.5806107480234
+72.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-586.7781]
+objective value function right now is: -685.6746698456362
+74.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-586.21686]
+objective value function right now is: -686.246482638849
+76.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-585.1746]
+objective value function right now is: -686.4478108496008
+78.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-584.34125]
+objective value function right now is: -687.8280744988878
+80.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-579.7811]
+objective value function right now is: -715.650831990239
+82.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-576.13824]
+objective value function right now is: -721.5699556193717
+84.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-573.9657]
+objective value function right now is: -720.3920462482249
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-572.5044]
+objective value function right now is: -721.418198539125
+88.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.36395]
+objective value function right now is: -720.7571245999318
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-572.1511]
+objective value function right now is: -707.1887831951035
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-570.9262]
+objective value function right now is: -720.8481204674451
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.6055]
+objective value function right now is: -722.1406914278945
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.8768]
+objective value function right now is: -722.6660015684246
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.18066]
+objective value function right now is: -723.746115314527
+new min fval from sgd:  -724.1639983406052
+new min fval from sgd:  -724.1858698239138
+new min fval from sgd:  -724.1873455032636
+new min fval from sgd:  -724.1925770918604
+new min fval from sgd:  -724.1938778236297
+new min fval from sgd:  -724.2316473042275
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.0186]
+objective value function right now is: -724.1688607129022
+min fval:  -724.2316473042275
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ 1.1372e-33,  1.2020e-31],
+        [ 1.9381e-35,  2.0603e-35],
+        [-9.4776e-34,  9.8253e-35],
+        [-1.0914e-35, -2.7329e-34],
+        [-2.0772e-31,  6.1430e-36],
+        [-6.6063e-32, -3.8866e-32],
+        [ 1.1285e-35,  1.3497e-34],
+        [ 1.2905e-32,  2.4497e-35],
+        [-4.8981e-37, -1.8357e-33],
+        [ 2.1011e-35,  1.4507e-32]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([-1.1567e-35, -5.3758e-34,  1.1840e-35,  2.5291e-34, -5.4697e-34,
+         2.0851e-33, -1.1613e-32, -3.8277e-35, -2.2542e-31,  4.4219e-32],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-1.6648e-22, -1.4560e-22, -1.1929e-22, -1.4768e-22, -1.3825e-22,
+         -1.3154e-22, -1.3941e-22, -9.8498e-23, -1.6712e-22, -1.6604e-22],
+        [-1.2707e-22, -1.3667e-22, -1.0088e-22, -1.3626e-22, -9.9741e-23,
+         -1.0043e-22, -1.0980e-22, -1.1886e-22, -1.1246e-22, -6.1562e-23],
+        [-1.2571e-22, -1.4925e-22, -1.1221e-22, -1.4923e-22, -1.4281e-22,
+         -1.1836e-22, -1.4868e-22, -1.0402e-22, -1.3053e-22, -1.2148e-22],
+        [-1.3824e-22, -1.1687e-22, -1.4737e-22, -1.6494e-22, -1.1649e-22,
+         -1.5327e-22, -1.6563e-22, -1.2450e-22, -1.4948e-22, -1.5808e-22],
+        [-7.0630e-23, -1.1589e-22, -9.1335e-23, -6.4498e-23, -1.2335e-22,
+         -1.3019e-22, -7.3080e-23, -7.4652e-23, -1.3408e-22, -1.1766e-22],
+        [-1.2306e-22, -8.7371e-23, -9.5250e-23, -1.1666e-22, -9.0656e-23,
+         -7.4980e-23, -6.1346e-23, -1.2017e-22, -1.2371e-22, -8.6035e-23],
+        [-8.8790e-23, -3.3708e-23, -8.7191e-23, -7.1241e-23, -8.3712e-23,
+         -8.3195e-23, -5.9868e-23, -3.6412e-23, -3.8474e-23, -3.6825e-23],
+        [-9.9495e-23, -8.3922e-23, -1.0348e-22, -9.8712e-23, -1.0275e-22,
+         -1.0309e-22, -7.6645e-23, -6.9353e-23, -8.8108e-23, -9.0554e-23],
+        [-1.2442e-22, -1.1025e-22, -1.5440e-22, -1.2514e-22, -7.4021e-23,
+         -1.5075e-22, -1.1282e-22, -1.5408e-22, -1.4868e-22, -9.0152e-23],
+        [-1.1078e-22, -1.5388e-22, -1.2149e-22, -1.5870e-22, -9.9503e-23,
+         -1.4258e-22, -1.1559e-22, -1.1559e-22, -1.5068e-22, -1.6797e-22]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-3.3390e-22, -1.5936e-22, -2.5229e-22, -2.8194e-22, -2.0819e-22,
+        -2.4741e-22, -9.4493e-23, -1.8415e-22, -2.8996e-22, -2.8154e-22],
+       device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ 7.6399e-13,  1.1685e-12,  1.1922e-12,  1.0383e-12,  1.1578e-12,
+          1.0931e-12, -3.3587e-13,  5.4326e-13,  1.2288e-12,  7.4279e-13]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[-28.6307,  -9.7082],
+        [ -8.2076, -10.8787],
+        [ 24.5930,   1.1515],
+        [  3.4655,  -0.8176],
+        [-18.5354,   0.0592],
+        [-12.1368,  -1.1594],
+        [ -2.9310,  13.4195],
+        [ 12.3175,  15.7502],
+        [ -2.6857,   0.9092],
+        [-29.7906,  -6.3772]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ -3.8515, -13.2628, -19.0637,   4.8269,  20.2739,  17.7992,  18.0307,
+         10.3715,   0.6817,   6.1082], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 1.3800e+00,  1.3089e+00, -1.7536e+00, -8.2303e-01, -6.1463e-01,
+         -4.5058e-01, -1.4389e+01, -2.7873e+00, -5.7274e+00,  3.3689e+00],
+        [ 1.3802e+00,  1.3089e+00, -1.7537e+00, -8.2307e-01, -6.1470e-01,
+         -4.5063e-01, -1.4389e+01, -2.7872e+00, -5.7280e+00,  3.3689e+00],
+        [-1.0367e+00,  5.8128e+00, -1.3938e+00,  2.6256e-01,  2.0352e+01,
+         -7.2957e+00, -7.8031e-01,  3.4226e+01,  5.8472e+00, -1.7783e+01],
+        [ 1.6826e-01,  9.7051e-01,  4.0574e+00, -2.6132e+00, -6.3560e+00,
+         -3.0373e+00,  1.1273e+00,  1.4467e+00, -1.6836e-02,  8.7375e-01],
+        [-1.4496e+00, -4.0647e+00,  5.6814e+00,  8.3002e+00, -6.3257e+00,
+          2.4252e+00, -5.5331e+00,  2.8038e+00,  1.0463e+00, -4.4314e+00],
+        [ 1.3805e+00,  1.3089e+00, -1.7538e+00, -8.2313e-01, -6.1478e-01,
+         -4.5068e-01, -1.4389e+01, -2.7871e+00, -5.7287e+00,  3.3690e+00],
+        [-1.7579e+01, -3.5264e-01,  5.5563e+00,  1.3177e+01, -1.1579e+00,
+         -8.0133e+00,  1.3436e+01, -1.4584e+00,  1.6608e+00, -1.6647e+01],
+        [ 1.7743e+00, -7.3591e+00, -2.4833e+00, -8.9152e+00,  5.2475e+00,
+         -3.9250e+00,  9.6352e-01,  5.7579e+00,  6.9682e+00,  5.2487e+00],
+        [ 1.0269e+00, -5.1284e-02,  4.6167e+00, -2.2758e+00, -5.0266e+00,
+          7.0538e-01,  4.8580e+00, -2.9621e+00, -4.2499e-01,  6.1397e-01],
+        [ 6.8244e+00, -2.1109e+00, -8.8370e+00, -5.8656e+00,  5.7432e+00,
+          1.0728e+00, -9.3607e+00,  5.8990e+00, -4.6719e+00,  7.1254e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-0.8319, -0.8319,  0.1865, -1.5491, -0.5952, -0.8320, 15.2196, -2.3363,
+        -3.4873, -5.1527], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[-1.4725, -1.4725,  4.8164,  0.2368,  2.5576, -1.4725, -6.9231,  2.6900,
+          3.6726,  4.7471],
+        [ 1.4724,  1.4724, -4.9324,  0.0587, -2.6478,  1.4725,  7.2473, -2.6902,
+         -3.6728, -4.7459]], device='cuda:0'))])
+xi:  [-568.01843]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 24.27455934941761
+W_T_median: -35.0
+W_T_pctile_5: -566.0465181509854
+W_T_CVAR_5_pct: -678.0290505899013
+Average q (qsum/M+1):  56.171036258820564
+Optimal xi:  [-568.01843]
+Expected(across Rb) median(across samples) p_equity:  0.2873881834869583
+obj fun:  tensor(-724.2316, device='cuda:0', dtype=torch.float64,
+       grad_fn=<MeanBackward0>)
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.5
+-----------------------------------------------
+loaded xi:  -568.01843
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1576.8182150775267
+W_T_median: 1136.7449346433505
+W_T_pctile_5: -127.64084552288806
+W_T_CVAR_5_pct: -295.72244238283764
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  295.0713495309944
+Current xi:  [-566.67706]
+objective value function right now is: 295.0713495309944
+4.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.5948]
+objective value function right now is: 300.0715456304052
+6.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-578.9389]
+objective value function right now is: 353.8222120988908
+8.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-573.70483]
+objective value function right now is: 316.0081187014787
+10.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.46356]
+objective value function right now is: 308.5250405517863
+12.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.1007]
+objective value function right now is: 333.02232019287635
+14.000000000000002% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.1748]
+objective value function right now is: 295.31817831564325
+16.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.3373]
+objective value function right now is: 309.9938924263985
+18.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.90356]
+objective value function right now is: 310.2745610207125
+20.0% of gradient descent iterations done. Method = Adam
+new min fval:  292.81274112777305
+Current xi:  [-567.91473]
+objective value function right now is: 292.81274112777305
+22.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.9928]
+objective value function right now is: 296.68217163362596
+24.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.4716]
+objective value function right now is: 298.0078701469884
+26.0% of gradient descent iterations done. Method = Adam
+new min fval:  291.1653182272983
+Current xi:  [-565.43805]
+objective value function right now is: 291.1653182272983
+28.000000000000004% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.0113]
+objective value function right now is: 299.02223183757263
+30.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.8335]
+objective value function right now is: 297.7901819744669
+32.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.2339]
+objective value function right now is: 297.15640371620725
+34.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.21313]
+objective value function right now is: 300.7784978178772
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.3286]
+objective value function right now is: 304.88988177100464
+38.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.3395]
+objective value function right now is: 301.66741309051037
+40.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.59424]
+objective value function right now is: 294.56005617258114
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.76886]
+objective value function right now is: 300.66204162331474
+44.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.06824]
+objective value function right now is: 306.61685803081224
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.0911]
+objective value function right now is: 303.7643105053126
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.4985]
+objective value function right now is: 941.4536179873971
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-576.6153]
+objective value function right now is: 315.5614793355587
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-572.1225]
+objective value function right now is: 320.5926929697152
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.81055]
+objective value function right now is: 291.2794997692129
+56.00000000000001% of gradient descent iterations done. Method = Adam
+new min fval:  291.07526499286354
+Current xi:  [-568.0849]
+objective value function right now is: 291.07526499286354
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.9471]
+objective value function right now is: 297.61854972482473
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.25366]
+objective value function right now is: 294.499835675839
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.92944]
+objective value function right now is: 334.15749580281334
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.33655]
+objective value function right now is: 349.7627642263804
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-573.0751]
+objective value function right now is: 344.72181627892746
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.78986]
+objective value function right now is: 292.86124274852347
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.06354]
+objective value function right now is: 292.37478759456883
+72.0% of gradient descent iterations done. Method = Adam
+new min fval:  289.040954143592
+Current xi:  [-566.33105]
+objective value function right now is: 289.040954143592
+74.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.45245]
+objective value function right now is: 291.17421002685364
+76.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.90027]
+objective value function right now is: 292.025376033347
+78.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.6102]
+objective value function right now is: 289.2934481176855
+80.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.7267]
+objective value function right now is: 297.253660908006
+82.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.79047]
+objective value function right now is: 290.698631430929
+84.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.79175]
+objective value function right now is: 308.9390982880072
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.041]
+objective value function right now is: 290.0733853371236
+88.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.3658]
+objective value function right now is: 289.95462810597644
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.72906]
+objective value function right now is: 290.3133116585254
+new min fval from sgd:  289.03661072910216
+new min fval from sgd:  289.001118023598
+new min fval from sgd:  288.95578881534294
+new min fval from sgd:  288.9349176926899
+new min fval from sgd:  288.8646259875331
+new min fval from sgd:  288.8221280754238
+new min fval from sgd:  288.7493856980842
+new min fval from sgd:  288.62835639803023
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.09235]
+objective value function right now is: 295.28607635889927
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.8281]
+objective value function right now is: 289.61540457446677
+new min fval from sgd:  288.5143235762175
+new min fval from sgd:  288.34451190221523
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.98615]
+objective value function right now is: 289.86090529878095
+new min fval from sgd:  288.3436202439511
+new min fval from sgd:  288.33436020050686
+new min fval from sgd:  288.32997327155385
+new min fval from sgd:  288.32684421192243
+new min fval from sgd:  288.324686015019
+new min fval from sgd:  288.3156366792293
+new min fval from sgd:  288.3053125624461
+new min fval from sgd:  288.29024600415283
+new min fval from sgd:  288.2836574271545
+new min fval from sgd:  288.2813223400731
+new min fval from sgd:  288.28002523562265
+new min fval from sgd:  288.27173565744295
+new min fval from sgd:  288.27135729930933
+new min fval from sgd:  288.25887633659477
+new min fval from sgd:  288.24832812306425
+new min fval from sgd:  288.24145584708646
+new min fval from sgd:  288.23353747321846
+new min fval from sgd:  288.2334511250466
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.8301]
+objective value function right now is: 288.5267647119744
+new min fval from sgd:  288.2285961340444
+new min fval from sgd:  288.2203155336166
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.8601]
+objective value function right now is: 288.64975864037956
+min fval:  288.2203155336166
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-5.3595e-18,  1.4379e-19],
+        [-8.9166e-19,  2.3870e-18],
+        [ 1.6294e-18,  5.8414e-18],
+        [-7.8919e-19, -2.4322e-17],
+        [ 4.0530e-18,  3.8379e-17],
+        [ 3.3983e-18,  5.3699e-19],
+        [ 9.1285e-16,  2.7503e-18],
+        [ 6.0172e-17,  4.2969e-18],
+        [-7.4909e-16, -1.1657e-17],
+        [-6.2283e-18,  4.8929e-20]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ 1.6410e-18, -1.0502e-18, -8.1482e-20, -1.3956e-19,  3.1755e-16,
+        -1.2903e-18, -1.2207e-18,  7.8085e-17, -9.2029e-18, -3.9129e-16],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[ 1.6096e-18, -7.6904e-17,  9.1740e-20,  6.2676e-17, -1.7607e-16,
+         -2.0608e-19, -7.8589e-21, -1.9808e-20,  9.4172e-16, -6.2250e-18],
+        [-4.8451e-17, -2.5328e-16, -5.4414e-22, -2.2171e-21,  6.6543e-16,
+          4.5938e-17,  1.1744e-19,  2.6759e-16,  9.3415e-18,  3.4997e-15],
+        [ 1.4376e-18, -1.3195e-17, -2.7360e-17,  2.7785e-15, -8.7669e-19,
+         -6.2477e-19,  5.5958e-17, -1.2216e-19,  3.7467e-17, -5.6420e-21],
+        [ 8.4385e-20,  8.0993e-20, -1.7375e-16,  2.4183e-17,  6.9634e-17,
+         -1.0631e-20, -2.9874e-17, -2.5179e-19,  5.0555e-17,  7.4566e-16],
+        [ 4.3480e-20,  3.4982e-19, -1.3383e-19,  1.0491e-19, -6.3965e-21,
+         -3.7382e-19,  1.3860e-19,  1.4157e-17, -1.0342e-19, -3.7649e-19],
+        [-3.2405e-17,  9.0065e-17, -3.2694e-16,  1.2061e-17,  5.9141e-18,
+          3.4913e-18, -2.6599e-21,  6.8814e-20,  1.4677e-17,  2.1784e-20],
+        [ 6.5254e-16, -9.8872e-17, -4.0823e-17,  1.2128e-20,  2.6354e-18,
+         -8.4297e-20,  4.2894e-20, -1.5185e-18,  3.3852e-20,  3.6048e-19],
+        [-3.1550e-19, -1.1646e-19,  1.0139e-20,  2.6119e-16,  4.1834e-20,
+          4.9047e-17,  6.1795e-18, -3.9387e-16, -8.9032e-19,  6.3888e-20],
+        [ 5.4844e-19,  6.0891e-19,  8.0579e-21,  3.6979e-20,  1.9512e-19,
+         -8.1333e-20,  4.6153e-18, -6.3948e-18,  7.7471e-20, -1.9134e-16],
+        [ 5.1016e-19, -1.3289e-18,  7.3143e-18, -1.2667e-15,  7.7328e-17,
+         -8.6058e-16, -2.2699e-19,  9.8927e-16,  5.9950e-20,  9.8025e-18]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-2.0492e-18,  3.9249e-18, -2.4529e-17,  5.2939e-17, -1.2079e-18,
+        -2.9986e-20, -1.2758e-16, -2.4473e-20, -1.9060e-18,  6.0786e-17],
+       device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[1.8090e-11, 2.1737e-11, 2.7054e-11, 1.8015e-11, 1.8023e-11, 2.1420e-11,
+         2.4375e-11, 1.8507e-11, 2.2386e-11, 1.8330e-11]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[-28.7770,  -9.3565],
+        [-13.7782, -12.2520],
+        [ 24.4074,   1.2686],
+        [  2.9364,  -0.4947],
+        [-20.0325,   1.7314],
+        [  2.0828,  -1.0435],
+        [ -4.4861,   9.9850],
+        [ 11.7018,  14.6409],
+        [-12.3916,   8.9704],
+        [-25.9169,  -5.6553]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ -4.1541, -12.5397, -18.8957,   4.3595,  23.1911,   4.6728,  14.9112,
+          9.4393,  10.1395,   4.4060], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-3.3174e-01,  2.3653e+00, -9.3576e-01, -1.1838e+00,  4.3213e+00,
+         -2.6799e+00, -3.4464e+01, -2.9820e+00, -8.7112e-03,  8.3746e+00],
+        [ 4.8260e-01,  2.7737e+00, -8.3635e-01,  1.3782e+00,  1.5344e+00,
+          1.7194e+00, -1.0115e+00, -2.0281e+00,  1.1528e-01,  2.2177e+00],
+        [-2.5728e-02,  5.4497e+00,  9.2343e-01, -8.8205e-01,  1.7521e+01,
+          3.8936e+00, -7.9400e+00,  8.4171e+00,  8.5721e+00, -1.5758e+01],
+        [-1.4262e+00, -1.6281e-01, -5.1558e-01, -2.1597e+00, -8.7925e-01,
+         -9.9454e-01, -9.4682e-01, -2.2985e+00, -2.6074e-01, -8.8843e-01],
+        [-8.9977e+00, -7.8621e+00,  1.6841e+01,  9.3907e+00, -4.5796e+00,
+         -4.4263e-01, -6.7891e+00,  3.0944e+00,  1.5364e+01, -1.6502e+00],
+        [ 7.4577e+00,  5.9571e+00, -4.4279e+00, -1.8947e+00, -3.9746e+00,
+         -2.2395e+00, -3.6883e+00, -5.5077e-01, -2.1250e+00,  4.9525e+00],
+        [-1.7918e+01, -1.3082e+01,  1.4455e+01,  1.5658e+01, -7.4568e-01,
+         -2.8748e+00,  1.6548e+00,  1.8081e+00,  2.3063e+01, -2.3397e+01],
+        [ 7.0144e+00, -3.4398e+00,  4.3293e+00, -1.0478e+01,  7.2869e-02,
+         -3.6989e+00,  3.3399e+00,  8.6819e+00,  4.7734e-01,  9.0677e+00],
+        [-7.2368e-01, -5.5671e-01, -5.7370e-01, -2.1137e+00, -1.4299e+00,
+         -2.0287e+00, -3.6521e-01, -7.0603e-01, -4.7684e-02, -7.1136e-01],
+        [ 1.3517e+01,  3.1980e-01,  1.7057e+00, -7.3558e+00,  3.9829e+00,
+         -7.3138e-01, -9.0439e+00, -6.2846e-01, -6.9762e+00,  1.0556e+01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-1.1935,  1.3718, -0.9420, -2.1597,  0.6192, -1.9045, 17.5592, -4.1662,
+        -2.1346, -6.7737], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[-1.0342, -0.5589,  5.0505, -0.8817,  2.8984, -0.9610, -6.8885,  0.5229,
+         -0.0488,  3.0692],
+        [ 1.0342,  0.5589, -5.1662,  0.8817, -2.9885,  0.9609,  7.2122, -0.5225,
+          0.0488, -3.0661]], device='cuda:0'))])
+xi:  [-563.8316]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 39.66229692999073
+W_T_median: -76.00328492125482
+W_T_pctile_5: -563.9977108773504
+W_T_CVAR_5_pct: -674.2443214824978
+Average q (qsum/M+1):  55.952042118195564
+Optimal xi:  [-563.8316]
+Expected(across Rb) median(across samples) p_equity:  0.2905687620242437
+obj fun:  tensor(288.2203, device='cuda:0', dtype=torch.float64, grad_fn=<MeanBackward0>)
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 3.0
+-----------------------------------------------
+loaded xi:  -563.8316
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1576.8182150775267
+W_T_median: 1136.7449346433505
+W_T_pctile_5: -127.64084552288806
+W_T_CVAR_5_pct: -295.72244238283764
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  1646.3090765550833
+Current xi:  [-567.2042]
+objective value function right now is: 1646.3090765550833
+4.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.19354]
+objective value function right now is: 1658.6118087719747
+6.0% of gradient descent iterations done. Method = Adam
+new min fval:  1645.0613831113337
+Current xi:  [-567.4606]
+objective value function right now is: 1645.0613831113337
+8.0% of gradient descent iterations done. Method = Adam
+new min fval:  1644.5591209295435
+Current xi:  [-567.381]
+objective value function right now is: 1644.5591209295435
+10.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.8076]
+objective value function right now is: 1644.8359914826538
+12.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.78015]
+objective value function right now is: 1676.3040112584179
+14.000000000000002% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.70294]
+objective value function right now is: 1753.9480322163708
+16.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.0633]
+objective value function right now is: 1651.6393359033352
+18.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.2976]
+objective value function right now is: 1772.126463381265
+20.0% of gradient descent iterations done. Method = Adam
+new min fval:  1642.043346388129
+Current xi:  [-567.28687]
+objective value function right now is: 1642.043346388129
+22.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.4732]
+objective value function right now is: 1682.5894582455853
+24.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.00336]
+objective value function right now is: 1655.3529923523242
+26.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-569.1127]
+objective value function right now is: 1685.4700626644092
+28.000000000000004% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.0228]
+objective value function right now is: 1660.311087090815
+30.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.33075]
+objective value function right now is: 1646.082977614584
+32.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.96295]
+objective value function right now is: 1650.2246754355192
+34.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.9015]
+objective value function right now is: 1659.3433751835155
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-576.61005]
+objective value function right now is: 1751.2050342881064
+38.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-571.4609]
+objective value function right now is: 1643.369849558735
+40.0% of gradient descent iterations done. Method = Adam
+new min fval:  1639.125476004805
+Current xi:  [-565.51404]
+objective value function right now is: 1639.125476004805
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.1631]
+objective value function right now is: 1642.8523750548338
+44.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.2829]
+objective value function right now is: 1645.5069952539825
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.2126]
+objective value function right now is: 1643.7520983181596
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.21216]
+objective value function right now is: 1649.031593155063
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.4321]
+objective value function right now is: 1663.2021890678745
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.05884]
+objective value function right now is: 1650.2387815426562
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.7401]
+objective value function right now is: 1643.8307549393767
+56.00000000000001% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.16766]
+objective value function right now is: 1690.4922852766197
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.61993]
+objective value function right now is: 1651.217357028705
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.5608]
+objective value function right now is: 1648.699387406487
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.5897]
+objective value function right now is: 1648.649904968188
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.6604]
+objective value function right now is: 1654.0742036890279
+66.0% of gradient descent iterations done. Method = Adam
+new min fval:  1637.9369086593945
+Current xi:  [-566.53314]
+objective value function right now is: 1637.9369086593945
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.9327]
+objective value function right now is: 1647.416290845906
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.04474]
+objective value function right now is: 1642.6828849550773
+72.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.8808]
+objective value function right now is: 1642.997417405985
+74.0% of gradient descent iterations done. Method = Adam
+new min fval:  1637.706924324607
+Current xi:  [-564.07465]
+objective value function right now is: 1637.706924324607
+76.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.805]
+objective value function right now is: 1639.7766053037737
+78.0% of gradient descent iterations done. Method = Adam
+new min fval:  1635.975030907347
+Current xi:  [-563.7321]
+objective value function right now is: 1635.975030907347
+80.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.5419]
+objective value function right now is: 1638.704029462218
+82.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.4327]
+objective value function right now is: 1636.9577773450135
+84.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.05444]
+objective value function right now is: 1639.8471399848488
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.903]
+objective value function right now is: 1637.789508663866
+88.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.7395]
+objective value function right now is: 1637.9461523296513
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.7004]
+objective value function right now is: 1638.8433094670852
+new min fval from sgd:  1635.9665685211387
+new min fval from sgd:  1635.9486222237895
+new min fval from sgd:  1635.8217224548498
+new min fval from sgd:  1635.7620895421398
+new min fval from sgd:  1635.7367133977064
+new min fval from sgd:  1635.6879867375824
+new min fval from sgd:  1635.5989363475717
+new min fval from sgd:  1635.593001923462
+new min fval from sgd:  1635.439334856419
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.7512]
+objective value function right now is: 1637.6314359571952
+new min fval from sgd:  1635.4284460288127
+new min fval from sgd:  1635.3915499911052
+new min fval from sgd:  1635.3579190211474
+new min fval from sgd:  1635.3206603464973
+new min fval from sgd:  1635.2926830859064
+new min fval from sgd:  1635.2904155778685
+new min fval from sgd:  1635.256448074966
+new min fval from sgd:  1635.2402110481132
+new min fval from sgd:  1635.1668342621767
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.90826]
+objective value function right now is: 1635.7257826397117
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.8989]
+objective value function right now is: 1636.9494952915488
+new min fval from sgd:  1635.150979073674
+new min fval from sgd:  1635.1389103154945
+new min fval from sgd:  1635.13537068304
+new min fval from sgd:  1635.1311581660032
+new min fval from sgd:  1635.1190663512855
+new min fval from sgd:  1635.104087468864
+new min fval from sgd:  1635.0558407498781
+new min fval from sgd:  1635.0241602845333
+new min fval from sgd:  1635.0180663814688
+new min fval from sgd:  1634.9825645231265
+new min fval from sgd:  1634.974395185505
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.2507]
+objective value function right now is: 1635.2209370993623
+new min fval from sgd:  1634.960541665467
+new min fval from sgd:  1634.9396375274896
+new min fval from sgd:  1634.9281315822736
+new min fval from sgd:  1634.9113265067506
+new min fval from sgd:  1634.9081086872293
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.17126]
+objective value function right now is: 1635.7508482118985
+min fval:  1634.9081086872293
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-3.9467e-18,  6.2645e-22],
+        [-2.9410e-20,  3.5562e-17],
+        [ 1.4005e-21,  5.5067e-22],
+        [-2.7935e-20, -8.8750e-22],
+        [ 4.1864e-19,  6.0918e-19],
+        [-4.6157e-20,  1.3158e-20],
+        [-2.1443e-21, -1.3292e-19],
+        [-5.9229e-21, -1.7514e-20],
+        [-1.4282e-21, -3.3179e-20],
+        [ 2.0462e-20,  1.0388e-20]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ 9.8516e-18, -1.4908e-20, -2.8283e-18,  3.2135e-20,  1.6844e-20,
+        -3.7160e-19, -2.8255e-20,  2.7572e-22, -1.0326e-17,  8.1682e-18],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-1.0234e-21, -9.2570e-22,  4.7540e-21, -1.9111e-17,  4.2519e-21,
+         -3.3275e-18, -1.4280e-18,  1.1637e-17,  6.0994e-18,  7.0209e-18],
+        [ 1.9584e-18, -4.4171e-22, -2.4948e-17,  7.7505e-21,  1.0890e-21,
+         -7.4755e-18,  4.7114e-21,  1.1960e-17, -5.0793e-20, -1.9670e-20],
+        [ 3.7262e-18,  6.2245e-19,  3.4623e-19, -3.4823e-19,  4.4962e-19,
+         -1.3711e-20,  6.0446e-23,  3.1658e-19,  1.6807e-18, -4.5841e-18],
+        [ 5.1374e-18,  2.9780e-21,  1.9379e-21,  1.5876e-19,  4.8823e-19,
+          4.8041e-20, -2.0147e-18,  8.9009e-20,  1.5409e-17,  5.9541e-18],
+        [-1.1832e-18,  6.9590e-19, -1.9281e-20,  2.7991e-17, -1.2096e-19,
+          1.3161e-17, -6.4396e-22, -5.1643e-22,  7.9729e-22, -2.7849e-20],
+        [-1.5895e-17, -2.5127e-18, -6.5131e-18, -7.3285e-20, -3.7394e-19,
+          2.4594e-19, -1.7411e-19,  3.6180e-19, -7.3001e-19, -2.5619e-19],
+        [-1.7993e-20,  1.7808e-17,  6.4685e-21,  4.2136e-19, -8.4688e-22,
+          1.6167e-17,  1.2188e-21, -5.2877e-20, -4.1115e-19, -5.4193e-21],
+        [ 4.4907e-19,  1.2456e-20, -2.2126e-21, -3.5681e-21, -2.0543e-18,
+         -1.4879e-20,  1.4499e-20, -7.9559e-20,  5.5709e-18, -5.0312e-21],
+        [-1.9892e-19, -9.2807e-22, -3.0024e-20, -6.0614e-18,  1.3011e-17,
+          1.6645e-21, -6.8291e-20, -3.9562e-20,  4.6702e-21, -4.8141e-21],
+        [ 6.8097e-18, -1.6946e-20,  5.5980e-19, -7.0366e-20,  1.3738e-21,
+          1.1296e-19, -3.2156e-19,  3.7969e-20,  6.2495e-19,  3.0719e-20]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-6.0026e-19,  3.9711e-17, -2.1032e-18,  2.6188e-20,  5.0182e-19,
+        -3.5070e-18,  2.6440e-21, -8.5822e-20,  1.4451e-17, -3.4597e-20],
+       device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[-2.8362e-11, -2.9613e-11, -1.4383e-11, -2.9559e-11, -2.8069e-11,
+         -1.5905e-11, -2.3916e-11, -1.1667e-11, -2.3525e-11, -2.9340e-11]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[-28.0995,  -7.5002],
+        [-18.8064, -12.5853],
+        [ 25.2727,   1.1913],
+        [  3.2431,  -1.0129],
+        [-22.5158,   2.4784],
+        [ -2.2814,   1.6449],
+        [ -3.9193,  10.0657],
+        [ 14.4786,  14.2676],
+        [-16.0331,  11.1049],
+        [-25.8211,  -5.9378]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ -1.3777, -10.5714, -20.0672,   4.5768,  25.7003,  -3.1650,  14.8890,
+          7.4017,  12.7986,   3.3842], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-3.0907e-01,  3.0058e+00, -6.5067e-01, -2.7288e+00,  4.3216e+00,
+         -1.1702e-01, -4.7784e+01, -9.2417e+00, -3.7160e-02,  1.5078e+01],
+        [-2.5405e-01,  2.1444e+01,  8.7615e-02, -8.1495e-01,  1.3419e+00,
+         -4.8691e-01, -3.7733e+00, -1.7154e-01, -1.6560e+01,  1.2057e+01],
+        [-3.6408e+00,  6.9950e+00,  7.5209e+00, -9.9159e-01,  1.5969e+01,
+          1.4538e-01, -4.1688e+00,  7.3056e+00,  1.1094e+01, -1.2287e+01],
+        [-5.7812e-01, -8.2872e-01, -8.4460e-01, -2.9629e+00, -1.8599e+00,
+          3.0573e-05, -2.7338e-01, -6.0969e-01, -3.3967e-03, -5.9927e-01],
+        [-8.1130e+00, -1.2144e+01,  2.3992e+01,  1.0167e+01, -5.4558e+00,
+         -2.2200e-01, -7.8257e+00,  2.8879e+00,  1.5070e+01,  4.9999e-01],
+        [-5.7812e-01, -8.2872e-01, -8.4460e-01, -2.9629e+00, -1.8599e+00,
+          3.0573e-05, -2.7338e-01, -6.0969e-01, -3.3967e-03, -5.9927e-01],
+        [-6.4966e+00, -1.9325e+01,  1.5351e+01,  1.8131e+01, -6.0999e+00,
+         -1.8910e-01,  2.4966e+00,  1.4084e-01,  1.1806e+01, -2.3705e+01],
+        [-4.5029e+00,  3.5855e+00,  2.7603e+00, -3.8540e+00, -2.1083e+00,
+         -6.1610e-01,  1.0222e+00, -7.9581e-01,  3.5738e+00, -4.7939e+00],
+        [-5.7820e-01, -8.2880e-01, -8.4445e-01, -2.9628e+00, -1.8602e+00,
+          3.0382e-05, -2.7340e-01, -6.0985e-01, -3.4181e-03, -5.9935e-01],
+        [ 8.2942e+00,  7.4225e+00, -3.3194e+00, -1.0632e+01,  5.5153e+00,
+          7.9591e-02, -6.7147e+00,  9.3272e-01, -2.0776e+00,  1.2043e+01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -2.7415,  -0.8216,  -1.0348,  -2.9633,   1.5169,  -2.9633,  19.9060,
+         -3.4507,  -2.9632, -10.1603], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[-1.4859e+00, -3.9401e-01,  5.0038e+00, -1.9812e-03,  2.8164e+00,
+         -1.9811e-03, -7.1966e+00,  1.6719e+00, -1.9573e-03,  2.4065e+00],
+        [ 1.4859e+00,  3.9398e-01, -5.1194e+00,  1.9804e-03, -2.9063e+00,
+          1.9805e-03,  7.5200e+00, -1.6719e+00,  1.9557e-03, -2.4034e+00]],
+       device='cuda:0'))])
+xi:  [-563.2365]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 13.528225352836605
+W_T_median: -113.09518466925033
+W_T_pctile_5: -562.541037313947
+W_T_CVAR_5_pct: -672.8872931247379
+Average q (qsum/M+1):  55.791681105090724
+Optimal xi:  [-563.2365]
+Expected(across Rb) median(across samples) p_equity:  0.29754952394093076
+obj fun:  tensor(1634.9081, device='cuda:0', dtype=torch.float64,
+       grad_fn=<MeanBackward0>)
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 5.0
+-----------------------------------------------
+loaded xi:  -563.2365
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1576.8182150775267
+W_T_median: 1136.7449346433505
+W_T_pctile_5: -127.64084552288806
+W_T_CVAR_5_pct: -295.72244238283764
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  31906.30352552215
+Current xi:  [-564.1261]
+objective value function right now is: 31906.30352552215
+4.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.67035]
+objective value function right now is: 32078.922928243508
+6.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.904]
+objective value function right now is: 31953.342379823083
+8.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.16516]
+objective value function right now is: 32227.377910055802
+10.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.6876]
+objective value function right now is: 32359.123088825
+12.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.29156]
+objective value function right now is: 32091.707690250383
+14.000000000000002% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.35474]
+objective value function right now is: 31953.149818246337
+16.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.7595]
+objective value function right now is: 32124.121353730498
+18.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.8517]
+objective value function right now is: 31959.68625562583
+20.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.2011]
+objective value function right now is: 32138.205578016372
+22.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.7125]
+objective value function right now is: 31986.673824114943
+24.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.9692]
+objective value function right now is: 32118.979368995533
+26.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.5081]
+objective value function right now is: 32046.58562852065
+28.000000000000004% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.24036]
+objective value function right now is: 31968.86151505717
+30.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.12573]
+objective value function right now is: 31985.78001275926
+32.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.1781]
+objective value function right now is: 32044.05542841016
+34.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.51385]
+objective value function right now is: 32055.83050600568
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.66205]
+objective value function right now is: 32431.557188679206
+38.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.3706]
+objective value function right now is: 32019.78669268521
+40.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-564.73425]
+objective value function right now is: 31956.894649297
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.53424]
+objective value function right now is: 32251.212167005287
+44.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.66223]
+objective value function right now is: 31984.74967620828
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.62286]
+objective value function right now is: 32043.564867323785
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.6522]
+objective value function right now is: 31926.18560851757
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.43823]
+objective value function right now is: 31929.150708913876
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.3581]
+objective value function right now is: 32015.620118717394
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-574.5756]
+objective value function right now is: 32553.11551447568
+56.00000000000001% of gradient descent iterations done. Method = Adam
+Current xi:  [-567.21063]
+objective value function right now is: 31982.933300916822
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [-568.723]
+objective value function right now is: 32447.39398368793
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.4878]
+objective value function right now is: 31942.968923483975
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.6249]
+objective value function right now is: 32070.189850697174
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.0451]
+objective value function right now is: 32006.386195516498
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.044]
+objective value function right now is: 31993.706137754976
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.54614]
+objective value function right now is: 32183.639599719994
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-566.11847]
+objective value function right now is: 31951.945276900726
+72.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-565.00433]
+objective value function right now is: 31977.479367288593
+74.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.9229]
+objective value function right now is: 31907.01695283349
+76.0% of gradient descent iterations done. Method = Adam
+new min fval:  31898.743004824057
+Current xi:  [-563.57025]
+objective value function right now is: 31898.743004824057
+78.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.302]
+objective value function right now is: 31941.826510773124
+80.0% of gradient descent iterations done. Method = Adam
+new min fval:  31895.384121222796
+Current xi:  [-562.8303]
+objective value function right now is: 31895.384121222796
+82.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-563.1311]
+objective value function right now is: 31948.220271797494
+84.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.58374]
+objective value function right now is: 32142.752120045938
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.4678]
+objective value function right now is: 31926.944817585507
+88.0% of gradient descent iterations done. Method = Adam
+new min fval:  31887.178422424884
+Current xi:  [-562.33905]
+objective value function right now is: 31887.178422424884
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.6148]
+objective value function right now is: 31935.04889150667
+new min fval from sgd:  31886.94534256679
+new min fval from sgd:  31881.84897794822
+new min fval from sgd:  31878.449933269978
+new min fval from sgd:  31875.918200775897
+new min fval from sgd:  31874.58392399622
+new min fval from sgd:  31873.766842899375
+new min fval from sgd:  31873.233373563147
+new min fval from sgd:  31873.063259889477
+new min fval from sgd:  31872.014158012484
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.2019]
+objective value function right now is: 31898.40506004863
+new min fval from sgd:  31872.01235413342
+new min fval from sgd:  31871.915384776807
+new min fval from sgd:  31871.05392469363
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-561.90326]
+objective value function right now is: 31890.50472422125
+new min fval from sgd:  31871.03389368428
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.195]
+objective value function right now is: 31892.254425240182
+new min fval from sgd:  31871.02439391694
+new min fval from sgd:  31870.82815219561
+new min fval from sgd:  31870.70345177482
+new min fval from sgd:  31870.56702499735
+new min fval from sgd:  31870.44186418603
+new min fval from sgd:  31870.39713141402
+new min fval from sgd:  31870.194710466872
+new min fval from sgd:  31870.127347512756
+new min fval from sgd:  31870.076589254568
+new min fval from sgd:  31869.9944445757
+new min fval from sgd:  31869.82601977572
+new min fval from sgd:  31869.76740981738
+new min fval from sgd:  31869.551657419168
+new min fval from sgd:  31869.354652867307
+new min fval from sgd:  31869.260489294855
+new min fval from sgd:  31869.0170716304
+new min fval from sgd:  31868.594938260558
+new min fval from sgd:  31868.37249518777
+new min fval from sgd:  31868.23604947327
+new min fval from sgd:  31868.149802593824
+new min fval from sgd:  31868.114083448367
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.39136]
+objective value function right now is: 31870.767027053287
+new min fval from sgd:  31868.065048432196
+new min fval from sgd:  31867.849998788937
+new min fval from sgd:  31867.771194767312
+new min fval from sgd:  31867.71438395879
+new min fval from sgd:  31867.67884499021
+new min fval from sgd:  31867.606712622888
+new min fval from sgd:  31867.509892984526
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-562.44763]
+objective value function right now is: 31871.999638920104
+min fval:  31867.509892984526
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ 2.6469e-29,  2.3513e-32],
+        [-5.6320e-27, -3.8048e-31],
+        [ 1.6319e-27,  9.4661e-28],
+        [ 4.4222e-30,  1.1123e-33],
+        [ 1.0191e-27, -2.7364e-30],
+        [ 1.0818e-28,  7.3508e-32],
+        [-1.6131e-28, -1.6256e-30],
+        [-3.9583e-31, -5.2592e-29],
+        [ 1.4263e-29,  2.9569e-30],
+        [-1.7406e-29,  4.3151e-27]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ 1.3385e-32, -1.4655e-28, -3.2106e-30, -1.0904e-28,  1.1929e-31,
+         1.6233e-30, -4.2871e-31, -2.3287e-30, -6.1596e-29, -1.9089e-31],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[1.7389e-19, 2.8783e-19, 1.6368e-19, 1.9421e-19, 2.4824e-19, 2.9039e-19,
+         1.8515e-19, 1.3416e-19, 1.6591e-19, 2.2934e-19],
+        [1.6834e-19, 7.0918e-20, 1.3363e-19, 9.7562e-20, 6.6869e-20, 6.8418e-20,
+         6.6808e-20, 1.1936e-19, 1.2863e-19, 1.4841e-19],
+        [9.3445e-20, 1.6395e-19, 5.7388e-20, 5.0369e-20, 4.7880e-20, 1.1032e-19,
+         4.5511e-20, 9.9399e-20, 9.3413e-20, 4.8473e-20],
+        [1.0810e-19, 1.8714e-19, 8.0106e-20, 5.5003e-20, 1.3333e-19, 5.6195e-20,
+         5.8662e-20, 6.8837e-20, 6.2664e-20, 5.3808e-20],
+        [2.4009e-19, 2.6940e-19, 1.3559e-19, 2.7847e-19, 2.6575e-19, 2.1362e-19,
+         2.5548e-19, 1.5523e-19, 2.7367e-19, 1.9045e-19],
+        [8.2941e-20, 1.0845e-19, 1.3882e-19, 2.8800e-20, 5.3857e-20, 1.0624e-19,
+         3.7948e-20, 3.2797e-20, 5.4308e-20, 7.8038e-20],
+        [2.1492e-19, 2.7954e-19, 1.8185e-19, 1.7611e-19, 1.2710e-19, 1.9788e-19,
+         1.2631e-19, 1.5356e-19, 2.8170e-19, 1.9533e-19],
+        [6.1813e-20, 9.3748e-20, 1.0184e-19, 9.5058e-20, 1.0833e-19, 8.8217e-20,
+         1.7200e-19, 6.3456e-20, 8.5631e-20, 7.8217e-20],
+        [8.0320e-20, 5.0921e-20, 9.7143e-20, 6.0005e-20, 6.5168e-20, 1.2368e-19,
+         1.6925e-19, 4.2855e-20, 1.0551e-19, 1.6461e-19],
+        [1.3816e-19, 2.6969e-19, 2.1391e-19, 2.4380e-19, 1.6722e-19, 1.1524e-19,
+         1.7469e-19, 1.5334e-19, 1.3403e-19, 2.1789e-19]], device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([3.5987e-19, 4.5181e-19, 3.1930e-19, 2.1316e-19, 2.4357e-19, 1.1905e-19,
+        5.6008e-19, 1.9179e-19, 3.0758e-19, 5.3950e-19], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[-5.0215e-10, -3.8867e-10, -3.7233e-10, -3.7707e-10, -4.6559e-10,
+         -3.7696e-10, -4.8827e-10, -3.5430e-10, -3.7182e-10, -4.5220e-10]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[-31.5118,  -6.9059],
+        [-21.8836, -12.8446],
+        [ 27.7314,   2.3203],
+        [  3.5797,  -7.5490],
+        [-24.8747,   2.1309],
+        [ -2.6271,   2.6166],
+        [ -4.7491,   9.9083],
+        [ 14.5116,   4.1287],
+        [-14.6090,   9.0708],
+        [-27.8135,  -6.3340]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([  0.7499,  -9.4277, -19.0560,   4.3215,  28.0896,  -3.2784,  15.6908,
+         10.8496,  10.3118,   3.3145], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 4.3165e+00,  2.9631e+00, -1.2406e+00, -1.6991e+00,  6.8136e+00,
+         -2.6825e-01, -6.0053e+01, -4.3219e+00, -7.2833e-02,  2.8118e+01],
+        [-2.3311e+00,  4.0718e+01, -5.3763e-01, -7.0772e-01,  1.4968e+00,
+         -7.3826e-01, -5.3824e+00,  2.1608e-01, -7.6769e+00,  7.7558e+00],
+        [-6.6179e+00,  1.0775e+01,  3.8030e+01, -4.0065e+00,  2.1995e+01,
+         -2.5124e-01, -1.3364e+01,  9.1732e-01,  3.0233e+01, -5.6734e+00],
+        [-1.1075e+00, -1.1240e+00, -8.1991e-01, -3.0065e+00, -1.6429e+00,
+         -3.2325e-03, -2.2528e-01, -1.7562e+00,  1.6363e-02, -1.1158e+00],
+        [-1.2381e+01, -1.5579e+01,  3.3513e+01,  9.2057e+00, -1.0692e+01,
+         -2.7476e-01,  1.0014e+01,  5.2760e+00,  1.3640e+01, -3.1676e+00],
+        [-1.1075e+00, -1.1240e+00, -8.1991e-01, -3.0065e+00, -1.6429e+00,
+         -3.2325e-03, -2.2528e-01, -1.7562e+00,  1.6363e-02, -1.1158e+00],
+        [-7.7990e+00, -2.5571e+01,  3.7129e+01,  1.9966e+01, -1.2911e+01,
+          1.5390e-01,  8.0803e+00,  6.8954e+00,  1.9128e+01, -2.5382e+01],
+        [-2.3768e+00,  6.8276e+00,  3.3549e+00, -3.9746e+00, -2.8103e+00,
+          4.3246e-01,  1.8612e+00, -5.6752e-02,  6.9902e+00, -5.8020e+00],
+        [-1.1075e+00, -1.1240e+00, -8.1991e-01, -3.0065e+00, -1.6429e+00,
+         -3.2325e-03, -2.2528e-01, -1.7562e+00,  1.6363e-02, -1.1158e+00],
+        [ 9.4924e+00,  1.2336e+01, -1.4555e+01, -1.3897e+01,  1.2436e+01,
+         -3.7116e-02, -9.3270e+00, -3.6540e+00, -1.0808e+01,  1.3447e+01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -1.7120,  -0.7238,  -4.0496,  -3.0007,   0.5828,  -3.0007,  21.7258,
+         -4.7226,  -3.0007, -13.4374], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[-1.2057, -0.5029,  5.0535,  0.0191,  2.8688,  0.0191, -7.2481,  0.2596,
+          0.0191,  2.2740],
+        [ 1.2056,  0.5029, -5.1692, -0.0191, -2.9587, -0.0191,  7.5714, -0.2596,
+         -0.0191, -2.2710]], device='cuda:0'))])
+xi:  [-562.43884]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: -50.729099317967446
+W_T_median: -199.2025769299124
+W_T_pctile_5: -562.4810944459044
+W_T_CVAR_5_pct: -671.6749670876289
+Average q (qsum/M+1):  55.36255276587702
+Optimal xi:  [-562.43884]
+Expected(across Rb) median(across samples) p_equity:  0.23495436786799928
+obj fun:  tensor(31867.5099, device='cuda:0', dtype=torch.float64,
+       grad_fn=<MeanBackward0>)
+-----------------------------------------------
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 50.0
+-----------------------------------------------

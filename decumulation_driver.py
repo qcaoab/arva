@@ -103,10 +103,10 @@ seed_mc = 2
 np.random.seed(seed_mc)
 print("\n Random seed: ", seed_mc, " \n")
 
-cont_nn = False  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
-cont_nn_start = 2
+cont_nn = True  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
+cont_nn_start = 6
 cont_xi = True #uses previous value of optimal xi to initialize xi in next run
-cont_xi_start = 4  #tracing param index (starts at 1) to start continuation learning at
+cont_xi_start = 6  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
 preload = False
@@ -131,7 +131,7 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 # iteration dashboard --------------------------
-iter_params = "test"
+iter_params = "tiny" 
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
@@ -139,20 +139,23 @@ if iter_params == "real_exp":
     batchsize_mc = 1000
     nodes_mc = 10
     layers_mc = 2
+    biases_mc = True
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 40000
+    itbound_mc = 50000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
+    biases_mc = True
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 5000
+    itbound_mc = 10000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
+    biases_mc = True
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -162,6 +165,7 @@ if iter_params == "tiny":
     params["N_rb"] = 5
     params["q"] =  0. * np.ones(params["N_rb"]) 
     layers_mc = 2
+    biases_mc = True
 #----------------------------------------------
 # print key params:
 print("Key parameters-------")
@@ -658,9 +662,9 @@ NN_withdraw_orig.print_layers_info()  #Check what to update
 #Update layers info
 
 for l in range(1, layers_mc+1):
-    NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=True)
+    NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=biases_mc)
     
-NN_withdraw_orig.update_layer_info(layer_id = layers_mc+1, activation = "none", add_bias= False)
+NN_withdraw_orig.update_layer_info(layer_id = layers_mc+1, activation = "none", add_bias= False) #output layer
 
 NN_withdraw_orig.print_layers_info() #Check if structure is correct
 # ---------------------------------------------------------------------
@@ -682,7 +686,7 @@ NN_allocate_orig.print_layers_info()  #Check what to update
 
 #Update layers info
 for l in range(1, layers_mc+1):
-    NN_allocate_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=True)
+    NN_allocate_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=biases_mc)
 
 NN_allocate_orig.update_layer_info(layer_id = layers_mc+1, activation = "softmax", add_bias= False)
 
@@ -809,7 +813,7 @@ if params["preTrained_TrueFalse"] is True:
 
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
-for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
+for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_params
 
     # SET INITIAL VALUES ----------------------------
     # - initial NN parameters for both NNs [shuffle for each tracing param]
@@ -819,26 +823,26 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
     # RESET PYTORCH NNs------------------------------- 
     # (random initialization independent from orig NNs by default)
     
-    # #put original NNs in list:
-    # NN_orig_list = [NN_withdraw_orig, NN_allocate_orig]
+    #put original NNs in list:
+    NN_orig_list = [NN_withdraw_orig, NN_allocate_orig]
         
-    # # copy NN structures into pytorch NN
-    # NN_withdraw = class_NN_Pytorch.pytorch_NN(NN_withdraw_orig)
-    # NN_withdraw.to(device)
-    # # NN_withdraw.import_weights(NN_withdraw_orig, params)
+    # copy NN structures into pytorch NN
+    NN_withdraw = class_NN_Pytorch.pytorch_NN(NN_withdraw_orig)
+    NN_withdraw.to(device)
+    # NN_withdraw.import_weights(NN_withdraw_orig, params)
 
-    # NN_allocate = class_NN_Pytorch.pytorch_NN(NN_allocate_orig)
-    # NN_allocate.to(device)
-    # # NN_allocate.import_weights(NN_allocate_orig, params)
+    NN_allocate = class_NN_Pytorch.pytorch_NN(NN_allocate_orig)
+    NN_allocate.to(device)
+    # NN_allocate.import_weights(NN_allocate_orig, params)
 
-    # NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
+    NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
   
     
      # - augment NN parameters with additional parameters to be solved
     # if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
     #     if tracing_param == 1.0:
     
-    xi_0 = -1.  
+    xi_0 = 50.  
     params["xi_0"] = xi_0
     params["xi_lr"] = 0.05
     
@@ -846,9 +850,10 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
         params["xi_lr"] = 0.0
     
     # load continuation learn model
+    past_kappa = tracing_parameters_to_run[i-1]
     model_save_path = params["console_output_prefix"]
-    nn_saved_model = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}")
-    xi_saved = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}.json")
+    nn_saved_model = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
+    xi_saved = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
     
     if nn_saved_model.is_file():
         
@@ -862,8 +867,9 @@ for tracing_param in tracing_parameters_to_run: #Loop over tracing_params
         if cont_xi and tracing_param not in tracing_parameters_to_run[0:cont_xi_start]:
             obj_text = codecs.open(xi_saved,'r', encoding='utf-8').read()
             b_new = json.loads(obj_text)
-            print("loaded xi: ", b_new["xi"])
             params["xi_0"] = float(b_new["xi"])
+            print("loaded xi: ", b_new["xi"])
+            
 
     # manual preload:
     if preload:

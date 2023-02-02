@@ -9,7 +9,7 @@ import re
 
 
 
-with open("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/log_output/jan17_ef_contconstraintW.txt", 'r') as f:
+with open("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/log_output/feb1_ef_test_nnreset.txt", 'r') as f:
     text = f.read()
 
 split = re.split('\n| ', text)
@@ -59,10 +59,10 @@ plt.legend(loc='lower left')
 
 plt.show()
 
-plt.savefig('/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan17_ef_contconstraintW.png', dpi = 200)
+plt.savefig('/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/feb1_ef_test_nnreset.png', dpi = 200)
 
 
-# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dec23_ef_nocont_nosquare_50k.xlsx")
+# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
 
-# forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/dc_forsyth_efficient_frontier_nov16.xlsx")
+# forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
 

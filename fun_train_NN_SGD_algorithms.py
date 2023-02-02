@@ -118,7 +118,10 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
                                       ])
         
         if NN_training_options["lr_schedule"]:
-            scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, [int(itbound*0.70), int(itbound*0.97)], 
+            # scheduler1 = torch.optim.lr_scheduler.MultiStepLR(optimizer, [int(itbound*0.20)], 
+            #                                      gamma=0.5, last_epoch=-1, verbose=False)
+            
+            scheduler2 = torch.optim.lr_scheduler.MultiStepLR(optimizer, [int(itbound*0.70), int(itbound*0.97)], 
                                                  gamma=0.2, last_epoch=-1, verbose=False)
             
         #append xi to optimization parameters
@@ -179,7 +182,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         
         #lr scheduler step
         if NN_training_options["lr_schedule"]:
-            scheduler.step()
+            # scheduler1.step()
+            scheduler2.step()
         
         #try to clean up memory, lol
         torch.cuda.empty_cache()
@@ -303,11 +307,12 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         #save NN params and xi for continuation learning
     model_save_path = params["console_output_prefix"]
     local_path = params["local_path"]
-    torch.save(NN_list_min.state_dict(),f"{local_path}/saved_models/NN_opt_{model_save_path}")
+    kappa = params["obj_fun_rho"]
+    torch.save(NN_list_min.state_dict(),f"{local_path}/saved_models/NN_opt_{model_save_path}_kappa_{kappa}")
     
     optimal_xi = {"xi":str(xi_np[0])}
     
-    with open(f'{local_path}/saved_models/xi_opt_{model_save_path}.json', 'w') as outfile:
+    with open(f'{local_path}/saved_models/xi_opt_{model_save_path}_kappa_{kappa}.json', 'w') as outfile:
         json.dump(optimal_xi, outfile)
 
     print("saved model: ")
@@ -319,25 +324,24 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     
     
     
-    #rest commented out for now:
+    # Export trained NN from pytorch to original implementation, 'NN_object' is original NN object using weights
+    # from pytorch averaged model.
     
-    # # Export trained NN from pytorch to original implementation, 'NN_object' is original NN object using weights
-    # # from pytorch averaged model.
+    #pytorch NN is NN_list_min
     
-    
-    # NN_withdraw_orig = swa_both_nns.module[0].export_weights(NN_orig_list[0])
-    # NN_allocation_orig = swa_both_nns.module[1].export_weights(NN_orig_list[1])
+    NN_withdraw_orig = NN_list_min.module[0].export_weights(NN_orig_list[0])
+    NN_allocation_orig = NN_list_min.module[1].export_weights(NN_orig_list[1])
     
     # # # copy weights from layers into theta
-    # # NN_object.stack_NN_parameters()
+    NN_withdraw_orig.stack_NN_parameters()
+    NN_allocation_orig.stack_NN_parameters()
     
     
     
     
+    # TO DO: need to implement pieter NN implementation of this.
     
-    # # TO DO: need to implement pieter NN implementation of this.
-    
-    # #append xi_np to NN theta for f_theta
+    #append xi_np to NN theta for f_theta
     # F_theta = np.append(NN_object.theta, xi_np)    
     
     # #calc original objfun
