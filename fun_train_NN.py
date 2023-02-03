@@ -199,6 +199,7 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
                                                        NN_training_options = NN_training_options)
         
         res_ALL["pytorch_adam"] = result_pyt_adam
+        params["NN_object"] = NN_list
         
     
     # # Adam (in SGD algorithms):: ---------------------------------------------------------------------------
@@ -282,4 +283,4 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
     #     params["res_BEST"].update({"NN_theta": params["NN_theta"]})
 
     # return params, res_BEST, res_ALL, res_ALL_dataframe
-    return res_ALL['pytorch_adam']
+    return params, res_ALL['pytorch_adam']

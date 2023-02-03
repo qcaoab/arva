@@ -124,15 +124,15 @@ def RUN__wrapper_ONE_stage_optimization(
         )
 
     # #Do OUTPUTS
-    # params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
-    #     RUN__wrapper_output(
-    #     output_parameters=output_parameters,  # Dictionary with output parameters as setup in main code
-    #     params_TRAIN=params_TRAIN,  # dictionary with parameters and results from NN TRAINING
-    #     params_CP_TRAIN=params_CP_TRAIN,
-    #     # dictionary with benchmark strategy results and info on the TRAINING dataset
-    #     params_TEST=params_TEST,  # dictionary with parameters and results from NN TESTING
-    #     params_CP_TEST=params_CP_TEST  # dictionary with benchmark strategy results and info on the TESTING dataset
-    # )
+    params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
+        RUN__wrapper_output(
+        output_parameters=output_parameters,  # Dictionary with output parameters as setup in main code
+        params_TRAIN=params_TRAIN,  # dictionary with parameters and results from NN TRAINING
+        params_CP_TRAIN=params_CP_TRAIN,
+        # dictionary with benchmark strategy results and info on the TRAINING dataset
+        params_TEST=params_TEST,  # dictionary with parameters and results from NN TESTING
+        params_CP_TEST=params_CP_TEST  # dictionary with benchmark strategy results and info on the TESTING dataset
+    )
 
     return params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST
 
@@ -213,7 +213,7 @@ def RUN__wrapper_training_testing_NN(
     #                                                         NN_training_options = NN_training_options
     #                                                         )
     
-    res_adam = fun_train_NN.train_NN( theta0 = theta0,
+    params_TRAIN, res_adam = fun_train_NN.train_NN( theta0 = theta0,
                                     NN_list = NN_list,
                                     NN_orig_list = NN_orig_list,
                                     params = params,
@@ -406,13 +406,14 @@ def RUN__wrapper_output(
                                                  filename_prefix_for_Excel=code_title_prefix
                                                  )
         else:
-            fun_output_results.output_results_NN(params_TRAIN = params_TRAIN,
-                                                 params_TEST=None,
-                                                 params_BENCHMARK_train=params_CP_TRAIN,
-                                                 params_BENCHMARK_test= None,
-                                                 output_Excel = output_results_Excel,
-                                                 filename_prefix_for_Excel=code_title_prefix
-                                                 )
+            print("Need to implement this")
+            # fun_output_results.output_results_NN(params_TRAIN = params_TRAIN,
+            #                                      params_TEST=None,
+            #                                      params_BENCHMARK_train=params_CP_TRAIN,
+            #                                      params_BENCHMARK_test= None,
+            #                                      output_Excel = output_results_Excel,
+            #                                      filename_prefix_for_Excel=code_title_prefix
+            #                                      )
 
 
 

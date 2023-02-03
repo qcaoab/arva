@@ -329,8 +329,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     
     #pytorch NN is NN_list_min
     
-    NN_withdraw_orig = NN_list_min.module[0].export_weights(NN_orig_list[0])
-    NN_allocation_orig = NN_list_min.module[1].export_weights(NN_orig_list[1])
+    NN_withdraw_orig = NN_list_min[0].export_weights(NN_orig_list[0])
+    NN_allocation_orig = NN_list_min[1].export_weights(NN_orig_list[1])
     
     # # # copy weights from layers into theta
     NN_withdraw_orig.stack_NN_parameters()

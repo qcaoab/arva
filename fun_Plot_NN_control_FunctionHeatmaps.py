@@ -14,6 +14,7 @@ import sys
 import pandas as pd
 import datetime
 import copy
+import torch
 
 def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trained* NN parameters and setup as in main code
                                 W_num_pts = 3001, #number of points for wealth grid
@@ -36,7 +37,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
 
 
 
-
+    use_PyTorch = False
     #Check if function heatmap is going to work for this objective
     obj_fun = params["obj_fun"]
     if obj_fun in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:
@@ -56,9 +57,20 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
         asset_names.append(basket_asset_names[idx]) #get the asset name corresponding to this index
 
     # Assign weights matrices and bias vectors in NN_object using given value of NN_theta
-    NN_object = params["NN_object"]
-    NN_object.theta = params["res_BEST"]["NN_theta"]
-    NN_object.unpack_NN_parameters()
+    #NN_object = params["NN_object"]
+    if len(params["NN_object"]) > 1:
+        NN_object = params["NN_object"][1]
+        NN_object_w = params["NN_object"][0]
+        q_max = 60
+        q_min = 35
+        use_PyTorch = True # At this point, it is synonymous with 2 NNs trained in PyTorch.
+        #@todo: fix this problem above
+    else:
+        NN_object.theta = params["res_BEST"]["NN_theta"]
+        NN_object.unpack_NN_parameters()
+
+    if use_PyTorch:
+        asset_names.append("Withdrawals")
 
     #Set up grids for feature vector evaluation
     W_grid = np.linspace(start=W_min, stop=W_max, num=W_num_pts)       #wealth grid
@@ -83,18 +95,26 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
         df_W_mesh.to_excel(fig_filename_prefix + "_FunctionHeatmap_WEALTH_mesh.xlsx", index=False, header=False)
 
 
+    if use_PyTorch:
+        asset_loop_vector = np.arange(0, params["N_a"]+1,1) 
+    else:
+        asset_loop_vector = np.arange(0, params["N_a"],1)
 
-    for asset_index in np.arange(0, params["N_a"],1): # asset index \in {0,...,N_a-1}
+    for asset_index in asset_loop_vector: # asset index \in {0,...,N_a-1}
 
         z_NNopt_prop_mesh = np.zeros(W_mesh.shape) #will contain NN-optimal proportion of wealth in asset_index
 
         for n_index in n_index_grid:    #Loop through n_index
             n = n_index + 1 #rebalancing number since n_index = n - 1
 
+            wealth_n = W_mesh[:, n_index]
+            if use_PyTorch:
+                wealth_n = torch.as_tensor(wealth_n, device = params["device"])
+
             # ---------------------------Get standardized feature vector ---------------------------
             phi = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                            n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
-                                           wealth_n = W_mesh[:, n_index],  # Wealth vector W(t_n^+), *after* contribution at t_n
+                                           wealth_n = wealth_n,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                            # but *before* rebalancing at time t_n for (t_n, t_n+1)
                                            feature_calc_option = feature_calc_option # Set calc_option = "matlab" to match matlab code
                                            )
@@ -103,9 +123,27 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
             # Get proportions to invest in each asset at time t_n^+
             #   a_t_n[j,asset_index] = proportion to invest in asset with index asset_index for j-th entry of vector wealth_n
 
-            a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
+            #a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
+            #z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index]
+            if use_PyTorch is True:
+                if asset_index == asset_loop_vector[-1]:
+                    a_t_n_output= torch.squeeze(NN_object_w.forward(phi))
+                    custom_sigmoid = torch.sigmoid(a_t_n_output)
+                
+                    max_qmin_w = torch.maximum(torch.ones(wealth_n.size(), device=params["device"])*q_min, wealth_n)
+                    min_outer_qmax = torch.minimum(max_qmin_w, torch.ones(wealth_n.size(), device=params["device"])*q_max)
+                    
+                    q_n = q_min + (min_outer_qmax - q_min)*(custom_sigmoid)
 
-            z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index]
+                    withdrawal_q = (q_n-q_min) / (q_max - q_min)
+                    withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)
+                    z_NNopt_prop_mesh[:, n_index] = withdrawal_q.detach().to('cpu').numpy()
+                else:
+                    a_t_n_output = NN_object.forward(phi)
+                    z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index].detach().to('cpu').numpy()
+            else:
+                a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
+                z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index]
 
         #Sort out time-to-go on x-axis labels
         time_to_go = params["T"] - n_index_grid*params["delta_t"]
