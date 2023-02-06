@@ -6,7 +6,9 @@ import copy
 import fun_Data__assign
 from fun_train_NN_scipy_algorithms import run_scipy_minimize    #scipy minimization algorithms
 from fun_train_NN_SGD_algorithms import run_Gradient_Descent, run_Gradient_Descent_pytorch    #SGD algorithms
+import fun_invest_NN_strategy
 import fun_eval_objfun_NN_strategy  #used for final objective function evaluation after training
+
 
 def train_NN(theta0,      # initial parameter vector (weights and biases) + other parameters for objective function
              NN_list,      # object of class_Neural_Network with structure as setup in main code
@@ -281,6 +283,9 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
     # # Update  params["res_BEST"]["NN_theta"] for subsequent use
     # if params["preTrained_TrueFalse"] is True:
     #     params["res_BEST"].update({"NN_theta": params["NN_theta"]})
+
+    params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
+    params["NN_object"] = NN_list
 
     # return params, res_BEST, res_ALL, res_ALL_dataframe
     return params, res_ALL['pytorch_adam']
