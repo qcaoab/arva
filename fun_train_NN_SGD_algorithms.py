@@ -109,19 +109,21 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     if "Adam" in NN_training_options["methods"]:
         
         #create optimizer, starting with withdrawal NN params
-        optimizer = torch.optim.Adam([{'params': NN_list.parameters(), 
+        optimizer_nn = torch.optim.Adam([{'params': NN_list.parameters(), 
                                         'lr': NN_training_options["Adam_eta"], 
                                         'betas': (NN_training_options["Adam_ewma_1"], NN_training_options["Adam_ewma_2"] ),
-                                        'weight_decay': weight_decay},
-                                      {'params': xi,
+                                        'weight_decay': weight_decay}                                   
+                                      ])
+        
+        optimizer_xi = torch.optim.Adam([{'params': xi,
                                        'lr': params["xi_lr"]}                                    
                                       ])
         
         if NN_training_options["lr_schedule"]:
-            # scheduler1 = torch.optim.lr_scheduler.MultiStepLR(optimizer, [int(itbound*0.20)], 
-            #                                      gamma=0.5, last_epoch=-1, verbose=False)
+            schedulerxi = torch.optim.lr_scheduler.MultiStepLR(optimizer_xi, [int(itbound*0.10), int(itbound*0.70), int(itbound*0.97)], 
+                                                 gamma=0.2, last_epoch=-1, verbose=False)
             
-            scheduler2 = torch.optim.lr_scheduler.MultiStepLR(optimizer, [int(itbound*0.70), int(itbound*0.97)], 
+            scheduler2 = torch.optim.lr_scheduler.MultiStepLR(optimizer_nn, [int(itbound*0.70), int(itbound*0.97)], 
                                                  gamma=0.2, last_epoch=-1, verbose=False)
             
         #append xi to optimization parameters
@@ -169,7 +171,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         #--------------------  UPDATE STEP -------------------
         
         #clear gradients from previous steps
-        optimizer.zero_grad()
+        optimizer_nn.zero_grad()
+        optimizer_xi.zero_grad()
         
         # eval obj fun with SGD batch, includes forward pass on NN with updated weights from last step
         f_val, _ = objfun_pyt(NN_list, params_it, xi)
@@ -178,12 +181,14 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         f_val.backward()
         
         #update parameters
-        optimizer.step()
+        optimizer_nn.step()
+        optimizer_xi.step()
         
         #lr scheduler step
         if NN_training_options["lr_schedule"]:
             # scheduler1.step()
             scheduler2.step()
+            schedulerxi.step()
         
         #try to clean up memory, lol
         torch.cuda.empty_cache()
@@ -262,7 +267,7 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
 
     #--------------- SET OUTPUT VALUES ---------------
     
-    optimizer.zero_grad()
+    optimizer_nn.zero_grad()
     del NN_list
     torch.cuda.empty_cache()
     torch.no_grad()
@@ -329,12 +334,12 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     
     #pytorch NN is NN_list_min
     
-    NN_withdraw_orig = NN_list_min[0].export_weights(NN_orig_list[0])
-    NN_allocation_orig = NN_list_min[1].export_weights(NN_orig_list[1])
+    # NN_withdraw_orig = NN_list_min.module[0].export_weights(NN_orig_list[0])
+    # NN_allocation_orig = NN_list_min.module[1].export_weights(NN_orig_list[1])
     
-    # # # copy weights from layers into theta
-    NN_withdraw_orig.stack_NN_parameters()
-    NN_allocation_orig.stack_NN_parameters()
+    # # # # copy weights from layers into theta
+    # NN_withdraw_orig.stack_NN_parameters()
+    # NN_allocation_orig.stack_NN_parameters()
     
     
     

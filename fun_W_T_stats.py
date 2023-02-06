@@ -72,6 +72,8 @@ def fun_W_T_summary_stats(W_T, prefix_output = "W_T"):
         val = np.mean(W_T[W_T <= np.percentile(W_T, pct)])  #Calculate CVAR at chosen percentile
         dict_CVARs.update({key:val})
 
+    #VAR 0.05
+    W_T_stats_dict.update({"VAR_05": np.percentile(W_T, pct)})
 
     #Create dictionary for output
     if prefix_output == "W_T":  #Only add summary stats set if dealing with wealth

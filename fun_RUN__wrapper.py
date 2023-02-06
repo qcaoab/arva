@@ -231,6 +231,7 @@ def RUN__wrapper_training_testing_NN(
     if params["xi_constant"]:
         print("(xi held constant!)")
     print("Optimal xi: ", res_adam["optimal_xi"])
+    print("Observed VAR: ", res_adam["temp_w_output_dict"]["VAR_05"])
     print("Expected(across Rb) median(across samples) p_equity: ", res_adam["average_median_p"])
     print("obj fun: ", res_adam["objfun_final"])
     print("-----------------------------------------------")

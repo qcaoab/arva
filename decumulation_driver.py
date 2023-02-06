@@ -67,7 +67,7 @@ print(start_time)
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
-code_title_prefix = "output_testing/mc_decum_"+start_time   #used for saving output on local
+code_title_prefix = "mc_decum_"+start_time   #used for saving output on local
 console_output_prefix = "mc_decum_" +start_time
 params["console_output_prefix"] = console_output_prefix
 params["start_time"] = start_time
@@ -104,9 +104,9 @@ np.random.seed(seed_mc)
 print("\n Random seed: ", seed_mc, " \n")
 
 cont_nn = True  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
-cont_nn_start = 6
+cont_nn_start = 0
 cont_xi = True #uses previous value of optimal xi to initialize xi in next run
-cont_xi_start = 6  #tracing param index (starts at 1) to start continuation learning at
+cont_xi_start = 0  
 
 # preload saved model
 preload = False
@@ -151,7 +151,7 @@ if iter_params == "test":
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 10000
+    itbound_mc = 3000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
@@ -263,7 +263,7 @@ params["obj_fun_epsilon"] = 10**-6
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
 #for DC, use 9999.0 as tracing param as placeholder for 'NA'
-tracing_parameters_to_run = [1.]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.0]#[float(item) for item in sys.argv[1].split(",")] #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
 
@@ -844,7 +844,7 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     
     xi_0 = 50.  
     params["xi_0"] = xi_0
-    params["xi_lr"] = 0.05
+    params["xi_lr"] = 0.25
     
     if params["xi_constant"]:
         params["xi_lr"] = 0.0
@@ -852,10 +852,10 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     # load continuation learn model
     past_kappa = tracing_parameters_to_run[i-1]
     model_save_path = params["console_output_prefix"]
-    #nn_saved_model = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
-    #xi_saved = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
-    nn_saved_model = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
-    xi_saved = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
+    nn_saved_model = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
+    xi_saved = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
+    # nn_saved_model = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
+    # xi_saved = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
 
     if nn_saved_model.is_file():
         
