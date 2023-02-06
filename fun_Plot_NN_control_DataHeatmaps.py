@@ -41,6 +41,8 @@ def plot_DataHeatmaps(
         idx = basket_asset_columns.index(col)   #look up the index of col in basket_asset_columns
         asset_names.append(basket_asset_names[idx]) #get the asset name corresponding to this index
 
+    asset_names.append("Total Proportion")
+
 
     #Construct data for DataHeatmaps
     if obj_fun in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:
@@ -91,12 +93,21 @@ def plot_DataHeatmaps(
 
 
 
+            #Sort out time-to-go on x-axis labels
 
-    for asset_index in np.arange(0, params["N_a"],1): # asset index \in {0,...,N_a-1} and withdrawal strategy N_a
+    # n_index_grid.shape = (N_rb, )
+    time_to_go = params["T"] - n_index_grid*params["delta_t"]
+    #time_to_go = time_to_go.astype(int)  #Convert to integers
+    time_to_go = np.round(time_to_go, decimals=1)
+    time_to_go = time_to_go.tolist()
+
+    for asset_index in np.arange(0, params["N_a"]+1,1): # asset index \in {0,...,N_a-1} and withdrawal strategy N_a
 
         # --------------------------- PROPORTIONS IN EACH ASSET  ---------------------------
-
-        z_Data = DataHeatmaps_Asset_props[:,:,asset_index]
+        if asset_index == params["N_a"]:
+            z_Data = params["DataHeatmaps_exploration_props"]
+        else:
+            z_Data = DataHeatmaps_Asset_props[:,:,asset_index]
         # DataHeatmaps_Asset_props[j,n,i] =  (for wealth in bin j) *average* proportion invested in asset i at rebal time t_n
 
 
@@ -113,22 +124,13 @@ def plot_DataHeatmaps(
         from matplotlib import rcParams
         rcParams.update({'figure.autolayout': True})
 
-        #Sort out time-to-go on x-axis labels
-
-        # n_index_grid.shape = (N_rb, )
-        time_to_go = params["T"] - n_index_grid*params["delta_t"]
-        #time_to_go = time_to_go.astype(int)  #Convert to integers
-        time_to_go = np.round(time_to_go, decimals=1)
-        time_to_go = time_to_go.tolist()
-
-
-
         plt.figure()
         sns.set(font_scale=0.85)
         sns.set_style("ticks")
 
         #Set title and colorbar label
         plt.title('NN training dataset: Proportion of wealth in asset ' + asset_names[asset_index])
+        
         cbar_kws_label = "Proportion of wealth"
 
         h = sns.heatmap(data =z_Data,
@@ -193,12 +195,17 @@ def construct_data_for_DataHeatmaps(
     Asset_Heatmaps[:] = np.NaN
     #Asset_Heatmaps[j,n,i] =  (for wealth in bin j) *average* proportion invested in asset i at rebal time t_n
 
+    Data_exploration_Heatmaps = np.empty([count_W_bins,  N_rb])
+    Data_exploration_Heatmaps[:] = np.NaN
+    #Data_exploration_Heatmaps[j,n] =  (for wealth in bin j) *average* proportion of times we visit this point in the grid
+
 
     for n_index in np.arange(0, N_rb, 1): #Loop over rebalancing times
 
         #Get wealth vector at time (t_n^+)
         W_t_n = params["W"][:,n_index] #W to contain the wealth *after* contribution at t_n
 
+        bin_count = 0
         #Loop through W bins
         for bin_index in np.arange(0,count_W_bins, 1):
 
@@ -216,7 +223,9 @@ def construct_data_for_DataHeatmaps(
 
             if len(indices_bin[0])>0:   #if there are actually wealth values in this bin
                 rows_bin = indices_bin[0]   #get the row numbers (i.e. training data paths) where wealth values are in each bin
+                bin_count += len(rows_bin)
 
+                Data_exploration_Heatmaps[bin_index, n_index] = len(rows_bin) / N_d
                 #----------------------------------------
                 #Average out the proportions invested in each asset for wealth in this bin
                 for asset_index in np.arange(0,N_a,1):
@@ -233,9 +242,13 @@ def construct_data_for_DataHeatmaps(
                     Asset_Heatmaps[bin_index, n_index, asset_index] = np.mean(NN_prop_asset_index)
                     # Asset_Heatmaps[j,n,i] =  (for wealth in bin j) *average* proportion invested in asset i at rebal time t_n
 
+            if bin_index == count_W_bins - 1:
+                    print(bin_count)
+
 
     params["DataHeatmaps_W_bin_left_edges"] = W_bin_left_edges
     params["DataHeatmaps_Asset_props"] = Asset_Heatmaps
+    params["DataHeatmaps_exploration_props"] = Data_exploration_Heatmaps
 
     return params
 
