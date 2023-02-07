@@ -72,7 +72,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
 
     params["Feature_phi_paths_withdrawal"] = np.zeros([N_d, N_rb+1, N_phi])  #Paths for the (possibly standardized) feature values
     params["Feature_phi_paths_allocation"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
-    params["NN_asset_prop_paths"] = np.zeros([N_d, N_rb, N_a])  #Paths for the proportions or wealth in each asset for given dataset
+    params["NN_asset_prop_paths"] = np.zeros([N_d, N_rb, N_a+1])  #Paths for the proportions or wealth in each asset for given dataset
 
     # params["q_matrix"] = np.zeros([N_d, N_rb+1]) #withdrawals for all paths at each Rb step
     qsum_T_vector = torch.zeros([N_d], device = params["device"])     #cumsum of withdrawals for each path
@@ -239,7 +239,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
         for asset_index in np.arange(0,N_a,1):  #loop over asset index
             params["NN_asset_prop_paths"][:,n_index,asset_index] =  a_t_n_output[:,asset_index].detach().cpu().numpy()
             #    a_t_n_output[j,i] = index i=0,...,(N_a - 1) proportion to invest in asset i along sample path j
-
+        params["NN_asset_prop_paths"][:,n_index,N_a] =  q_n.detach().cpu().numpy()
 
         # --------------------------- WEALTH (t_n+1^-) ---------------------------
 

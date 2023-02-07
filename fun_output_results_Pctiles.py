@@ -71,6 +71,7 @@ def output_Pctile_paths(params,  # dictionary with parameters and results from N
         idx = basket_asset_columns.index(col)   #look up the index of col in basket_asset_columns
         asset_names.append(basket_asset_names[idx]) #get the asset name corresponding to this index
 
+    asset_names.append("Withdrawals")
 
     #initialize
     pctiles_asset_ALL = {}  #will be the full dictionary written out
@@ -78,10 +79,10 @@ def output_Pctile_paths(params,  # dictionary with parameters and results from N
 
     # --------------------------------------------------------------------
     # Loop over output nodes of NN  [Add one more loop execution to calc WEALTH percentiles]
-    for node_index in np.arange(0,N_a+1,1): #Add one more loop execution to calc WEALTH percentiles
+    for node_index in np.arange(0,N_a+2,1): #Add one more loop execution to calc WEALTH percentiles
 
 
-        if node_index < N_a:  # ASSET nodes
+        if node_index < N_a+1:  # ASSET nodes
 
             # Get ASSET proportion investment percentile time series for *THIS asset*
             pctiles_asset = get_dict_pctiles(data_set=params["NN_asset_prop_paths"][:,:,node_index],  # data for pctile calc on each *column*
@@ -112,14 +113,22 @@ def output_Pctile_paths(params,  # dictionary with parameters and results from N
                     ax.plot(x_axis_time, pctiles_asset[key], label = key)
 
                 ax.set_xlim(np.min(x_axis_time), np.max(x_axis_time))
-                ax.set_ylim(0.,1.1) #make slightly higher than 1.0 so we can see if all wealth is invested in an asset
-                ax.set_ylabel("Proportion of wealth", fontsize=10)
-                ax.set_xlabel("Time (years)", fontsize=10)
-                ax.legend(loc = "upper right")
-                ax.set_title("NN: Percentiles proportion in asset " + asset_names[node_index], fontsize=11)
+                if node_index == N_a:
+                    ax.set_ylim(30,65) #make slightly higher than 1.0 so we can see if all wealth is invested in an asset
+                    ax.set_ylabel("Withdrawal amount", fontsize=10)
+                    ax.set_xlabel("Time (years)", fontsize=10)
+                    ax.legend(loc = "upper right")
+                    ax.set_title("NN: Percentiles of " + asset_names[node_index], fontsize=11)
+
+                else:
+                    ax.set_ylim(0.,1.1) #make slightly higher than 1.0 so we can see if all wealth is invested in an asset
+                    ax.set_ylabel("Proportion of wealth", fontsize=10)
+                    ax.set_xlabel("Time (years)", fontsize=10)
+                    ax.legend(loc = "upper right")
+                    ax.set_title("NN: Percentiles proportion in asset " + asset_names[node_index], fontsize=11)
 
 
-        if node_index == N_a:  # Fake node index, just to use for Wealth  percentiles
+        if node_index == N_a +1 :  # Fake node index, just to use for Wealth  percentiles
             # Get WEALTH percentiles
             pctiles_wealth = get_dict_pctiles(data_set=params["W"],  # data for pctile calc on each *column*
                                             pctiles=pctiles,  # List of percentiles to calculate
@@ -155,12 +164,12 @@ def output_Pctile_paths(params,  # dictionary with parameters and results from N
 
             timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
 
-            if node_index < N_a: # ASSET node
+            if node_index < N_a +1: # ASSET node
                 fig_filename = fig_filename_prefix +  "timestamp_" + timestamp + "_Pctiles_asset_" \
                                +  str(node_index) + "_" + asset_names[node_index] \
                                 + "." + save_Figures_format
 
-            elif node_index == N_a: #fake node to deal with wealth
+            elif node_index == N_a + 1: #fake node to deal with wealth
                 fig_filename = fig_filename_prefix +  "timestamp_" + timestamp + "_Pctiles_Wealth" \
                                 + "." + save_Figures_format
 
