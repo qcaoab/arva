@@ -7,7 +7,7 @@ from os import listdir
 from os.path import isfile, join
 import re
 
-os.chdir("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/log_output_yy2_parallel_3pt")
+os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/log_output_yy2_parallel_feb4")
 
 # os.chdir("/home/ma3chen/Documents/marc_branch2/researchcode/log_output")
 files = [f for f in listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
@@ -31,15 +31,23 @@ for file in files:
     
     for i, item in enumerate(split):
         if item == 'NN-strategy-on-TRAINING':
-       
-            kappa_list.append(float(split[i+44]))
-            expected_wealth.append(float(split[i+5]))
-            cvar_05.append(float(split[i+11]))
-            median_wealth.append(float(split[i+7]))
-            # function_value.append(float(split[i+11+1]))
-            qsum_avg.append(float(split[i+15]))
-            p_med_avg.append(float(split[i+24])) 
-
+            
+            try:
+                kappa_list.append(float(split[i+133]))
+                expected_wealth.append(float(split[i+5]))
+                cvar_05.append(float(split[i+11]))
+                median_wealth.append(float(split[i+7]))
+                # function_value.append(float(split[i+11+1]))
+                qsum_avg.append(float(split[i+15]))
+                p_med_avg.append(float(split[i+27])) 
+            except:
+                kappa_list.append(float(split[i+150]))
+                expected_wealth.append(float(split[i+5]))
+                cvar_05.append(float(split[i+11]))
+                median_wealth.append(float(split[i+7]))
+                # function_value.append(float(split[i+11+1]))
+                qsum_avg.append(float(split[i+15]))
+                p_med_avg.append(float(split[i+27])) 
  
     
 df_cont = pd.DataFrame({'kappa': kappa_list, 'cvar_05': cvar_05, 'expected_wealth': expected_wealth, 
@@ -67,10 +75,10 @@ plt.legend(loc='lower left')
 
 plt.show()
 
-plt.savefig('/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/log_output_yy2_parallel.png', dpi = 200)
+plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/log_output_yy2_parallel_feb4.png', dpi = 200)
 
 
-# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
+df_cont.to_excel("/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/log_output_yy2_parallel_feb4.xlsx")
 
 # forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
 

@@ -109,18 +109,18 @@ cont_xi = True #uses previous value of optimal xi to initialize xi in next run
 cont_xi_start = 0  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
-preload = True
+preload = False
 params["local_path"] = str(os.getcwd())
 
-nn_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/NN_opt_mc_decum_05-02-23_19:30_kappa_0.5")
+nn_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/NN_opt_mc_decum_05-02-23_19:30_kappa_1.0")
                   #Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_13-01-23_12:00")    
-xi_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/xi_opt_mc_decum_05-02-23_19:30_kappa_0.5.json")
+xi_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/xi_opt_mc_decum_05-02-23_19:30_kappa_1.0.json")
 #Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_13-01-23_12:00.json")
 
 # w_constraint activation function
 # "yy_fix_jan29"
 # "yy_fix_feb3"
-params["w_constraint_activation"] = "yy_fix_feb3"
+params["w_constraint_activation"] = "yy_fix_jan29"
 
 #control export params
 params["output_control"] = False
@@ -145,19 +145,9 @@ if params["TransCosts_TrueFalse"] is True:
 # iteration dashboard --------------------------
 iter_params = "test" 
 
-if iter_params == "real_exp":
-    n_d_train_mc = int(2.56* (10**6))
-    itbound_mc = 50000
-    batchsize_mc = 1000
-    nodes_mc = 8
-    layers_mc = 2
-    biases_mc = True
-    adam_xi_eta = 0.05
-    adam_nn_eta = 0.05
-
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 10000
+    itbound_mc = 50000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
@@ -167,13 +157,13 @@ if iter_params == "test":
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 3000
+    itbound_mc = 10
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
     biases_mc = True
-    adam_xi_eta = 0.05
-    adam_nn_eta = 0.05
+    adam_xi_eta = 0.00
+    adam_nn_eta = 0.00
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -193,6 +183,7 @@ print(f"paths: {n_d_train_mc}")
 print(f"iterations: {itbound_mc}")
 print(f"batchsize: {batchsize_mc}")
 print(f"remove neg: ", params["remove_neg"])
+print(params["w_constraint_activation"])
 
 
 # manually specify prop_const;
@@ -264,7 +255,7 @@ if params["use_trading_signals_TrueFalse"] is True:
 # -----------------------------------------------------------------------------------------------
 params["obj_fun"] = "mean_cvar_single_level"
 
-params["obj_fun_epsilon"] = 0
+params["obj_fun_epsilon"] = 10**-6
 
 # STANDARD objective functions ofAdam W(T): obj_fun options include:
 # "mean_cvar_single_level",
@@ -283,7 +274,7 @@ params["obj_fun_epsilon"] = 0
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
 #for DC, use 9999.0 as tracing param as placeholder for 'NA'
-tracing_parameters_to_run = [1.0]#[float(item) for item in sys.argv[1].split(",")] #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.5, 3.0, 5.0, 50.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
 
@@ -987,5 +978,3 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
 
 
 
-
-nn_
