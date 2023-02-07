@@ -67,7 +67,7 @@ print(start_time)
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
-code_title_prefix = "mc_decum_"+start_time   #used for saving output on local
+code_title_prefix = "output_heatmaps/mc_decum_"+start_time   #used for saving output on local
 console_output_prefix = "mc_decum_" +start_time
 params["console_output_prefix"] = console_output_prefix
 params["start_time"] = start_time
@@ -121,6 +121,11 @@ params["control_filepath"] = "/home/marcchen/Documents/pytorch_decumulation_mc/r
 params["w_grid_min"] = 0
 params["w_grid_max"] = 10000
 params["nx"] = 4096
+
+# w_constraint activation function
+# "yy_fix_jan29"
+# "yy_fix_feb3"
+params["w_constraint_activation"] = "yy_fix_feb3"
 
 #Specify TRANSACTION COSTS parameters
 params["TransCosts_TrueFalse"] = False #If True, incorporate transaction costs
@@ -844,7 +849,7 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     
     xi_0 = 50.  
     params["xi_0"] = xi_0
-    params["xi_lr"] = 0.25
+    params["xi_lr"] = 0.05
     
     if params["xi_constant"]:
         params["xi_lr"] = 0.0
@@ -968,3 +973,4 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
 
 
 
+nn_

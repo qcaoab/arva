@@ -15,6 +15,7 @@ import pandas as pd
 import datetime
 import copy
 import torch
+from w_constraint_activations import custom_activation
 
 def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trained* NN parameters and setup as in main code
                                 W_num_pts = 3001, #number of points for wealth grid
@@ -128,12 +129,8 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
             if use_PyTorch is True:
                 if asset_index == asset_loop_vector[-1]:
                     a_t_n_output= torch.squeeze(NN_object_w.forward(phi))
-                    custom_sigmoid = torch.sigmoid(a_t_n_output)
-                
-                    max_qmin_w = torch.maximum(torch.ones(wealth_n.size(), device=params["device"])*q_min, wealth_n)
-                    min_outer_qmax = torch.minimum(max_qmin_w, torch.ones(wealth_n.size(), device=params["device"])*q_max)
                     
-                    q_n = q_min + (min_outer_qmax - q_min)*(custom_sigmoid)
+                    q_n = custom_activation(a_t_n_output, wealth_n, params)
 
                     withdrawal_q = (q_n-q_min) / (q_max - q_min)
                     withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)

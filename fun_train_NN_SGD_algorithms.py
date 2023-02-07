@@ -120,7 +120,7 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
                                       ])
         
         if NN_training_options["lr_schedule"]:
-            schedulerxi = torch.optim.lr_scheduler.MultiStepLR(optimizer_xi, [int(itbound*0.10), int(itbound*0.70), int(itbound*0.97)], 
+            schedulerxi = torch.optim.lr_scheduler.MultiStepLR(optimizer_xi, [int(itbound*0.70), int(itbound*0.97)], 
                                                  gamma=0.2, last_epoch=-1, verbose=False)
             
             scheduler2 = torch.optim.lr_scheduler.MultiStepLR(optimizer_nn, [int(itbound*0.70), int(itbound*0.97)], 
