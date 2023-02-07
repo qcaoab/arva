@@ -106,14 +106,21 @@ print("\n Random seed: ", seed_mc, " \n")
 cont_nn = True  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
 cont_nn_start = 0
 cont_xi = True #uses previous value of optimal xi to initialize xi in next run
-cont_xi_start = 0  
+cont_xi_start = 0  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
-preload = False
+preload = True
 params["local_path"] = str(os.getcwd())
 
-nn_preload = Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_13-01-23_12:00")    
-xi_preload = Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_13-01-23_12:00.json")
+nn_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/NN_opt_mc_decum_05-02-23_19:30_kappa_0.5")
+                  #Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_13-01-23_12:00")    
+xi_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/xi_opt_mc_decum_05-02-23_19:30_kappa_0.5.json")
+#Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_13-01-23_12:00.json")
+
+# w_constraint activation function
+# "yy_fix_jan29"
+# "yy_fix_feb3"
+params["w_constraint_activation"] = "yy_fix_feb3"
 
 #control export params
 params["output_control"] = False
@@ -136,23 +143,27 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
 # iteration dashboard --------------------------
-iter_params = "tiny" 
+iter_params = "test" 
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
     itbound_mc = 50000
     batchsize_mc = 1000
-    nodes_mc = 10
+    nodes_mc = 8
     layers_mc = 2
     biases_mc = True
+    adam_xi_eta = 0.05
+    adam_nn_eta = 0.05
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 50000
+    itbound_mc = 10000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
     biases_mc = True
+    adam_xi_eta = 0.05
+    adam_nn_eta = 0.05
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
@@ -161,6 +172,8 @@ if iter_params == "smol":
     nodes_mc = 8
     layers_mc = 2
     biases_mc = True
+    adam_xi_eta = 0.05
+    adam_nn_eta = 0.05
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -171,6 +184,8 @@ if iter_params == "tiny":
     params["q"] =  0. * np.ones(params["N_rb"]) 
     layers_mc = 2
     biases_mc = True
+    adam_xi_eta = 0.05
+    adam_nn_eta = 0.05
 #----------------------------------------------
 # print key params:
 print("Key parameters-------")
@@ -249,7 +264,7 @@ if params["use_trading_signals_TrueFalse"] is True:
 # -----------------------------------------------------------------------------------------------
 params["obj_fun"] = "mean_cvar_single_level"
 
-params["obj_fun_epsilon"] = 10**-6
+params["obj_fun_epsilon"] = 0
 
 # STANDARD objective functions ofAdam W(T): obj_fun options include:
 # "mean_cvar_single_level",
@@ -272,7 +287,7 @@ tracing_parameters_to_run = [1.0]#[float(item) for item in sys.argv[1].split(","
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
 
-#[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
+#[float(item) for item in sys.argv[1].split(",")] #Must be LIST
 
 #[1.0, 1.5, 3.0, 10.0]
 # tracing_parameters_to_run = [float(item) for item in sys.argv[1].split(" ")] #Must be LIST
@@ -356,7 +371,7 @@ elif params["obj_fun"] == "te_stochastic":  # TRACKING ERROR as in Forsyth (2021
 output_parameters = {}
 
 #Basic output params
-output_parameters["code_title_prefix"] = code_title_prefix + "_kappa_" + str(tracing_parameters_to_run) # used as prefix for naming files when saving outputs
+output_parameters["code_title_prefix"] = code_title_prefix # used as prefix for naming files when saving outputs
 output_parameters["output_results_Excel"] = True      #Output results summary to Excel
 
 output_parameters["save_Figures_format"] = "png"  # if saving figs, format to save figures in, e.g. "png", "eps",
@@ -383,8 +398,8 @@ output_parameters["output_TrainingData_NNweights_test"] = False   #if true, outp
 
 # PERCENTILES:
 output_parameters["output_Pctiles_Excel"] = True #If True, outputs Excel spreadsheet with NN pctiles of proportions in each asset and wealth over time
-output_parameters["output_Pctiles_Plots"] = False #if True, plots the paths of output_Pctiles_Excel over time
-output_parameters["output_Pctiles_Plots_W_max"] = 1500. #Maximum y-axis value for WEALTH percentile plots
+output_parameters["output_Pctiles_Plots"] = True #if True, plots the paths of output_Pctiles_Excel over time
+output_parameters["output_Pctiles_Plots_W_max"] = 2000. #Maximum y-axis value for WEALTH percentile plots
 output_parameters["output_Pctiles_list"] = [5,50,95]  #Only used if output_Pctiles_Excel or output_Pctiles_Plots is True, must be list, e.g.  [20,50,80]
 output_parameters["output_Pctiles_on_TEST_data"] = False #Output percentiles for test data as well
 
@@ -399,7 +414,7 @@ output_parameters["heatmap_y_bin_min"] = 0.  # minimum for the y-axis grid of he
 output_parameters["heatmap_y_bin_max"] = 2000.0  # maximum for the y-axis grid of heatmap
 output_parameters["heatmap_y_num_pts"] = int(output_parameters["heatmap_y_bin_max"] - output_parameters["heatmap_y_bin_min"])+1  # number of points for y-axis
 output_parameters["heatmap_xticklabels"] = 2  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
-output_parameters["heatmap_yticklabels"] = 25  # e.g. yticklabels = 10 means we are displaying every 10th label
+output_parameters["heatmap_yticklabels"] = 100  # e.g. yticklabels = 10 means we are displaying every 10th label
 output_parameters["heatmap_cmap"] = "rainbow"  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
 output_parameters["heatmap_cbar_limits"] = [0.0, 1.0]  # list in format [vmin, vmax] for heatmap colorbar/scale
 
@@ -794,7 +809,7 @@ NN_training_options = fun_train_NN_algorithm_defaults.train_NN_algorithm_default
 NN_training_options["methods"] = [ "Adam"]
 NN_training_options["Adam_ewma_1"] = 0.9
 NN_training_options["Adam_ewma_2"] = 0.998 #0.999
-NN_training_options["Adam_eta"] = 0.05 #override 0.1
+NN_training_options["Adam_eta"] = adam_nn_eta #override 0.1
 NN_training_options["Adam_weight_decay"] = 1e-4
 NN_training_options['nit_running_min'] = int(itbound / 10)  # nr of iterations at the end that will be used to get the running minimum for output
 NN_training_options["itbound_SGD_algorithms"] = itbound
@@ -847,9 +862,9 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     # if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
     #     if tracing_param == 1.0:
     
-    xi_0 = 50.  
+    xi_0 = 100.  
     params["xi_0"] = xi_0
-    params["xi_lr"] = 0.05
+    params["xi_lr"] = adam_xi_eta
     
     if params["xi_constant"]:
         params["xi_lr"] = 0.0

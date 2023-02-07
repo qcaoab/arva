@@ -8,6 +8,8 @@ from fun_train_NN_scipy_algorithms import run_scipy_minimize    #scipy minimizat
 from fun_train_NN_SGD_algorithms import run_Gradient_Descent, run_Gradient_Descent_pytorch    #SGD algorithms
 import fun_invest_NN_strategy
 import fun_eval_objfun_NN_strategy  #used for final objective function evaluation after training
+import fun_invest_NN_strategy
+import torch
 
 
 def train_NN(theta0,      # initial parameter vector (weights and biases) + other parameters for objective function
@@ -288,4 +290,9 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
     params["NN_object"] = NN_list
 
     # return params, res_BEST, res_ALL, res_ALL_dataframe
+    
+    with torch.no_grad():
+        params, _, _ = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
+        params["NN_object"] = NN_list
+    
     return params, res_ALL['pytorch_adam']

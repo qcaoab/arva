@@ -273,11 +273,12 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     torch.no_grad()
 
     #temporary output
-    params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list_min, params)
+    with torch.no_grad():
+        params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list_min, params)
     # print("Median terminal wealth: ", torch.median(g))
-    min_fval, _ = objfun_pyt(NN_list_min, params, xi_min)
+        min_fval, _ = objfun_pyt(NN_list_min, params, xi_min)
     
-    print("min fval: ", min_fval.detach().cpu().numpy())
+        print("min fval: ", min_fval.detach().cpu().numpy())
     
     #Append terminal wealth stats using this optimal value
     W_T = params["W"][:, -1]

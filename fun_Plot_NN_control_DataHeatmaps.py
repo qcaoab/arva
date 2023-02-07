@@ -12,6 +12,7 @@ import numpy as np
 import seaborn as sns
 import datetime
 import pandas as pd
+from w_constraint_activations import custom_activation
 
 
 def plot_DataHeatmaps(
@@ -154,6 +155,7 @@ def plot_DataHeatmaps(
 
             fig_filename = fig_filename_prefix + "timestamp_" + timestamp + "_DataHeatmap_asset_" \
                            + str(asset_index) + "_" + asset_names[asset_index] \
+                           + "_[" + str(params["obj_fun_rho"]) + "]"\
                            + "." + save_Figures_format
 
             plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")

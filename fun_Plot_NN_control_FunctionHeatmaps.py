@@ -105,6 +105,11 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
 
         z_NNopt_prop_mesh = np.zeros(W_mesh.shape) #will contain NN-optimal proportion of wealth in asset_index
 
+        if asset_index == asset_loop_vector[-1]:
+            withdraw = True
+        else:
+            withdraw=False
+            
         for n_index in n_index_grid:    #Loop through n_index
             n = n_index + 1 #rebalancing number since n_index = n - 1
 
@@ -117,8 +122,8 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
                                            n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
                                            wealth_n = wealth_n,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                            # but *before* rebalancing at time t_n for (t_n, t_n+1)
-                                           feature_calc_option = feature_calc_option # Set calc_option = "matlab" to match matlab code
-                                           )
+                                           feature_calc_option = feature_calc_option, # Set calc_option = "matlab" to match matlab code
+                                           withdraw=withdraw)
 
             # --------------------------- NNCONTROL  ---------------------------
             # Get proportions to invest in each asset at time t_n^+
@@ -128,13 +133,14 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
             #z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index]
             if use_PyTorch is True:
                 if asset_index == asset_loop_vector[-1]:
-                    a_t_n_output= torch.squeeze(NN_object_w.forward(phi))
-                    
-                    q_n = custom_activation(a_t_n_output, wealth_n, params)
-
-                    withdrawal_q = (q_n-q_min) / (q_max - q_min)
-                    withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)
-                    z_NNopt_prop_mesh[:, n_index] = withdrawal_q.detach().to('cpu').numpy()
+                    with torch.no_grad():
+                        a_t_n_output= torch.squeeze(NN_object_w.forward(phi))
+                        
+                        q_n = custom_activation(a_t_n_output, wealth_n, params)
+                        
+                        withdrawal_q = (q_n-q_min) / (q_max - q_min)
+                        withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)
+                        z_NNopt_prop_mesh[:, n_index] = withdrawal_q.detach().to('cpu').numpy()
                 else:
                     a_t_n_output = NN_object.forward(phi)
                     z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index].detach().to('cpu').numpy()
@@ -187,6 +193,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
 
             fig_filename = fig_filename_prefix +  "timestamp_" + timestamp + "_Heatmap_asset_" \
                            +  str(asset_index) + "_" + asset_names[asset_index] \
+                           + "_[" + str(params["obj_fun_rho"]) + "]"\
                            + "." + save_Figures_format
             plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
 

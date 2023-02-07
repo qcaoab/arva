@@ -4,6 +4,7 @@ import fun_W_T_stats
 import copy
 import fun_utilities    #using smooth approx to abs value function
 import torch 
+from w_constraint_activations import custom_activation
 
 from fun_construct_Feature_vector import construct_Feature_vector
 
@@ -137,46 +138,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
         #get withdrawal NN output as value in [0,1], to multiply with the range.
         nn_out = torch.squeeze(NN_list[0].forward(phi_1))
         
-        # # yuying fix v1
-        # custom_sigmoid = torch.sigmoid(torch.maximum(torch.zeros(g_prev.size(), device = params["device"]), 
-        #                                              g_prev)*torch.exp(nn_out))
-       
-        # q_n = q_min + 2*(q_max - q_min)*(custom_sigmoid - 0.5)
-             
+        q_n = custom_activation(nn_out, g_prev, params)
         
-        #   #yuying fix v1, with w-q_min
-        # custom_sigmoid = torch.sigmoid(torch.maximum(torch.zeros(g_prev.size(), device = params["device"]), 
-        #                                              g_prev-q_min)*torch.exp(nn_out))
-       
-        # q_n = q_min + 2*(q_max - q_min)*(custom_sigmoid - 0.5)
-        
-        # #   MC jan29 fix, with w-q_min and altered simplified range term.  
-        # custom_sigmoid = torch.sigmoid(torch.maximum(torch.zeros(g_prev.size(), device = params["device"]), 
-        #                                              g_prev-q_min)*torch.exp(nn_out))
-       
-        # min_qmax_w = torch.minimum(torch.ones(g_prev.size(), device=params["device"])*q_max, g_prev)
-        
-        # q_n = q_min + 2*(min_qmax_w - q_min)*(custom_sigmoid - 0.5)
-        
-        #   YY jan29 fix, described in note.  
-        custom_sigmoid = torch.sigmoid(nn_out)
-       
-        max_qmin_w = torch.maximum(torch.ones(g_prev.size(), device=params["device"])*q_min, g_prev)
-        min_outer_qmax = torch.minimum(max_qmin_w, torch.ones(g_prev.size(), device=params["device"])*q_max)
-        
-        q_n = q_min + (min_outer_qmax - q_min)*(custom_sigmoid)
-
-               
-        
-        # yuying fix v2, with border addendum
-        # custom_sigmoid = torch.sigmoid(torch.maximum(torch.zeros(g_prev.size(), device = params["device"]), 
-        #                                               g_prev*torch.exp(nn_out)))
-
-        # max_qmin_w = torch.maximum(torch.ones(g_prev.size(), device=params["device"])*q_min, g_prev)
-        # min_outer_qmax = torch.minimum(max_qmin_w, torch.ones(g_prev.size(), device=params["device"])*q_max)
-        
-        # q_n = q_min + 2*(min_outer_qmax - q_min)*(custom_sigmoid - 0.5)
-
                 
         #save withdrawals
         # params["q_matrix"][:,n_index]  = q_n.detach().cpu().numpy()
