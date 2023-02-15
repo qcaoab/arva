@@ -108,6 +108,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
 
         if asset_index == asset_loop_vector[-1]:
             withdraw = True
+            z_NNopt_prop_mesh = z_NNopt_prop_mesh[:,1:] #will contain NN-optimal proportion of wealth in asset_index
         else:
             withdraw=False
             
@@ -115,7 +116,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
             n = n_index + 1 #rebalancing number since n_index = n - 1
 
             wealth_n = W_mesh[:, n_index]
-            pctiles = np.percentile(params["W"][:,n_index], [0.05,0.95])
+            pctiles = np.percentile(params["W"][:,n_index], [5,95])
             wealth_indices = (wealth_n > pctiles[0]) & (wealth_n < pctiles[1])
             wealth_n = wealth_n[wealth_indices] 
             if use_PyTorch:
@@ -137,6 +138,8 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
             #z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index]
             if use_PyTorch is True:
                 if asset_index == asset_loop_vector[-1]:
+                    if n_index == 0:
+                        continue
                     with torch.no_grad():
                         a_t_n_output= torch.squeeze(NN_object_w.forward(phi))
                         
@@ -144,7 +147,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
                         
                         withdrawal_q = (q_n-q_min) / (q_max - q_min)
                         withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)
-                        z_NNopt_prop_mesh[wealth_indices, n_index] = withdrawal_q.detach().to('cpu').numpy()
+                        z_NNopt_prop_mesh[wealth_indices, n_index-1] = withdrawal_q.detach().to('cpu').numpy()
                 else:
                     a_t_n_output = NN_object.forward(phi)
                     z_NNopt_prop_mesh[wealth_indices, n_index] = a_t_n_output[:, asset_index].detach().to('cpu').numpy()
