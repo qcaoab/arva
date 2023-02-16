@@ -70,6 +70,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
     params["W"] = np.zeros([N_d, N_rb+1]) #   W contains PATHS, so W.shape = (N_d, N_rb+1)
     params["W_paths_mean"] = np.zeros([1, N_rb + 1])    #mean of W paths at each rebalancing time
     params["W_paths_std"] = np.zeros([1, N_rb + 1])     #stdev of W paths at each rebalancing time
+    
+    params["W_allocation"] = np.zeros([N_d, N_rb+1])
 
     params["Feature_phi_paths_withdrawal"] = np.zeros([N_d, N_rb+1, N_phi])  #Paths for the (possibly standardized) feature values
     params["Feature_phi_paths_allocation"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
@@ -113,6 +115,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
         # g_prev = g_prev + q[n_index] #g_prev now contains W(t_n^+)
 
         params["W"][:,n_index] = g_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
+        
         params["W_paths_mean"][0,n_index] = torch.mean(g_prev).detach().cpu().numpy()
 
         if torch.std(g_prev) > 0.0:
@@ -127,7 +130,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
                                  wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                                     # but *before* rebalancing at time t_n for (t_n, t_n+1)
                                  feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
-                                 withdraw= True)
+                                 withdraw= params["withdrawal_standardize"])
 
         for feature_index in np.arange(0,N_phi,1):  #loop over feature index
             params["Feature_phi_paths_withdrawal"][:,n_index,feature_index] =  phi_1[:,feature_index].detach().cpu().numpy()
@@ -170,7 +173,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
         
         
         #--------------------------- CONSTRUCT FEATURE VECTOR and standardize, for allocation ---------------------------
-
+        params["W_allocation"][:,n_index] = g_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
+        
         phi_2 = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
                                  wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
@@ -348,6 +352,7 @@ def invest_NN_strategy_pyt(NN_pyt, params):
         #cash injection
         g_prev = g_prev + q[n_index] #g_prev now contains W(t_n^+)
 
+        
         params["W"][:,n_index] = g_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
         params["W_paths_mean"][0,n_index] = torch.mean(g_prev)
 

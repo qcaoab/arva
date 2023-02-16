@@ -101,7 +101,9 @@ params["remove_neg"] = False
 #set seed
 seed_mc = 2
 np.random.seed(seed_mc)
-print("\n Random seed: ", seed_mc, " \n")
+print("\n numpy seed: ", seed_mc, " \n")
+torch.manual_seed(seed_mc)
+print("\n pytorch seed: ", seed_mc, " \n")
 
 cont_nn = True  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
 cont_nn_start = 0
@@ -112,27 +114,18 @@ cont_xi_start = 0  #tracing param index (starts at 1) to start continuation lear
 preload = False
 params["local_path"] = str(os.getcwd())
 
-nn_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/NN_opt_mc_decum_05-02-23_19:30_kappa_1.0")
+nn_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/NN_opt_mc_decum_14-02-23_10:41_kappa_1.0")
                   #Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_13-01-23_12:00")    
-xi_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/xi_opt_mc_decum_05-02-23_19:30_kappa_1.0.json")
+xi_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/xi_opt_mc_decum_14-02-23_10:41_kappa_1.0.json")
 #Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_13-01-23_12:00.json")
-
-# w_constraint activation function
-# "yy_fix_jan29"
-# "yy_fix_feb3"
-params["w_constraint_activation"] = "yy_fix_jan29"
 
 #control export params
 params["output_control"] = False
-params["control_filepath"] = "/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/control_files/jan13_kappa005.txt"
+params["control_filepath"] = "/home/marcchen/Documents/testing_pyt_decum/researchcode/control_files/feb14_kappa1_corrected.txt"
 params["w_grid_min"] = 0
 params["w_grid_max"] = 10000
 params["nx"] = 4096
 
-# w_constraint activation function
-# "yy_fix_jan29"
-# "yy_fix_feb3"
-params["w_constraint_activation"] = "yy_fix_feb3"
 
 #Specify TRANSACTION COSTS parameters
 params["TransCosts_TrueFalse"] = False #If True, incorporate transaction costs
@@ -142,35 +135,42 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_propcost"] = 0.5/100   #proportional TC in (0,1] of trading in any asset EXCEPT cash account
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
+# w_constraint activation function
+# "yy_fix_jan29"
+# "yy_fix_feb3"
+params["w_constraint_activation"] = "yy_fix_jan29"
+
+#standardize differently for withdrawal
+params["withdrawal_standardize"] = True
+
 # iteration dashboard --------------------------
 iter_params = "test" 
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 50000
-    batchsize_mc = 1000
+    itbound_mc = 10000
+    batchsize_mc = 10000
     nodes_mc = 8
-    layers_mc = 2
+    layers_mc = 3
     biases_mc = True
-    adam_xi_eta = 0.05
+    adam_xi_eta = 0.04
     adam_nn_eta = 0.05
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 10
+    itbound_mc = 5000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
-    biases_mc = True
-    adam_xi_eta = 0.00
-    adam_nn_eta = 0.00
+    biases_mc = False
+    adam_xi_eta = 0.07
+    adam_nn_eta = 0.08
 
 if iter_params == "tiny":
-    n_d_train_mc = 100
+    n_d_train_mc = 1000
     itbound_mc = 5
     batchsize_mc = 5
     nodes_mc = 4
-    params["N_rb"] = 5
     params["q"] =  0. * np.ones(params["N_rb"]) 
     layers_mc = 2
     biases_mc = True
@@ -183,7 +183,7 @@ print(f"paths: {n_d_train_mc}")
 print(f"iterations: {itbound_mc}")
 print(f"batchsize: {batchsize_mc}")
 print(f"remove neg: ", params["remove_neg"])
-print(params["w_constraint_activation"])
+print("w constaint activation: ", params["w_constraint_activation"])
 
 
 # manually specify prop_const;
@@ -255,7 +255,7 @@ if params["use_trading_signals_TrueFalse"] is True:
 # -----------------------------------------------------------------------------------------------
 params["obj_fun"] = "mean_cvar_single_level"
 
-params["obj_fun_epsilon"] = 10**-6
+params["obj_fun_epsilon"] =  10**-3
 
 # STANDARD objective functions ofAdam W(T): obj_fun options include:
 # "mean_cvar_single_level",
@@ -274,7 +274,7 @@ params["obj_fun_epsilon"] = 10**-6
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
 #for DC, use 9999.0 as tracing param as placeholder for 'NA'
-tracing_parameters_to_run = [1.5, 3.0, 5.0, 50.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.0] #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
 
@@ -404,11 +404,11 @@ output_parameters["output_DataHeatmaps_Excel"] = False   # If TRUE, output the h
 output_parameters["heatmap_y_bin_min"] = 0.  # minimum for the y-axis grid of heatmap
 output_parameters["heatmap_y_bin_max"] = 2000.0  # maximum for the y-axis grid of heatmap
 output_parameters["heatmap_y_num_pts"] = int(output_parameters["heatmap_y_bin_max"] - output_parameters["heatmap_y_bin_min"])+1  # number of points for y-axis
-output_parameters["heatmap_xticklabels"] = 2  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
-output_parameters["heatmap_yticklabels"] = 100  # e.g. yticklabels = 10 means we are displaying every 10th label
+output_parameters["heatmap_xticklabels"] = 5  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
+output_parameters["heatmap_yticklabels"] = 500  # e.g. yticklabels = 10 means we are displaying every 10th label
 output_parameters["heatmap_cmap"] = "rainbow"  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
 output_parameters["heatmap_cbar_limits"] = [0.0, 1.0]  # list in format [vmin, vmax] for heatmap colorbar/scale
-
+output_parameters["percentile_cutoffs"] = True
 
 #XAI
 output_parameters["output_PRPscores"] = False    #If True, outputs PRP score analysis (heatmaps, percentiles)
@@ -658,7 +658,7 @@ if params["test_TrueFalse"] is True:
 
 # Withdrawal NN: NN_withdraw 30.0
 #---------------------------
-params["N_L_withdraw"] = layers_mc   # Nr of hidden layers of NN
+params["N_L_withdraw"] = 2   # Nr of hidden layers of NN
                    # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
                    # layer_id list: [0, 1,...,N_L, N_L+1]
 
@@ -672,10 +672,10 @@ NN_withdraw_orig.print_layers_info()  #Check what to update
 
 #Update layers info
 
-for l in range(1, layers_mc+1):
+for l in range(1, 2+1):
     NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=biases_mc)
     
-NN_withdraw_orig.update_layer_info(layer_id = layers_mc+1, activation = "none", add_bias= False) #output layer
+NN_withdraw_orig.update_layer_info(layer_id = 2+1, activation = "none", add_bias= False) #output layer
 
 NN_withdraw_orig.print_layers_info() #Check if structure is correct
 # ---------------------------------------------------------------------
@@ -860,11 +860,23 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     if params["xi_constant"]:
         params["xi_lr"] = 0.0
     
+    # manual preload: load at every tracing param, but is overridden by continuation learn if cont is set to true
+    if preload:
+        
+        NN_list.load_state_dict(torch.load(nn_preload))
+        NN_list.eval()
+        print("pre-loaded NN: ", NN_list.state_dict())
+        
+        obj_text = codecs.open(xi_preload,'r', encoding='utf-8').read()
+        b_new = json.loads(obj_text)
+        print("loaded xi: ", b_new["xi"])
+        params["xi_0"] = float(b_new["xi"])
+    
     # load continuation learn model
     past_kappa = tracing_parameters_to_run[i-1]
     model_save_path = params["console_output_prefix"]
-    nn_saved_model = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
-    xi_saved = Path(f"/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
+    nn_saved_model = Path(f"/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
+    xi_saved = Path(f"/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
     # nn_saved_model = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
     # xi_saved = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
 
@@ -882,20 +894,7 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
             b_new = json.loads(obj_text)
             params["xi_0"] = float(b_new["xi"])
             print("loaded xi: ", b_new["xi"])
-            
-
-    # manual preload:
-    if preload:
-        
-        NN_list.load_state_dict(torch.load(nn_preload))
-        NN_list.eval()
-        print("pre-loaded NN: ", NN_list.state_dict())
-        
-        obj_text = codecs.open(xi_preload,'r', encoding='utf-8').read()
-        b_new = json.loads(obj_text)
-        print("loaded xi: ", b_new["xi"])
-        params["xi_0"] = float(b_new["xi"])
-         
+                   
     
     # SET TRACING PARAMETERS inside params ----------------------------
     if params["obj_fun"] in ["one_sided_quadratic_target_error", "quad_target_error", "huber_loss", "ads"]:

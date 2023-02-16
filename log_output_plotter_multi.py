@@ -7,9 +7,10 @@ from os import listdir
 from os.path import isfile, join
 import re
 
-os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/log_output_yy2_parallel_feb4")
+# os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/log_output_yy2_parallel_feb4")
 
-# os.chdir("/home/ma3chen/Documents/marc_branch2/researchcode/log_output")
+os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/log_output_yy2_parallel_3pt")
+
 files = [f for f in listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
 
 kappa_list = []
@@ -75,7 +76,7 @@ plt.legend(loc='lower left')
 
 plt.show()
 
-plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb4_log_output_yy2_jan29_parallel.png', dpi = 200)
+plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb9_yyjan29_rerun_lastkappas_smalltest_xietagreater.png', dpi = 200)
 
 
 # df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")

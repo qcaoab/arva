@@ -1,35 +1,15 @@
 Starting at: 
-07-02-23_18:43
+10-02-23_15:44
 
  Random seed:  2  
 
 Key parameters-------
 paths: 256000
-iterations: 50000
+iterations: 30000
 batchsize: 1000
 remove neg:  False
-yy_fix_feb3
-
-
-############# Defined asset basket #################
-timeseries_basket.keys() = 
-dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
-timeseries_basket['basket_type'] = asset
-timeseries_basket['basket_id'] = B10_and_VWD
-timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
-timeseries_basket['basket_columns'] = 
-['B10_real_ret', 'VWD_real_ret']
-############# End: defined asset  basket #################
------------------------------------------------
-No need to read market data.
------------------------------------------------
-3.3333333333333335% of MC simulations done.
-6.666666666666667% of MC simulations done.
-10.0% of MC simulations done.
-13.333333333333334% of MC simulations done.
-16.666666666666664% of MC simulations done.
-20.0% of MC simulations done.
-23.333333333333332% of MC simulations done.
-26.666666666666668% of MC simulations done.
-30.0% of MC simulations done.
-33.33333333333333% of MC simulations done.
+w constaint activation:  yy_fix_jan29
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/decumulation_driver.py", line 276, in <module>
+    tracing_parameters_to_run =[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+IndexError: list index out of range

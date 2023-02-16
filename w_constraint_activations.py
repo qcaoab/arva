@@ -3,13 +3,14 @@ import torch
 
 def custom_activation(nn_out, g_prev, params):
     
+    sigmoid = torch.nn.Sigmoid()
     formulation = params["w_constraint_activation"]
     
     q_min = torch.tensor(params["q_min"], device= params["device"])
     q_max = torch.tensor(params["q_max"], device= params["device"])
     
     if formulation == "yy_fix_jan29":
-        custom_sigmoid = torch.sigmoid(nn_out)
+        custom_sigmoid = sigmoid(nn_out)
        
         max_qmin_w = torch.maximum(torch.ones(g_prev.size(), device=params["device"])*q_min, g_prev)
         min_outer_qmax = torch.minimum(max_qmin_w, torch.ones(g_prev.size(), device=params["device"])*q_max)
@@ -26,7 +27,7 @@ def custom_activation(nn_out, g_prev, params):
         max_qmin_w = torch.maximum(torch.ones(g_prev.size(), device=params["device"])*q_min, g_prev)
         min_outer_qmax = torch.minimum(max_qmin_w, torch.ones(g_prev.size(), device=params["device"])*q_max)
         
-        q_n = q_min + 2*(min_outer_qmax - q_min) * (torch.sigmoid(x) - 0.5)
+        q_n = q_min + 2*(min_outer_qmax - q_min) * (sigmoid(x) - 0.5)
         
         return q_n
 

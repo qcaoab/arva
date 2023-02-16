@@ -205,7 +205,9 @@ def construct_data_for_DataHeatmaps(
     for n_index in np.arange(0, N_rb, 1): #Loop over rebalancing times
 
         #Get wealth vector at time (t_n^+)
-        W_t_n = params["W"][:,n_index] #W to contain the wealth *after* contribution at t_n
+        
+        #changed to w_allocation to ensure this is wealth after withdrawals
+        W_t_n = params["W_allocation"][:,n_index] #W to contain the wealth *after* contribution at t_n
 
         bin_count = 0
         #Loop through W bins
@@ -244,8 +246,8 @@ def construct_data_for_DataHeatmaps(
                     Asset_Heatmaps[bin_index, n_index, asset_index] = np.mean(NN_prop_asset_index)
                     # Asset_Heatmaps[j,n,i] =  (for wealth in bin j) *average* proportion invested in asset i at rebal time t_n
 
-            if bin_index == count_W_bins - 1:
-                    print(bin_count)
+            # if bin_index == count_W_bins - 1:
+                    # print(bin_count)
 
 
     params["DataHeatmaps_W_bin_left_edges"] = W_bin_left_edges

@@ -62,8 +62,8 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
     if len(params["NN_object"]) > 1:
         NN_object = params["NN_object"][1]
         NN_object_w = params["NN_object"][0]
-        q_max = 60
-        q_min = 35
+        q_max = params["q_max"]
+        q_min = params["q_min"]
         use_PyTorch = True # At this point, it is synonymous with 2 NNs trained in PyTorch.
         #@todo: fix this problem above
     else:
@@ -155,34 +155,91 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
                 a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
                 z_NNopt_prop_mesh[wealth_indices, n_index] = a_t_n_output[:, asset_index]
 
+        if asset_index == asset_loop_vector[-1]:
+            with torch.no_grad():
+                wealth_n = torch.as_tensor(W_mesh[:,1], device = params["device"])
+                phi = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
+                                           n = 31,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
+                                           wealth_n = wealth_n,  # Wealth vector W(t_n^+), *after* contribution at t_n
+                                           # but *before* rebalancing at time t_n for (t_n, t_n+1)
+                                           feature_calc_option = feature_calc_option, # Set calc_option = "matlab" to match matlab code
+                                           withdraw=withdraw)
+                a_t_n_output= torch.squeeze(NN_object_w.forward(phi))
+                q_n = custom_activation(a_t_n_output, wealth_n, params)
+                withdrawal_q = (q_n-q_min) / (q_max - q_min) #withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)
+                last_withdrawal = withdrawal_q.detach().to('cpu').numpy()
+                last_withdrawal = np.reshape(last_withdrawal, (len(wealth_n),1))
+                z_NNopt_prop_mesh = np.hstack((z_NNopt_prop_mesh, last_withdrawal))
+                        
         #Sort out time-to-go on x-axis labels
-        time_to_go = params["T"] - n_index_grid*params["delta_t"]
+        time_to_go = params["T"] - (n_index_grid+1)*params["delta_t"]
         #time_to_go = time_to_go.astype(int)  #Convert to integers
-        time_to_go = np.round(time_to_go, decimals=1)
+        time_to_go = np.round(time_to_go, decimals=0)
+        time_to_go = time_to_go.astype(int)
         time_to_go = time_to_go.tolist()
+        time_to_go.reverse()
 
+        time_forward = time_to_go
+        time_forward.append(30)
+        
         #Sort out wealth on y-axis labels
         W_grid_list = W_grid.tolist()
+        
+        W_grid_list = [int(num) for num in W_grid_list]
 
         plt.figure()
         sns.set(font_scale=0.85)
         sns.set_style("ticks")
         
-        print(W_grid_list[::yticklabels])
-        h = sns.heatmap(data =z_NNopt_prop_mesh,
-                        yticklabels=W_grid_list[::yticklabels],
-                        xticklabels = time_to_go[::xticklabels],#time_to_go,
-                        vmin= heatmap_cbar_limits[0], vmax= heatmap_cbar_limits[1],
-                        cbar_kws={'label': 'Proportion of wealth'},
-                        cmap= cmap, cbar = True)
-        h.set_xticks(np.arange(0,len(time_to_go),xticklabels))
-        h.set_yticks(np.arange(0, len(W_grid_list), yticklabels))
-        h.set_yticklabels(W_grid_list[::yticklabels])
-        h.set_xticklabels(time_to_go[::xticklabels])
-        h.invert_yaxis()
-        plt.title('Optimal control (NN) as proportion of wealth in asset ' + asset_names[asset_index])
-        plt.ylabel('Wealth')
-        plt.xlabel('Time-to-go (years)')
+        
+        #change range for withdrawals
+        if asset_index == asset_loop_vector[-1]:
+        
+            h = sns.heatmap(data =z_NNopt_prop_mesh[:,1:],
+                            yticklabels=W_grid_list[::yticklabels],
+                            xticklabels = time_forward[::xticklabels],#time_to_go,
+                            vmin= heatmap_cbar_limits[0], vmax= heatmap_cbar_limits[1],
+                            cbar_kws={'shrink': 0.77,
+                                      'fraction': 0.05, 
+                                      'pad': 0.04,
+                                      'ticks': np.arange(0,1.05,0.05)},
+                            cmap= cmap, cbar = True)
+            h.set_xticks(np.arange(0,len(time_forward),xticklabels))
+            h.set_yticks(np.arange(0, len(W_grid_list), yticklabels))
+            h.set_yticklabels(W_grid_list[::yticklabels])
+            h.set_xticklabels(time_forward[::xticklabels], rotation = 0)
+            h.invert_yaxis()
+            plt.title('Normalized Withdrawal',
+                      fontweight="bold", fontsize=12, pad = 10)
+            plt.text(0.86, 0.82,  "qmax",fontweight="bold", transform=plt.gcf().transFigure)
+            plt.text(0.86, 0.15, "qmin",fontweight="bold", transform=plt.gcf().transFigure)
+        
+        else:
+        
+            h = sns.heatmap(data =z_NNopt_prop_mesh,
+                            yticklabels=W_grid_list[::yticklabels],
+                            xticklabels = time_forward[::xticklabels],#time_to_go,
+                            vmin= heatmap_cbar_limits[0], vmax= heatmap_cbar_limits[1],
+                            cbar_kws={
+                                      'fraction': 0.05, 
+                                      'pad': 0.04,
+                                      'shrink': 0.77,
+                                      'ticks': np.arange(0,1.05,0.05)},
+                            cmap= cmap, cbar = True)
+            h.set_xticks(np.arange(0,len(time_forward),xticklabels))
+            h.set_yticks(np.arange(0, len(W_grid_list), yticklabels))
+            h.set_yticklabels(W_grid_list[::yticklabels])
+            h.set_xticklabels(time_forward[::xticklabels], rotation = 0)
+            h.invert_yaxis()
+            print("bond graph is mislabeled!")
+            plt.title('Fraction in Stocks',# + asset_names[asset_index],
+                      fontweight="bold", fontsize=12, pad = 10)  
+            plt.text(0.86, 0.82, " 100% \nStocks",fontweight="bold", transform=plt.gcf().transFigure)
+            plt.text(0.86, 0.12, " 100% \nBonds",fontweight="bold", transform=plt.gcf().transFigure)
+        
+        
+        plt.ylabel('Real Wealth (thousands)',fontweight="bold", fontsize=11)
+        plt.xlabel('Time (years)',fontweight="bold", fontsize=11)
 
 
         # Output heatmap data for THIS asset
