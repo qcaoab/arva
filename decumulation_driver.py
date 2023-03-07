@@ -162,12 +162,12 @@ if iter_params == "smol":
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
-    biases_mc = False
-    adam_xi_eta = 0.07
-    adam_nn_eta = 0.08
+    biases_mc = True
+    adam_xi_eta = 0.0
+    adam_nn_eta = 0.0
 
 if iter_params == "tiny":
-    n_d_train_mc = 1000
+    n_d_train_mc = 1000 
     itbound_mc = 5
     batchsize_mc = 5
     nodes_mc = 4
@@ -193,8 +193,12 @@ withdraw_const = 40.0
 
 #Main settings for TRAINING data
 params["N_d_train"] = n_d_train_mc #Nr of TRAINING data return sample paths to bootstrap
-params["data_source_Train"] = "simulated" #"bootstrap" or "simulated" [data source for TRAINING data]
+params["data_source_Train"] = "bootstrap" #"bootstrap" or "simulated" [data source for TRAINING data]
 
+#Pytorch flag for pre-trained NN
+params["PreTrained_pytorch"] = True
+    
+params["standardization_file_path"] = '/home/mmkshira/research/PieterCode/Code/saved_models/standardizing_opt_mc_decum_04-03-23_20:38_kappa_1.0.json'
 
 #Specify if NN has been pre-trained: if FALSE, will TRAIN the NN
 params["preTrained_TrueFalse"] = False  #If True, NO TRAINING will occur, instead given F_theta will be used
@@ -548,13 +552,14 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
     # ----------------------------------------
     # TRAINING data bootstrapping
     # - Append bootstrapped data to "params" dictionary
-
+    blocksize = 1
+    print("Bootstrap block size: " + str(blocksize))
     params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
         train_test_Flag = "train",                  # "train" or "test"
         params = params,                            # params dictionary as in main code
         data_bootstrap_yyyymm_start = 192601,       # start month to use subset of data for bootstrapping, CHECK DATA!
         data_bootstrap_yyyymm_end = 202012,         # end month to use subset of data for bootstrapping, CHECK DATA!
-        data_bootstrap_exp_block_size = 12,          # Expected block size in terms of frequency of market returns data
+        data_bootstrap_exp_block_size = blocksize,          # Expected block size in terms of frequency of market returns data
                                                     # e.g. = X means expected block size is X months of returns
                                                     # if market returns data is monthly
         data_bootstrap_fixed_block = False,         # if False: use STATIONARY BLOCK BOOTSTRAP, if True, use FIXED block bootstrap

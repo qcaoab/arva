@@ -321,6 +321,16 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     with open(f'{local_path}/saved_models/xi_opt_{model_save_path}_kappa_{kappa}.json', 'w') as outfile:
         json.dump(optimal_xi, outfile)
 
+    # Store training standardizing parameters
+
+    standardizing_params = {"benchmark_W_mean_train":params["benchmark_W_mean_train"].tolist(),
+                            "benchmark_W_std_train":params["benchmark_W_std_train"].tolist(),
+                            "benchmark_W_mean_train_post_withdraw":params["benchmark_W_mean_train_post_withdraw"].tolist(),
+                            "benchmark_W_std_train_post_withdraw":params["benchmark_W_std_train_post_withdraw"].tolist()}
+    
+    with open(f'{local_path}/saved_models/standardizing_opt_{model_save_path}_kappa_{kappa}.json', 'w') as outfile:
+        json.dump(standardizing_params, outfile)
+
     print("saved model: ")
     print(NN_list_min.state_dict())
     print("xi: ", xi_np)

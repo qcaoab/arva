@@ -4,6 +4,7 @@
 import numpy as np
 import pandas as pd
 import datetime
+import json
 import class_Neural_Network
 import fun_train_NN
 import fun_test_NN
@@ -179,6 +180,12 @@ def RUN__wrapper_training_testing_NN(
     #stats for post-withdrawal
     params["benchmark_W_mean_train_post_withdraw"] = params_CP_TRAIN["W_paths_mean_post_withdraw"].copy()
     params["benchmark_W_std_train_post_withdraw"] = params_CP_TRAIN["W_paths_std_post_withdraw"].copy()
+
+    if params["PreTrained_pytorch"] == True:
+        f = open(params["standardization_file_path"])
+        temp_dict = json.load(f)
+        for (k,v) in temp_dict.items():
+            params[k] = np.array(v)
     
     
     #Also add terminal wealth vector from constant proportion strategy (for ADS and IR objectives)
