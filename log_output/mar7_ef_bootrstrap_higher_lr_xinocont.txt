@@ -1,0 +1,147 @@
+Starting at: 
+07-03-23_13:39
+
+ numpy seed:  3  
+
+
+ pytorch seed:  3  
+
+Key parameters-------
+paths: 256000
+iterations: 10000
+batchsize: 10000
+remove neg:  False
+w constaint activation:  yy_fix_jan29
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+               CPI  CPI_nom_ret  ...  VWD_real_ret  EWD_real_ret
+date                             ...                            
+192512  100.000000          NaN  ...           NaN           NaN
+192601  100.000000     0.000000  ...      0.000561      0.023174
+192602  100.000000     0.000000  ...     -0.033046     -0.053510
+192603   99.441303    -0.005587  ...     -0.058743     -0.091750
+192604  100.000000     0.005618  ...      0.031235      0.027204
+
+[5 rows x 12 columns]
+                CPI  CPI_nom_ret  ...  VWD_real_ret  EWD_real_ret
+date                              ...                            
+202008  1452.055956     0.003153  ...      0.065084      0.035618
+202009  1454.078149     0.001393  ...     -0.036399     -0.028709
+202010  1454.681696     0.000415  ...     -0.020584      0.000169
+202011  1453.793232    -0.000611  ...      0.124393      0.175130
+202012  1455.162018     0.000942  ...      0.044065      0.071843
+
+[5 rows x 12 columns]
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_nom_ret', 'VWD_nom_ret']
+############# End: defined asset  basket #################
+        CPI_nom_ret  B10_nom_ret  VWD_nom_ret
+date                                         
+192601     0.000000     0.004350     0.000561
+192602     0.000000     0.004338    -0.033046
+192603    -0.005587     0.004327    -0.064002
+192604     0.005618     0.004316     0.037029
+192605    -0.005587     0.004304     0.012095
+        CPI_nom_ret  B10_nom_ret  VWD_nom_ret
+date                                         
+202008     0.003153    -0.014709     0.068443
+202009     0.001393     0.002560    -0.035057
+202010     0.000415    -0.017311    -0.020178
+202011    -0.000611     0.004016     0.123706
+202012     0.000942    -0.004965     0.045048
+Indices constructed with column names:
+Index(['date_for_plt', 'CPI_nom_ret_ind', 'B10_nom_ret_ind',
+       'VWD_nom_ret_ind'],
+      dtype='object')
+############# Updated: defined asset basket #################
+timeseries_basket['data_df_mean'] = 
+B10_real_ret    0.001986
+VWD_real_ret    0.006974
+dtype: float64
+
+
+timeseries_basket['data_df_stdev'] = 
+B10_real_ret    0.018939
+VWD_real_ret    0.053569
+dtype: float64
+
+
+timeseries_basket['data_df_corr'] = 
+              B10_real_ret  VWD_real_ret
+B10_real_ret      1.000000      0.075353
+VWD_real_ret      0.075353      1.000000
+
+
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names', 'data_df', 'data_df_mean', 'data_df_stdev', 'data_df_corr'])
+############# End: updated: defined asset basket #################
+-----------------------------------------------
+Dates to be REMOVED due to missing values (should be at *start* only due to trading signals):
+Int64Index([], dtype='int64')
+-----------------------------------------------
+Dates from available data for bootstrapping:
+Start: 192601
+End: 202012
+-----------------------------------------------
+0.0% of bootstrap sample done.
+5.0% of bootstrap sample done.
+10.0% of bootstrap sample done.
+15.0% of bootstrap sample done.
+20.0% of bootstrap sample done.
+25.0% of bootstrap sample done.
+30.0% of bootstrap sample done.
+35.0% of bootstrap sample done.
+40.0% of bootstrap sample done.
+45.0% of bootstrap sample done.
+50.0% of bootstrap sample done.
+55.00000000000001% of bootstrap sample done.
+60.0% of bootstrap sample done.
+65.0% of bootstrap sample done.
+70.0% of bootstrap sample done.
+75.0% of bootstrap sample done.
+80.0% of bootstrap sample done.
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/decumulation_driver.py", line 553, in <module>
+    params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Data__bootstrap_wrapper.py", line 77, in wrap_run_bootstrap
+    params = fun_Data_bootstrap.run_bootstrap(df_all = params["bootstrap_source_data"],
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Data_bootstrap.py", line 185, in run_bootstrap
+    df_bootstrapped_asset_returns = df_out_array_asset_prices.pct_change()
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/generic.py", line 10373, in pct_change
+    rs = data / shifted - 1  # type: ignore[operator]
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/ops/common.py", line 70, in new_method
+    return method(self, other)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/arraylike.py", line 124, in __truediv__
+    return self._arith_method(other, operator.truediv)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 6955, in _arith_method
+    new_data = self._dispatch_frame_op(other, op, axis=axis)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 6994, in _dispatch_frame_op
+    bm = self._mgr.operate_blockwise(
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 1419, in operate_blockwise
+    return operate_blockwise(self, other, array_op)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/internals/ops.py", line 62, in operate_blockwise
+    for lvals, rvals, locs, left_ea, right_ea, rblk in _iter_block_pairs(left, right):
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/internals/ops.py", line 39, in _iter_block_pairs
+    rblks = right._slice_take_blocks_ax0(locs.indexer, only_slice=True)
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 752, in _slice_take_blocks_ax0
+    return [blk.getitem_block_columns(slobj, new_mgr_locs=bp)]
+  File "/home/marcchen/.local/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 346, in getitem_block_columns
+    return type(self)(new_values, new_mgr_locs, self.ndim)
+KeyboardInterrupt

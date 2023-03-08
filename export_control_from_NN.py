@@ -13,15 +13,20 @@ def export_controls(NN_list, params):
     
     w_min = params["w_grid_min"]
     w_max = params["w_grid_max"]
-    nx = params["nx"] 
+    base_nx = params["nx"] 
     n_rebal = params["N_rb"]
     
     q_min = torch.tensor(params["q_min"], device= params["device"])
     q_range = torch.tensor(params["q_max"] - params["q_min"], device= params["device"])
     
-    w_grid_vector = torch.linspace(w_min, w_max, nx, device=params["device"])
+    w_grid_vector = torch.linspace(w_min, w_max, base_nx, device=params["device"])
+    w_additional = torch.tensor( [999.8, 999.9, 999.95, 1000, 1000.05, 1000.1, 1000.2], device = params["device"])
+    w_grid_vector = torch.cat((w_grid_vector,w_additional))
+    w_grid_vector, indices= torch.sort(w_grid_vector)
+    
     rb_times = np.linspace(params["T"], 0, params["N_rb"]+1, dtype=int)
     
+    nx = len(w_grid_vector)
     
     
     #withdrawal

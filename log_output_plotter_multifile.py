@@ -82,11 +82,11 @@ df_cont = pd.DataFrame({'kappa': kappa_list, 'cvar_05': cvar_05, 'expected_wealt
 # 'median': median_wealth, 'f_val': function_value})
 df_cont.sort_values(by=['kappa'], ignore_index=True, inplace=True)
 
-forsyth_df = pd.read_csv("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/forsyth_a1_corrected.txt")
+forsyth_df = pd.read_csv("/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/forsyth_a1_corrected.txt")
 
 
 plt.clf()
-plt.plot(forsyth_df["ES"],forsyth_df["Sum q_i/(M+1)"], marker='o', label = "PDE Analytical Results")
+plt.plot(forsyth_df["ES"],forsyth_df["Sum q_i/(M+1)"], marker='o', label = "HJB Eqn Results")
 for i, val in enumerate(forsyth_df['kappa']):
     plt.annotate(str(val), (forsyth_df["ES"][i], forsyth_df['Sum q_i/(M+1)'][i]))
 

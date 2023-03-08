@@ -116,9 +116,9 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
             n = n_index + 1 #rebalancing number since n_index = n - 1
 
             wealth_n = W_mesh[:, n_index]
-            pctiles = np.percentile(params["W"][:,n_index], [5,95])
-            wealth_indices = (wealth_n > pctiles[0]) & (wealth_n < pctiles[1])
-            wealth_n = wealth_n[wealth_indices] 
+            # pctiles = np.percentile(params["W"][:,n_index], [5,95])
+            # wealth_indices = (wealth_n > pctiles[0]) & (wealth_n < pctiles[1])
+            # wealth_n = wealth_n[wealth_indices] 
             if use_PyTorch:
                 wealth_n = torch.as_tensor(wealth_n, device = params["device"])
 
@@ -147,13 +147,13 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
                         
                         withdrawal_q = (q_n-q_min) / (q_max - q_min)
                         withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)
-                        z_NNopt_prop_mesh[wealth_indices, n_index-1] = withdrawal_q.detach().to('cpu').numpy()
+                        z_NNopt_prop_mesh[:, n_index-1] = withdrawal_q.detach().to('cpu').numpy()
                 else:
                     a_t_n_output = NN_object.forward(phi)
-                    z_NNopt_prop_mesh[wealth_indices, n_index] = a_t_n_output[:, asset_index].detach().to('cpu').numpy()
+                    z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index].detach().to('cpu').numpy()
             else:
                 a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
-                z_NNopt_prop_mesh[wealth_indices, n_index] = a_t_n_output[:, asset_index]
+                z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index]
 
         if asset_index == asset_loop_vector[-1]:
             with torch.no_grad():

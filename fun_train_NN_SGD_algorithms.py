@@ -110,13 +110,13 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         
         #create optimizer, starting with withdrawal NN params
         optimizer_nn = torch.optim.Adam([{'params': NN_list.parameters(), 
-                                        'lr': NN_training_options["Adam_eta"], 
+                                        'lr': Adam_eta, 
                                         'betas': (NN_training_options["Adam_ewma_1"], NN_training_options["Adam_ewma_2"] ),
                                         'weight_decay': weight_decay}                                   
                                       ])
         
         optimizer_xi = torch.optim.Adam([{'params': xi,
-                                       'lr': params["xi_lr"]}                                    
+                                       'lr':params["xi_lr"]}                                    
                                       ])
         
         if NN_training_options["lr_schedule"]:

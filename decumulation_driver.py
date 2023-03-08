@@ -99,7 +99,7 @@ params["xi_constant"] = False
 params["remove_neg"] = False
 
 #set seed
-seed_mc = 2
+seed_mc = 3
 np.random.seed(seed_mc)
 print("\n numpy seed: ", seed_mc, " \n")
 torch.manual_seed(seed_mc)
@@ -107,21 +107,21 @@ print("\n pytorch seed: ", seed_mc, " \n")
 
 cont_nn = True  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
 cont_nn_start = 0
-cont_xi = True #uses previous value of optimal xi to initialize xi in next run
+cont_xi = False #uses previous value of optimal xi to initialize xi in next run
 cont_xi_start = 0  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
-preload = False
+preload = True
 params["local_path"] = str(os.getcwd())
 
-nn_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/NN_opt_mc_decum_14-02-23_10:41_kappa_1.0")
+nn_preload = Path(params["local_path"] + "/saved_models/NN_opt_mc_decum_07-03-23_13:50_kappa_1.0")
                   #Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_13-01-23_12:00")    
-xi_preload = Path("/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/xi_opt_mc_decum_14-02-23_10:41_kappa_1.0.json")
+xi_preload = Path(params["local_path"] + "/saved_models/xi_opt_mc_decum_07-03-23_13:50_kappa_1.0.json")
 #Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_13-01-23_12:00.json")
 
 #control export params
 params["output_control"] = False
-params["control_filepath"] = "/home/marcchen/Documents/testing_pyt_decum/researchcode/control_files/feb14_kappa1_corrected.txt"
+params["control_filepath"] = params["local_path"] + "/control_files/feb14_kappa1_add_w1000.txt"
 params["w_grid_min"] = 0
 params["w_grid_max"] = 10000
 params["nx"] = 4096
@@ -148,29 +148,29 @@ iter_params = "test"
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 10000
-    batchsize_mc = 10000
+    itbound_mc = 30000
+    batchsize_mc = 1000
     nodes_mc = 8
-    layers_mc = 3
+    layers_mc = 2
     biases_mc = True
     adam_xi_eta = 0.04
     adam_nn_eta = 0.05
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 5000
+    itbound_mc = 10000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
     biases_mc = True
-    adam_xi_eta = 0.0
-    adam_nn_eta = 0.0
+    adam_xi_eta = 0.07
+    adam_nn_eta = 0.08
 
 if iter_params == "tiny":
     n_d_train_mc = 1000 
     itbound_mc = 5
     batchsize_mc = 5
-    nodes_mc = 4
+    nodes_mc = 8
     params["q"] =  0. * np.ones(params["N_rb"]) 
     layers_mc = 2
     biases_mc = True
@@ -278,7 +278,8 @@ params["obj_fun_epsilon"] =  10**-3
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
 #for DC, use 9999.0 as tracing param as placeholder for 'NA'
-tracing_parameters_to_run = [1.0] #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.5]
+ #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
 
@@ -880,8 +881,8 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     # load continuation learn model
     past_kappa = tracing_parameters_to_run[i-1]
     model_save_path = params["console_output_prefix"]
-    nn_saved_model = Path(f"/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
-    xi_saved = Path(f"/home/marcchen/Documents/testing_pyt_decum/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
+    nn_saved_model = Path(params["local_path"] + f"/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
+    xi_saved = Path(params["local_path"] + f"/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
     # nn_saved_model = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
     # xi_saved = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
 
