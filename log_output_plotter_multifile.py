@@ -7,7 +7,7 @@ from os import listdir
 from os.path import isfile, join
 import re
 
-os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/feb13_log_output_yyfeb3_big")
+os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models/logs")
 
 
 # os.chdir("/home/ma3chen/Documents/marc_branch2/researchcode/log_output")
@@ -23,58 +23,24 @@ p_med_avg = []
 
 for file in files:
     
-    if file == "kappa_1.0,1.5,3.0,5.0,50.0_log.txt":
-        continue
-
     with open(file, 'r') as f:
         text = f.read()
     
-
     split = re.split('\n| ', text)
-    split = [x for x in split if x !='']
     
     for i, item in enumerate(split):
-        if item == 'NN-strategy-on-TRAINING':
+        if item == 'param:':
+            kappa_list.append(float(split[i+1]))
+        
+        if item == 'NN-strategy-on-TRAINING': 
+            expected_wealth.append(float(split[i+5]))
+            cvar_05.append(float(split[i+11]))
+            median_wealth.append(float(split[i+7]))
+            # function_value.append(float(split[i+11+1]))
+            qsum_avg.append(float(split[i+16]))
             
-            if file == 'feb7_rerun_lastkappas_cont_50k.txt':
-                try:
-                    kappa_list.append(float(split[i+187]))
-                    expected_wealth.append(float(split[i+5]))
-                    cvar_05.append(float(split[i+11]))
-                    median_wealth.append(float(split[i+7]))
-                    # function_value.append(float(split[i+11+1]))
-                    qsum_avg.append(float(split[i+15]))
-                    p_med_avg.append(float(split[i+27]))
-                    
-                
-                except:
-                    
-                    kappa_list.append(float(split[i+211]))
-                    expected_wealth.append(float(split[i+5]))
-                    cvar_05.append(float(split[i+11]))
-                    median_wealth.append(float(split[i+7]))
-                    # function_value.append(float(split[i+11+1]))
-                    qsum_avg.append(float(split[i+15]))
-                    p_med_avg.append(float(split[i+27]))
-                
-            else:
-            
-                try:
-                    kappa_list.append(float(split[i+157]))
-                    expected_wealth.append(float(split[i+5]))
-                    cvar_05.append(float(split[i+11]))
-                    median_wealth.append(float(split[i+7]))
-                    # function_value.append(float(split[i+11+1]))
-                    qsum_avg.append(float(split[i+15]))
-                    p_med_avg.append(float(split[i+27])) 
-                except:
-                    kappa_list.append(float(split[i+181]))
-                    expected_wealth.append(float(split[i+5]))
-                    cvar_05.append(float(split[i+11]))
-                    median_wealth.append(float(split[i+7]))
-                    # function_value.append(float(split[i+11+1]))
-                    qsum_avg.append(float(split[i+15]))
-                    p_med_avg.append(float(split[i+27])) 
+        if item == 'p_equity:':
+            p_med_avg.append(float(split[i+2])) 
     
     
 df_cont = pd.DataFrame({'kappa': kappa_list, 'cvar_05': cvar_05, 'expected_wealth': expected_wealth, 
@@ -102,10 +68,10 @@ plt.legend(loc='lower left')
 
 plt.show()
 
-plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb13_log_output_yyfeb3_big.png', dpi = 200)
+plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/bootstap_trained_ef_mar8.png', dpi = 200)
 
 
-df_cont.to_excel("/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb13_log_output_yyfeb3_big.xlsx")
+# df_cont.to_excel("/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb13_log_output_yyfeb3_big.xlsx")
 
 # forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
 
