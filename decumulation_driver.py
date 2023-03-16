@@ -19,6 +19,8 @@ import datetime
 import codecs, json
 from pathlib import Path
 import time
+import glob
+import re
 
 #Import files needed (other files are imported within those files as needed)
 import fun_Data_timeseries_basket
@@ -105,18 +107,19 @@ print("\n numpy seed: ", seed_mc, " \n")
 torch.manual_seed(seed_mc)
 print("\n pytorch seed: ", seed_mc, " \n")
 
-cont_nn = True  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
+cont_nn = False  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
 cont_nn_start = 0
 cont_xi = False #uses previous value of optimal xi to initialize xi in next run
 cont_xi_start = 0  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
-preload = True
+preload = False
 params["local_path"] = str(os.getcwd())
 
-nn_preload = Path(params["local_path"] + "/saved_models/NN_opt_mc_decum_07-03-23_13:50_kappa_1.0")
+
+nn_preload = params["local_path"] + "/feb13_saved_models_PAPERMODEL/NN_opt_mc_decum_14-02-23_10:41_kappa_1.0"
                   #Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_13-01-23_12:00")    
-xi_preload = Path(params["local_path"] + "/saved_models/xi_opt_mc_decum_07-03-23_13:50_kappa_1.0.json")
+xi_preload = params["local_path"] + "/feb13_saved_models_PAPERMODEL/xi_opt_mc_decum_14-02-23_10:41_kappa_1.0.json"
 #Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_13-01-23_12:00.json")
 
 #control export params
@@ -148,17 +151,17 @@ iter_params = "test"
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 30000
+    itbound_mc = 100000
     batchsize_mc = 1000
     nodes_mc = 8
-    layers_mc = 2
+    layers_mc = 3
     biases_mc = True
     adam_xi_eta = 0.04
     adam_nn_eta = 0.05
 
 if iter_params == "smol":
     n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 10000
+    itbound_mc = 3000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
@@ -172,7 +175,7 @@ if iter_params == "tiny":
     batchsize_mc = 5
     nodes_mc = 8
     params["q"] =  0. * np.ones(params["N_rb"]) 
-    layers_mc = 2
+    layers_mc = 4
     biases_mc = True
     adam_xi_eta = 0.05
     adam_nn_eta = 0.05
@@ -193,12 +196,12 @@ withdraw_const = 40.0
 
 #Main settings for TRAINING data
 params["N_d_train"] = n_d_train_mc #Nr of TRAINING data return sample paths to bootstrap
-params["data_source_Train"] = "bootstrap" #"bootstrap" or "simulated" [data source for TRAINING data]
+params["data_source_Train"] = "simulated" #"bootstrap" or "simulated" [data source for TRAINING data]
 
 #Pytorch flag for pre-trained NN
-params["PreTrained_pytorch"] = True
+params["PreTrained_pytorch"] = False
     
-params["standardization_file_path"] = '/home/mmkshira/research/PieterCode/Code/saved_models/standardizing_opt_mc_decum_04-03-23_20:38_kappa_1.0.json'
+params["standardization_file_path"] = "/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/models/standardizing_opt_mc_decum_09-03-23_17:08_kappa_0.2.json"
 
 #Specify if NN has been pre-trained: if FALSE, will TRAIN the NN
 params["preTrained_TrueFalse"] = False  #If True, NO TRAINING will occur, instead given F_theta will be used
@@ -259,7 +262,7 @@ if params["use_trading_signals_TrueFalse"] is True:
 # -----------------------------------------------------------------------------------------------
 params["obj_fun"] = "mean_cvar_single_level"
 
-params["obj_fun_epsilon"] =  10**-3
+params["obj_fun_epsilon"] =  10**-6
 
 # STANDARD objective functions ofAdam W(T): obj_fun options include:
 # "mean_cvar_single_level",
@@ -277,8 +280,9 @@ params["obj_fun_epsilon"] =  10**-3
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
-#for DC, use 9999.0 as tracing param as placeholder for 'NA'
-tracing_parameters_to_run = [1.5]
+
+#k = 999. for Inf case!
+tracing_parameters_to_run = [1.0] #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
  #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
@@ -553,7 +557,7 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
     # ----------------------------------------
     # TRAINING data bootstrapping
     # - Append bootstrapped data to "params" dictionary
-    blocksize = 1
+    blocksize = 3
     print("Bootstrap block size: " + str(blocksize))
     params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
         train_test_Flag = "train",                  # "train" or "test"
@@ -678,10 +682,10 @@ NN_withdraw_orig.print_layers_info()  #Check what to update
 
 #Update layers info
 
-for l in range(1, 2+1):
+for l in range(1, params["N_L_withdraw"]+1):
     NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=biases_mc)
     
-NN_withdraw_orig.update_layer_info(layer_id = 2+1, activation = "none", add_bias= False) #output layer
+NN_withdraw_orig.update_layer_info(layer_id = params["N_L_withdraw"]+1, activation = "none", add_bias= False) #output layer
 
 NN_withdraw_orig.print_layers_info() #Check if structure is correct
 # ---------------------------------------------------------------------
@@ -831,6 +835,11 @@ if params["preTrained_TrueFalse"] is True:
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
 for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_params
+    
+    if tracing_param == 999.:
+        params["kappa_inf"] = True
+    else:
+        params["kappa_inf"] = False
 
     # SET INITIAL VALUES ----------------------------
     # - initial NN parameters for both NNs [shuffle for each tracing param]
@@ -869,11 +878,30 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     # manual preload: load at every tracing param, but is overridden by continuation learn if cont is set to true
     if preload:
         
-        NN_list.load_state_dict(torch.load(nn_preload))
+        if os.path.isdir(nn_preload):
+            files = [f for f in os.listdir(nn_preload)]
+            suffix_len = len(str(tracing_param))
+            nn_preload_path = Path(nn_preload + [path for path in files if path[0:15] =='NN_opt_mc_decum' 
+                               and re.split('kappa_', path)[-1] == str(tracing_param)][0])
+            check = 0
+        else:
+            nn_preload_path = nn_preload
+                        
+            
+        NN_list.load_state_dict(torch.load(nn_preload_path))
         NN_list.eval()
         print("pre-loaded NN: ", NN_list.state_dict())
         
-        obj_text = codecs.open(xi_preload,'r', encoding='utf-8').read()
+        if os.path.isdir(nn_preload):
+            files = [f for f in os.listdir(nn_preload)]
+            suffix_len = len(str(tracing_param)+'.json')
+            xi_preload_path = Path(nn_preload + [path for path in files if path[0:15] =='xi_opt_mc_decum' 
+                               and re.split('kappa_', path)[-1] == str(tracing_param)+'.json'][0])
+        else:
+            xi_preload_path = xi_preload
+            
+        
+        obj_text = codecs.open(xi_preload_path,'r', encoding='utf-8').read()
         b_new = json.loads(obj_text)
         print("loaded xi: ", b_new["xi"])
         params["xi_0"] = float(b_new["xi"])

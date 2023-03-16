@@ -13,7 +13,7 @@ iterations: 1
 batchsize: 1000
 remove neg:  False
 w constaint activation:  yy_fix_jan29
-
+block_size: 6
 
 ############# Defined asset basket #################
 timeseries_basket.keys() = 

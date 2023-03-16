@@ -7,7 +7,7 @@ from os import listdir
 from os.path import isfile, join
 import re
 
-os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models/logs")
+os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/feb13_log_output_yyfeb3_big_PAPERMODEL")
 
 
 # os.chdir("/home/ma3chen/Documents/marc_branch2/researchcode/log_output")
@@ -52,26 +52,35 @@ forsyth_df = pd.read_csv("/home/marcchen/Documents/testing_pyt_decum/researchcod
 
 
 plt.clf()
-plt.plot(forsyth_df["ES"],forsyth_df["Sum q_i/(M+1)"], marker='o', label = "HJB Eqn Results")
+
+fig, ax = plt.subplots()
+
+ax.plot(forsyth_df["ES"],forsyth_df["Sum q_i/(M+1)"], marker='o', color="black", mew=2, fillstyle='none', 
+         markersize=10, label = "PDE Control", linewidth=2)
 for i, val in enumerate(forsyth_df['kappa']):
-    plt.annotate(str(val), (forsyth_df["ES"][i], forsyth_df['Sum q_i/(M+1)'][i]))
+    if val == 999:
+        plt.annotate('Inf', (forsyth_df["ES"][i]-55, forsyth_df['Sum q_i/(M+1)'][i]-0.8))
+    else:
+        plt.annotate(str(val), (forsyth_df["ES"][i]-55, forsyth_df['Sum q_i/(M+1)'][i]-0.8))
 
-plt.plot(df_cont["cvar_05"],df_cont["qsum_avg"],  marker = 's', label = "NN Approximation")
-for i, val in enumerate(df_cont['kappa']):
-    plt.annotate(str(val), (df_cont["cvar_05"][i], df_cont['qsum_avg'][i]))
-
-
-plt.title("DC Efficient Frontier Results Comparison")
-plt.xlabel("Expected Shortfall (cvar 0.05)")
-plt.ylabel("Expected Average Withdrawals")
-plt.legend(loc='lower left')
-
-plt.show()
-
-plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/bootstap_trained_ef_mar8.png', dpi = 200)
+ax.plot(df_cont["cvar_05"],df_cont["qsum_avg"],  marker = '+', markersize=3, mew=10, 
+         color = "red", label = "NN Control",linewidth=2)
+# for i, val in enumerate(df_cont['kappa']):
+#     plt.annotate(str(val), (df_cont["cvar_05"][i], df_cont['qsum_avg'][i]))
 
 
-# df_cont.to_excel("/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb13_log_output_yyfeb3_big.xlsx")
+# plt.title("EW-ES Frontiers: ")
+ax.set_xlabel("Expected Shortfall (cvar 0.05)", fontweight='bold',fontsize=14)
+ax.set_ylabel("Expected Average Withdrawals", fontweight='bold',fontsize=14)
+ax.legend(loc='lower left')
+ax.set_xlim([-680, 100])
+ax.set_ylim([30, 60])
+ax.spines[['right', 'top']].set_visible(False)
+
+plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb13_log_output_yyfeb3_big_PAPERMODEL.pdf',format="pdf")
+
+
+# df_cont.to_excel("/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb13_log_output_yyfeb3_big_PAPERMODEL.xlsx")
 
 # forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
 

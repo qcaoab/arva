@@ -9,7 +9,7 @@ import re
 
 
 
-with open("/home/marcchen/Documents/testing_pyt_decum/researchcode/log_output/mar6_ef_bootstrap_30k.txt", 'r') as f:
+with open("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_block1year/mar8_ef_runon_syntheticdata.txt", 'r') as f:
     text = f.read()
 
 split = re.split('\n| ', text)
@@ -62,7 +62,7 @@ plt.legend(loc='lower left')
 
 plt.show()
 
-plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/mar6_ef_bootstrap_30k.png', dpi = 200)
+plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/mar8_ef_runon_syntheticdata_blocktrained1year.png', dpi = 200)
 
 
 # df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")

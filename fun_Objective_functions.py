@@ -26,11 +26,16 @@ def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
 
     bracket = xi + (1/alpha) * torch.minimum(W_T_vector - xi, torch.zeros(W_T_vector.size(), device = params["device"]))
     
-    
-    fun = -qsum_T_vector - rho*bracket #formulate as minimization
-            
-    fun = fun - params["obj_fun_epsilon"]*W_T_vector  #stabilization
-    fun = torch.mean(fun)
+    if not params["kappa_inf"]:
+        fun = -qsum_T_vector - rho*bracket #formulate as minimization
+                
+        fun = fun - params["obj_fun_epsilon"]*W_T_vector  #stabilization
+        fun = torch.mean(fun)
+    else:
+        fun = -bracket #formulate as minimization
+                
+        fun = fun - params["obj_fun_epsilon"]*W_T_vector  #stabilization
+        fun = torch.mean(fun)
 
     #return only fun
     return fun
