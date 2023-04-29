@@ -116,10 +116,9 @@ cont_xi_start = 0  #tracing param index (starts at 1) to start continuation lear
 preload = False
 params["local_path"] = str(os.getcwd())
 
-
-nn_preload = params["local_path"] + "/feb13_saved_models_PAPERMODEL/NN_opt_mc_decum_14-02-23_10:41_kappa_1.0"
+nn_preload = params["local_path"] + "/feb13_saved_models_PAPERMODEL/"
                   #Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_13-01-23_12:00")    
-xi_preload = params["local_path"] + "/feb13_saved_models_PAPERMODEL/xi_opt_mc_decum_14-02-23_10:41_kappa_1.0.json"
+xi_preload = params["local_path"] + "/feb13_saved_models_PAPERMODEL/"
 #Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_13-01-23_12:00.json")
 
 #control export params
@@ -151,10 +150,10 @@ iter_params = "test"
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 100000
+    itbound_mc = 50000
     batchsize_mc = 1000
     nodes_mc = 8
-    layers_mc = 3
+    layers_mc = 2
     biases_mc = True
     adam_xi_eta = 0.04
     adam_nn_eta = 0.05
@@ -170,15 +169,15 @@ if iter_params == "smol":
     adam_nn_eta = 0.08
 
 if iter_params == "tiny":
-    n_d_train_mc = 1000 
+    n_d_train_mc = 10
     itbound_mc = 5
     batchsize_mc = 5
     nodes_mc = 8
     params["q"] =  0. * np.ones(params["N_rb"]) 
-    layers_mc = 4
+    layers_mc = 2
     biases_mc = True
-    adam_xi_eta = 0.05
-    adam_nn_eta = 0.05
+    adam_xi_eta = 0.00
+    adam_nn_eta = 0.00
 #----------------------------------------------
 # print key params:
 print("Key parameters-------")
@@ -191,7 +190,7 @@ print("w constaint activation: ", params["w_constraint_activation"])
 
 # manually specify prop_const;
 
-prop_const = np.array([0.6,0.4])
+prop_const = np.array([0.5,0.5])
 withdraw_const = 40.0
 
 #Main settings for TRAINING data
@@ -282,7 +281,7 @@ params["obj_fun_epsilon"] =  10**-6
 
 
 #k = 999. for Inf case!
-tracing_parameters_to_run = [1.0] #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
+tracing_parameters_to_run = [1.0]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
  #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
