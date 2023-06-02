@@ -1,0 +1,596 @@
+Starting at: 
+17-03-23_11:32
+
+ numpy seed:  3  
+
+
+ pytorch seed:  3  
+
+Key parameters-------
+paths: 256000
+iterations: 100000
+batchsize: 1000
+remove neg:  False
+w constaint activation:  yy_fix_jan29
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+3.3333333333333335% of MC simulations done.
+6.666666666666667% of MC simulations done.
+10.0% of MC simulations done.
+13.333333333333334% of MC simulations done.
+16.666666666666664% of MC simulations done.
+20.0% of MC simulations done.
+23.333333333333332% of MC simulations done.
+26.666666666666668% of MC simulations done.
+30.0% of MC simulations done.
+33.33333333333333% of MC simulations done.
+36.666666666666664% of MC simulations done.
+40.0% of MC simulations done.
+43.333333333333336% of MC simulations done.
+46.666666666666664% of MC simulations done.
+50.0% of MC simulations done.
+53.333333333333336% of MC simulations done.
+56.666666666666664% of MC simulations done.
+60.0% of MC simulations done.
+63.33333333333333% of MC simulations done.
+66.66666666666666% of MC simulations done.
+70.0% of MC simulations done.
+73.33333333333333% of MC simulations done.
+76.66666666666667% of MC simulations done.
+80.0% of MC simulations done.
+83.33333333333334% of MC simulations done.
+86.66666666666667% of MC simulations done.
+90.0% of MC simulations done.
+93.33333333333333% of MC simulations done.
+96.66666666666667% of MC simulations done.
+100.0% of MC simulations done.
+Withdrawal NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       1       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer      10  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer      10  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       1              none   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1      (2, 10)     True          10  
+2     (10, 10)     True          10  
+3      (10, 1)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+Allocation NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  hidden_layer    None       None         None   
+4        obj.layers[4]        4  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+4    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer      10  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer      10  logistic_sigmoid   
+3        obj.layers[3]        3  hidden_layer      10  logistic_sigmoid   
+4        obj.layers[4]        4  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1      (2, 10)     True          10  
+2     (10, 10)     True          10  
+3     (10, 10)     True          10  
+4      (10, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[4]         4  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+{'methods': ['Adam'], 'output_progress': False, 'tol': 1e-06, 'itbound_scipy_algorithms': 1000, 'check_exit_criteria': False, 'nit_running_min': 10000, 'itbound_SGD_algorithms': 100000, 'nit_IterateAveragingStart': 90000, 'batchsize': 1000, 'SGD_learningrate': 50.0, 'Adagrad_epsilon': 1e-08, 'Adagrad_eta': 1.0, 'Adadelta_ewma': 0.9, 'Adadelta_epsilon': 1e-08, 'RMSprop_ewma': 0.8, 'RMSprop_epsilon': 1e-08, 'RMSprop_eta': 0.1, 'Adam_ewma_1': 0.9, 'Adam_ewma_2': 0.998, 'Adam_eta': 0.05, 'Adam_epsilon': 1e-08, 'Adam_weight_decay': 0.0001, 'running_min_from_avg': False, 'running_min_from_sgd': True, 'lr_schedule': True}
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[4]         4  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1537.6908189235655
+Current xi:  [73.69748]
+objective value function right now is: -1537.6908189235655
+4.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1542.9892172756895
+Current xi:  [63.010612]
+objective value function right now is: -1542.9892172756895
+6.0% of gradient descent iterations done. Method = Adam
+Current xi:  [59.19519]
+objective value function right now is: -1532.241717762061
+8.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1543.1047595519713
+Current xi:  [56.71236]
+objective value function right now is: -1543.1047595519713
+10.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.449615]
+objective value function right now is: -1542.46977498604
+12.0% of gradient descent iterations done. Method = Adam
+Current xi:  [54.36625]
+objective value function right now is: -1542.9270290745
+14.000000000000002% of gradient descent iterations done. Method = Adam
+new min fval:  -1544.157180623416
+Current xi:  [53.29103]
+objective value function right now is: -1544.157180623416
+16.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1558.4009400013028
+Current xi:  [53.037445]
+objective value function right now is: -1558.4009400013028
+18.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1559.654571861287
+Current xi:  [55.645187]
+objective value function right now is: -1559.654571861287
+20.0% of gradient descent iterations done. Method = Adam
+Current xi:  [53.25492]
+objective value function right now is: -1551.3120829814063
+22.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1560.8795101074738
+Current xi:  [54.990143]
+objective value function right now is: -1560.8795101074738
+24.0% of gradient descent iterations done. Method = Adam
+Current xi:  [52.14439]
+objective value function right now is: -1530.7413124136497
+26.0% of gradient descent iterations done. Method = Adam
+Current xi:  [52.34669]
+objective value function right now is: -1559.9354815875333
+28.000000000000004% of gradient descent iterations done. Method = Adam
+new min fval:  -1561.2979700732958
+Current xi:  [54.980595]
+objective value function right now is: -1561.2979700732958
+30.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.988857]
+objective value function right now is: -1560.7428330875061
+32.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.104916]
+objective value function right now is: -1559.2300221048467
+34.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.312542]
+objective value function right now is: -1558.5374531690684
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [56.281902]
+objective value function right now is: -1561.1220815975978
+38.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1563.5846415213928
+Current xi:  [56.02402]
+objective value function right now is: -1563.5846415213928
+40.0% of gradient descent iterations done. Method = Adam
+Current xi:  [56.82931]
+objective value function right now is: -1559.6492945517489
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.568794]
+objective value function right now is: -1559.208966751148
+44.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1563.8693406305727
+Current xi:  [58.614895]
+objective value function right now is: -1563.8693406305727
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.707493]
+objective value function right now is: -1563.1874868283883
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [59.144585]
+objective value function right now is: -1556.3967976496347
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.854126]
+objective value function right now is: -1563.6967155291914
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.668407]
+objective value function right now is: -1561.1714595918124
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [59.520966]
+objective value function right now is: -1563.3931582797882
+56.00000000000001% of gradient descent iterations done. Method = Adam
+new min fval:  -1564.4879738371037
+Current xi:  [59.685024]
+objective value function right now is: -1564.4879738371037
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [60.085636]
+objective value function right now is: -1563.3769172794005
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [59.02424]
+objective value function right now is: -1557.4815335100525
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.72577]
+objective value function right now is: -1559.7205991591213
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [56.980408]
+objective value function right now is: -1559.7676955783277
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.617004]
+objective value function right now is: -1556.5966447706317
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.388226]
+objective value function right now is: -1559.501336436681
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [54.157063]
+objective value function right now is: -1560.8638626157212
+72.0% of gradient descent iterations done. Method = Adam
+Current xi:  [54.460804]
+objective value function right now is: -1564.1777007645258
+74.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1564.758273770535
+Current xi:  [55.045635]
+objective value function right now is: -1564.758273770535
+76.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1565.007221538514
+Current xi:  [55.19158]
+objective value function right now is: -1565.007221538514
+78.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1565.5434788662615
+Current xi:  [55.375244]
+objective value function right now is: -1565.5434788662615
+80.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.84046]
+objective value function right now is: -1565.2197529350476
+82.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1565.6358642118364
+Current xi:  [56.16442]
+objective value function right now is: -1565.6358642118364
+84.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1565.9422209147
+Current xi:  [56.395622]
+objective value function right now is: -1565.9422209147
+86.0% of gradient descent iterations done. Method = Adam
+Current xi:  [56.76215]
+objective value function right now is: -1565.810787976424
+88.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.00434]
+objective value function right now is: -1563.4913175422555
+90.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.551273]
+objective value function right now is: -1565.916997307354
+new min fval from sgd:  -1565.963787120529
+new min fval from sgd:  -1566.0217832726278
+new min fval from sgd:  -1566.104975375465
+new min fval from sgd:  -1566.1783654385213
+new min fval from sgd:  -1566.237618430315
+new min fval from sgd:  -1566.2450536032545
+new min fval from sgd:  -1566.297783001654
+new min fval from sgd:  -1566.3777557100864
+new min fval from sgd:  -1566.3847689689828
+new min fval from sgd:  -1566.4276713513182
+new min fval from sgd:  -1566.4398979393557
+new min fval from sgd:  -1566.445640033099
+new min fval from sgd:  -1566.458558136644
+new min fval from sgd:  -1566.5107424797636
+92.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.00331]
+objective value function right now is: -1566.4241296923249
+new min fval from sgd:  -1566.5109449243637
+new min fval from sgd:  -1566.5234957310477
+new min fval from sgd:  -1566.5467636376172
+new min fval from sgd:  -1566.593863914529
+new min fval from sgd:  -1566.6023124295054
+new min fval from sgd:  -1566.6512945103138
+94.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.31]
+objective value function right now is: -1565.9677726365594
+new min fval from sgd:  -1566.6524053226683
+96.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.379677]
+objective value function right now is: -1565.108214443242
+new min fval from sgd:  -1566.6828026492553
+new min fval from sgd:  -1566.696965133567
+new min fval from sgd:  -1566.711497913308
+new min fval from sgd:  -1566.7198237636694
+new min fval from sgd:  -1566.7214956804141
+new min fval from sgd:  -1566.7243134304251
+new min fval from sgd:  -1566.732847262525
+new min fval from sgd:  -1566.7354739158163
+new min fval from sgd:  -1566.738078229648
+new min fval from sgd:  -1566.7381629073327
+new min fval from sgd:  -1566.7406351523532
+new min fval from sgd:  -1566.7463824749775
+new min fval from sgd:  -1566.7490637970516
+new min fval from sgd:  -1566.7519061043388
+new min fval from sgd:  -1566.754542187727
+new min fval from sgd:  -1566.7575195493919
+new min fval from sgd:  -1566.7616474465617
+new min fval from sgd:  -1566.7651272724443
+new min fval from sgd:  -1566.7654897240238
+new min fval from sgd:  -1566.7802626394569
+new min fval from sgd:  -1566.785192416971
+new min fval from sgd:  -1566.786251506717
+new min fval from sgd:  -1566.797204904353
+new min fval from sgd:  -1566.8057574568704
+new min fval from sgd:  -1566.8075951434218
+new min fval from sgd:  -1566.8097724681675
+new min fval from sgd:  -1566.8177238094113
+new min fval from sgd:  -1566.8298092218317
+new min fval from sgd:  -1566.8300918972393
+new min fval from sgd:  -1566.8403509178409
+new min fval from sgd:  -1566.844423192769
+new min fval from sgd:  -1566.8447132164717
+new min fval from sgd:  -1566.8481703997013
+new min fval from sgd:  -1566.854073809334
+new min fval from sgd:  -1566.8561216337282
+new min fval from sgd:  -1566.8582515425328
+new min fval from sgd:  -1566.8593306916036
+new min fval from sgd:  -1566.8596371236436
+new min fval from sgd:  -1566.8687759381448
+new min fval from sgd:  -1566.874185146072
+new min fval from sgd:  -1566.8749822672569
+98.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.48178]
+objective value function right now is: -1566.828272533405
+new min fval from sgd:  -1566.8750435790216
+new min fval from sgd:  -1566.8823670915979
+new min fval from sgd:  -1566.884373357385
+new min fval from sgd:  -1566.887895179246
+new min fval from sgd:  -1566.8921962896893
+new min fval from sgd:  -1566.8962275373003
+new min fval from sgd:  -1566.899609737173
+new min fval from sgd:  -1566.9002943991022
+new min fval from sgd:  -1566.9050272229404
+new min fval from sgd:  -1566.9065056696213
+new min fval from sgd:  -1566.9079794324236
+new min fval from sgd:  -1566.9130219333047
+new min fval from sgd:  -1566.9130648563114
+new min fval from sgd:  -1566.9181000319481
+new min fval from sgd:  -1566.9212570273867
+new min fval from sgd:  -1566.9355586221893
+new min fval from sgd:  -1566.9389439342021
+new min fval from sgd:  -1566.9463267859733
+new min fval from sgd:  -1566.9498951763928
+100.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.521942]
+objective value function right now is: -1566.9132552218985
+min fval:  -1566.9498951763928
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-13.3844,  10.0833],
+        [ -0.9795,   0.7130],
+        [ 11.7135,   9.8469],
+        [  7.8428, -10.6016],
+        [ -0.9795,   0.7130],
+        [ -7.7328, -12.0217],
+        [  2.7915,  -8.8182],
+        [ 16.4394,  -2.1578],
+        [-39.9032,  -9.0916],
+        [ -0.9699,   0.7153]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([  8.0507,  -2.4347, -15.4045, -11.1251,  -2.4347,  -9.6879,  -9.4908,
+        -14.5674,  -7.5022,  -2.4306], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-6.2472e-01, -2.9775e-03, -3.2175e-01, -1.5209e-01, -2.9774e-03,
+         -4.5216e-01, -1.1433e-01, -3.3595e-01, -5.7038e-01, -2.8273e-03],
+        [-1.4023e+01,  3.0350e-01,  1.4925e+01,  7.3681e+00,  3.0350e-01,
+          1.2701e+01,  3.1165e+00,  1.1991e+01,  1.1858e+01,  2.9008e-01],
+        [-1.5725e+01, -2.4837e-01,  1.4735e+01,  7.8907e+00, -2.4837e-01,
+          9.8310e+00,  3.0601e+00,  1.0992e+01,  1.2645e+01, -2.3594e-01],
+        [-5.8178e+00, -1.8308e-02,  8.2647e-02,  3.1730e+00, -1.8308e-02,
+          1.1589e+01,  2.9823e+00,  2.1847e-01, -1.8985e+01, -2.0104e-02],
+        [-6.2472e-01, -2.9775e-03, -3.2175e-01, -1.5209e-01, -2.9774e-03,
+         -4.5216e-01, -1.1433e-01, -3.3595e-01, -5.7038e-01, -2.8273e-03],
+        [-6.2472e-01, -2.9774e-03, -3.2175e-01, -1.5209e-01, -2.9774e-03,
+         -4.5216e-01, -1.1433e-01, -3.3595e-01, -5.7038e-01, -2.8273e-03],
+        [-5.6477e-01,  2.8764e-01, -2.3010e+00,  7.4223e-01,  2.8764e-01,
+          1.1737e+00,  2.1885e-01, -9.0925e-01,  1.3970e-01,  2.8041e-01],
+        [-6.2472e-01, -2.9775e-03, -3.2175e-01, -1.5209e-01, -2.9775e-03,
+         -4.5216e-01, -1.1433e-01, -3.3595e-01, -5.7038e-01, -2.8273e-03],
+        [-6.2472e-01, -2.9775e-03, -3.2175e-01, -1.5209e-01, -2.9775e-03,
+         -4.5216e-01, -1.1433e-01, -3.3595e-01, -5.7038e-01, -2.8273e-03],
+        [-6.2472e-01, -2.9775e-03, -3.2175e-01, -1.5209e-01, -2.9775e-03,
+         -4.5216e-01, -1.1433e-01, -3.3595e-01, -5.7038e-01, -2.8273e-03]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-1.4834, -5.2968, -6.6930, -3.5645, -1.4834, -1.4834,  4.6728, -1.4834,
+        -1.4834, -1.4834], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[  0.3031, -12.2195, -15.8328, -11.9693,   0.3031,   0.3031,  13.3548,
+           0.3031,   0.3031,   0.3031]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[16.5805, 11.0778],
+        [17.1418,  0.0575],
+        [ 6.1257, 15.0244],
+        [19.0256,  2.1638],
+        [ 0.4579,  4.7260],
+        [-3.3560,  2.0146],
+        [18.2093,  6.4588],
+        [ 0.2714, -1.8213],
+        [ 6.2782, -4.2077],
+        [17.8673,  5.8992]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([  5.9387, -14.5480,  12.7167, -10.4469,   1.4069,  -5.9205,  -1.9383,
+          3.1401, -12.7074,   0.3992], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 1.6792e+00, -4.7497e+00, -6.9419e+00, -2.1608e+00, -3.4222e+00,
+          2.4327e-02,  1.7894e+00, -1.2832e+00, -1.5525e+00,  1.9757e+00],
+        [-1.0793e+00, -5.3903e+00,  6.7725e-01, -4.5171e+00,  8.5894e+00,
+         -3.3462e+00,  3.4605e-02, -3.5479e-01, -1.1086e-01, -1.0393e+00],
+        [-8.6291e+00, -8.1616e+00, -2.1341e+01, -8.5993e+00, -1.6315e+00,
+         -2.0120e-02, -3.0882e+00,  7.2960e+00,  1.9795e+00, -5.7378e+00],
+        [-2.7424e+01, -2.0644e+00, -5.0320e+00, -2.7530e+00, -8.1498e-02,
+         -7.9662e-03, -2.5368e+00,  2.9235e+00, -1.3052e+00, -4.9518e+00],
+        [ 4.8004e-01,  2.9030e-01, -5.0049e-01,  1.0457e+00, -5.8665e+00,
+         -1.6325e+00,  8.9726e-01, -1.1496e+00, -1.7550e+00, -4.4432e-01],
+        [-5.8002e-01, -2.8801e-01, -2.1635e+00, -7.9422e-01, -4.4850e-01,
+         -4.6706e-02, -4.9438e-01, -1.0434e+00,  1.4181e-01, -1.8638e+00],
+        [ 2.9578e+00,  5.3918e-01,  9.0130e+00,  1.8658e+00,  1.8751e-01,
+         -1.4516e-02,  3.6564e+00,  4.0411e+00, -1.3478e+00,  5.5525e+00],
+        [-3.8495e-01, -1.8250e-01, -2.3867e+00, -6.0843e-01, -1.2394e+00,
+         -1.8632e-01, -1.3833e+00, -2.6874e-01,  1.1297e-01, -1.2465e+00],
+        [-7.1888e-01, -1.2805e-01, -7.3550e-01, -3.1249e-01, -7.6054e-02,
+          3.1519e-02, -5.1633e-01, -1.5693e+00,  1.0815e-02, -8.8490e-01],
+        [-4.0093e+00, -3.6043e+00, -2.1064e+01, -6.7032e+00, -1.0258e+00,
+         -5.2155e-02, -6.3905e+00,  3.2424e+00,  2.8285e+00,  2.0562e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-1.4180, -1.0708,  3.3943, -0.5768, -1.8244, -1.6754, -6.1607, -1.2542,
+        -1.7532,  8.2980], device='cuda:0')), ('1.model.hidden_layer_3.weight', tensor([[-3.4266e+00,  1.2500e+00,  9.2381e-01,  9.8210e+00,  1.7168e+00,
+          1.3748e+00,  1.0489e+00,  2.5477e+00,  4.5939e-02, -2.3874e+00],
+        [-1.1918e-01, -8.2089e-02, -6.2521e-04,  5.4781e-03, -7.6746e-02,
+          4.1393e-03, -3.3550e+00,  1.5933e-02, -6.3594e-03, -9.9371e-02],
+        [-1.1921e-01, -8.2694e-02, -5.4362e-04,  5.5256e-03, -7.6567e-02,
+          4.1437e-03, -3.3529e+00,  1.6071e-02, -6.3335e-03, -9.9877e-02],
+        [-1.1921e-01, -8.2695e-02, -5.4352e-04,  5.5256e-03, -7.6566e-02,
+          4.1437e-03, -3.3529e+00,  1.6071e-02, -6.3335e-03, -9.9878e-02],
+        [-1.1921e-01, -8.2682e-02, -5.4485e-04,  5.5248e-03, -7.6570e-02,
+          4.1436e-03, -3.3529e+00,  1.6068e-02, -6.3340e-03, -9.9867e-02],
+        [ 2.9946e+00,  8.0670e-01,  4.2678e-02,  1.3669e+01,  1.3331e+00,
+         -1.4644e-01,  1.6232e+00, -3.9187e-01,  8.1901e-02, -9.2695e-01],
+        [-1.1921e-01, -8.2664e-02, -5.4676e-04,  5.5237e-03, -7.6575e-02,
+          4.1435e-03, -3.3530e+00,  1.6064e-02, -6.3347e-03, -9.9852e-02],
+        [-1.1921e-01, -8.2694e-02, -5.4358e-04,  5.5256e-03, -7.6566e-02,
+          4.1437e-03, -3.3529e+00,  1.6071e-02, -6.3335e-03, -9.9878e-02],
+        [-1.1921e-01, -8.2685e-02, -5.4454e-04,  5.5250e-03, -7.6569e-02,
+          4.1436e-03, -3.3529e+00,  1.6069e-02, -6.3339e-03, -9.9869e-02],
+        [ 3.6707e-01,  6.1123e+00,  6.9744e+00, -5.9372e+00,  1.5843e+00,
+          7.2426e-01, -5.9452e+00,  7.3517e-01,  4.0040e-02,  8.0279e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_3.bias', tensor([-4.2213, -3.3788, -3.3827, -3.3827, -3.3826, -7.3838, -3.3825, -3.3827,
+        -3.3826, -5.7052], device='cuda:0')), ('1.model.output_layer_4.weight', tensor([[ 6.5871,  0.1170,  0.1178,  0.1178,  0.1178,  7.5758,  0.1178,  0.1178,
+          0.1178, -6.9924],
+        [-6.2107, -0.1170, -0.1178, -0.1178, -0.1178, -7.5941, -0.1178, -0.1178,
+         -0.1178,  6.7166]], device='cuda:0'))])
+xi:  [58.522907]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 480.62924058854657
+W_T_median: 258.73502644298196
+W_T_pctile_5: 58.55570723893891
+W_T_CVAR_5_pct: -43.45418241342541
+Average q (qsum/M+1):  51.948667464717744
+Optimal xi:  [58.522907]
+Expected(across Rb) median(across samples) p_equity:  0.3202650874853134
+obj fun:  tensor(-1566.9499, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.0
+-----------------------------------------------

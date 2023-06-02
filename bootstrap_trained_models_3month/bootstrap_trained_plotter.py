@@ -47,39 +47,117 @@ def read_log_file(filepath_str):
 
     return df
 
-# forsyth_df = pd.read_csv("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/forsyth_a1_corrected.txt")
 
+training_performance_df = read_log_file("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/may29_block3_ef_2020datainitfor2019.txt")
 
-
-
-training_performance_df = read_log_file("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/mar9_ef_3month_bootstrap.txt")
-
-simulated_test_df = read_log_file("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/mar14_ef_runon_synthetic.txt")
+#simulated test
+df_cont = read_log_file("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/may30_testonsynth_3month.txt")
 
 
 plt.clf()
-plt.plot(simulated_test_df["cvar_05"],simulated_test_df["qsum_avg"],  marker = 's', label = "Out-of-distribution Test on Simulated Dataset")
+fig, ax = plt.subplots()
 
-plt.plot(training_performance_df["cvar_05"],training_performance_df["qsum_avg"],  marker = 'o', label = "Training Performance on Bootstrap Dataset")
+ax.plot(df_cont["cvar_05"],df_cont["qsum_avg"], marker = 'x', markersize=3, mew=10, 
+         color = "red",linewidth=2, label = "Out-of-distribution Test on Simulated Dataset")
+# for i, val in enumerate(df_cont['kappa']):
+#     plt.annotate(str(val), (df_cont["cvar_05"][i], df_cont['qsum_avg'][i]))
+
+kappa_to_annotate = 0.5
+label_idx = df_cont['kappa'].tolist().index(kappa_to_annotate)
+
+#plot arrow
+xytext = (0.4,0.55)
+ax.annotate("Out-of-distribution \nTest on Simulated Dataset", 
+            color= "red",
+            fontweight="semibold",
+            fontsize=14,
+            xy=(df_cont["cvar_05"][label_idx]+10,df_cont["qsum_avg"][label_idx]-0.9),
+            xytext=(0.4,0.51),    # fraction, fraction
+            textcoords='figure fraction',
+            horizontalalignment='center',
+            verticalalignment='center')
+
+ax.annotate('', 
+            fontweight="medium",
+            fontsize=14,
+            xy=(df_cont["cvar_05"][label_idx]-5,df_cont["qsum_avg"][label_idx]-0.5),
+            xytext=xytext,    # fraction, fraction
+            textcoords='figure fraction',
+            arrowprops=dict(arrowstyle="->", color="red"),
+            bbox=dict(pad=2, facecolor="none", edgecolor="none"))
+
+    
+ax.plot(training_performance_df["cvar_05"],training_performance_df["qsum_avg"], marker='o', color="black", mew=3, fillstyle='none', markersize=4, linewidth=2, label = "Training Performance on Bootstrap Dataset")
 for i, val in enumerate(training_performance_df['kappa']):
-    plt.annotate(str(val), (training_performance_df["cvar_05"][i]+7, training_performance_df['qsum_avg'][i]+0.2))
+    plt.annotate(str(val), (training_performance_df["cvar_05"][i]+15, training_performance_df['qsum_avg'][i]+0.3))
 
+#plot arrow
+xytext = (0.7,0.8)
+ax.annotate("Training Performance \n on Bootstrap Dataset \n (blocksize= 3 months)", 
+                    fontweight="semibold",
+                    fontsize=16,
+                    xy=(training_performance_df["cvar_05"][label_idx]+10,training_performance_df["qsum_avg"][label_idx]+0.9),
+                    xytext=(0.7,0.86),    # fraction, fraction
+                    textcoords='figure fraction',
+                    horizontalalignment='center',
+                    verticalalignment='center')
+
+ax.annotate('', 
+            fontweight="medium",
+            fontsize=14,
+            xy=(training_performance_df["cvar_05"][label_idx]+5,training_performance_df["qsum_avg"][label_idx]+0.5),
+            xytext=(0.65,0.80),    # fraction, fraction
+            textcoords='figure fraction',
+            arrowprops=dict(arrowstyle="->"),
+            bbox=dict(pad=2, facecolor="none", edgecolor="none"))
+
+#bengen point
+
+bengen_x = -261.31
+bengen_y = 40
+
+ax.plot(bengen_x, bengen_y, marker = "*", color="blue", mew=2, fillstyle='none', markersize=10, linewidth=2, label = "Bengen (1994)Strategy")
+
+#plot arrow
+xytext = (0.7,0.3)
+ax.annotate("Bengen (1994) \nStrategy", 
+                    fontweight="semibold",
+                    fontsize=16,
+                    color="blue",
+                    xy=(bengen_x, bengen_y),
+                    xytext=(0.62,0.3),    # fraction, fraction
+                    textcoords='figure fraction',
+                    horizontalalignment='left',
+                    verticalalignment='center')
+
+ax.annotate('', 
+            fontweight="medium",
+            fontsize=14,
+            color="blue",
+            xy=(bengen_x+10, bengen_y),
+            xytext=(0.62,0.3),    # fraction, fraction
+            textcoords='figure fraction',
+            arrowprops=dict(arrowstyle="->",color="blue"),
+            bbox=dict(pad=2, facecolor="none", edgecolor="none", color="blue"))
 
 
 # plt.title("DC Efficient Frontier: NN Control Trained on Bootstrapped Dataset")
-plt.xlabel("Expected Shortfall (cvar 0.05)", fontweight='bold')
-plt.ylabel("Expected Average Withdrawals", fontweight='bold')
-plt.legend(loc='lower left')
-plt.xlim([-650, 150])
-plt.ylim([40, 65])
+ax.set_xlabel("Expected Shortfall", fontweight='bold', fontsize=20)
+ax.set_ylabel("E[Average Withdrawal]", fontweight='bold', fontsize=20)
+# plt.legend(loc='lower left')
+ax.set_xlim([-770, 150])
+ax.set_ylim([35, 65])
+ax.spines[['right', 'top']].set_visible(False)
+ax.tick_params(axis='both', which='major', labelsize=12)
+plt.subplots_adjust(bottom=0.15)
 
-plt.show()
-
-plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/mar9_ef_trainedon_block3month_bootandsim.png', dpi = 200)
+plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/may28_ef_trainedon_block3month_bootandsim.pdf', format = "pdf")
 
 
+df_cont.to_csv("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/bootstrap_trained_3month_simulated_test.csv", float_format="%.3f")
+training_performance_df.to_csv("/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/bootstrap_trained_3month_training_performance.csv", float_format="%.3f")
 
-# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
+
 
 # forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
 

@@ -1,0 +1,38 @@
+Starting at: 
+02-06-23_16:38
+
+ numpy seed:  2  
+
+
+ pytorch seed:  2  
+
+Key parameters-------
+paths: 256000
+iterations: 10
+batchsize: 1000
+remove neg:  False
+w constaint activation:  yy_fix_jan29
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/decumulation_driver.py", line 600, in <module>
+    params = fun_Data__MCsim_wrapper.wrap_run_MCsim(
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Data__MCsim_wrapper.py", line 155, in wrap_run_MCsim
+    params = fun_Data_MCsim.MCsim(MCsim_info=params["MCsim_info_" + train_test_Flag],
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Data_MCsim.py", line 167, in MCsim
+    log_jump_mult_sum = func_SimLogJumpMult(NrSims=N_d,
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Data_MCsim.py", line 60, in func_SimLogJumpMult
+    temp_U =  np.random.uniform(size = pi_dt[i-1])
+KeyboardInterrupt

@@ -143,7 +143,59 @@ def withdraw_invest_NN_strategy(NN_list, params):
         
         q_n = custom_activation(nn_out, g_prev, params)
         
-                
+        #-----------------TEMP: Checking NN behavior at bang bang border-------------------------------        
+        
+        # import matplotlib.pyplot as plt
+        
+        # n_check = 5
+        # g_check = torch.linspace(900, 1100, 1000, device = params["device"])
+        
+        # phi_check = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
+        #                          n = n_check,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
+        #                          wealth_n = g_check,  # Wealth vector W(t_n^+), *after* contribution at t_n
+        #                                             # but *before* rebalancing at time t_n for (t_n, t_n+1)
+        #                          feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
+        #                          withdraw= params["withdrawal_standardize"])
+        
+        
+        # nn_out_check = torch.squeeze(NN_list[0].forward(phi_check))
+
+        # q_n_check = custom_activation(nn_out_check, g_check, params)
+        
+        # plt.plot(g_check.detach().cpu().numpy(), q_n_check.detach().cpu().numpy())
+        # plt.xlabel("wealth")
+        # plt.ylabel("withdrawal from NN")
+        # plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/border_check_varywealth.png', format = "png")
+        
+        # # n_check = np.linspace(4.5, 5.5, 1000)
+        # # g_check = torch.ones(1, device=params["device"])*1000
+        
+        # # result_vary_time = []
+        
+        # # for i in n_check:
+            
+        # #     phi_check = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
+        # #                          n = i,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
+        # #                          wealth_n = g_check,  # Wealth vector W(t_n^+), *after* contribution at t_n
+        # #                                             # but *before* rebalancing at time t_n for (t_n, t_n+1)
+        # #                          feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
+        # #                          withdraw= params["withdrawal_standardize"])
+            
+            
+        # #     nn_out_check = torch.squeeze(NN_list[0].forward(phi_check))
+        # #     q_n_check = custom_activation(nn_out_check, g_check, params)
+            
+        # #     result_vary_time.append(q_n_check.detach().cpu().item())
+            
+        # # plt.plot(result_vary_time.detach().cpu().numpy())
+        # # plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/border_check_varytime.png', format = "png")
+        
+        
+        # pause = 0
+        #----------------------------------------------------------------------------------------
+        
+        
+        
         #save withdrawals
         # params["q_matrix"][:,n_index]  = q_n.detach().cpu().numpy()
         qsum_T_vector += q_n

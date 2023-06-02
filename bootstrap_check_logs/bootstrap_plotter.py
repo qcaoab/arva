@@ -59,11 +59,11 @@ for file in files:
 plt.clf()
 fig, ax = plt.subplots()
 
-synthetic_df = pd.read_excel("/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb13_log_output_yyfeb3_big.xlsx")
+synthetic_df = pd.read_csv("/home/marcchen/Documents/testing_pyt_decum/researchcode/feb13_PAPERMODEL_otherfiles/main_model_ef.csv")
 
 
-ax.plot(synthetic_df["cvar_05"],synthetic_df["qsum_avg"],  marker='o', color="black", mew=1.5, fillstyle='none',
-        markersize=10, linewidth=2, label = "Simulated training data")
+ax.plot(synthetic_df["cvar_05"],synthetic_df["qsum_avg"],  marker='o', color="black", mew=3, fillstyle='none',
+        markersize=4, linewidth=2, label = "Simulated training data")
 
 label_idx = synthetic_df['kappa'].tolist().index(0.2)
     
@@ -87,15 +87,15 @@ ax.annotate('',
             bbox=dict(pad=2, facecolor="none", edgecolor="none"))
 
 
-colors = ["red", "seagreen", "slateblue"]
+colors = ["red", "green", "royalblue"]
 markers = ["s", "s", "s"]
-kappa_ann = [0.5, 50, 0.2] 
-x_text = [0.65, 0.78, 0.5]
-y_text = [0.7, 0.24, 0.4]
-x_arrow = [0.65, 0.78, 0.5]
-y_arrow = [0.7, 0.21, 0.4]
-ha = ['center', 'center', 'center']
-va = ['bottom', 'top', 'top']
+kappa_ann = [0.5, 3, 5] 
+x_text = [0.65, 0.84, 0.6]
+y_text = [0.77, 0.65, 0.35]
+x_arrow = [0.65, 0.84, 0.6]
+y_arrow = [0.78, 0.66, 0.35]
+ha = ['center', 'center', 'right']
+va = ['bottom', 'bottom', 'center']
 
 for i, block_size in enumerate(['1','3','12']):
            
@@ -135,7 +135,7 @@ ax.set_xlabel("Expected Shortfall",fontweight='bold', fontsize=20)
 ax.set_ylabel("E[Average Withdrawal]", fontweight='bold', fontsize=20)
 # plt.legend(loc='lower left')
 ax.set_xlim([-650, 150])
-ax.set_ylim([40, 65])
+ax.set_ylim([35, 65])
 ax.spines[['right', 'top']].set_visible(False)
 ax.tick_params(axis='both', which='major', labelsize=12)
 plt.subplots_adjust(bottom=0.15)
@@ -144,8 +144,14 @@ plt.subplots_adjust(bottom=0.15)
 
 plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_check_logs/bootstrap_comparison_mar8.pdf', format="pdf")
 
+for i, block_size in enumerate(['1','3','12']):
+           
+    df_cont = pd.DataFrame(bootstrap_results[block_size]) 
+    # 'median': median_wealth, 'f_val': function_value})
+    df_cont.sort_values(by=['kappa'], ignore_index=True, inplace=True)
+    df_cont.to_csv(f"/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_check_logs/bootstrap_test_ef_{block_size}.csv", float_format="%.3f")
 
-# df_cont.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
+# synthetic_df.to_csv(f"/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_check_logs/synthetic_train_ef_mainmodel.csv", float_format="%.3f")
 
 # forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
 

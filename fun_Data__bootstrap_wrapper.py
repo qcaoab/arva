@@ -249,6 +249,8 @@ def wrap_append_market_data(params,  #params dictionary as in main code
         print("Start: " + str(min(df_all.index)))
         print("End: " + str(max(df_all.index)))
         print("-----------------------------------------------")
+        
+       
 
         # Append to params
         params["bootstrap_source_data"] = df_all

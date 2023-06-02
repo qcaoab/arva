@@ -277,3 +277,99 @@ objective value function right now is: -1536.1836543578065
 28.000000000000004% of gradient descent iterations done. Method = Adam
 Current xi:  [-0.01300652]
 objective value function right now is: -1556.2071701284738
+30.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.05723846]
+objective value function right now is: -1547.6152615940036
+32.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.00508465]
+objective value function right now is: -1537.704235964097
+34.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.0706597]
+objective value function right now is: -1554.6036797854838
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.04720357]
+objective value function right now is: -1557.9614771182235
+38.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.04404688]
+objective value function right now is: -1558.3853458980918
+40.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.00597499]
+objective value function right now is: -1558.9425403089626
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [0.00061255]
+objective value function right now is: -1558.6519717727053
+44.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.05662094]
+objective value function right now is: -1558.1426016971097
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.00124498]
+objective value function right now is: -1557.4482500071529
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.01782647]
+objective value function right now is: -1558.454303429942
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.03813755]
+objective value function right now is: -1558.5078376295596
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.00181758]
+objective value function right now is: -1558.6643844563137
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.01496952]
+objective value function right now is: -1552.4938162592202
+56.00000000000001% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.0067677]
+objective value function right now is: -1556.5363275908853
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [0.00503523]
+objective value function right now is: -1553.3722363582995
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [0.00877238]
+objective value function right now is: -1557.4291774972714
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.01910408]
+objective value function right now is: -1557.3146453260242
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.01717935]
+objective value function right now is: -1555.9278922214298
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.02698699]
+objective value function right now is: -1558.8038451101831
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.01156343]
+objective value function right now is: -1556.1932190070777
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.00719747]
+objective value function right now is: -1556.981605626089
+72.0% of gradient descent iterations done. Method = Adam
+Current xi:  [0.00101636]
+objective value function right now is: -1559.2585804688854
+74.0% of gradient descent iterations done. Method = Adam
+Current xi:  [0.00149518]
+objective value function right now is: -1559.225743919294
+76.0% of gradient descent iterations done. Method = Adam
+Current xi:  [-0.00145542]
+objective value function right now is: -1559.034297453433
+78.0% of gradient descent iterations done. Method = Adam
+Current xi:  [0.00208983]
+objective value function right now is: -1559.9763217227985
+80.0% of gradient descent iterations done. Method = Adam
+Current xi:  [0.00112008]
+objective value function right now is: -1560.0139025074143
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/decumulation_driver.py", line 971, in <module>
+    fun_RUN__wrapper.RUN__wrapper_ONE_stage_optimization(
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_RUN__wrapper.py", line 117, in RUN__wrapper_ONE_stage_optimization
+    RUN__wrapper_training_testing_NN(
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_RUN__wrapper.py", line 223, in RUN__wrapper_training_testing_NN
+    params_TRAIN, res_adam = fun_train_NN.train_NN( theta0 = theta0,
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_train_NN.py", line 200, in train_NN
+    result_pyt_adam = run_Gradient_Descent_pytorch(NN_list= NN_list,
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_train_NN_SGD_algorithms.py", line 159, in run_Gradient_Descent_pytorch
+    params_it = copy.deepcopy(params)  # Create a copy of input data for this iteration
+  File "/usr/lib/python3.10/copy.py", line 146, in deepcopy
+    y = copier(x, memo)
+  File "/usr/lib/python3.10/copy.py", line 231, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/usr/lib/python3.10/copy.py", line 153, in deepcopy
+    y = copier(memo)
+KeyboardInterrupt

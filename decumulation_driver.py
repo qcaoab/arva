@@ -108,17 +108,19 @@ torch.manual_seed(seed_mc)
 print("\n pytorch seed: ", seed_mc, " \n")
 
 cont_nn = False  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
-cont_nn_start = 0
+cont_nn_start = 2
 cont_xi = False #uses previous value of optimal xi to initialize xi in next run
-cont_xi_start = 0  #tracing param index (starts at 1) to start continuation learning at
+cont_xi_start = 2  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
-preload = False
+preload = True
 params["local_path"] = str(os.getcwd())
 
-nn_preload = params["local_path"] + "/feb13_saved_models_PAPERMODEL/"
+#/bootstrap_trained_models_3month/models_rerun2019/
+
+nn_preload = params["local_path"] + "/bootstrap_trained_models_block12month/models_rerun2019/"
                   #Path(params["local_path"]+"/saved_models/NN_opt_mc_decum_13-01-23_12:00")    
-xi_preload = params["local_path"] + "/feb13_saved_models_PAPERMODEL/"
+xi_preload = params["local_path"] + "/bootstrap_trained_models_block12month/models_rerun2019/"
 #Path(params["local_path"]+"/saved_models/xi_opt_mc_decum_13-01-23_12:00.json")
 
 #control export params
@@ -145,28 +147,31 @@ params["w_constraint_activation"] = "yy_fix_jan29"
 #standardize differently for withdrawal
 params["withdrawal_standardize"] = True
 
+params["smooth_cvar_func"] = False
+params["lambda_quad"] = 10**(-6)
+
 # iteration dashboard --------------------------
 iter_params = "test" 
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 50000
+    itbound_mc = 10
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
     biases_mc = True
-    adam_xi_eta = 0.04
-    adam_nn_eta = 0.05
+    adam_xi_eta = 0.00
+    adam_nn_eta = 0.00
 
 if iter_params == "smol":
-    n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 3000
+    n_d_train_mc = int(2.56* (10**3)) 
+    itbound_mc = 10
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
     biases_mc = True
-    adam_xi_eta = 0.07
-    adam_nn_eta = 0.08
+    adam_xi_eta = 0.0
+    adam_nn_eta = 0.0
 
 if iter_params == "tiny":
     n_d_train_mc = 10
@@ -190,7 +195,7 @@ print("w constaint activation: ", params["w_constraint_activation"])
 
 # manually specify prop_const;
 
-prop_const = np.array([0.5,0.5])
+prop_const = np.array([0.6,0.4])
 withdraw_const = 40.0
 
 #Main settings for TRAINING data
@@ -200,7 +205,7 @@ params["data_source_Train"] = "simulated" #"bootstrap" or "simulated" [data sour
 #Pytorch flag for pre-trained NN
 params["PreTrained_pytorch"] = False
     
-params["standardization_file_path"] = "/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_3month/models/standardizing_opt_mc_decum_09-03-23_17:08_kappa_0.2.json"
+params["standardization_file_path"] = "/home/marcchen/Documents/testing_pyt_decum/researchcode/bootstrap_trained_models_block12month/models_rerun2019/standardizing_opt_mc_decum_29-05-23_14:26_kappa_50.0.json"
 
 #Specify if NN has been pre-trained: if FALSE, will TRAIN the NN
 params["preTrained_TrueFalse"] = False  #If True, NO TRAINING will occur, instead given F_theta will be used
@@ -281,7 +286,7 @@ params["obj_fun_epsilon"] =  10**-6
 
 
 #k = 999. for Inf case!
-tracing_parameters_to_run = [1.0]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
+tracing_parameters_to_run = [999.]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
  #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
@@ -556,13 +561,13 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
     # ----------------------------------------
     # TRAINING data bootstrapping
     # - Append bootstrapped data to "params" dictionary
-    blocksize = 3
+    blocksize =12
     print("Bootstrap block size: " + str(blocksize))
     params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
         train_test_Flag = "train",                  # "train" or "test"
         params = params,                            # params dictionary as in main code
         data_bootstrap_yyyymm_start = 192601,       # start month to use subset of data for bootstrapping, CHECK DATA!
-        data_bootstrap_yyyymm_end = 202012,         # end month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_end = 201912,         # end month to use subset of data for bootstrapping, CHECK DATA!
         data_bootstrap_exp_block_size = blocksize,          # Expected block size in terms of frequency of market returns data
                                                     # e.g. = X means expected block size is X months of returns
                                                     # if market returns data is monthly

@@ -9,7 +9,6 @@ import re
 
 os.chdir("/home/marcchen/Documents/testing_pyt_decum/researchcode/feb13_log_output_yyfeb3_big_PAPERMODEL")
 
-
 # os.chdir("/home/ma3chen/Documents/marc_branch2/researchcode/log_output")
 files = [f for f in listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
 
@@ -124,10 +123,10 @@ ax.set_ylim([30, 65])
 ax.spines[['right', 'top']].set_visible(False)
 ax.tick_params(axis='both', which='major', labelsize=12)
 plt.subplots_adjust(bottom=0.15)
-plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/feb13_PAPERMODEL_otherfiles/feb13_log_output_yyfeb3_big_PAPERMODEL.pdf',format="pdf")
 
 
-# df_cont.to_excel("/home/marcchen/Documents/testing_pyt_decum/researchcode/formatted_output/feb13_log_output_yyfeb3_big_PAPERMODEL.xlsx")
+# plt.savefig('/home/marcchen/Documents/testing_pyt_decum/researchcode/feb13_PAPERMODEL_otherfiles/feb13_log_output_yyfeb3_big_PAPERMODEL.pdf',format="pdf")
 
-# forsyth_df.to_excel("/home/marcchen/Documents/pytorch_decumulation_mc/researchcode/formatted_output/jan29_ef_rangetermsimple.xlsx")
+df_cont.to_csv("/home/marcchen/Documents/testing_pyt_decum/researchcode/feb13_PAPERMODEL_otherfiles/main_model_ef.csv", float_format="%.3f")
+forsyth_df.to_csv("/home/marcchen/Documents/testing_pyt_decum/researchcode/feb13_PAPERMODEL_otherfiles/peter_pde_ef.csv", float_format="%.3f")
 

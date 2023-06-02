@@ -282,3 +282,103 @@ objective value function right now is: -1559.9354815875333
 new min fval:  -1561.2979700732958
 Current xi:  [54.980595]
 objective value function right now is: -1561.2979700732958
+30.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.988857]
+objective value function right now is: -1560.7428330875061
+32.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.104916]
+objective value function right now is: -1559.2300221048467
+34.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.312542]
+objective value function right now is: -1558.5374531690684
+36.0% of gradient descent iterations done. Method = Adam
+Current xi:  [56.281902]
+objective value function right now is: -1561.1220815975978
+38.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1563.5846415213928
+Current xi:  [56.02402]
+objective value function right now is: -1563.5846415213928
+40.0% of gradient descent iterations done. Method = Adam
+Current xi:  [56.82931]
+objective value function right now is: -1559.6492945517489
+42.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.568794]
+objective value function right now is: -1559.208966751148
+44.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1563.8693406305727
+Current xi:  [58.614895]
+objective value function right now is: -1563.8693406305727
+46.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.707493]
+objective value function right now is: -1563.1874868283883
+48.0% of gradient descent iterations done. Method = Adam
+Current xi:  [59.144585]
+objective value function right now is: -1556.3967976496347
+50.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.854126]
+objective value function right now is: -1563.6967155291914
+52.0% of gradient descent iterations done. Method = Adam
+Current xi:  [58.668407]
+objective value function right now is: -1561.1714595918124
+54.0% of gradient descent iterations done. Method = Adam
+Current xi:  [59.520966]
+objective value function right now is: -1563.3931582797882
+56.00000000000001% of gradient descent iterations done. Method = Adam
+new min fval:  -1564.4879738371037
+Current xi:  [59.685024]
+objective value function right now is: -1564.4879738371037
+57.99999999999999% of gradient descent iterations done. Method = Adam
+Current xi:  [60.085636]
+objective value function right now is: -1563.3769172794005
+60.0% of gradient descent iterations done. Method = Adam
+Current xi:  [59.02424]
+objective value function right now is: -1557.4815335100525
+62.0% of gradient descent iterations done. Method = Adam
+Current xi:  [57.72577]
+objective value function right now is: -1559.7205991591213
+64.0% of gradient descent iterations done. Method = Adam
+Current xi:  [56.980408]
+objective value function right now is: -1559.7676955783277
+66.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.617004]
+objective value function right now is: -1556.5966447706317
+68.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.388226]
+objective value function right now is: -1559.501336436681
+70.0% of gradient descent iterations done. Method = Adam
+Current xi:  [54.157063]
+objective value function right now is: -1560.8638626157212
+72.0% of gradient descent iterations done. Method = Adam
+Current xi:  [54.460804]
+objective value function right now is: -1564.1777007645258
+74.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1564.758273770535
+Current xi:  [55.045635]
+objective value function right now is: -1564.758273770535
+76.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1565.007221538514
+Current xi:  [55.19158]
+objective value function right now is: -1565.007221538514
+78.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1565.5434788662615
+Current xi:  [55.375244]
+objective value function right now is: -1565.5434788662615
+80.0% of gradient descent iterations done. Method = Adam
+Current xi:  [55.84046]
+objective value function right now is: -1565.2197529350476
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/decumulation_driver.py", line 971, in <module>
+    fun_RUN__wrapper.RUN__wrapper_ONE_stage_optimization(
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_RUN__wrapper.py", line 117, in RUN__wrapper_ONE_stage_optimization
+    RUN__wrapper_training_testing_NN(
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_RUN__wrapper.py", line 223, in RUN__wrapper_training_testing_NN
+    params_TRAIN, res_adam = fun_train_NN.train_NN( theta0 = theta0,
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_train_NN.py", line 200, in train_NN
+    result_pyt_adam = run_Gradient_Descent_pytorch(NN_list= NN_list,
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_train_NN_SGD_algorithms.py", line 178, in run_Gradient_Descent_pytorch
+    f_val, _ = objfun_pyt(NN_list, params_it, xi)
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_eval_objfun_NN_strategy.py", line 31, in eval_obj_NN_strategy_pyt
+    params, g, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
+  File "/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_invest_NN_strategy.py", line 186, in withdraw_invest_NN_strategy
+    params["Feature_phi_paths_allocation"][:,n_index,feature_index] =  phi_2[:,feature_index].detach().cpu().numpy()
+KeyboardInterrupt

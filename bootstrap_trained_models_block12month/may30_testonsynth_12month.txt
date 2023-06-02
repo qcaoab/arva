@@ -1,0 +1,1775 @@
+Starting at: 
+30-05-23_11:44
+
+ numpy seed:  3  
+
+
+ pytorch seed:  3  
+
+Key parameters-------
+paths: 256000
+iterations: 10
+batchsize: 1000
+remove neg:  False
+w constaint activation:  yy_fix_jan29
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+3.3333333333333335% of MC simulations done.
+6.666666666666667% of MC simulations done.
+10.0% of MC simulations done.
+13.333333333333334% of MC simulations done.
+16.666666666666664% of MC simulations done.
+20.0% of MC simulations done.
+23.333333333333332% of MC simulations done.
+26.666666666666668% of MC simulations done.
+30.0% of MC simulations done.
+33.33333333333333% of MC simulations done.
+36.666666666666664% of MC simulations done.
+40.0% of MC simulations done.
+43.333333333333336% of MC simulations done.
+46.666666666666664% of MC simulations done.
+50.0% of MC simulations done.
+53.333333333333336% of MC simulations done.
+56.666666666666664% of MC simulations done.
+60.0% of MC simulations done.
+63.33333333333333% of MC simulations done.
+66.66666666666666% of MC simulations done.
+70.0% of MC simulations done.
+73.33333333333333% of MC simulations done.
+76.66666666666667% of MC simulations done.
+80.0% of MC simulations done.
+83.33333333333334% of MC simulations done.
+86.66666666666667% of MC simulations done.
+90.0% of MC simulations done.
+93.33333333333333% of MC simulations done.
+96.66666666666667% of MC simulations done.
+100.0% of MC simulations done.
+Withdrawal NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       1       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer      10  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer      10  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       1              none   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1      (2, 10)     True          10  
+2     (10, 10)     True          10  
+3      (10, 1)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+Allocation NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       2       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/testing_pyt_decum/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer      10  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer      10  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       2           softmax   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1      (2, 10)     True          10  
+2     (10, 10)     True          10  
+3      (10, 2)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+{'methods': ['Adam'], 'output_progress': False, 'tol': 1e-06, 'itbound_scipy_algorithms': 1000, 'check_exit_criteria': False, 'nit_running_min': 1, 'itbound_SGD_algorithms': 10, 'nit_IterateAveragingStart': 9, 'batchsize': 1000, 'SGD_learningrate': 50.0, 'Adagrad_epsilon': 1e-08, 'Adagrad_eta': 1.0, 'Adadelta_ewma': 0.9, 'Adadelta_epsilon': 1e-08, 'RMSprop_ewma': 0.8, 'RMSprop_epsilon': 1e-08, 'RMSprop_eta': 0.1, 'Adam_ewma_1': 0.9, 'Adam_ewma_2': 0.998, 'Adam_eta': 0.0, 'Adam_epsilon': 1e-08, 'Adam_weight_decay': 0.0001, 'running_min_from_avg': False, 'running_min_from_sgd': True, 'lr_schedule': True}
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-0.3255,  1.2455],
+        [-0.3255,  1.2455],
+        [-6.5259,  5.8318],
+        [14.7129,  1.2129],
+        [-0.3255,  1.2455],
+        [-0.3255,  1.2455],
+        [-0.3255,  1.2455],
+        [-0.3255,  1.2455],
+        [-1.6915,  6.4000],
+        [-0.3255,  1.2455]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([-0.7499, -0.7499, 11.7320, -9.7356, -0.7499, -0.7499, -0.7499, -0.7499,
+        11.5495, -0.7499], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [ 0.2036,  0.2036, -8.2416, -9.9350,  0.2036,  0.2036,  0.2036,  0.2036,
+         -7.2925,  0.2036],
+        [ 0.2142,  0.2142,  2.7331,  3.2530,  0.2142,  0.2142,  0.2142,  0.2142,
+          2.5699,  0.2142],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [ 0.0381,  0.0381,  3.8326,  4.6034,  0.0381,  0.0381,  0.0381,  0.0381,
+          3.5913,  0.0381],
+        [-0.0399, -0.0399,  4.6153,  5.5207, -0.0399, -0.0399, -0.0399, -0.0399,
+          4.2735, -0.0399],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107]], device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-0.7522, -0.7522,  6.4365, -3.1248, -0.7522, -0.7522, -3.2977, -3.7270,
+        -0.7522, -0.7522], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ -0.0161,  -0.0161, -14.1051,   3.3569,  -0.0161,  -0.0161,   4.9615,
+           6.4920,  -0.0161,  -0.0161]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 15.7497,   4.9305],
+        [ -1.5837,   0.6584],
+        [ -1.8877,  -9.5768],
+        [-12.4833,   0.2765],
+        [  3.9985,  -3.0172],
+        [ -5.7955,   7.0159],
+        [ -1.8852,   0.6257],
+        [ -1.4128,   0.6565],
+        [ -7.1814,   2.2737],
+        [ 10.9836,   3.3013]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([  2.2020,  -2.4649,  -8.9652,  12.3181, -11.5729,   7.5116,  -2.6573,
+         -2.6612,   4.6344,  -2.3868], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 3.7035e-01,  7.6552e-02, -3.1867e+00, -6.8412e+00, -2.9245e+00,
+          1.2726e+00,  1.0437e-01,  1.8795e-02, -1.0365e+00,  6.4539e-01],
+        [-6.8571e+00, -1.1156e-01, -4.7354e+00,  3.0146e+00, -4.5338e-01,
+          2.4262e+00, -8.5864e-02, -1.6208e-01,  2.1850e+00, -2.1659e+00],
+        [-1.0846e+00, -3.1123e-02, -1.2494e+00, -8.1090e-01, -1.3050e+00,
+         -3.6397e-01, -2.4364e-02, -2.8508e-02, -8.7531e-02, -1.0283e+00],
+        [-7.3903e+00, -1.1477e-01,  7.8922e+00,  6.9815e+00,  3.3095e-02,
+         -1.2662e+01, -1.9191e-02, -9.3183e-02, -1.3567e+00, -7.5468e+00],
+        [-7.2084e+00, -9.1412e-03,  7.9475e+00, -7.6969e+00, -2.6286e+00,
+         -9.7524e-01,  8.7648e-02, -1.0591e-03, -4.8432e-01,  1.0628e+00],
+        [-1.2076e+01, -5.0396e-02,  4.0635e+00,  7.1226e+00, -9.1623e+00,
+         -5.5718e+00, -5.3072e-02, -3.1237e-02, -7.4494e+00, -2.7843e+00],
+        [-2.6918e+00, -5.6887e-02,  2.3395e+00,  5.9607e+00, -5.9164e+00,
+         -9.7387e+00,  7.2083e-01, -5.8150e-02, -3.4459e+00, -3.5545e+00],
+        [-4.7991e-01,  5.4160e-02, -2.0331e+00, -1.6112e+00, -1.9481e+00,
+         -1.5420e+00,  2.0073e-02,  7.0161e-02, -9.9327e-01, -2.0859e-02],
+        [-4.7990e-01,  5.4162e-02, -2.0331e+00, -1.6112e+00, -1.9481e+00,
+         -1.5420e+00,  2.0074e-02,  7.0164e-02, -9.9328e-01, -2.0848e-02],
+        [-4.6996e+00,  2.5573e-02, -8.1759e+00,  8.5164e+00, -1.8314e-02,
+          2.9038e+00,  2.9904e-01,  3.7064e-02,  1.7231e+00, -2.5787e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-0.5983, -2.7310, -2.5632, -2.3429, -0.4239, -2.6967, -0.0214, -2.1144,
+        -2.1144, -4.1927], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ -2.5341,   2.6527,  -0.0369,  -5.5070,   5.4180,  12.1002,  -0.6240,
+          -1.3804,  -1.3805,   0.5984],
+        [  2.4794,  -2.6478,   0.0369,   5.5024,  -5.4535, -12.0998,   0.8739,
+           1.3805,   1.3805,  -0.7359]], device='cuda:0'))])
+loaded xi:  -473.47598
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+new min fval from sgd:  -1739.911607886523
+min fval:  -1739.911607886523
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-0.3255,  1.2455],
+        [-0.3255,  1.2455],
+        [-6.5259,  5.8318],
+        [14.7129,  1.2129],
+        [-0.3255,  1.2455],
+        [-0.3255,  1.2455],
+        [-0.3255,  1.2455],
+        [-0.3255,  1.2455],
+        [-1.6915,  6.4000],
+        [-0.3255,  1.2455]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([-0.7499, -0.7499, 11.7320, -9.7356, -0.7499, -0.7499, -0.7499, -0.7499,
+        11.5495, -0.7499], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [ 0.2036,  0.2036, -8.2416, -9.9350,  0.2036,  0.2036,  0.2036,  0.2036,
+         -7.2925,  0.2036],
+        [ 0.2142,  0.2142,  2.7331,  3.2530,  0.2142,  0.2142,  0.2142,  0.2142,
+          2.5699,  0.2142],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [ 0.0381,  0.0381,  3.8326,  4.6034,  0.0381,  0.0381,  0.0381,  0.0381,
+          3.5913,  0.0381],
+        [-0.0399, -0.0399,  4.6153,  5.5207, -0.0399, -0.0399, -0.0399, -0.0399,
+          4.2735, -0.0399],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107],
+        [-0.0107, -0.0107, -0.0496, -0.2561, -0.0107, -0.0107, -0.0107, -0.0107,
+         -0.2040, -0.0107]], device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-0.7522, -0.7522,  6.4365, -3.1248, -0.7522, -0.7522, -3.2977, -3.7270,
+        -0.7522, -0.7522], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ -0.0161,  -0.0161, -14.1051,   3.3569,  -0.0161,  -0.0161,   4.9615,
+           6.4920,  -0.0161,  -0.0161]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 15.7497,   4.9305],
+        [ -1.5837,   0.6584],
+        [ -1.8877,  -9.5768],
+        [-12.4833,   0.2765],
+        [  3.9985,  -3.0172],
+        [ -5.7955,   7.0159],
+        [ -1.8852,   0.6257],
+        [ -1.4128,   0.6565],
+        [ -7.1814,   2.2737],
+        [ 10.9836,   3.3013]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([  2.2020,  -2.4649,  -8.9652,  12.3181, -11.5729,   7.5116,  -2.6573,
+         -2.6612,   4.6344,  -2.3868], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 3.7035e-01,  7.6552e-02, -3.1867e+00, -6.8412e+00, -2.9245e+00,
+          1.2726e+00,  1.0437e-01,  1.8795e-02, -1.0365e+00,  6.4539e-01],
+        [-6.8571e+00, -1.1156e-01, -4.7354e+00,  3.0146e+00, -4.5338e-01,
+          2.4262e+00, -8.5864e-02, -1.6208e-01,  2.1850e+00, -2.1659e+00],
+        [-1.0846e+00, -3.1123e-02, -1.2494e+00, -8.1090e-01, -1.3050e+00,
+         -3.6397e-01, -2.4364e-02, -2.8508e-02, -8.7531e-02, -1.0283e+00],
+        [-7.3903e+00, -1.1477e-01,  7.8922e+00,  6.9815e+00,  3.3095e-02,
+         -1.2662e+01, -1.9191e-02, -9.3183e-02, -1.3567e+00, -7.5468e+00],
+        [-7.2084e+00, -9.1412e-03,  7.9475e+00, -7.6969e+00, -2.6286e+00,
+         -9.7524e-01,  8.7648e-02, -1.0591e-03, -4.8432e-01,  1.0628e+00],
+        [-1.2076e+01, -5.0396e-02,  4.0635e+00,  7.1226e+00, -9.1623e+00,
+         -5.5718e+00, -5.3072e-02, -3.1237e-02, -7.4494e+00, -2.7843e+00],
+        [-2.6918e+00, -5.6887e-02,  2.3395e+00,  5.9607e+00, -5.9164e+00,
+         -9.7387e+00,  7.2083e-01, -5.8150e-02, -3.4459e+00, -3.5545e+00],
+        [-4.7991e-01,  5.4160e-02, -2.0331e+00, -1.6112e+00, -1.9481e+00,
+         -1.5420e+00,  2.0073e-02,  7.0161e-02, -9.9327e-01, -2.0859e-02],
+        [-4.7990e-01,  5.4162e-02, -2.0331e+00, -1.6112e+00, -1.9481e+00,
+         -1.5420e+00,  2.0074e-02,  7.0164e-02, -9.9328e-01, -2.0848e-02],
+        [-4.6996e+00,  2.5573e-02, -8.1759e+00,  8.5164e+00, -1.8314e-02,
+          2.9038e+00,  2.9904e-01,  3.7064e-02,  1.7231e+00, -2.5787e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-0.5983, -2.7310, -2.5632, -2.3429, -0.4239, -2.6967, -0.0214, -2.1144,
+        -2.1144, -4.1927], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ -2.5341,   2.6527,  -0.0369,  -5.5070,   5.4180,  12.1002,  -0.6240,
+          -1.3804,  -1.3805,   0.5984],
+        [  2.4794,  -2.6478,   0.0369,   5.5024,  -5.4535, -12.0998,   0.8739,
+           1.3805,   1.3805,  -0.7359]], device='cuda:0'))])
+xi:  [-473.47598]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 397.52686824777686
+W_T_median: 174.15299195771007
+W_T_pctile_5: -486.2201611741268
+W_T_CVAR_5_pct: -599.9998543219203
+Average q (qsum/M+1):  57.09518334173387
+Optimal xi:  [-473.47598]
+Expected(across Rb) median(across samples) p_equity:  0.32835869419698915
+obj fun:  tensor(-1739.9116, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.05
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-0.3487,  1.4384],
+        [-0.3487,  1.4384],
+        [-1.2258, 10.3258],
+        [15.8137,  3.1345],
+        [-0.3487,  1.4384],
+        [-0.3487,  1.4384],
+        [-0.3487,  1.4384],
+        [-0.3487,  1.4384],
+        [-0.6722, 10.5949],
+        [-0.3487,  1.4384]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -1.0858,  -1.0858,  11.8945, -10.3500,  -1.0858,  -1.0858,  -1.0858,
+         -1.0858,  12.1984,  -1.0858], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [ 4.3000e-02,  4.3000e-02, -8.1602e+00, -9.9241e+00,  4.3000e-02,
+          4.3000e-02,  4.3000e-02,  4.3000e-02, -9.8621e+00,  4.3000e-02],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [ 2.0036e-01,  2.0036e-01,  6.1945e+00, -1.7519e+00,  2.0036e-01,
+          2.0036e-01,  2.0036e-01,  2.0036e-01,  6.7771e+00,  2.0036e-01],
+        [-8.1216e-02, -8.1216e-02,  5.0863e+00,  5.4689e+00, -8.1216e-02,
+         -8.1216e-02, -8.1216e-02, -8.1215e-02,  5.1618e+00, -8.1216e-02],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-1.1713, -1.1713,  4.0320, -1.1713, -1.1713, -1.1713, -3.6615, -3.0611,
+        -1.1713, -1.1713], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ -0.0136,  -0.0136, -12.8633,  -0.0136,  -0.0136,  -0.0136,   7.5722,
+           6.7196,  -0.0136,  -0.0136]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 15.0797,  12.9428],
+        [ -9.7977,   1.9467],
+        [ -8.5064, -14.8348],
+        [-14.6073,   1.5669],
+        [ -3.3179, -13.9117],
+        [ -5.9351,  10.8112],
+        [ -2.2012,  -0.7167],
+        [  6.8470,   2.1389],
+        [ -9.3185,   2.3242],
+        [ 12.7846,   4.2205]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ 13.1807,   1.7338, -11.5785,  14.1856, -16.2033,  10.6373,  -5.6924,
+         -9.1308,   5.5923,   0.3111], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-6.5810e-01, -5.6672e-02, -2.2821e+00, -5.4974e+00, -2.5205e+00,
+          2.5963e+00, -7.8717e-01,  4.7888e+00, -2.4153e+00, -4.3833e-01],
+        [-8.2683e-01, -4.6346e-02, -1.6395e+00, -1.8261e+00, -1.4590e+00,
+         -1.0094e+00, -1.0757e+00,  2.1439e-01, -1.0022e-01, -1.0520e+00],
+        [-1.1514e+00, -5.3713e-03, -1.1799e+00, -1.1281e+00, -1.1580e+00,
+         -4.3491e-01, -9.6385e-01, -5.5142e-03, -5.5353e-02, -1.2454e+00],
+        [-9.8871e+00, -2.4718e+00,  8.6897e+00,  6.5502e+00, -8.8941e+00,
+         -1.2854e+01,  7.2348e+00, -1.3371e-02, -1.3648e-01, -4.9317e+00],
+        [ 4.7087e+00,  1.8239e+00,  1.1215e+00, -1.2372e+01, -1.1566e+00,
+          9.8079e-01,  8.9683e+00, -2.2438e-01,  7.6369e+00, -4.7469e+00],
+        [-1.1300e+01, -1.5408e+00, -1.8083e+00,  7.7199e+00,  3.1271e+00,
+         -3.2057e+00, -4.0170e+00, -1.0354e-03,  7.4936e+00, -1.5678e+01],
+        [-3.2327e+00,  1.3878e+00,  3.8076e+00,  1.9577e+00, -4.7917e+00,
+         -1.3830e+01, -5.5119e+00,  4.6791e-01, -2.8159e-01, -7.6369e-01],
+        [-8.1045e-01, -4.7222e-02, -1.6644e+00, -1.8494e+00, -1.4749e+00,
+         -1.0268e+00, -1.0671e+00,  2.2402e-01, -9.9435e-02, -1.0401e+00],
+        [-8.1023e-01, -4.7234e-02, -1.6648e+00, -1.8497e+00, -1.4751e+00,
+         -1.0270e+00, -1.0670e+00,  2.2415e-01, -9.9426e-02, -1.0399e+00],
+        [-4.5225e+00,  4.1912e+00, -4.7301e+00,  7.9287e+00, -6.2438e-01,
+          2.4333e+00, -2.2515e-01, -2.0419e+00,  1.9845e+00, -2.2900e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-1.5136, -2.3419, -2.3896, -0.3939, -1.9942, -5.6838,  1.9695, -2.3325,
+        -2.3323, -3.7040], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ -2.5421,  -0.9484,  -0.0562,  -5.4078,   5.2913,  11.9470,  -0.4516,
+          -0.9927,  -0.9934,   0.6542],
+        [  2.5326,   0.9484,   0.0562,   5.4034,  -5.3258, -11.9475,   0.6956,
+           0.9928,   0.9934,  -0.7803]], device='cuda:0'))])
+loaded xi:  -238.96587
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+new min fval from sgd:  -1670.3593697668211
+min fval:  -1670.3593697668211
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-0.3487,  1.4384],
+        [-0.3487,  1.4384],
+        [-1.2258, 10.3258],
+        [15.8137,  3.1345],
+        [-0.3487,  1.4384],
+        [-0.3487,  1.4384],
+        [-0.3487,  1.4384],
+        [-0.3487,  1.4384],
+        [-0.6722, 10.5949],
+        [-0.3487,  1.4384]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -1.0858,  -1.0858,  11.8945, -10.3500,  -1.0858,  -1.0858,  -1.0858,
+         -1.0858,  12.1984,  -1.0858], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [ 4.3000e-02,  4.3000e-02, -8.1602e+00, -9.9241e+00,  4.3000e-02,
+          4.3000e-02,  4.3000e-02,  4.3000e-02, -9.8621e+00,  4.3000e-02],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [ 2.0036e-01,  2.0036e-01,  6.1945e+00, -1.7519e+00,  2.0036e-01,
+          2.0036e-01,  2.0036e-01,  2.0036e-01,  6.7771e+00,  2.0036e-01],
+        [-8.1216e-02, -8.1216e-02,  5.0863e+00,  5.4689e+00, -8.1216e-02,
+         -8.1216e-02, -8.1216e-02, -8.1215e-02,  5.1618e+00, -8.1216e-02],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03],
+        [-7.1751e-03, -7.1751e-03, -1.1604e-01, -1.9089e-01, -7.1751e-03,
+         -7.1751e-03, -7.1751e-03, -7.1751e-03, -1.5063e-01, -7.1751e-03]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-1.1713, -1.1713,  4.0320, -1.1713, -1.1713, -1.1713, -3.6615, -3.0611,
+        -1.1713, -1.1713], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ -0.0136,  -0.0136, -12.8633,  -0.0136,  -0.0136,  -0.0136,   7.5722,
+           6.7196,  -0.0136,  -0.0136]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 15.0797,  12.9428],
+        [ -9.7977,   1.9467],
+        [ -8.5064, -14.8348],
+        [-14.6073,   1.5669],
+        [ -3.3179, -13.9117],
+        [ -5.9351,  10.8112],
+        [ -2.2012,  -0.7167],
+        [  6.8470,   2.1389],
+        [ -9.3185,   2.3242],
+        [ 12.7846,   4.2205]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ 13.1807,   1.7338, -11.5785,  14.1856, -16.2033,  10.6373,  -5.6924,
+         -9.1308,   5.5923,   0.3111], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-6.5810e-01, -5.6672e-02, -2.2821e+00, -5.4974e+00, -2.5205e+00,
+          2.5963e+00, -7.8717e-01,  4.7888e+00, -2.4153e+00, -4.3833e-01],
+        [-8.2683e-01, -4.6346e-02, -1.6395e+00, -1.8261e+00, -1.4590e+00,
+         -1.0094e+00, -1.0757e+00,  2.1439e-01, -1.0022e-01, -1.0520e+00],
+        [-1.1514e+00, -5.3713e-03, -1.1799e+00, -1.1281e+00, -1.1580e+00,
+         -4.3491e-01, -9.6385e-01, -5.5142e-03, -5.5353e-02, -1.2454e+00],
+        [-9.8871e+00, -2.4718e+00,  8.6897e+00,  6.5502e+00, -8.8941e+00,
+         -1.2854e+01,  7.2348e+00, -1.3371e-02, -1.3648e-01, -4.9317e+00],
+        [ 4.7087e+00,  1.8239e+00,  1.1215e+00, -1.2372e+01, -1.1566e+00,
+          9.8079e-01,  8.9683e+00, -2.2438e-01,  7.6369e+00, -4.7469e+00],
+        [-1.1300e+01, -1.5408e+00, -1.8083e+00,  7.7199e+00,  3.1271e+00,
+         -3.2057e+00, -4.0170e+00, -1.0354e-03,  7.4936e+00, -1.5678e+01],
+        [-3.2327e+00,  1.3878e+00,  3.8076e+00,  1.9577e+00, -4.7917e+00,
+         -1.3830e+01, -5.5119e+00,  4.6791e-01, -2.8159e-01, -7.6369e-01],
+        [-8.1045e-01, -4.7222e-02, -1.6644e+00, -1.8494e+00, -1.4749e+00,
+         -1.0268e+00, -1.0671e+00,  2.2402e-01, -9.9435e-02, -1.0401e+00],
+        [-8.1023e-01, -4.7234e-02, -1.6648e+00, -1.8497e+00, -1.4751e+00,
+         -1.0270e+00, -1.0670e+00,  2.2415e-01, -9.9426e-02, -1.0399e+00],
+        [-4.5225e+00,  4.1912e+00, -4.7301e+00,  7.9287e+00, -6.2438e-01,
+          2.4333e+00, -2.2515e-01, -2.0419e+00,  1.9845e+00, -2.2900e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-1.5136, -2.3419, -2.3896, -0.3939, -1.9942, -5.6838,  1.9695, -2.3325,
+        -2.3323, -3.7040], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ -2.5421,  -0.9484,  -0.0562,  -5.4078,   5.2913,  11.9470,  -0.4516,
+          -0.9927,  -0.9934,   0.6542],
+        [  2.5326,   0.9484,   0.0562,   5.4034,  -5.3258, -11.9475,   0.6956,
+           0.9928,   0.9934,  -0.7803]], device='cuda:0'))])
+xi:  [-238.96587]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 395.95216132412673
+W_T_median: 150.7851957221398
+W_T_pctile_5: -247.8814277173606
+W_T_CVAR_5_pct: -360.3017663388483
+Average q (qsum/M+1):  56.21126039566532
+Optimal xi:  [-238.96587]
+Expected(across Rb) median(across samples) p_equity:  0.3282805225656678
+obj fun:  tensor(-1670.3594, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:262: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.2
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-1.0250,  1.7657],
+        [-1.0250,  1.7657],
+        [-2.9865, 11.4268],
+        [10.2867, -3.2597],
+        [-1.0249,  1.7657],
+        [-1.0249,  1.7657],
+        [-1.0249,  1.7657],
+        [-1.0249,  1.7657],
+        [ 1.2421, 11.9863],
+        [-1.0249,  1.7657]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -1.9953,  -1.9953,  11.8115, -10.5453,  -1.9953,  -1.9953,  -1.9953,
+         -1.9953,  12.0570,  -1.9953], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [ 1.7803e-01,  1.7803e-01, -5.8786e+00,  1.0112e+01,  1.7800e-01,
+          1.7800e-01,  1.7800e-01,  1.7800e-01, -1.0975e+01,  1.7800e-01],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [ 1.5040e-01,  1.5040e-01,  8.2273e+00, -1.2414e+01,  1.5039e-01,
+          1.5039e-01,  1.5039e-01,  1.5039e-01,  4.0424e+00,  1.5039e-01],
+        [ 1.2400e-01,  1.2400e-01,  6.9092e+00, -1.0502e+01,  1.2394e-01,
+          1.2394e-01,  1.2394e-01,  1.2394e-01,  3.1491e+00,  1.2394e-01],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-1.5177, -1.5177,  5.5918, -1.5177, -1.5177, -1.5177, -4.9569, -4.3312,
+        -1.5177, -1.5177], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ 6.7226e-04,  6.7222e-04, -1.6371e+01,  6.7222e-04,  6.7223e-04,
+          6.7226e-04,  9.9300e+00,  7.0039e+00,  6.7232e-04,  6.7222e-04]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 20.7529,  12.9311],
+        [-13.6769,   2.9857],
+        [-10.9768, -14.3806],
+        [-16.2446,   1.1686],
+        [ -4.9530, -18.2993],
+        [ -6.7524,   9.3107],
+        [ -3.8418,  -1.0431],
+        [  2.1393,   3.5799],
+        [-13.6661,  -0.1895],
+        [ 15.1120,   2.7157]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ 11.2787,   4.0932, -14.1300,  15.2673, -17.9684,  10.8518,  -6.0683,
+         -9.2044,   4.2346,  -4.1466], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-1.8473e+00, -5.5265e-02, -1.2341e+00, -1.3720e+00, -1.3299e+00,
+          5.7989e-01, -1.1912e+00,  9.1305e-02, -1.3614e-01, -1.6329e+00],
+        [-1.8554e+00, -4.9924e-02, -1.2361e+00, -1.3734e+00, -1.3195e+00,
+          5.4999e-01, -1.1934e+00,  8.3403e-02, -1.3032e-01, -1.6431e+00],
+        [-4.2493e+00,  1.9477e+00, -1.5114e+00, -6.1975e+00, -2.0167e+00,
+          6.0636e+00, -5.4966e-01, -6.3470e-01,  2.6102e-01,  2.6947e+00],
+        [-1.1296e+01,  1.3933e+00,  7.4259e+00,  1.3627e+01, -3.9919e+00,
+         -2.0313e+01,  9.4562e+00,  5.8815e-03,  2.4007e+00, -2.7036e+00],
+        [ 4.3566e+00,  1.6362e-01, -1.1437e+00, -1.3082e+01,  6.3536e-01,
+         -2.0214e+00,  1.0741e+01, -2.0012e-03,  3.2361e-01, -4.5309e+00],
+        [-2.3778e+01,  1.9422e+00,  1.8716e+00,  5.3998e+00,  1.8980e+00,
+         -9.4665e+00, -5.9247e+00,  3.1022e-04,  9.3480e+00, -1.2575e+01],
+        [ 1.0315e+00,  8.0187e+00, -7.7623e+00,  1.5920e+00, -8.5678e+00,
+          1.5551e-02,  2.5832e-01, -6.1177e+00,  5.7694e+00, -3.8466e+00],
+        [ 1.7244e+00,  1.7772e+00, -3.4717e+00, -6.2040e-01,  6.2267e-01,
+         -7.8694e+00, -1.5500e+00, -3.1841e-03,  3.4633e+00, -4.9746e-01],
+        [ 1.3453e+00,  4.0694e+00, -2.3728e+00, -1.3863e+00,  3.9233e-01,
+         -8.3771e+00, -1.9387e+00, -3.5604e-04,  5.8525e+00,  4.7816e-01],
+        [-3.0546e+00,  4.3294e+00, -1.1481e+01,  7.1568e+00, -1.1444e+01,
+          4.0527e+00, -3.0269e-01, -2.0887e+00,  5.1652e-01, -4.6384e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-3.2454, -3.2583, -7.7182, -4.9625, -1.9077, -7.0184, -1.8413, -4.9526,
+        -5.2508, -3.8771], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ -0.1741,  -0.1692,  -3.6429,  -5.1891,   5.1323,  11.0116,  -0.8896,
+           3.8982,   3.0957,   1.3936],
+        [  0.1741,   0.1692,   3.6430,   5.1848,  -5.1667, -11.0106,   1.1093,
+          -3.8981,  -3.0955,  -1.5114]], device='cuda:0'))])
+loaded xi:  -74.8238
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+new min fval from sgd:  -1600.9333965612573
+min fval:  -1600.9333965612573
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-1.0250,  1.7657],
+        [-1.0250,  1.7657],
+        [-2.9865, 11.4268],
+        [10.2867, -3.2597],
+        [-1.0249,  1.7657],
+        [-1.0249,  1.7657],
+        [-1.0249,  1.7657],
+        [-1.0249,  1.7657],
+        [ 1.2421, 11.9863],
+        [-1.0249,  1.7657]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -1.9953,  -1.9953,  11.8115, -10.5453,  -1.9953,  -1.9953,  -1.9953,
+         -1.9953,  12.0570,  -1.9953], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [ 1.7803e-01,  1.7803e-01, -5.8786e+00,  1.0112e+01,  1.7800e-01,
+          1.7800e-01,  1.7800e-01,  1.7800e-01, -1.0975e+01,  1.7800e-01],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [ 1.5040e-01,  1.5040e-01,  8.2273e+00, -1.2414e+01,  1.5039e-01,
+          1.5039e-01,  1.5039e-01,  1.5039e-01,  4.0424e+00,  1.5039e-01],
+        [ 1.2400e-01,  1.2400e-01,  6.9092e+00, -1.0502e+01,  1.2394e-01,
+          1.2394e-01,  1.2394e-01,  1.2394e-01,  3.1491e+00,  1.2394e-01],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03],
+        [-2.8280e-03, -2.8280e-03, -7.0226e-01, -3.4850e-01, -2.8284e-03,
+         -2.8284e-03, -2.8284e-03, -2.8284e-03, -9.9721e-01, -2.8284e-03]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-1.5177, -1.5177,  5.5918, -1.5177, -1.5177, -1.5177, -4.9569, -4.3312,
+        -1.5177, -1.5177], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ 6.7226e-04,  6.7222e-04, -1.6371e+01,  6.7222e-04,  6.7223e-04,
+          6.7226e-04,  9.9300e+00,  7.0039e+00,  6.7232e-04,  6.7222e-04]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 20.7529,  12.9311],
+        [-13.6769,   2.9857],
+        [-10.9768, -14.3806],
+        [-16.2446,   1.1686],
+        [ -4.9530, -18.2993],
+        [ -6.7524,   9.3107],
+        [ -3.8418,  -1.0431],
+        [  2.1393,   3.5799],
+        [-13.6661,  -0.1895],
+        [ 15.1120,   2.7157]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ 11.2787,   4.0932, -14.1300,  15.2673, -17.9684,  10.8518,  -6.0683,
+         -9.2044,   4.2346,  -4.1466], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-1.8473e+00, -5.5265e-02, -1.2341e+00, -1.3720e+00, -1.3299e+00,
+          5.7989e-01, -1.1912e+00,  9.1305e-02, -1.3614e-01, -1.6329e+00],
+        [-1.8554e+00, -4.9924e-02, -1.2361e+00, -1.3734e+00, -1.3195e+00,
+          5.4999e-01, -1.1934e+00,  8.3403e-02, -1.3032e-01, -1.6431e+00],
+        [-4.2493e+00,  1.9477e+00, -1.5114e+00, -6.1975e+00, -2.0167e+00,
+          6.0636e+00, -5.4966e-01, -6.3470e-01,  2.6102e-01,  2.6947e+00],
+        [-1.1296e+01,  1.3933e+00,  7.4259e+00,  1.3627e+01, -3.9919e+00,
+         -2.0313e+01,  9.4562e+00,  5.8815e-03,  2.4007e+00, -2.7036e+00],
+        [ 4.3566e+00,  1.6362e-01, -1.1437e+00, -1.3082e+01,  6.3536e-01,
+         -2.0214e+00,  1.0741e+01, -2.0012e-03,  3.2361e-01, -4.5309e+00],
+        [-2.3778e+01,  1.9422e+00,  1.8716e+00,  5.3998e+00,  1.8980e+00,
+         -9.4665e+00, -5.9247e+00,  3.1022e-04,  9.3480e+00, -1.2575e+01],
+        [ 1.0315e+00,  8.0187e+00, -7.7623e+00,  1.5920e+00, -8.5678e+00,
+          1.5551e-02,  2.5832e-01, -6.1177e+00,  5.7694e+00, -3.8466e+00],
+        [ 1.7244e+00,  1.7772e+00, -3.4717e+00, -6.2040e-01,  6.2267e-01,
+         -7.8694e+00, -1.5500e+00, -3.1841e-03,  3.4633e+00, -4.9746e-01],
+        [ 1.3453e+00,  4.0694e+00, -2.3728e+00, -1.3863e+00,  3.9233e-01,
+         -8.3771e+00, -1.9387e+00, -3.5604e-04,  5.8525e+00,  4.7816e-01],
+        [-3.0546e+00,  4.3294e+00, -1.1481e+01,  7.1568e+00, -1.1444e+01,
+          4.0527e+00, -3.0269e-01, -2.0887e+00,  5.1652e-01, -4.6384e+00]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-3.2454, -3.2583, -7.7182, -4.9625, -1.9077, -7.0184, -1.8413, -4.9526,
+        -5.2508, -3.8771], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ -0.1741,  -0.1692,  -3.6429,  -5.1891,   5.1323,  11.0116,  -0.8896,
+           3.8982,   3.0957,   1.3936],
+        [  0.1741,   0.1692,   3.6430,   5.1848,  -5.1667, -11.0106,   1.1093,
+          -3.8981,  -3.0955,  -1.5114]], device='cuda:0'))])
+xi:  [-74.8238]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 446.5329246886858
+W_T_median: 165.6966691896199
+W_T_pctile_5: -74.16576396516189
+W_T_CVAR_5_pct: -190.5953854662435
+Average q (qsum/M+1):  54.71737178679435
+Optimal xi:  [-74.8238]
+Expected(across Rb) median(across samples) p_equity:  0.34909787873427073
+obj fun:  tensor(-1600.9334, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:262: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 0.5
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-53.0741,  -6.3049],
+        [ -0.9957,   1.0755],
+        [  3.8895,  -8.3595],
+        [ -8.6682,  -0.4276],
+        [  9.7636,  -3.5555],
+        [  8.9936,  -1.4601],
+        [  4.2665,  -7.3378],
+        [  9.5564,  -1.6109],
+        [ -2.4968, -10.0662],
+        [ -2.1586,  -7.8878]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([-6.6483, -2.7941, -8.1978,  7.2262, -8.2347, -8.5441, -7.7851, -8.6335,
+        -9.3494,  5.2703], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-8.3481e+00, -5.8689e-03, -9.3150e+00,  5.9694e+00, -8.0487e+00,
+         -4.9469e+00, -6.3210e+00, -6.3153e+00, -1.1195e+01,  1.4869e+00],
+        [-1.1180e-01,  1.0858e-03, -2.0247e-01, -7.3741e-01, -3.0645e-01,
+         -1.9221e-01, -1.4704e-01, -2.5529e-01, -2.0778e-01, -8.8974e-01],
+        [-1.6182e-02, -3.3251e-03,  1.6331e-01,  1.1309e+00,  3.1421e-01,
+          2.2874e-01,  9.3808e-02,  3.0630e-01,  2.1222e-01,  1.1984e+00],
+        [ 4.9138e+00,  8.8526e-02,  7.0649e+00, -5.6702e+00,  1.9342e+00,
+          1.0019e+00,  3.9728e+00,  1.6296e+00,  1.0946e+01, -2.4098e+00],
+        [-2.3802e-03,  2.7247e-03,  1.9206e-01,  1.3116e+00,  4.4076e-01,
+          3.3594e-01,  1.1312e-01,  4.4346e-01,  2.4898e-01,  1.3829e+00],
+        [-1.1180e-01,  1.0858e-03, -2.0247e-01, -7.3741e-01, -3.0645e-01,
+         -1.9221e-01, -1.4704e-01, -2.5529e-01, -2.0778e-01, -8.8974e-01],
+        [ 5.5281e+00,  1.1010e-01,  7.2357e+00, -5.8510e+00,  3.6026e+00,
+          2.9502e+00,  4.2676e+00,  4.0930e+00,  1.0849e+01, -2.3803e+00],
+        [-1.1180e-01,  1.0858e-03, -2.0247e-01, -7.3741e-01, -3.0645e-01,
+         -1.9221e-01, -1.4704e-01, -2.5529e-01, -2.0778e-01, -8.8973e-01],
+        [-1.1180e-01,  1.0858e-03, -2.0247e-01, -7.3741e-01, -3.0645e-01,
+         -1.9221e-01, -1.4704e-01, -2.5529e-01, -2.0778e-01, -8.8974e-01],
+        [ 7.7166e+00, -1.3204e-02,  9.1929e+00, -6.2890e+00,  5.3973e+00,
+          6.4447e+00,  5.7427e+00,  8.4999e+00,  1.2989e+01, -2.7544e+00]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([ 4.0379, -1.2580,  2.1029, -4.7177,  2.6028, -1.2580, -4.6259, -1.2581,
+        -1.2580, -5.4727], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ 12.0413,  -0.0205,   0.8878,  -5.0560,   2.3153,  -0.0205,  -5.3770,
+          -0.0205,  -0.0205, -12.3810]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 10.7396,   2.2606],
+        [  0.6748,   8.5283],
+        [-10.6608,  -2.1886],
+        [  0.6187,   2.7711],
+        [-10.5462,  -2.8434],
+        [  6.2616,  12.1611],
+        [-10.3967,  -2.7187],
+        [-10.8682,  -2.9281],
+        [ -6.3421,  -1.7106],
+        [ 10.6871,   3.0788]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([-5.8463,  4.1500,  3.0813,  8.8965, -2.4741, 11.4709, -2.6839, -3.1406,
+        -5.0194, -1.4030], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-3.8344e+00, -2.2436e-02,  6.0239e+00, -1.8090e-02,  1.9107e+00,
+         -1.3942e+01,  1.4497e+00,  1.4688e+00,  1.3589e+00, -2.6745e+00],
+        [ 2.2215e+00, -7.0583e+00, -1.6471e+01, -3.0159e+00,  3.3944e-01,
+          1.2071e+00,  2.6398e-01,  1.6479e-01,  1.1036e-01, -4.8825e-01],
+        [-4.9438e-01, -2.0606e+00, -4.6343e-02, -1.9428e+00,  2.3297e+00,
+          4.0576e-01,  2.1587e+00,  2.8269e+00,  4.6847e-01, -1.3099e+00],
+        [-3.5428e+00,  1.7405e+00, -1.5321e-01, -3.0261e+00,  9.3702e-02,
+          5.0551e-01, -1.0043e-02, -3.2624e-02, -1.9870e-02, -1.5961e+00],
+        [-3.9559e+00,  1.1133e+00, -4.0482e-01, -1.9619e+00,  4.4470e+00,
+          1.5178e-01,  4.0858e+00,  4.3447e+00,  2.1969e+00, -1.9580e+00],
+        [-1.0762e+00, -1.1888e+00,  4.4262e-01, -1.8239e+00,  2.3254e+00,
+          1.8021e-01,  2.1898e+00,  3.2643e+00,  5.7678e-01, -1.4937e+00],
+        [-7.2186e+00,  6.0801e+00,  1.4609e+00, -2.0904e+00, -3.4154e-02,
+          2.0136e+00, -2.7760e-01, -1.3706e-02,  8.0827e-02,  4.5966e-01],
+        [-8.6262e-02, -1.2778e-02,  6.0697e-01, -4.0603e+00,  9.1801e-01,
+         -1.4737e+00,  5.0515e-01, -2.6353e-01, -4.2078e-03, -4.7694e+00],
+        [-6.2882e-03, -3.1353e-01,  3.1922e+00,  2.0406e-01,  5.8854e+00,
+         -2.8606e+01,  5.9588e+00,  8.2811e+00,  2.8773e+00, -1.0421e+01],
+        [ 8.1710e+00,  6.8484e-01, -1.3970e+01, -1.6864e+00,  6.6385e+00,
+          2.9613e+01,  6.1956e+00,  5.8179e+00,  2.9926e-01, -1.2911e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-2.6250, -2.1935, -3.3687, -3.9565, -3.1209, -4.1208, -4.1983, -1.7317,
+        -4.3234, -2.2965], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ -7.9090,   4.2212,   2.1026,   0.7474,   2.1973,   2.0411,   1.3487,
+          -0.5033,  15.5906,   0.0776],
+        [  7.8795,  -4.1706,  -2.0733,  -0.7483,  -2.2097,  -2.0354,  -1.2821,
+           0.5045, -15.4619,  -0.2306]], device='cuda:0'))])
+loaded xi:  43.371845
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+new min fval from sgd:  -1554.4588321211804
+min fval:  -1554.4588321211804
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-53.0741,  -6.3049],
+        [ -0.9957,   1.0755],
+        [  3.8895,  -8.3595],
+        [ -8.6682,  -0.4276],
+        [  9.7636,  -3.5555],
+        [  8.9936,  -1.4601],
+        [  4.2665,  -7.3378],
+        [  9.5564,  -1.6109],
+        [ -2.4968, -10.0662],
+        [ -2.1586,  -7.8878]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([-6.6483, -2.7941, -8.1978,  7.2262, -8.2347, -8.5441, -7.7851, -8.6335,
+        -9.3494,  5.2703], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-8.3481e+00, -5.8689e-03, -9.3150e+00,  5.9694e+00, -8.0487e+00,
+         -4.9469e+00, -6.3210e+00, -6.3153e+00, -1.1195e+01,  1.4869e+00],
+        [-1.1180e-01,  1.0858e-03, -2.0247e-01, -7.3741e-01, -3.0645e-01,
+         -1.9221e-01, -1.4704e-01, -2.5529e-01, -2.0778e-01, -8.8974e-01],
+        [-1.6182e-02, -3.3251e-03,  1.6331e-01,  1.1309e+00,  3.1421e-01,
+          2.2874e-01,  9.3808e-02,  3.0630e-01,  2.1222e-01,  1.1984e+00],
+        [ 4.9138e+00,  8.8526e-02,  7.0649e+00, -5.6702e+00,  1.9342e+00,
+          1.0019e+00,  3.9728e+00,  1.6296e+00,  1.0946e+01, -2.4098e+00],
+        [-2.3802e-03,  2.7247e-03,  1.9206e-01,  1.3116e+00,  4.4076e-01,
+          3.3594e-01,  1.1312e-01,  4.4346e-01,  2.4898e-01,  1.3829e+00],
+        [-1.1180e-01,  1.0858e-03, -2.0247e-01, -7.3741e-01, -3.0645e-01,
+         -1.9221e-01, -1.4704e-01, -2.5529e-01, -2.0778e-01, -8.8974e-01],
+        [ 5.5281e+00,  1.1010e-01,  7.2357e+00, -5.8510e+00,  3.6026e+00,
+          2.9502e+00,  4.2676e+00,  4.0930e+00,  1.0849e+01, -2.3803e+00],
+        [-1.1180e-01,  1.0858e-03, -2.0247e-01, -7.3741e-01, -3.0645e-01,
+         -1.9221e-01, -1.4704e-01, -2.5529e-01, -2.0778e-01, -8.8973e-01],
+        [-1.1180e-01,  1.0858e-03, -2.0247e-01, -7.3741e-01, -3.0645e-01,
+         -1.9221e-01, -1.4704e-01, -2.5529e-01, -2.0778e-01, -8.8974e-01],
+        [ 7.7166e+00, -1.3204e-02,  9.1929e+00, -6.2890e+00,  5.3973e+00,
+          6.4447e+00,  5.7427e+00,  8.4999e+00,  1.2989e+01, -2.7544e+00]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([ 4.0379, -1.2580,  2.1029, -4.7177,  2.6028, -1.2580, -4.6259, -1.2581,
+        -1.2580, -5.4727], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ 12.0413,  -0.0205,   0.8878,  -5.0560,   2.3153,  -0.0205,  -5.3770,
+          -0.0205,  -0.0205, -12.3810]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 10.7396,   2.2606],
+        [  0.6748,   8.5283],
+        [-10.6608,  -2.1886],
+        [  0.6187,   2.7711],
+        [-10.5462,  -2.8434],
+        [  6.2616,  12.1611],
+        [-10.3967,  -2.7187],
+        [-10.8682,  -2.9281],
+        [ -6.3421,  -1.7106],
+        [ 10.6871,   3.0788]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([-5.8463,  4.1500,  3.0813,  8.8965, -2.4741, 11.4709, -2.6839, -3.1406,
+        -5.0194, -1.4030], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-3.8344e+00, -2.2436e-02,  6.0239e+00, -1.8090e-02,  1.9107e+00,
+         -1.3942e+01,  1.4497e+00,  1.4688e+00,  1.3589e+00, -2.6745e+00],
+        [ 2.2215e+00, -7.0583e+00, -1.6471e+01, -3.0159e+00,  3.3944e-01,
+          1.2071e+00,  2.6398e-01,  1.6479e-01,  1.1036e-01, -4.8825e-01],
+        [-4.9438e-01, -2.0606e+00, -4.6343e-02, -1.9428e+00,  2.3297e+00,
+          4.0576e-01,  2.1587e+00,  2.8269e+00,  4.6847e-01, -1.3099e+00],
+        [-3.5428e+00,  1.7405e+00, -1.5321e-01, -3.0261e+00,  9.3702e-02,
+          5.0551e-01, -1.0043e-02, -3.2624e-02, -1.9870e-02, -1.5961e+00],
+        [-3.9559e+00,  1.1133e+00, -4.0482e-01, -1.9619e+00,  4.4470e+00,
+          1.5178e-01,  4.0858e+00,  4.3447e+00,  2.1969e+00, -1.9580e+00],
+        [-1.0762e+00, -1.1888e+00,  4.4262e-01, -1.8239e+00,  2.3254e+00,
+          1.8021e-01,  2.1898e+00,  3.2643e+00,  5.7678e-01, -1.4937e+00],
+        [-7.2186e+00,  6.0801e+00,  1.4609e+00, -2.0904e+00, -3.4154e-02,
+          2.0136e+00, -2.7760e-01, -1.3706e-02,  8.0827e-02,  4.5966e-01],
+        [-8.6262e-02, -1.2778e-02,  6.0697e-01, -4.0603e+00,  9.1801e-01,
+         -1.4737e+00,  5.0515e-01, -2.6353e-01, -4.2078e-03, -4.7694e+00],
+        [-6.2882e-03, -3.1353e-01,  3.1922e+00,  2.0406e-01,  5.8854e+00,
+         -2.8606e+01,  5.9588e+00,  8.2811e+00,  2.8773e+00, -1.0421e+01],
+        [ 8.1710e+00,  6.8484e-01, -1.3970e+01, -1.6864e+00,  6.6385e+00,
+          2.9613e+01,  6.1956e+00,  5.8179e+00,  2.9926e-01, -1.2911e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-2.6250, -2.1935, -3.3687, -3.9565, -3.1209, -4.1208, -4.1983, -1.7317,
+        -4.3234, -2.2965], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ -7.9090,   4.2212,   2.1026,   0.7474,   2.1973,   2.0411,   1.3487,
+          -0.5033,  15.5906,   0.0776],
+        [  7.8795,  -4.1706,  -2.0733,  -0.7483,  -2.2097,  -2.0354,  -1.2821,
+           0.5045, -15.4619,  -0.2306]], device='cuda:0'))])
+xi:  [43.371845]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 666.8225044018699
+W_T_median: 322.13066144810944
+W_T_pctile_5: 43.36836252572621
+W_T_CVAR_5_pct: -75.12813027580788
+Average q (qsum/M+1):  52.56730011970766
+Optimal xi:  [43.371845]
+Expected(across Rb) median(across samples) p_equity:  0.3686507850885391
+obj fun:  tensor(-1554.4588, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:262: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.0
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-51.8194,  -7.3232],
+        [ -1.0212,   0.6144],
+        [  7.1025,  -9.7261],
+        [-11.7122,  -0.0562],
+        [ 13.2588,  -1.7405],
+        [ 11.8643,  -0.7808],
+        [ 10.1343,  -8.3556],
+        [ 13.4265,  -1.1771],
+        [ -4.9657, -12.0208],
+        [  1.3138,  -0.7145]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -7.4189,  -2.9145,  -9.5483,  10.1684, -10.6441, -11.4576,  -8.5248,
+        -11.0699, -10.1788,   5.3090], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-9.8390e+00,  1.3574e-01, -1.0984e+01,  6.6333e+00, -8.4193e+00,
+         -3.4762e+00, -8.2144e+00, -7.3581e+00, -1.3563e+01,  1.9519e+00],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [ 3.3136e-03,  3.4701e-02,  1.7222e-01,  1.0112e+00,  2.8437e-01,
+          1.1706e-01,  1.2948e-01,  2.9535e-01,  2.6782e-01,  1.4901e+00],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [ 1.0360e+01,  1.1540e-01,  1.1645e+01, -7.4896e+00,  5.8241e+00,
+          5.8702e+00,  7.4841e+00,  1.0094e+01,  1.4453e+01, -3.5886e+00]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([ 4.8646, -0.9838, -0.9838, -0.9838,  1.4969, -0.9838, -0.9838, -0.9838,
+        -0.9838, -6.4493], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ 1.4878e+01,  4.5829e-03,  4.5829e-03,  4.5829e-03,  6.8311e-01,
+          4.5829e-03,  4.5829e-03,  4.5829e-03,  4.5829e-03, -1.7182e+01]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 10.2224,   0.7120],
+        [ -2.2782,   9.6564],
+        [-13.3250,   0.2220],
+        [  9.8293,   9.6908],
+        [-12.9317,  -4.5579],
+        [  4.7600,  13.9910],
+        [-15.0761,  -3.4092],
+        [ -0.6814,   2.6244],
+        [-10.4511,   2.9084],
+        [ 14.1507,   2.4469]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([-12.8967,   2.3930,   9.9415,   8.0503,  -1.2608,  11.9296,  -2.8822,
+         -3.4255,   0.9529,  -7.3727], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-7.9531e-02, -8.8564e-02, -1.6933e+00, -1.1982e+00, -4.5895e-01,
+         -6.3546e-01,  1.3135e-02, -5.5314e-02, -7.9857e-02, -1.7748e+00],
+        [ 5.5620e-01, -6.6521e+00, -1.4212e+01,  2.8316e-01, -1.7949e+00,
+          1.2474e-01, -1.6516e-02, -1.0206e+00, -2.7586e-01, -4.9817e-01],
+        [-7.9532e-02, -8.8564e-02, -1.6933e+00, -1.1982e+00, -4.5895e-01,
+         -6.3547e-01,  1.3135e-02, -5.5315e-02, -7.9858e-02, -1.7748e+00],
+        [-3.0354e+00,  4.0201e+00,  8.1634e-01, -1.5641e+00, -1.8113e-01,
+         -2.4774e-01,  1.1266e-02,  1.5578e-02,  2.2973e+00, -4.5307e+00],
+        [ 4.2913e-01,  5.3088e+00, -8.0712e+00, -1.6890e+00, -8.0901e-01,
+          5.8932e-01, -1.5128e-02,  3.0830e-01, -4.5243e+00, -1.7021e+00],
+        [ 1.8148e+00, -3.6311e+00, -1.7991e+00,  1.5551e+00,  3.5570e+00,
+          2.8217e+00,  7.5973e+00, -9.0503e-01,  1.4617e+00, -3.6493e+00],
+        [-1.5610e-01, -6.6878e+00, -7.5127e+00, -1.0099e-03, -1.0573e+00,
+          7.1490e-01,  1.7874e-02, -6.0684e-01, -1.1630e-01, -6.1984e-01],
+        [-6.4466e+00, -4.6919e-01,  2.5508e+00, -3.4161e+00,  7.5666e+00,
+         -2.5650e+01,  2.8431e+00, -2.1708e-01, -7.8065e-01, -1.8318e+00],
+        [-2.9943e-02, -1.2562e-01,  4.2516e+00, -1.8649e+01,  8.4299e+00,
+         -2.1068e+01,  6.6524e+00, -1.0835e-01, -2.3185e+00, -8.6585e+00],
+        [ 6.4369e-01,  1.6211e-01, -5.4952e+00,  5.3885e+00, -4.4778e+00,
+          2.3344e+01,  1.2148e+01,  5.2311e-02,  6.4056e+00,  4.1006e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -5.2602,  -3.2180,  -5.2602,  -6.9090,  -4.2154,  -6.1022,  -4.2843,
+         -3.5721, -10.3891,  -4.3109], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[  0.1505,   4.5372,   0.1505,   0.1610,  -2.1541,   1.4553,   3.7374,
+          -7.9073,  17.4950,   0.1684],
+        [ -0.1505,  -4.4978,  -0.1505,  -0.1625,   2.1534,  -1.4453,  -3.7300,
+           7.9275, -17.4612,  -0.3211]], device='cuda:0'))])
+loaded xi:  114.28817
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+new min fval from sgd:  -1536.7885734037482
+min fval:  -1536.7885734037482
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[-51.8194,  -7.3232],
+        [ -1.0212,   0.6144],
+        [  7.1025,  -9.7261],
+        [-11.7122,  -0.0562],
+        [ 13.2588,  -1.7405],
+        [ 11.8643,  -0.7808],
+        [ 10.1343,  -8.3556],
+        [ 13.4265,  -1.1771],
+        [ -4.9657, -12.0208],
+        [  1.3138,  -0.7145]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -7.4189,  -2.9145,  -9.5483,  10.1684, -10.6441, -11.4576,  -8.5248,
+        -11.0699, -10.1788,   5.3090], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-9.8390e+00,  1.3574e-01, -1.0984e+01,  6.6333e+00, -8.4193e+00,
+         -3.4762e+00, -8.2144e+00, -7.3581e+00, -1.3563e+01,  1.9519e+00],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [ 3.3136e-03,  3.4701e-02,  1.7222e-01,  1.0112e+00,  2.8437e-01,
+          1.1706e-01,  1.2948e-01,  2.9535e-01,  2.6782e-01,  1.4901e+00],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [-3.0544e-02, -7.6862e-03, -2.0080e-01, -6.9914e-01, -2.4991e-01,
+         -8.6700e-02, -2.6439e-01, -2.4966e-01, -1.9462e-01, -9.8165e-01],
+        [ 1.0360e+01,  1.1540e-01,  1.1645e+01, -7.4896e+00,  5.8241e+00,
+          5.8702e+00,  7.4841e+00,  1.0094e+01,  1.4453e+01, -3.5886e+00]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([ 4.8646, -0.9838, -0.9838, -0.9838,  1.4969, -0.9838, -0.9838, -0.9838,
+        -0.9838, -6.4493], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[ 1.4878e+01,  4.5829e-03,  4.5829e-03,  4.5829e-03,  6.8311e-01,
+          4.5829e-03,  4.5829e-03,  4.5829e-03,  4.5829e-03, -1.7182e+01]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 10.2224,   0.7120],
+        [ -2.2782,   9.6564],
+        [-13.3250,   0.2220],
+        [  9.8293,   9.6908],
+        [-12.9317,  -4.5579],
+        [  4.7600,  13.9910],
+        [-15.0761,  -3.4092],
+        [ -0.6814,   2.6244],
+        [-10.4511,   2.9084],
+        [ 14.1507,   2.4469]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([-12.8967,   2.3930,   9.9415,   8.0503,  -1.2608,  11.9296,  -2.8822,
+         -3.4255,   0.9529,  -7.3727], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-7.9531e-02, -8.8564e-02, -1.6933e+00, -1.1982e+00, -4.5895e-01,
+         -6.3546e-01,  1.3135e-02, -5.5314e-02, -7.9857e-02, -1.7748e+00],
+        [ 5.5620e-01, -6.6521e+00, -1.4212e+01,  2.8316e-01, -1.7949e+00,
+          1.2474e-01, -1.6516e-02, -1.0206e+00, -2.7586e-01, -4.9817e-01],
+        [-7.9532e-02, -8.8564e-02, -1.6933e+00, -1.1982e+00, -4.5895e-01,
+         -6.3547e-01,  1.3135e-02, -5.5315e-02, -7.9858e-02, -1.7748e+00],
+        [-3.0354e+00,  4.0201e+00,  8.1634e-01, -1.5641e+00, -1.8113e-01,
+         -2.4774e-01,  1.1266e-02,  1.5578e-02,  2.2973e+00, -4.5307e+00],
+        [ 4.2913e-01,  5.3088e+00, -8.0712e+00, -1.6890e+00, -8.0901e-01,
+          5.8932e-01, -1.5128e-02,  3.0830e-01, -4.5243e+00, -1.7021e+00],
+        [ 1.8148e+00, -3.6311e+00, -1.7991e+00,  1.5551e+00,  3.5570e+00,
+          2.8217e+00,  7.5973e+00, -9.0503e-01,  1.4617e+00, -3.6493e+00],
+        [-1.5610e-01, -6.6878e+00, -7.5127e+00, -1.0099e-03, -1.0573e+00,
+          7.1490e-01,  1.7874e-02, -6.0684e-01, -1.1630e-01, -6.1984e-01],
+        [-6.4466e+00, -4.6919e-01,  2.5508e+00, -3.4161e+00,  7.5666e+00,
+         -2.5650e+01,  2.8431e+00, -2.1708e-01, -7.8065e-01, -1.8318e+00],
+        [-2.9943e-02, -1.2562e-01,  4.2516e+00, -1.8649e+01,  8.4299e+00,
+         -2.1068e+01,  6.6524e+00, -1.0835e-01, -2.3185e+00, -8.6585e+00],
+        [ 6.4369e-01,  1.6211e-01, -5.4952e+00,  5.3885e+00, -4.4778e+00,
+          2.3344e+01,  1.2148e+01,  5.2311e-02,  6.4056e+00,  4.1006e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -5.2602,  -3.2180,  -5.2602,  -6.9090,  -4.2154,  -6.1022,  -4.2843,
+         -3.5721, -10.3891,  -4.3109], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[  0.1505,   4.5372,   0.1505,   0.1610,  -2.1541,   1.4553,   3.7374,
+          -7.9073,  17.4950,   0.1684],
+        [ -0.1505,  -4.4978,  -0.1505,  -0.1625,   2.1534,  -1.4453,  -3.7300,
+           7.9275, -17.4612,  -0.3211]], device='cuda:0'))])
+xi:  [114.28817]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 872.2096641300774
+W_T_median: 412.9519686742129
+W_T_pctile_5: 114.37375897435054
+W_T_CVAR_5_pct: -33.294920316854004
+Average q (qsum/M+1):  51.185243668094756
+Optimal xi:  [114.28817]
+Expected(across Rb) median(across samples) p_equity:  0.3506288939466079
+obj fun:  tensor(-1536.7886, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:262: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 1.5
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ -1.2020,   0.4782],
+        [ -1.1924,   0.4743],
+        [ -0.3361,   7.8681],
+        [ 18.9944,  -3.5365],
+        [ -1.0367,   0.4162],
+        [ -1.2806,  -0.2321],
+        [ -5.3518,  -2.9379],
+        [-47.5860,  -2.7695],
+        [ -6.9963,  13.0763],
+        [ -4.6468,  -1.9861]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -4.4748,  -4.4743,  -8.6409, -12.8353,  -3.8308,  -5.2024,  -3.8197,
+         -3.4719,  10.0875,  -4.4956], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[ 3.2547e-04,  3.1753e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 3.2547e-04,  3.1753e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [-2.2862e-01, -2.2269e-01,  7.3742e+00,  1.7967e+01,  6.0382e-02,
+          8.9941e-01,  3.0511e+00,  5.7721e+00, -1.6733e+01,  2.7495e+00],
+        [ 3.2547e-04,  3.1753e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 3.2547e-04,  3.1753e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 3.2547e-04,  3.1752e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 2.5204e-01,  2.5633e-01, -6.4291e+00, -1.4214e+01,  2.0468e-01,
+         -2.5867e-01, -2.3245e+00, -5.4059e+00,  1.3536e+01, -2.0698e+00],
+        [ 2.2026e-03,  2.1742e-03, -3.6349e+00, -1.0308e+01,  4.5148e-02,
+          8.5241e-02, -5.6307e+00, -4.7095e+00,  6.5574e+00, -3.3185e+00],
+        [ 3.2547e-04,  3.1752e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 3.2547e-04,  3.1752e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-2.0798, -2.0798,  2.0574, -2.0798, -2.0798, -2.0798, -1.5035, -2.4388,
+        -2.0798, -2.0798], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[  0.0505,   0.0505, -24.1710,   0.0505,   0.0505,   0.0505,  13.0630,
+           5.4568,   0.0505,   0.0505]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 21.1234,  13.6841],
+        [ -2.5219,   0.2890],
+        [ -9.4520, -19.2764],
+        [-21.8312,   1.0056],
+        [-14.2213, -13.6965],
+        [-14.7704,  11.1072],
+        [ -2.5238,   0.2897],
+        [ -2.5220,   0.2891],
+        [-12.8039,   0.5654],
+        [ -2.5074,   0.2848]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ 11.6857,  -5.1647, -17.6165,  19.9456, -13.8471,  10.3410,  -5.1641,
+         -5.1647,   6.2971,  -5.1712], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 1.9211e-01,  2.6942e-02, -4.6809e-01, -4.3497e-01, -1.6574e+01,
+         -4.9197e-01,  2.7599e-02,  2.6962e-02, -7.8774e-01,  2.2715e-02],
+        [-3.6511e-01, -4.8589e-02, -1.1259e+01,  6.2731e-01,  5.3741e+00,
+         -4.2359e-01, -5.1608e-02, -4.8697e-02, -4.8913e-01, -3.1403e-02],
+        [-3.1932e+00, -6.5520e-03, -1.0307e+00, -1.1631e+00, -9.1111e-01,
+         -3.9339e-01, -6.5420e-03, -6.5516e-03, -9.9163e-02, -6.6039e-03],
+        [-1.3026e+01, -8.3442e-02,  5.6130e+00,  1.5527e+01,  1.0232e+00,
+         -9.3337e+00, -8.2999e-02, -8.3427e-02,  2.6182e+00, -8.5706e-02],
+        [-3.4615e+00, -9.4087e-03, -1.1459e+00, -1.0360e+00, -1.0680e+00,
+         -3.2303e-01, -9.3901e-03, -9.4080e-03, -4.0965e-02, -9.5047e-03],
+        [-4.0642e+01,  1.2151e-02,  4.5291e+00,  5.6216e+00,  1.0712e+00,
+         -1.1332e+01,  1.1919e-02,  1.2144e-02,  1.2839e+01,  1.3407e-02],
+        [-3.4497e+00, -9.5622e-03, -1.1782e+00, -1.0086e+00, -1.0744e+00,
+         -3.1292e-01, -9.5433e-03, -9.5615e-03, -2.8911e-02, -9.6593e-03],
+        [ 1.2546e+00, -1.0055e-02, -1.3739e+01, -8.0026e-01,  4.4680e+00,
+         -1.6278e+01, -1.0364e-02, -1.0060e-02,  1.6198e+00, -8.4728e-03],
+        [ 2.9465e+00, -4.0370e-03,  7.4007e-01, -1.1622e+01, -2.9606e+00,
+         -7.8236e+00, -4.2076e-03, -4.0434e-03, -2.3638e+00, -1.4579e-03],
+        [-5.3138e+00, -3.4033e-03, -3.8289e+00,  5.9672e+00, -2.5364e+00,
+          3.2600e+00, -1.8069e-03, -3.3428e-03,  4.2467e+00, -1.1752e-02]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -3.1699,  -4.1852,  -4.5309, -10.3511,  -4.5162, -14.0381,  -4.5527,
+         -5.2903,  -6.0732,  -5.8262], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[  4.8225,   6.7008,   0.0517,  -5.6469,   0.1581,  13.1235,   0.1793,
+           7.2598,   4.8872,   0.9125],
+        [ -4.8225,  -6.7008,  -0.0517,   5.6534,  -0.1581, -13.1068,  -0.1792,
+          -7.2597,  -4.8868,  -1.0244]], device='cuda:0'))])
+loaded xi:  164.33472
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+new min fval from sgd:  -1535.9928391719648
+min fval:  -1535.9928391719648
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ -1.2020,   0.4782],
+        [ -1.1924,   0.4743],
+        [ -0.3361,   7.8681],
+        [ 18.9944,  -3.5365],
+        [ -1.0367,   0.4162],
+        [ -1.2806,  -0.2321],
+        [ -5.3518,  -2.9379],
+        [-47.5860,  -2.7695],
+        [ -6.9963,  13.0763],
+        [ -4.6468,  -1.9861]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -4.4748,  -4.4743,  -8.6409, -12.8353,  -3.8308,  -5.2024,  -3.8197,
+         -3.4719,  10.0875,  -4.4956], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[ 3.2547e-04,  3.1753e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 3.2547e-04,  3.1753e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [-2.2862e-01, -2.2269e-01,  7.3742e+00,  1.7967e+01,  6.0382e-02,
+          8.9941e-01,  3.0511e+00,  5.7721e+00, -1.6733e+01,  2.7495e+00],
+        [ 3.2547e-04,  3.1753e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 3.2547e-04,  3.1753e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 3.2547e-04,  3.1752e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 2.5204e-01,  2.5633e-01, -6.4291e+00, -1.4214e+01,  2.0468e-01,
+         -2.5867e-01, -2.3245e+00, -5.4059e+00,  1.3536e+01, -2.0698e+00],
+        [ 2.2026e-03,  2.1742e-03, -3.6349e+00, -1.0308e+01,  4.5148e-02,
+          8.5241e-02, -5.6307e+00, -4.7095e+00,  6.5574e+00, -3.3185e+00],
+        [ 3.2547e-04,  3.1752e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02],
+        [ 3.2547e-04,  3.1752e-04, -2.5688e-01, -2.5865e-01, -3.1695e-03,
+         -1.5369e-03, -2.2173e-01, -1.4608e-01, -6.7885e-01, -4.9829e-02]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-2.0798, -2.0798,  2.0574, -2.0798, -2.0798, -2.0798, -1.5035, -2.4388,
+        -2.0798, -2.0798], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[  0.0505,   0.0505, -24.1710,   0.0505,   0.0505,   0.0505,  13.0630,
+           5.4568,   0.0505,   0.0505]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 21.1234,  13.6841],
+        [ -2.5219,   0.2890],
+        [ -9.4520, -19.2764],
+        [-21.8312,   1.0056],
+        [-14.2213, -13.6965],
+        [-14.7704,  11.1072],
+        [ -2.5238,   0.2897],
+        [ -2.5220,   0.2891],
+        [-12.8039,   0.5654],
+        [ -2.5074,   0.2848]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ 11.6857,  -5.1647, -17.6165,  19.9456, -13.8471,  10.3410,  -5.1641,
+         -5.1647,   6.2971,  -5.1712], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 1.9211e-01,  2.6942e-02, -4.6809e-01, -4.3497e-01, -1.6574e+01,
+         -4.9197e-01,  2.7599e-02,  2.6962e-02, -7.8774e-01,  2.2715e-02],
+        [-3.6511e-01, -4.8589e-02, -1.1259e+01,  6.2731e-01,  5.3741e+00,
+         -4.2359e-01, -5.1608e-02, -4.8697e-02, -4.8913e-01, -3.1403e-02],
+        [-3.1932e+00, -6.5520e-03, -1.0307e+00, -1.1631e+00, -9.1111e-01,
+         -3.9339e-01, -6.5420e-03, -6.5516e-03, -9.9163e-02, -6.6039e-03],
+        [-1.3026e+01, -8.3442e-02,  5.6130e+00,  1.5527e+01,  1.0232e+00,
+         -9.3337e+00, -8.2999e-02, -8.3427e-02,  2.6182e+00, -8.5706e-02],
+        [-3.4615e+00, -9.4087e-03, -1.1459e+00, -1.0360e+00, -1.0680e+00,
+         -3.2303e-01, -9.3901e-03, -9.4080e-03, -4.0965e-02, -9.5047e-03],
+        [-4.0642e+01,  1.2151e-02,  4.5291e+00,  5.6216e+00,  1.0712e+00,
+         -1.1332e+01,  1.1919e-02,  1.2144e-02,  1.2839e+01,  1.3407e-02],
+        [-3.4497e+00, -9.5622e-03, -1.1782e+00, -1.0086e+00, -1.0744e+00,
+         -3.1292e-01, -9.5433e-03, -9.5615e-03, -2.8911e-02, -9.6593e-03],
+        [ 1.2546e+00, -1.0055e-02, -1.3739e+01, -8.0026e-01,  4.4680e+00,
+         -1.6278e+01, -1.0364e-02, -1.0060e-02,  1.6198e+00, -8.4728e-03],
+        [ 2.9465e+00, -4.0370e-03,  7.4007e-01, -1.1622e+01, -2.9606e+00,
+         -7.8236e+00, -4.2076e-03, -4.0434e-03, -2.3638e+00, -1.4579e-03],
+        [-5.3138e+00, -3.4033e-03, -3.8289e+00,  5.9672e+00, -2.5364e+00,
+          3.2600e+00, -1.8069e-03, -3.3428e-03,  4.2467e+00, -1.1752e-02]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -3.1699,  -4.1852,  -4.5309, -10.3511,  -4.5162, -14.0381,  -4.5527,
+         -5.2903,  -6.0732,  -5.8262], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[  4.8225,   6.7008,   0.0517,  -5.6469,   0.1581,  13.1235,   0.1793,
+           7.2598,   4.8872,   0.9125],
+        [ -4.8225,  -6.7008,  -0.0517,   5.6534,  -0.1581, -13.1068,  -0.1792,
+          -7.2597,  -4.8868,  -1.0244]], device='cuda:0'))])
+xi:  [164.33472]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 666.803471746879
+W_T_median: 431.55866212269177
+W_T_pctile_5: 164.49078173028838
+W_T_CVAR_5_pct: -1.1629089026063775
+Average q (qsum/M+1):  49.66114068800403
+Optimal xi:  [164.33472]
+Expected(across Rb) median(across samples) p_equity:  0.27778466989596684
+obj fun:  tensor(-1535.9928, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:262: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 3.0
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ -2.0159,  -0.2463],
+        [ -2.0159,  -0.2463],
+        [ -0.4752,   5.9271],
+        [ 20.9324,  -3.2291],
+        [ -2.0160,  -0.2464],
+        [ -2.0160,  -0.2465],
+        [ -2.0013,  -0.3916],
+        [-37.8746,  -3.6910],
+        [ -8.5590,  13.5781],
+        [ -2.0280,  -0.2592]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -4.4838,  -4.4838, -10.0824, -13.0641,  -4.4840,  -4.4843,  -4.6396,
+         -3.9637,   9.8983,  -4.4962], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-1.6404e-02, -1.6404e-02,  6.5302e-03, -2.4782e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5302e-03, -2.4782e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [ 3.1679e-01,  3.1681e-01,  8.9219e+00,  1.8637e+01,  3.1718e-01,
+          3.1774e-01,  4.9272e-01,  5.7027e+00, -1.8438e+01,  3.4360e-01],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4783e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4783e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4783e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-6.0389e-01, -6.0386e-01, -6.8484e+00, -1.4469e+01, -6.0349e-01,
+         -6.0271e-01, -5.0260e-01, -5.3118e+00,  1.5746e+01, -5.8742e-01],
+        [-3.9318e-02, -3.9318e-02, -5.6440e-02, -9.3124e-02, -3.9317e-02,
+         -3.9305e-02, -3.8470e-02, -2.6372e-01, -3.3154e-01, -3.9352e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4782e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4783e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-3.1871, -3.1871,  1.7458, -3.1871, -3.1871, -3.1871, -1.1442, -2.5882,
+        -3.1871, -3.1871], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[  0.0628,   0.0628, -25.4656,   0.0628,   0.0628,   0.0628,  14.8527,
+           0.1494,   0.0628,   0.0628]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 22.4513,  13.1698],
+        [ -2.6012,   0.2604],
+        [ -9.5044, -19.2578],
+        [-23.8381,  -0.7055],
+        [-16.5883, -13.7570],
+        [-15.5322,  10.8102],
+        [ -2.6034,   0.2585],
+        [ -2.6867,   0.2553],
+        [-14.9591,  -1.4614],
+        [ -2.6012,   0.2604]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ 10.3277,  -6.0130, -18.0757,  18.9676, -12.1417,  11.1270,  -6.0140,
+         -6.1209,   4.8344,  -6.0130], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-1.4734e-01, -3.4270e-01,  6.8750e-01, -1.0128e+00, -2.7895e+01,
+         -4.6780e-01, -3.5183e-01, -2.6117e-01, -7.6460e+00, -3.4289e-01],
+        [-8.6974e-02,  4.1538e-01, -1.4973e+01,  3.1747e-01,  8.0606e+00,
+          6.7299e-02,  4.0150e-01,  3.3327e-01,  8.5149e-02,  4.1502e-01],
+        [-3.7259e+00,  6.3550e-04, -8.0163e-01, -7.6543e-01, -7.2068e-01,
+         -6.0267e-01,  6.2308e-04, -2.5305e-04, -5.0896e-02,  6.3509e-04],
+        [-1.2165e+01, -1.1947e-01,  5.6077e+00,  1.5490e+01,  1.2064e+00,
+         -9.3023e+00, -1.1746e-01, -1.6608e-01,  3.6308e+00, -1.1940e-01],
+        [-3.1166e+00,  3.5969e-03, -7.5293e+00,  4.6317e-01,  4.3190e-02,
+          5.6205e-01,  1.8989e-03,  2.7281e-02,  4.3768e-01,  3.5361e-03],
+        [-3.9971e+01, -6.3483e-01,  4.8297e+00,  2.9127e+00, -7.2017e-02,
+         -9.5232e+00, -6.2643e-01, -6.0674e-01,  1.6354e+01, -6.3462e-01],
+        [-3.2966e+00, -3.0145e-03, -6.5796e+00,  3.6530e-01, -1.7898e-01,
+          4.9050e-01, -4.7738e-03,  1.2160e-02,  3.9449e-01, -3.0704e-03],
+        [ 9.8121e-01,  3.2630e-01, -2.1611e+01, -8.7215e-01,  6.4692e+00,
+         -7.6775e+00,  3.2335e-01,  3.1915e-01,  1.6338e+00,  3.2619e-01],
+        [ 2.2450e+00, -9.0989e-02,  1.7191e+00, -1.5360e+01, -2.6383e+00,
+         -1.4312e+01, -8.3604e-02, -9.0559e-02, -2.3986e+00, -9.0792e-02],
+        [-4.9475e+00,  5.6370e-01, -1.2296e+01,  5.8704e+00, -2.4628e+00,
+          1.5027e+00,  5.7637e-01,  7.3381e-01,  1.6002e+00,  5.6393e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -3.5202,  -3.6676,  -4.7557, -11.1086,  -4.4805, -17.1063,  -4.7064,
+         -5.5582,  -7.0376,  -4.1125], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ 4.9800e+00,  8.1077e+00, -1.1661e-03, -5.1293e+00,  3.9033e+00,
+          1.3683e+01,  3.5014e+00,  7.9372e+00,  4.8605e+00,  1.0614e+00],
+        [-4.9799e+00, -8.1077e+00,  1.1886e-03,  5.1386e+00, -3.9033e+00,
+         -1.3652e+01, -3.5014e+00, -7.9371e+00, -4.8603e+00, -1.1728e+00]],
+       device='cuda:0'))])
+loaded xi:  183.65913
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+new min fval from sgd:  -1552.2071068754005
+min fval:  -1552.2071068754005
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ -2.0159,  -0.2463],
+        [ -2.0159,  -0.2463],
+        [ -0.4752,   5.9271],
+        [ 20.9324,  -3.2291],
+        [ -2.0160,  -0.2464],
+        [ -2.0160,  -0.2465],
+        [ -2.0013,  -0.3916],
+        [-37.8746,  -3.6910],
+        [ -8.5590,  13.5781],
+        [ -2.0280,  -0.2592]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -4.4838,  -4.4838, -10.0824, -13.0641,  -4.4840,  -4.4843,  -4.6396,
+         -3.9637,   9.8983,  -4.4962], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[-1.6404e-02, -1.6404e-02,  6.5302e-03, -2.4782e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5302e-03, -2.4782e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [ 3.1679e-01,  3.1681e-01,  8.9219e+00,  1.8637e+01,  3.1718e-01,
+          3.1774e-01,  4.9272e-01,  5.7027e+00, -1.8438e+01,  3.4360e-01],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4783e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4783e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4783e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-6.0389e-01, -6.0386e-01, -6.8484e+00, -1.4469e+01, -6.0349e-01,
+         -6.0271e-01, -5.0260e-01, -5.3118e+00,  1.5746e+01, -5.8742e-01],
+        [-3.9318e-02, -3.9318e-02, -5.6440e-02, -9.3124e-02, -3.9317e-02,
+         -3.9305e-02, -3.8470e-02, -2.6372e-01, -3.3154e-01, -3.9352e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4782e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02],
+        [-1.6404e-02, -1.6404e-02,  6.5301e-03, -2.4783e-02, -1.6404e-02,
+         -1.6401e-02, -1.6433e-02, -9.7884e-02, -6.4567e-01, -1.6452e-02]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-3.1871, -3.1871,  1.7458, -3.1871, -3.1871, -3.1871, -1.1442, -2.5882,
+        -3.1871, -3.1871], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[  0.0628,   0.0628, -25.4656,   0.0628,   0.0628,   0.0628,  14.8527,
+           0.1494,   0.0628,   0.0628]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 22.4513,  13.1698],
+        [ -2.6012,   0.2604],
+        [ -9.5044, -19.2578],
+        [-23.8381,  -0.7055],
+        [-16.5883, -13.7570],
+        [-15.5322,  10.8102],
+        [ -2.6034,   0.2585],
+        [ -2.6867,   0.2553],
+        [-14.9591,  -1.4614],
+        [ -2.6012,   0.2604]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([ 10.3277,  -6.0130, -18.0757,  18.9676, -12.1417,  11.1270,  -6.0140,
+         -6.1209,   4.8344,  -6.0130], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-1.4734e-01, -3.4270e-01,  6.8750e-01, -1.0128e+00, -2.7895e+01,
+         -4.6780e-01, -3.5183e-01, -2.6117e-01, -7.6460e+00, -3.4289e-01],
+        [-8.6974e-02,  4.1538e-01, -1.4973e+01,  3.1747e-01,  8.0606e+00,
+          6.7299e-02,  4.0150e-01,  3.3327e-01,  8.5149e-02,  4.1502e-01],
+        [-3.7259e+00,  6.3550e-04, -8.0163e-01, -7.6543e-01, -7.2068e-01,
+         -6.0267e-01,  6.2308e-04, -2.5305e-04, -5.0896e-02,  6.3509e-04],
+        [-1.2165e+01, -1.1947e-01,  5.6077e+00,  1.5490e+01,  1.2064e+00,
+         -9.3023e+00, -1.1746e-01, -1.6608e-01,  3.6308e+00, -1.1940e-01],
+        [-3.1166e+00,  3.5969e-03, -7.5293e+00,  4.6317e-01,  4.3190e-02,
+          5.6205e-01,  1.8989e-03,  2.7281e-02,  4.3768e-01,  3.5361e-03],
+        [-3.9971e+01, -6.3483e-01,  4.8297e+00,  2.9127e+00, -7.2017e-02,
+         -9.5232e+00, -6.2643e-01, -6.0674e-01,  1.6354e+01, -6.3462e-01],
+        [-3.2966e+00, -3.0145e-03, -6.5796e+00,  3.6530e-01, -1.7898e-01,
+          4.9050e-01, -4.7738e-03,  1.2160e-02,  3.9449e-01, -3.0704e-03],
+        [ 9.8121e-01,  3.2630e-01, -2.1611e+01, -8.7215e-01,  6.4692e+00,
+         -7.6775e+00,  3.2335e-01,  3.1915e-01,  1.6338e+00,  3.2619e-01],
+        [ 2.2450e+00, -9.0989e-02,  1.7191e+00, -1.5360e+01, -2.6383e+00,
+         -1.4312e+01, -8.3604e-02, -9.0559e-02, -2.3986e+00, -9.0792e-02],
+        [-4.9475e+00,  5.6370e-01, -1.2296e+01,  5.8704e+00, -2.4628e+00,
+          1.5027e+00,  5.7637e-01,  7.3381e-01,  1.6002e+00,  5.6393e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -3.5202,  -3.6676,  -4.7557, -11.1086,  -4.4805, -17.1063,  -4.7064,
+         -5.5582,  -7.0376,  -4.1125], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ 4.9800e+00,  8.1077e+00, -1.1661e-03, -5.1293e+00,  3.9033e+00,
+          1.3683e+01,  3.5014e+00,  7.9372e+00,  4.8605e+00,  1.0614e+00],
+        [-4.9799e+00, -8.1077e+00,  1.1886e-03,  5.1386e+00, -3.9033e+00,
+         -1.3652e+01, -3.5014e+00, -7.9371e+00, -4.8603e+00, -1.1728e+00]],
+       device='cuda:0'))])
+xi:  [183.65913]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 756.7165080057782
+W_T_median: 472.0000172186891
+W_T_pctile_5: 185.07792132221175
+W_T_CVAR_5_pct: 7.3966768244952075
+Average q (qsum/M+1):  48.90001260080645
+Optimal xi:  [183.65913]
+Expected(across Rb) median(across samples) p_equity:  0.2831028617918491
+obj fun:  tensor(-1552.2071, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:262: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 5.0
+-----------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       10  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        2           softmax   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 10)      True          10  
+0     (10, 10)      True          10  
+0      (10, 2)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ -0.4853,   0.7865],
+        [ -0.4797,   0.7981],
+        [  0.3472,   6.0401],
+        [ 24.8152,  -3.7169],
+        [ -0.4857,   0.7855],
+        [ -0.4927,   0.7711],
+        [ -0.4795,   0.7986],
+        [-37.1904,  -6.1105],
+        [-13.2607,  13.3469],
+        [ -0.4795,   0.7985]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -5.2895,  -5.2842, -13.6807, -13.1661,  -5.2900,  -5.2966,  -5.2840,
+         -5.4447,   9.5537,  -5.2840], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 2.0046e-01,  2.0850e-01,  1.5055e+01,  1.9764e+01,  1.9977e-01,
+          1.9022e-01,  2.0886e-01,  4.8512e+00, -1.8924e+01,  2.0877e-01],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3438e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [-2.6348e-01, -2.6951e-01, -1.1847e+01, -1.6182e+01, -2.6297e-01,
+         -2.5604e-01, -2.6977e-01, -4.8205e+00,  1.6246e+01, -2.6971e-01],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-3.4891, -3.4891,  2.1130, -3.4891, -3.4891, -3.4891, -0.8828, -3.4891,
+        -3.4891, -3.4891], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[  0.1325,   0.1325, -27.3187,   0.1325,   0.1325,   0.1325,  13.5295,
+           0.1325,   0.1325,   0.1325]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 2.2930e+01,  1.3410e+01],
+        [-3.3241e+00,  1.2360e-02],
+        [-8.6505e+00, -1.9181e+01],
+        [-2.4064e+01, -5.2620e-02],
+        [-1.8953e+01, -1.3501e+01],
+        [-9.2094e+00,  1.4428e+01],
+        [-3.1884e+00, -1.8970e-01],
+        [-2.3433e+00,  1.5843e+00],
+        [-1.5411e+01, -2.4364e+00],
+        [-3.4414e+00, -5.3664e-02]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([  9.8060,  -8.2301, -18.4033,  20.6027, -11.9613,  13.4694,  -8.1635,
+         -7.9436,   4.4511,  -8.3901], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 5.9320e-03, -4.5398e-01,  5.1918e-01, -1.3441e+00, -4.0205e+01,
+         -1.3945e+00, -2.8867e-01, -1.8920e+00, -1.2763e+01, -3.8338e-01],
+        [-6.0403e-01,  1.6919e-01, -2.3048e+01,  4.5834e-01,  2.9241e+00,
+          5.5139e-01,  6.3989e-01, -1.9788e+00,  5.0363e-01,  2.1549e-01],
+        [-4.6612e+00,  1.4546e-04, -1.5560e+00, -2.0345e+00, -1.0157e+00,
+         -1.2137e+00,  2.0329e-03, -1.5609e-01, -7.4093e-01, -4.7788e-04],
+        [-1.1093e+01,  5.7442e-01,  4.3267e+00,  1.6074e+01,  2.4172e+00,
+         -1.2183e+01,  6.0862e-01,  4.8241e-01,  3.6661e+00,  5.7292e-01],
+        [-1.9792e+00,  4.1134e-02, -1.1078e+01, -1.7542e+00, -1.1017e+01,
+         -1.5216e+00,  8.4465e-02, -1.1722e+00,  9.5095e-01,  3.8813e-02],
+        [-5.4193e+01,  1.9456e-01,  7.5677e+00,  3.9910e-01,  4.9533e-01,
+         -6.0615e+00,  2.2178e-01,  1.0864e-01,  1.8620e+01,  1.9390e-01],
+        [-2.0606e+00,  2.9719e-02, -1.1198e+01, -1.7652e+00, -1.0368e+01,
+         -1.5369e+00,  6.9417e-02, -1.1282e+00,  1.0481e+00,  2.6805e-02],
+        [ 3.0929e-01,  2.8590e-01, -1.9222e+01, -4.8835e+00, -3.2776e+00,
+         -3.2985e+00,  3.5646e-01, -5.7457e-01,  6.8122e+00,  2.6269e-01],
+        [ 2.5294e+00, -3.0385e-02,  1.2766e+00, -2.4284e+01,  7.1478e-03,
+         -4.4672e+00, -6.0202e-02, -5.7846e-01, -1.3563e+01, -2.5934e-02],
+        [-3.8296e+00,  5.8451e-01, -1.2451e+01,  1.0459e+00, -1.6141e+00,
+          1.2541e+00,  6.0243e-01, -1.3798e+00,  7.2233e-01,  5.9680e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -3.3924,  -3.1776,  -6.1937, -12.0057,  -3.8728, -22.8499,  -4.0234,
+         -6.3182,  -8.1243,  -2.7320], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[  6.1805,   8.0412,   0.6534,  -5.1392,   8.1141,  19.2123,   7.9649,
+           8.6858,   5.4391,   4.8611],
+        [ -6.1804,  -8.0411,  -0.6534,   5.1579,  -8.1140, -19.1856,  -7.9648,
+          -8.6857,  -5.4388,  -4.9720]], device='cuda:0'))])
+loaded xi:  211.41026
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.6 0.4]
+W_T_mean: 1583.6866209228313
+W_T_median: 1138.6857387434734
+W_T_pctile_5: -127.4429131675796
+W_T_CVAR_5_pct: -297.80727420155023
+-----------------------------------------------
+new min fval from sgd:  -2408.8701587341457
+min fval:  -2408.8701587341457
+saved model: 
+OrderedDict([('0.model.hidden_layer_1.weight', tensor([[ -0.4853,   0.7865],
+        [ -0.4797,   0.7981],
+        [  0.3472,   6.0401],
+        [ 24.8152,  -3.7169],
+        [ -0.4857,   0.7855],
+        [ -0.4927,   0.7711],
+        [ -0.4795,   0.7986],
+        [-37.1904,  -6.1105],
+        [-13.2607,  13.3469],
+        [ -0.4795,   0.7985]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -5.2895,  -5.2842, -13.6807, -13.1661,  -5.2900,  -5.2966,  -5.2840,
+         -5.4447,   9.5537,  -5.2840], device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 2.0046e-01,  2.0850e-01,  1.5055e+01,  1.9764e+01,  1.9977e-01,
+          1.9022e-01,  2.0886e-01,  4.8512e+00, -1.8924e+01,  2.0877e-01],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3438e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [-2.6348e-01, -2.6951e-01, -1.1847e+01, -1.6182e+01, -2.6297e-01,
+         -2.5604e-01, -2.6977e-01, -4.8205e+00,  1.6246e+01, -2.6971e-01],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02],
+        [ 1.8009e-02,  1.7400e-02, -2.3439e-01,  2.6459e-01,  1.8059e-02,
+          1.8729e-02,  1.7372e-02, -1.7931e-01, -4.1001e-01,  1.7379e-02]],
+       device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-3.4891, -3.4891,  2.1130, -3.4891, -3.4891, -3.4891, -0.8828, -3.4891,
+        -3.4891, -3.4891], device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[  0.1325,   0.1325, -27.3187,   0.1325,   0.1325,   0.1325,  13.5295,
+           0.1325,   0.1325,   0.1325]], device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ 2.2930e+01,  1.3410e+01],
+        [-3.3241e+00,  1.2360e-02],
+        [-8.6505e+00, -1.9181e+01],
+        [-2.4064e+01, -5.2620e-02],
+        [-1.8953e+01, -1.3501e+01],
+        [-9.2094e+00,  1.4428e+01],
+        [-3.1884e+00, -1.8970e-01],
+        [-2.3433e+00,  1.5843e+00],
+        [-1.5411e+01, -2.4364e+00],
+        [-3.4414e+00, -5.3664e-02]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([  9.8060,  -8.2301, -18.4033,  20.6027, -11.9613,  13.4694,  -8.1635,
+         -7.9436,   4.4511,  -8.3901], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[ 5.9320e-03, -4.5398e-01,  5.1918e-01, -1.3441e+00, -4.0205e+01,
+         -1.3945e+00, -2.8867e-01, -1.8920e+00, -1.2763e+01, -3.8338e-01],
+        [-6.0403e-01,  1.6919e-01, -2.3048e+01,  4.5834e-01,  2.9241e+00,
+          5.5139e-01,  6.3989e-01, -1.9788e+00,  5.0363e-01,  2.1549e-01],
+        [-4.6612e+00,  1.4546e-04, -1.5560e+00, -2.0345e+00, -1.0157e+00,
+         -1.2137e+00,  2.0329e-03, -1.5609e-01, -7.4093e-01, -4.7788e-04],
+        [-1.1093e+01,  5.7442e-01,  4.3267e+00,  1.6074e+01,  2.4172e+00,
+         -1.2183e+01,  6.0862e-01,  4.8241e-01,  3.6661e+00,  5.7292e-01],
+        [-1.9792e+00,  4.1134e-02, -1.1078e+01, -1.7542e+00, -1.1017e+01,
+         -1.5216e+00,  8.4465e-02, -1.1722e+00,  9.5095e-01,  3.8813e-02],
+        [-5.4193e+01,  1.9456e-01,  7.5677e+00,  3.9910e-01,  4.9533e-01,
+         -6.0615e+00,  2.2178e-01,  1.0864e-01,  1.8620e+01,  1.9390e-01],
+        [-2.0606e+00,  2.9719e-02, -1.1198e+01, -1.7652e+00, -1.0368e+01,
+         -1.5369e+00,  6.9417e-02, -1.1282e+00,  1.0481e+00,  2.6805e-02],
+        [ 3.0929e-01,  2.8590e-01, -1.9222e+01, -4.8835e+00, -3.2776e+00,
+         -3.2985e+00,  3.5646e-01, -5.7457e-01,  6.8122e+00,  2.6269e-01],
+        [ 2.5294e+00, -3.0385e-02,  1.2766e+00, -2.4284e+01,  7.1478e-03,
+         -4.4672e+00, -6.0202e-02, -5.7846e-01, -1.3563e+01, -2.5934e-02],
+        [-3.8296e+00,  5.8451e-01, -1.2451e+01,  1.0459e+00, -1.6141e+00,
+          1.2541e+00,  6.0243e-01, -1.3798e+00,  7.2233e-01,  5.9680e-01]],
+       device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([ -3.3924,  -3.1776,  -6.1937, -12.0057,  -3.8728, -22.8499,  -4.0234,
+         -6.3182,  -8.1243,  -2.7320], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[  6.1805,   8.0412,   0.6534,  -5.1392,   8.1141,  19.2123,   7.9649,
+           8.6858,   5.4391,   4.8611],
+        [ -6.1804,  -8.0411,  -0.6534,   5.1579,  -8.1140, -19.1856,  -7.9648,
+          -8.6857,  -5.4388,  -4.9720]], device='cuda:0'))])
+xi:  [211.41026]
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 792.7144775218896
+W_T_median: 553.0051412655978
+W_T_pctile_5: 217.14112444401985
+W_T_CVAR_5_pct: 20.159769294768026
+Average q (qsum/M+1):  46.17313508064516
+Optimal xi:  [211.41026]
+Expected(across Rb) median(across samples) p_equity:  0.23073579569657643
+obj fun:  tensor(-2408.8702, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_FunctionHeatmaps.py:262: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+bond graph is mislabeled!
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/testing_pyt_decum/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: B10_and_VWD
+Objective function: mean_cvar_single_level
+Tracing param: 50.0
+-----------------------------------------------
