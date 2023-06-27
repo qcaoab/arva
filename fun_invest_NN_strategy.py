@@ -169,7 +169,11 @@ def withdraw_invest_NN_strategy(NN_list, params):
         #------------------------negative portfolios only incur borrowing cost (bond, not stock yield)----
         
         neg_indices = g_prev < 0 
-        Y_t_n[neg_indices][:,1] = Y_t_n[neg_indices][:,0]  
+        
+        #to do: change this for multi asset problem
+        if neg_indices.any():
+            for i in range(Y_t_n.size()[1]):
+                Y_t_n[neg_indices][:,i] = Y_t_n[neg_indices][:,params["b10_idx"]]  
         
         
         #--------------------------- CONSTRUCT FEATURE VECTOR and standardize, for allocation ---------------------------

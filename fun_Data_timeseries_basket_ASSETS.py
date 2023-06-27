@@ -373,7 +373,30 @@ def asset_basket(basket_type,   #"asset"
         #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
         basket_timeseries_names = ["FF_Mkt"]
 
+    elif basket_id == "MC_everything":
+        
+        #description
+        basket_desc = "marc_test1_all_assets_longfactors"
+        
+        #SHORT label for e.g. figures
+        basket_label = "marc test1 basket"
+                
+        #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
+        basket_timeseries_names = ["Size_Lo30", "Value_Hi30","Oprof_Hi30", "Inv_Lo30", "Mom_Hi30", "EP_Hi30", "Vol_Lo20", "Div_Hi30", "EQWFact", "T30",	"T90", "B10", "VWD", "EWD"]
+        
+    elif basket_id == "MC_conservative":
+        
+        #description
+        basket_desc = "marc_conservative_basket"
+        
+        #SHORT label for e.g. figures
+        basket_label = "marc conservative asset basket"
+                
+        #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
+        basket_timeseries_names = ["Vol_Lo20", "T90", "B10", "EWD"]
+    
 
+        
 
     # ------------------------------------------------------------------------------------------------
     # Add CASH as an asset if needed

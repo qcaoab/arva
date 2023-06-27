@@ -91,6 +91,13 @@ def run_bootstrap(df_all,   #pd.DataFrame with source data for bootstrapping
     if params["use_trading_signals_TrueFalse"] == True:
         column_names_trading_signals = params["trading_signal_basket"]["basket_columns"]
         N_tradingsignals = len(column_names_trading_signals)    #number of trading signals
+        
+            #=------------------
+    print("-----------------------------------------------")
+    print("Dates USED bootstrapping:")
+    print("Start: " + str(yyyymm_start))
+    print("End: " + str(yyyymm_end))
+    print("-----------------------------------------------")
 
 
     # ---------------------------------------------------------------------------------

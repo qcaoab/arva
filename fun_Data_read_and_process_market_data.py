@@ -43,7 +43,7 @@ def read_and_process_market_data(data_settings, timeseries_basket):
         data_returns_nominal = pd.read_excel(input_folder + "/" + input_file  + input_file_type,
                                      skiprows=skiprows,
                                      index_col=index_col,
-                                     header=header,
+                                     header=header, 
                                      na_values=na_values, engine='openpyxl') #if xlrd gives error, add option: engine='openpyxl'
 
         if returns_format == "percentages":

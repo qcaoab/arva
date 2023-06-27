@@ -1,0 +1,80 @@
+Files in this directory:
+
+1. get_csv_files_from_wrds.py: simple python script to retrieve data
+from WRDS, rather than using web interface as in previous years. One
+consequence is that data will end up be a bit different since more
+digits are carried this way, especially for the CPI index (and also
+because of updates/corrections to the data). To run this, python
+must be configured as per the instructions on the WRDS site (start at
+wrds-www.wharton.upenn.edu/pages/support/programming-wrds/programming-python).
+
+2. Running the script above will retrieve two csv files:
+  (i) treasury_2021.csv, which contains the following monthly CRSP data:
+
+  * caldt:  calendar date
+  * b30ret, b30ind: return and total return index for a 30-year Treasury bond
+  * b20ret, b20ind: return and total return index for a 20-year Treasury bond
+  * b10ret, b10ind: return and total return index for a 10-year Treasury bond
+  * b7ret, b7ind: return and total return index for a 7-year Treasury bond
+  * b5ret, b5ind: return and total return index for a 5-year Treasury bond
+  * b2ret, b2ind: return and total return index for a 2-year Treasury bond
+  * b1ret, b1ind: return and total return index for a 1-year Treasury bond
+  * t90ret, t90ind: return and total return index for a 90-day Treasury bill
+  * t30ret, t30ind: return and total return index for a 30-day Treasury bill
+  * cpiret, cpiind: percentage change and index level for CPI
+
+Note that the return series start at various times, and the index
+series are flat prior to that time (i.e. not valid observations before
+the first available return). For example, the 10-year return series
+starts in May 1941. To use this maturity over the entire sample period
+starting at the beginning of 1926, we have to backfill using the data in
+homer.csv.
+
+  (ii) stock_indexes_2021.csv, which contains the following monthly CRSP data:
+
+  * date:  calendar date
+  * vwretd: value-weighted index return (including distributions)
+  * vwretx: value-weighted index return (excluding dividends)
+  * ewretd: equal-weighted index return (including distributions)
+  * ewretx: equal-weighted index reutrn (excluding dividends)
+  * sprtrn: S&P500 index return
+  * spindx: S&P500 index level
+  * totval: total market value in $000s
+  * totcnt: number of stocks in the current file with a valid price
+  * usdval: total market value in $000s of all stocks in value-weighted index
+  * usdcnt: number of stocks in the current file used in equal-weighted index
+
+3. homer.csv: contains data from S. Homer, A History of Interest Rates.
+This is the same source used by Shiller in Irrational Exuberance. Some
+problems are that the given yields are annual averages of monthly
+yields, and they may be for maturities different from 10 years.
+
+4. real_indexes_2021.py: python script which:
+
+  (i) backfills the 10 year index using the Homer data. It is assumed
+      that the annual average applies to an observation halfway through
+      the corresponding year. Monthly yields are filled in using linear
+      interpolation between the annual averages. Each month it is assumed that
+      the given yield applies to a newly issued 10-year bond which is sold at
+      par. The bond price is recalculated for the following month using the
+      prevailing yield. The percentage change in the bond price is the monthly
+      return.
+
+ (ii) constructs indexes for 30-day and 90-day T-bills, along with 
+      value-weighted and equal-weighted stock indexes
+
+(iii) optionally generates several plots (to see these run the script in
+      an ipython notebook) and writes out real index values to
+      real_indexes_2021.csv. The series written out include Time (the 
+      date as a decimal number, e.g. 1926.75 for Sept 1926), CPI (the CPI
+      index from CRSP), T30 (30-day T-bill real total return index),
+      T90 (90-day T-bill real total return index), B10 (back-filled real
+      10-year bond total return index), VWD (real value-weighted with
+      distributions total return stock index), VWX (real value-weighted without
+      distributions total return stock index), EWD (real equal-weighted with
+      distributions total return stock index), and EWX (real equal-weighted
+      without distributions total return stock index). All indexes start 
+      at 100 for Time=1926 (which is the start of 1926/end of 1925).
+
+5. real_indexes_2021.csv contains the output from real_indexes_2021.py,
+as described above.

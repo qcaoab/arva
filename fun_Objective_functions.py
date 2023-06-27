@@ -4,6 +4,15 @@ from logging import raiseExceptions
 import numpy as np
 import torch
 
+def quad_smooth_min(x, lambda_quad, device):
+    
+    #smoothing helper function to replace max(x,0)
+    
+    lambda_v = torch.ones(x.size()[0], device=device)*lambda_quad
+    quad_smooth = (1/(4*lambda_quad)) * torch.square(x) - 0.5*x + 0.25*lambda_quad
+    
+    return torch.where(torch.gt(x, lambda_v), 0, torch.where(torch.lt(x,-lambda_v), x, quad_smooth))
+
 def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
     #pytorch implementation for objective function: mean cvar with decumulation
        
@@ -23,8 +32,16 @@ def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
     # bracket = torch.multiply(ind_W_T_below_xi_squared, diff)   #same as: minimum(W_T_vector - xi_squared, 0)
     
     # xi_10 = torch.mul(xi,10) # multiply by 50 for 
+    
+    
+    
+    if params["smooth_cvar_func"]:
+        
+        bracket = xi + (1/alpha) * quad_smooth_min(W_T_vector - xi, params["lambda_quad"], params["device"])    
+        
+    else:
 
-    bracket = xi + (1/alpha) * torch.minimum(W_T_vector - xi, torch.zeros(W_T_vector.size(), device = params["device"]))
+        bracket = xi + (1/alpha) * torch.minimum(W_T_vector - xi, torch.zeros(W_T_vector.size(), device = params["device"]))
     
     if not params["kappa_inf"]:
         fun = -qsum_T_vector - rho*bracket #formulate as minimization
