@@ -28,6 +28,7 @@ import fun_train_NN_algorithm_defaults
 import fun_RUN__wrapper
 import torch
 import class_NN_Pytorch
+import time
 
 if run_on_my_computer is True:  #handle importing of matplotlib
 
@@ -50,6 +51,11 @@ else:
 # Portfolio problem: Main structural parameters
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
+
+#sleep timer
+# sleep_hrs = 3
+# print(f"sleeping {sleep_hrs} hrs")
+# time.sleep(60*60*sleep_hrs)
 
 #time
 now = datetime.datetime.now()
@@ -76,6 +82,7 @@ params["q"] =  0. * np.ones(params["N_rb"])  # Cash injection schedule (a priori
 
 seed_mc = 1
 np.random.seed(seed_mc)
+torch.manual_seed(seed_mc)
 print("\n Random seed: ", seed_mc, " \n")
 
 #Specify TRANSACTION COSTS parameters
@@ -86,7 +93,7 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_propcost"] = 0.5/100   #proportional TC in (0,1] of trading in any asset EXCEPT cash account
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
-iter_params = "tiny"
+iter_params = "test"
 
 if iter_params == "real_exp":
     n_d_train_mc = int(2.56* (10**6))
@@ -94,9 +101,14 @@ if iter_params == "real_exp":
     batchsize_mc = 2000
 
 if iter_params == "test":
-    n_d_train_mc = int(2.56* (10**4))
-    itbound_mc = 1000
-    batchsize_mc = 500
+    n_d_train_mc = int(2.56* (10**5))
+    itbound_mc = 10000
+    batchsize_mc = 1000
+    
+if iter_params == "smol":
+    n_d_train_mc = int(2.56* (10**4)) 
+    itbound_mc = 3000
+    batchsize_mc = 1000
 
 if iter_params == "tiny":
     n_d_train_mc = 100
@@ -195,7 +207,7 @@ params["obj_fun"] = "mean_cvar_single_level"
 # print("tracing parameter entered from terminal: ", sys.argv[1])
 # tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
-tracing_parameters_to_run = [1.0, 2.0] #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run = [1.0]#[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[float(item) for item in sys.argv[1].split(" ")] #Must be LIST
 
@@ -590,8 +602,8 @@ NN = class_Neural_Network.Neural_Network(n_nodes_input = params["N_phi"],
 NN.print_layers_info()  #Check what to update
 
 #Update layers info
-NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 6 , activation = "logistic_sigmoid", add_bias=False)
-NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 6, activation = "logistic_sigmoid", add_bias=False)
+NN.update_layer_info(layer_id = 1 , n_nodes = params["N_a"] + 8 , activation = "logistic_sigmoid", add_bias=False)
+NN.update_layer_info(layer_id = 2 , n_nodes = params["N_a"] + 8, activation = "logistic_sigmoid", add_bias=False)
 # NN.update_layer_info(layer_id = 3 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 # NN.update_layer_info(layer_id = 4 , n_nodes = params["N_a"] + 2, activation = "logistic_sigmoid", add_bias=False)
 #NN.update_layer_info(layer_id = 3 , n_nodes = 8, activation = "ELU", add_bias=False)
@@ -677,10 +689,10 @@ NN_training_options = fun_train_NN_algorithm_defaults.train_NN_algorithm_default
 NN_training_options["methods"] = [ "Adam"]
 NN_training_options["Adam_ewma_1"] = 0.9
 NN_training_options["Adam_ewma_2"] = 0.99 #0.999
-NN_training_options['nit_running_min'] = int(itbound * 0.02) # nr of iterations at the end that will be used to get the running minimum for output
+NN_training_options['nit_running_min'] = int(itbound * 0.1) # nr of iterations at the end that will be used to get the running minimum for output
 NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
-NN_training_options["nit_IterateAveragingStart"] = int(itbound * 95 / 100)  # Start IA 95% of the way in
+NN_training_options["nit_IterateAveragingStart"] = int(itbound * 90 / 100)  # Start IA 95% of the way in
 
 #MC pytorch addition:
 NN_training_options["pytorch"] = pytorch_flag  

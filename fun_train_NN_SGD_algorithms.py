@@ -164,7 +164,9 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         #update parameters
         optimizer.step()
         
-        
+        #try to clean up memory, lol
+        torch.cuda.empty_cache()
+               
         # ----------------
         #ITERATE AVERAGING
         # if it >= nit_IterateAveragingStart:
@@ -192,21 +194,28 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
             # OR, for last 'nit_running_min' iterations, calculate the newval for EVERY iteration
 
             # newval is calculated using ALL data, not just subset
-            new_fval, _ = objfun_pyt(swa_model.module, params, xi_avg)
+            with torch.no_grad():
+                new_fval, _ = objfun_pyt(swa_model.module, params, xi_avg)
         
-            if new_fval < v_min:
-                print("updated min: ")
-                print(f"obj fun: {new_fval}")
-                NN_pyt_min = copy.deepcopy(swa_model.module)
-                xi_min = xi_avg.detach().clone()
-                v_min = new_fval.detach().clone()      
-        
+                if new_fval < v_min:
+                    print("updated min: ")
+                    print(f"obj fun: {new_fval}")
+                    NN_pyt_min = copy.deepcopy(swa_model.module)
+                    xi_min = xi_avg.detach().clone()
+                    v_min = new_fval.detach().clone()      
+            
         # ----------------
         #Update user on progress every x% of SGD iterations
         if itbound >= 1000:
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
-                print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method[0])                
-                new_fval, _ = objfun_pyt(NN_pyt, params, xi) # uses full tensor version of params 
+                print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)                
+                with torch.no_grad():    
+                    new_fval, _ = objfun_pyt(NN_pyt, params, xi) # uses full tensor version of params 
+                    if new_fval < v_min:
+                        NN_pyt_min = copy.deepcopy(NN_pyt)
+                        xi_min = xi.detach().clone()
+                        v_min = new_fval.detach().clone() 
+                        print(f"updated min: {new_fval}")
                 # supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
                 print( "objective value function right now is: " + str(float(new_fval)))
                 # print( "gradient value of function right now is: " + str(grad_theta_new_mc))
@@ -216,6 +225,12 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
 
 
     # ---------------------------- End: MAIN LOOP --------------------------------------------
+
+    
+    optimizer.zero_grad()
+    del NN_pyt
+    torch.cuda.empty_cache()
+    torch.no_grad()
 
     #--------------- SET OUTPUT VALUES ---------------
 
