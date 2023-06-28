@@ -12,7 +12,7 @@ import numpy as np
 import seaborn as sns
 import datetime
 import pandas as pd
-from w_constraint_activations import custom_activation
+from constraint_activations import w_custom_activation
 
 
 def plot_DataHeatmaps(

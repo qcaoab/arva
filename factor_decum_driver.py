@@ -112,7 +112,7 @@ cont_xi = True #uses previous value of optimal xi to initialize xi in next run
 cont_xi_start = 3  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
-preload = True
+preload = False
 params["local_path"] = str(os.getcwd())
 
 nn_preload = "/home/marcchen/Documents/factor_decumulation/researchcode/saved_models/NN_opt_mc_decum_24-06-23_14:19_kappa_1.0"
@@ -121,7 +121,7 @@ xi_preload = "/home/marcchen/Documents/factor_decumulation/researchcode/saved_mo
 
 
 #Pytorch flag for pre-trained NN
-params["PreTrained_pytorch"] = True
+params["PreTrained_pytorch"] = False
     
 params["standardization_file_path"] = "/home/marcchen/Documents/factor_decumulation/researchcode/allfactors_model2_split/saved_models/standardizing_opt_mc_decum_23-06-23_18:16_kappa_1.0.json"
 
@@ -154,7 +154,7 @@ params["w_constraint_activation"] = "yy_fix_jan29"
 params["withdrawal_standardize"] = True
 
 # iteration dashboard --------------------------
-iter_params = "check" 
+iter_params = "tiny" 
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
@@ -177,17 +177,17 @@ if iter_params == "check":
     adam_nn_eta = 0.00
 
 if iter_params == "smol":
-    n_d_train_mc = int(2.56* (10**3)) 
-    itbound_mc = 10
+    n_d_train_mc = int(2.56* (10**4)) 
+    itbound_mc = 4000
     batchsize_mc = 1000
-    nodes_mc = 14
+    nodes_mc = 8
     layers_mc = 2
     biases_mc = True
-    adam_xi_eta = 0.00
-    adam_nn_eta = 0.00
+    adam_xi_eta = 0.04
+    adam_nn_eta = 0.05
 
 if iter_params == "tiny":
-    n_d_train_mc = 100
+    n_d_train_mc = 10
     itbound_mc = 5
     batchsize_mc = 5
     nodes_mc = 8
@@ -234,6 +234,9 @@ if params["test_TrueFalse"] is True:
 #--------------------------------------
 # ASSET BASKET: Specify basket of candidate assets, and REAL or NOMINAL data
 params["asset_basket_id"] =  "Paper_FactorInv_Factor2"   # "MC_everything" #"basic_ForsythLi"    #Pre-defined basket of underlying candidate assets - see fun_Data_assets_basket.py
+params["factor_constraint"] = True
+params["factor_constraints_dict"] = {"Size_Lo30": 0.2, "Value_Hi30":0.2}
+    
 params["add_cash_TrueFalse"] = False     #If True, add "Cash" as an asset to the selected asset basket
     # - We will ALWAYS set add_cash_TrueFalse = True if TransCosts_TrueFalse == True (below)
 params["real_or_nominal"] = "real" # "real" or "nominal" for asset data for wealth process: if "real", the asset data will be deflated by CPI
@@ -290,7 +293,7 @@ params["obj_fun_epsilon"] =  10**-6
 
 
 #k = 999. for Inf case!
-tracing_parameters_to_run = [1.0]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
+tracing_parameters_to_run =  [1.0]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
  #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
@@ -588,7 +591,7 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
     params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
         train_test_Flag = "train",                  # "train" or "test"
         params = params,                            # params dictionary as in main code
-        data_bootstrap_yyyymm_start = 199201, #196307,    #196307   # start month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_start = 192607,    #196307   # start month to use subset of data for bootstrapping, CHECK DATA!
         data_bootstrap_yyyymm_end = 202212, #199201,         # end month to use subset of data for bootstrapping, CHECK DATA!
         data_bootstrap_exp_block_size = blocksize,          # Expected block size in terms of frequency of market returns data
                                                     # e.g. = X means expected block size is X months of returns
@@ -735,7 +738,13 @@ NN_allocate_orig.print_layers_info()  #Check what to update
 for l in range(1, layers_mc+1):
     NN_allocate_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=biases_mc)
 
-NN_allocate_orig.update_layer_info(layer_id = layers_mc+1, activation = "softmax", add_bias= False)
+#changed activ to none for constraint function
+
+if params["factor_constraint"]:
+    NN_allocate_orig.update_layer_info(layer_id = layers_mc+1, activation = "none", add_bias= False)
+
+else:
+    NN_allocate_orig.update_layer_info(layer_id = layers_mc+1, activation = "softmax", add_bias= False)
 
 
 NN_allocate_orig.print_layers_info() #Check if structure is correct

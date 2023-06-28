@@ -4,8 +4,8 @@ import fun_W_T_stats
 import copy
 import fun_utilities    #using smooth approx to abs value function
 import torch 
-from w_constraint_activations import custom_activation
-
+from constraint_activations import w_custom_activation
+from constraint_activations import asset_constraint_activation
 from fun_construct_Feature_vector import construct_Feature_vector
 
 def withdraw_invest_NN_strategy(NN_list, params):
@@ -141,7 +141,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
         #get withdrawal NN output as value in [0,1], to multiply with the range.
         nn_out = torch.squeeze(NN_list[0].forward(phi_1))
         
-        q_n = custom_activation(nn_out, g_prev, params)
+        q_n = w_custom_activation(nn_out, g_prev, params)
         
                 
         #save withdrawals
@@ -194,8 +194,11 @@ def withdraw_invest_NN_strategy(NN_list, params):
         # ---------------------------ALLOCATION CONTROL  -----------------------------------------------
         #Get proportions to invest in each asset at time t_n^+
         #   a_t_n[j,i] = proportion to invest in asset i along sample path j
-
-        a_t_n_output = NN_list[1].forward(phi_2)
+        
+        if params["factor_constraint"]:
+            a_t_n_output = asset_constraint_activation(torch.squeeze(NN_list[1].forward(phi_2)), params)
+        else:
+            a_t_n_output = torch.squeeze(NN_list[1].forward(phi_2))
         
         
             

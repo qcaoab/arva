@@ -1,7 +1,39 @@
 import torch
 
 
-def custom_activation(nn_out, g_prev, params):
+def asset_constraint_activation(nn_out, params):
+    
+    softmax = torch.nn.Softmax(dim=1)
+    sigmoid = torch.nn.Sigmoid()
+    
+    size_max = torch.tensor(params["factor_constraints_dict"]["Size_Lo30"], device= params["device"])
+    value_max = torch.tensor(params["factor_constraints_dict"]["Value_Hi30"], device= params["device"]) 
+
+    # each factor asset prop is calculated with independent sigmoid and then scaled accoring to max as specified in params
+    # the total factor proportion is then used to scale the basic assets appropriately so proportions sum to 1. 
+    
+    if params["asset_basket_id"] ==  "Paper_FactorInv_Factor2":
+    
+        size_prop = sigmoid(nn_out[:,3]) * size_max
+        value_prop = sigmoid(nn_out[:,4]) * value_max
+        
+        basic_prop = softmax(nn_out[:,0:3]) * (1 - (size_prop+value_prop))[:,None]
+    else:
+        raise ValueError("asset basket constraint not coded")
+    
+    # check if props sum to 1:
+    with torch.no_grad():
+        
+        prop_sums = basic_prop.sum(dim=1) + size_prop + value_prop
+        if any(torch.round(prop_sums, decimals = 6) != 1):
+            raise ValueError("asset props don't sum to one")
+    
+    a_t_n_output = torch.cat((basic_prop, size_prop[:,None], value_prop[:,None]), 1)
+        
+    return a_t_n_output
+
+
+def w_custom_activation(nn_out, g_prev, params):
     
     sigmoid = torch.nn.Sigmoid()
     formulation = params["w_constraint_activation"]

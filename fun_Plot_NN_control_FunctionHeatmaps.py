@@ -15,7 +15,8 @@ import pandas as pd
 import datetime
 import copy
 import torch
-from w_constraint_activations import custom_activation
+from constraint_activations import w_custom_activation
+from constraint_activations import asset_constraint_activation
 
 def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trained* NN parameters and setup as in main code
                                 W_num_pts = 3001, #number of points for wealth grid
@@ -140,16 +141,21 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
                 if asset_index == asset_loop_vector[-1]:
                     if n_index == 0:
                         continue
-                    with torch.no_grad():
+                    with torch.no_grad():                       
                         a_t_n_output= torch.squeeze(NN_object_w.forward(phi))
                         
-                        q_n = custom_activation(a_t_n_output, wealth_n, params)
+
+                        q_n = w_custom_activation(a_t_n_output, wealth_n, params)
                         
                         withdrawal_q = (q_n-q_min) / (q_max - q_min)
                         withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)
                         z_NNopt_prop_mesh[:, n_index-1] = withdrawal_q.detach().to('cpu').numpy()
                 else:
-                    a_t_n_output = NN_object.forward(phi)
+                    if params["factor_constraint"]:
+                            a_t_n_output = asset_constraint_activation(torch.squeeze(NN_object.forward(phi)), params)
+                    else:
+                        a_t_n_output = torch.squeeze(NN_object.forward(phi))
+                    # a_t_n_output = NN_object.forward(phi)
                     z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index].detach().to('cpu').numpy()
             else:
                 a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
@@ -165,7 +171,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
                                            feature_calc_option = feature_calc_option, # Set calc_option = "matlab" to match matlab code
                                            withdraw=withdraw)
                 a_t_n_output= torch.squeeze(NN_object_w.forward(phi))
-                q_n = custom_activation(a_t_n_output, wealth_n, params)
+                q_n = w_custom_activation(a_t_n_output, wealth_n, params)
                 withdrawal_q = (q_n-q_min) / (q_max - q_min) #withdrawal_q = torch.nan_to_num(withdrawal_q, nan = 0.0, posinf = 0.0, neginf= 0.0)
                 last_withdrawal = withdrawal_q.detach().to('cpu').numpy()
                 last_withdrawal = np.reshape(last_withdrawal, (len(wealth_n),1))

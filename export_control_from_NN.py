@@ -1,7 +1,8 @@
 import fun_construct_Feature_vector
 import torch
 import numpy as np
-from w_constraint_activations import custom_activation
+from constraint_activations import w_custom_activation
+from constraint_activations import asset_constraint_activation
 
 # goal: create a text file in peter's pde solver format of the explicit allocation and withdrawal control for DC, kappa = 1
 # create pytorch NN instance, feed it t 
@@ -45,7 +46,7 @@ def export_controls(NN_list, params):
         nn_out = torch.squeeze(NN_list[0].forward(phi_1))
         
         
-        q_n = custom_activation(nn_out, w_grid_vector, params)
+        q_n = w_custom_activation(nn_out, w_grid_vector, params)
     
         # fill in qplus back to front, set to negative for pde solver format
         Qplus[:,n] = -q_n
@@ -65,7 +66,12 @@ def export_controls(NN_list, params):
                                 feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
                                 withdraw= False)
         
-        a_t_n_output = torch.squeeze(NN_list[1].forward(phi_2))
+        if params["factor_constraint"]:
+            a_t_n_output = asset_constraint_activation(NN_list[1].forward(phi_2), params)
+        else:
+            a_t_n_output = NN_list[1].forward(phi_2)
+        
+        a_t_n_output = torch.squeeze(a_t_n_output)
         
         Bplus[:,n] = torch.multiply(a_t_n_output[:,0], w_grid_vector)
     
