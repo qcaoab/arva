@@ -4,7 +4,7 @@ from scipy.optimize import minimize
 import pandas as pd
 
 # objective function for NN investment strategy evaluation
-from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun
+from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy_pyt as objfun
 from fun_eval_objfun_NN_strategy import fun_val as objfun_val   #Function value ONLY
 from fun_eval_objfun_NN_strategy import fun_gradient as objfun_gradient #Gradient  ONLY
 

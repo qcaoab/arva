@@ -4,6 +4,7 @@ import fun_W_T_stats
 import copy
 import fun_utilities    #using smooth approx to abs value function
 import torch 
+import arva as ARVA
 
 from fun_construct_Feature_vector import construct_Feature_vector
 
@@ -67,6 +68,7 @@ def invest_decumulate_NN_strategy(NN_pyt, params):
 
 
     #Append fields to params, and initialize
+    
     params["W"] = np.zeros([N_d, N_rb+1]) #   W contains PATHS, so W.shape = (N_d, N_rb+1)
     params["W_paths_mean"] = np.zeros([1, N_rb + 1])    #mean of W paths at each rebalancing time
     params["W_paths_std"] = np.zeros([1, N_rb + 1])     #stdev of W paths at each rebalancing time
@@ -285,7 +287,18 @@ def invest_NN_strategy_pyt(NN_pyt, params):
 
         #Assign values from previous loop
         g_prev = g.clone() #g_prev = g(t_n_min_1) = wealth (t_n)^-
-
+        #print(g_prev)
+        #---------------------------------------------------------------------------------
+        #Update wealth after annuity withdrawal
+        if params["Annuity_Withdrawal"] is True:
+            size = g_prev.size()
+            Qmax = torch.full(size, ARVA.Qmax, device= 'cuda:0')
+            Q = torch.min(ARVA.Annuity[n]*g_prev, Qmax)
+            #params['Q'] = Q
+            g_prev = g_prev - Q # g_prev now contains W(t_n^+)
+        #-----------------------------------------------------------------------------------
+        
+        
         
         # --------------------------- RETURNS FOR  (t_n^+, t_n+1^-) ---------------------------
         #Construct matrix from training data using the subset of returns for (t_n^+, t_n+1^-)
@@ -374,8 +387,8 @@ def invest_NN_strategy_pyt(NN_pyt, params):
 
     # -------------------------------------------------
 
-    return params, g
-
+    return params, g, Q
+'''
 def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
                        LRP_for_NN_TrueFalse = False, PRP_TrueFalse = False):
     #OBJECTIVE: Calculate the  wealth paths, terminal wealth,
@@ -877,7 +890,7 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
             #END: if params["TransCosts_TrueFalse"] is True
 
     #end: TIMESTEPPING
-
+    
     # -------------------------------------------------------------------------------
     # CONFIDENCE PENALTY terms append:
     if params["ConfPenalty_TrueFalse"] is True:
@@ -972,3 +985,4 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
 
     return params
 
+'''

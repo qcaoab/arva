@@ -4,8 +4,8 @@ import pandas as pd
 import numpy as np
 import copy
 import fun_Data__assign
-from fun_train_NN_scipy_algorithms import run_scipy_minimize    #scipy minimization algorithms
-from fun_train_NN_SGD_algorithms import run_Gradient_Descent, run_Gradient_Descent_pytorch    #SGD algorithms
+#from fun_train_NN_scipy_algorithms import run_scipy_minimize    #scipy minimization algorithms
+from fun_train_NN_SGD_algorithms import run_Gradient_Descent_pytorch    #SGD algorithms
 import fun_eval_objfun_NN_strategy  #used for final objective function evaluation after training
 
 def train_NN(theta0,      # initial parameter vector (weights and biases) + other parameters for objective function
@@ -54,7 +54,7 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
     res_ALL = {}    #initialize
     res_BEST = {}
 
-    # CG (in scipy algorithms): --------------------------------------------------------------------------------
+    '''# CG (in scipy algorithms): --------------------------------------------------------------------------------
     if "CG" in NN_training_options["methods"]:
         # method = "CG": uses a nonlinear conjugate gradient algorithm by Polak and Ribiere,
         #               a variant of the Fletcher-Reeves method
@@ -106,11 +106,12 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
                                           )
         res_ALL["res_NewtonCG"] = res_NewtonCG  # append to res_ALL
         print(res_NewtonCG)
-
+    '''
 
 
     # SGD_constant (in SGD algorithms): ---------------------------------------------------------------------------
 
+    '''    
     if "SGD_constant" in NN_training_options["methods"]:
         print("Running SGD_constant.")
         res_SGD_constant = run_Gradient_Descent(method="SGD_constant",
@@ -188,6 +189,7 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
                                            )
         res_ALL["res_RMSprop"] = res_RMSprop  # append to res_ALL
         #print(res_RMSprop)
+    '''
 
 
     if NN_training_options["pytorch"] and "Adam" in NN_training_options["methods"]:
@@ -200,7 +202,7 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
         
         res_ALL["pytorch_adam"] = result_pyt_adam
         
-    
+    '''
     # Adam (in SGD algorithms):: ---------------------------------------------------------------------------
     # non pytorch adam
     if not NN_training_options["pytorch"] and "Adam" in NN_training_options["methods"]:
@@ -224,7 +226,7 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
         res_ALL["res_Adam"] = res_Adam  # append to res_ALL
         #print(res_Adam)
 
-
+    '''
     # CONSTRUCT OUTPUTS: ---------------------------------------------------------------------------
     val_min = np.inf  # initialize running minimum
     res_ALL_dataframe = pd.DataFrame() #initialize

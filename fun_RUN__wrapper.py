@@ -11,8 +11,8 @@ import fun_output_results
 import fun_output_results_RollingHistorical
 import fun_output_results_TopBottom
 import fun_output_results_Pctiles
-import fun_Plot_NN_control_FunctionHeatmaps
-import fun_Plot_NN_control_DataHeatmaps
+#import fun_Plot_NN_control_FunctionHeatmaps
+#import fun_Plot_NN_control_DataHeatmaps
 import fun_output_results_PRPscores
 import fun_invest_ConstProp_strategy
 import fun_eval_objfun_NN_strategy
@@ -422,7 +422,7 @@ def RUN__wrapper_output(
     #----------------------------------------------------------------------------------------------------
     # Will just plot this for the *last* of the batchsizes and itbounds above
 
-
+    '''
     if save_Figures_FunctionHeatmaps or output_FunctionHeatmaps_Excel:
 
         if params_TRAIN["use_trading_signals_TrueFalse"] is False:
@@ -464,10 +464,11 @@ def RUN__wrapper_output(
                                             cmap= heatmap_cmap,  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
                                             heatmap_cbar_limits=heatmap_cbar_limits # list in format [vmin, vmax] for heatmap colorbar/scale
                                             )
-
+    '''
     # ----------------------------------------------------------------------------------------------------
     # NN control DATA HEATMAPS (Optimal control as realized on the training data)
     # ----------------------------------------------------------------------------------------------------
+    '''
     if save_Figures_DataHeatmaps or output_DataHeatmaps_Excel:
 
         if params_TRAIN["use_trading_signals_TrueFalse"] == False:
@@ -486,7 +487,7 @@ def RUN__wrapper_output(
                 heatmap_cbar_limits=heatmap_cbar_limits,  # list in format [vmin, vmax] for heatmap colorbar/scale
                 output_HeatmapData_Excel=output_DataHeatmaps_Excel # If TRUE, output the heatmap grid data to Excel, naming uses fig_filename_prefix
             )
-
+    '''
 
     # ----------------------------------------------------------------------------------------
     # ROLLING HISTORICAL PATH assessment

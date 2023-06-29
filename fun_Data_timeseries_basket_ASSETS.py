@@ -113,6 +113,17 @@ def asset_basket(basket_type,   #"asset"
 
         #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
         basket_timeseries_names = ["VWD", "T90"]
+    
+    elif basket_id == "basic_VWD_T30_ARVA":
+
+        #description
+        basket_desc = "CRSP data: VWD and T30"
+
+        #SHORT label for e.g. figures
+        basket_label = "VWD and T30"
+
+        #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
+        basket_timeseries_names = ["VWD", "T30"]
 
 
     elif basket_id == "basic_ForsythLi":

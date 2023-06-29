@@ -3,7 +3,7 @@ import time
 import numpy as np
 import pandas as pd
 import copy
-from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun  #objective function for NN evaluation
+#from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun  #objective function for NN evaluation
 from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy_pyt as objfun_pyt #pytorch objective func
 from fun_W_T_stats import fun_W_T_summary_stats
 import torch
@@ -156,7 +156,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         optimizer.zero_grad()
         
         # eval obj fun with SGD batch, includes forward pass on NN with updated weights from last step
-        f_val, _ = objfun_pyt(NN_pyt, params_it, xi)
+        f_val = objfun_pyt(NN_pyt, params_it)
         
         #calc gradients
         f_val.backward()
@@ -195,7 +195,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
 
             # newval is calculated using ALL data, not just subset
             with torch.no_grad():
-                new_fval, _ = objfun_pyt(swa_model.module, params, xi_avg)
+                new_fval, _ = objfun_pyt(swa_model.module, params)
         
                 if new_fval < v_min:
                     print("updated min: ")
@@ -210,7 +210,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
                 print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)                
                 with torch.no_grad():    
-                    new_fval, _ = objfun_pyt(NN_pyt, params, xi) # uses full tensor version of params 
+                    new_fval, _ = objfun_pyt(NN_pyt, params) # uses full tensor version of params 
                     if new_fval < v_min:
                         NN_pyt_min = copy.deepcopy(NN_pyt)
                         xi_min = xi.detach().clone()

@@ -182,15 +182,16 @@ def get_model_params(model_ID, real_or_nominal = "real"):
                 zeta1 =  4.3608   # expo param of UP jump
                 zeta2 =  5.5040   # expo param of DOWN jump
 
-
+            #-------------------------------------------------------------------------------------------------------------
             elif model_ID == "VWD_kou_Forsyth_retirementDC": #parameters for STOCK in Forsyth retirement decumulation paper
                 r = 0.0 #overwrite (but not used)
-                mu = 0.0877
-                sig = 0.1459  # diffusive vol
-                lambda_jump = 0.3191  # intensity of Poisson
-                nu = 0.2333  # prob of UP jump
-                zeta1 = 4.3608  # expo param of UP jump
-                zeta2 = 5.504  # expo param of DOWN jump
+                mu = 0.08753
+                sig = 0.14801  # diffusive vol
+                lambda_jump = 0.34065  # intensity of Poisson
+                nu = 0.25806  # prob of UP jump
+                zeta1 = 4.67877 # expo param of UP jump
+                zeta2 = 5.60389  # expo param of DOWN jump
+            #------------------------------------------------------------------------------------
 
             elif model_ID == "B10_kou_Forsyth_retirementDC": #parameters for BOND in Forsyth retirement decumulation paper
                 r = 0.0 #overwrite (but not used)
@@ -200,7 +201,7 @@ def get_model_params(model_ID, real_or_nominal = "real"):
                 nu = 0.6111  # prob of UP jump
                 zeta1 = 16.19  # expo param of UP jump
                 zeta2 = 17.27  # expo param of DOWN jump
-
+            #---------------------------------------------------------
             elif model_ID == "VWD_kou_LiForsyth2019": #parameters for Kou model cap-weighted in Li and Forsyth 2019 paper
                 r = 0.0 #overwrite (but not used)
                 mu = 0.08889
@@ -254,12 +255,13 @@ def get_model_params(model_ID, real_or_nominal = "real"):
     elif real_or_nominal == "nominal":
         if model_ID == "VWD_Forsyth_2021_benchmark":   #Basically use "GBM"
             #These are just test parameters
-            r = 0.0 # overwrite
-            mu = 0.08
-            sig = 0.15
-            lambda_jump = 0.0
-            kappa = 0.0
-            kappa2 = 0.0
+            r = 0.0 #overwrite (but not used)
+            mu = 0.08753
+            sig = 0.14801  # diffusive vol
+            lambda_jump = 0.34065  # intensity of Poisson
+            nu = 0.25806  # prob of UP jump
+            zeta1 = 4.67877 # expo param of UP jump
+            zeta2 = 5.60389  # expo param of DOWN jump
 
         elif model_ID == "T90_Forsyth_2021_benchmark":   #Risk-free asset
             #These are just test parameters

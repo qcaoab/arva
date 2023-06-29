@@ -36,8 +36,8 @@ def wrap_run_MCsim(train_test_Flag,  # "train" or "test"
     #   Assign model_IDs: Make sure it is in the CORRECT ORDER!
     # - Order should correspond to order of params["asset_basket"]["basket_columns"], specifically:
     # - MCsim_info["model_ID_XX"] should correspond to model for params["asset_basket"]["basket_columns"][XX]
-
-    if params["asset_basket"]["basket_id"] == "B10_and_VWD":
+    #------------------------------------------------------------------------------------------------------------
+    if params["asset_basket"]["basket_id"] == "basic_VWD_T30_ARVA":
 
         if model_ID_set_identifier == "Forsyth_retirementDC_2020" and params["real_or_nominal"] == "real":
 
@@ -46,12 +46,12 @@ def wrap_run_MCsim(train_test_Flag,  # "train" or "test"
             MCsim_info["model_ID_1"] = "VWD_kou_Forsyth_retirementDC"
 
             # Assign correlations: CHECK ORDER if >= 2 assets!
-            rho_sb = 0.04554
+            rho_sb = 0.06662
             MCsim_info["corr_matrix"] = np.array([[1, rho_sb], [rho_sb, 1]])
 
         else:
             raise ValueError("Error in wrap_run_MCsim: model_ID_set_identifier not assigned, or real_or_nominal != 'real'.")
-
+    #---------------------------------------------------------------------------------------------------------------------------
     elif params["asset_basket"]["basket_id"] == "basic_T90_VWD":
         if model_ID_set_identifier == "Forsyth_2021_benchmark" and params["real_or_nominal"] == "nominal":
             #Order should correspond to order of params["asset_basket"]["basket_columns"]
@@ -59,7 +59,7 @@ def wrap_run_MCsim(train_test_Flag,  # "train" or "test"
             MCsim_info["model_ID_1"] = "VWD_Forsyth_2021_benchmark"
 
             # Assign correlations: CHECK ORDER if >= 2 assets!
-            rho_sb = 0.0
+            rho_sb = 0.06662
             MCsim_info["corr_matrix"] = np.array([[1, rho_sb], [rho_sb, 1]])
 
 
