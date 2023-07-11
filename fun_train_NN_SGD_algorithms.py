@@ -8,6 +8,7 @@ from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy_pyt as objfun_pyt #
 from fun_W_T_stats import fun_W_T_summary_stats
 import torch
 import fun_invest_NN_strategy
+import os
 
 from torch.optim.swa_utils import AveragedModel
 
@@ -311,29 +312,36 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         # xi = F_theta[-1]  # Last entry is xi, where (xi**2) is candidate VAR
 
         #save NN params and xi for continuation learning
-    model_save_path = params["console_output_prefix"]
-    local_path = params["local_path"]
-    kappa = params["obj_fun_rho"]
-    torch.save(NN_list_min.state_dict(),f"{local_path}/saved_models/NN_opt_{model_save_path}_kappa_{kappa}")
     
-    optimal_xi = {"xi":str(xi_np[0])}
-    
-    with open(f'{local_path}/saved_models/xi_opt_{model_save_path}_kappa_{kappa}.json', 'w') as outfile:
-        json.dump(optimal_xi, outfile)
+    if params["iter_params"] != "check":
+        
+        model_save_path = params["console_output_prefix"]
+        local_path = params["local_path"]
+        kappa = params["obj_fun_rho"]
+        
+        filename_nn = f"{local_path}/saved_models_constrain/{model_save_path}_NNopt_kappa_{kappa}"
+        os.makedirs(os.path.dirname(filename_nn), exist_ok=True)
+        
+        torch.save(NN_list_min.state_dict(),filename_nn)
+        
+        optimal_xi = {"xi":str(xi_np[0])}
+        
+        with open(f'{local_path}/saved_models_constrain/{model_save_path}_XIopt_kappa_{kappa}.json', 'w') as outfile:
+            json.dump(optimal_xi, outfile)
 
-    # Store training standardizing parameters
+        # Store training standardizing parameters
 
-    standardizing_params = {"benchmark_W_mean_train":params["benchmark_W_mean_train"].tolist(),
-                            "benchmark_W_std_train":params["benchmark_W_std_train"].tolist(),
-                            "benchmark_W_mean_train_post_withdraw":params["benchmark_W_mean_train_post_withdraw"].tolist(),
-                            "benchmark_W_std_train_post_withdraw":params["benchmark_W_std_train_post_withdraw"].tolist()}
-    
-    with open(f'{local_path}/saved_models/standardizing_opt_{model_save_path}_kappa_{kappa}.json', 'w') as outfile:
-        json.dump(standardizing_params, outfile)
+        standardizing_params = {"benchmark_W_mean_train":params["benchmark_W_mean_train"].tolist(),
+                                "benchmark_W_std_train":params["benchmark_W_std_train"].tolist(),
+                                "benchmark_W_mean_train_post_withdraw":params["benchmark_W_mean_train_post_withdraw"].tolist(),
+                                "benchmark_W_std_train_post_withdraw":params["benchmark_W_std_train_post_withdraw"].tolist()}
+        
+        with open(f'{local_path}/saved_models_constrain/{model_save_path}_standardizing_opt_kappa_{kappa}.json', 'w') as outfile:
+            json.dump(standardizing_params, outfile)
 
-    print("saved model: ")
-    print(NN_list_min.state_dict())
-    print("xi: ", xi_np)
+        print("saved model: ")
+        print(NN_list_min.state_dict())
+        print("xi: ", xi_np)
     
     # Make sure parameter dictionary is updated so that e.g. fun_Objective_functions can work correctly
     params["xi"] = xi_np[0] #(xi**2) is candidate VAR

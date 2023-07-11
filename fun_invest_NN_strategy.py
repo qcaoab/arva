@@ -58,7 +58,13 @@ def withdraw_invest_NN_strategy(NN_list, params):
     
     #check return data right shapeparams["W"]
     #check number of output nodes 
-    if NN_list[1].model[-2].out_features != N_a or NN_list[1].model[0].in_features != N_phi:
+    
+    if params["dynamic_total_factorprop"] == True:
+        node_adj = 1
+    else:
+        node_adj = 0
+        
+    if NN_list[1].model[-2].out_features != N_a + node_adj or NN_list[1].model[0].in_features != N_phi:
         raise ValueError("PVS error in 'fun_NN_terminal_wealth': NN not right shape.")
 
     if sum(params["q"].shape) != N_rb:

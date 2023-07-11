@@ -1,0 +1,210 @@
+
+{
+    
+    "2basic_NN": [
+        {  
+            "seed_mc": 3,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/2basic_NN_06-07-23_21:03", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "B10_and_VWD",
+            "factor_constraint": false,
+            "factor_constraints_dict": {},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0.7,0.3],
+            "blocksize": 18,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.1
+        }
+    ],
+
+    "3basic_NN": [
+        {  
+            "seed_mc": 3,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/3basic_NN_06-07-23_21:03", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "Paper_FactorInv_Basic",
+            "factor_constraint": false,
+            "factor_constraints_dict": {},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0,0.7,0.3],
+            "blocksize": 18,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.1
+        }
+    ],
+
+    "2_factor_unconstrain": [
+        {  
+            "seed_mc": 3,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/2_factor_unconstrain_07-07-23_14:20", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "Paper_FactorInv_Factor2",
+            "factor_constraint": false,
+            "factor_constraints_dict": {},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0.0, 0.6, 0.1, 0.15, 0.15],
+            "blocksize": 18,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.05
+
+        }
+    ],
+
+    "2_factor_constrain_indiv": [
+        {  
+            "seed_mc": 3,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/2_factor_constrain_indiv_07-07-23_19:07", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "Paper_FactorInv_Factor2",
+            "factor_constraint": true,
+            "factor_constraints_dict": {"Size_Lo30": 0.25, "Value_Hi30":0.25},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0.0, 0.5, 0.2, 0.15, 0.15],
+            "blocksize": 18,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.05
+
+        }
+    ],
+
+    "2_factor_constrain_group": [
+        {  
+            "seed_mc": 3,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/2_factor_constrain_group_07-07-23_23:51", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "Paper_FactorInv_Factor2",
+            "factor_constraint": true,
+            "factor_constraints_dict": {"total_factor_max":0.5},
+            "dynamic_total_factorprop": true,
+            "kappa_list": [1.0],
+            "prop_const": [0.0, 0.5, 0.2, 0.15, 0.15],
+            "blocksize": 18,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.05
+
+        }
+    ],
+
+    "5_factor_unconstrain": [ 
+        {  
+            "seed_mc": 3,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/5_factor_unconstrain_08-07-23_21:45", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "5_Factor_plusEWD",
+            "factor_constraint": false,
+            "factor_constraints_dict": {"total_factor_max": 0.50},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0.05, 0.05, 0.05, 0.05, 0.05,  0, 0.50, 0.25, 0],
+            "blocksize": 18,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.1
+
+        }
+    ],
+
+    "5_factor_constrain_indiv": [ 
+        {  
+            "seed_mc": 3,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/5_factor_constrain_indiv_07-07-23_16:21", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "5_Factor_plusEWD",
+            "factor_constraint": true,
+            "factor_constraints_dict": {"Size_Lo30":0.1, "Value_Hi30":0.1, "Mom_Hi30":0.1, "Vol_Lo20":0.1, "Div_Hi30":0.1},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0.05, 0.05, 0.05, 0.05, 0.05,  0, 0.50, 0.25, 0],
+            "blocksize": 18,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.1
+
+        }
+    ],
+
+    "5_factor_constrain_group": [ 
+        {  
+            "seed_mc": 3,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/5_factor_constrain_group_08-07-23_21:51", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "5_Factor_plusEWD",
+            "factor_constraint": true,
+            "factor_constraints_dict": {"total_factor_max":0.5},
+            "dynamic_total_factorprop": true,
+            "kappa_list": [1.0],
+            "prop_const": [0.05, 0.05, 0.05, 0.05, 0.05,  0, 0.50, 0.25, 0],
+            "blocksize": 18,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.1
+
+        }
+    ]
+
+}

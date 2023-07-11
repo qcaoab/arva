@@ -68,8 +68,8 @@ print(start_time)
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
-code_title_prefix = "output_heatmaps/mc_decum_"+start_time   #used for saving output on local
-console_output_prefix = "mc_decum_" +start_time
+code_title_prefix = "output_heatmaps_constrain/mc_decum_"+start_time+"/"   #used for saving output on local
+console_output_prefix = "mc_decum_" +start_time+"/"
 params["console_output_prefix"] = console_output_prefix
 params["start_time"] = start_time
 
@@ -106,24 +106,23 @@ print("\n numpy seed: ", seed_mc, " \n")
 torch.manual_seed(seed_mc)
 print("\n pytorch seed: ", seed_mc, " \n")
 
-cont_nn = True  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
+cont_nn = False  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
 cont_nn_start = 3
-cont_xi = True #uses previous value of optimal xi to initialize xi in next run
+cont_xi = False #uses previous value of optimal xi to initialize xi in next run
 cont_xi_start = 3  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
 preload = False
 params["local_path"] = str(os.getcwd())
 
-nn_preload = "/home/marcchen/Documents/factor_decumulation/researchcode/saved_models/NN_opt_mc_decum_24-06-23_14:19_kappa_1.0"
+nn_preload = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/NN_opt_mc_decum_30-06-23_19:28_kappa_1.0" 
 
-xi_preload = "/home/marcchen/Documents/factor_decumulation/researchcode/saved_models/xi_opt_mc_decum_24-06-23_14:19_kappa_1.0.json"
-
+xi_preload = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/xi_opt_mc_decum_30-06-23_19:28_kappa_1.0.json" 
 
 #Pytorch flag for pre-trained NN
 params["PreTrained_pytorch"] = False
     
-params["standardization_file_path"] = "/home/marcchen/Documents/factor_decumulation/researchcode/allfactors_model2_split/saved_models/standardizing_opt_mc_decum_23-06-23_18:16_kappa_1.0.json"
+params["standardization_file_path"] = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/standardizing_opt_mc_decum_27-06-23_18:47_kappa_1.0.json"
 
 #control export params
 params["output_control"] = False
@@ -154,11 +153,11 @@ params["w_constraint_activation"] = "yy_fix_jan29"
 params["withdrawal_standardize"] = True
 
 # iteration dashboard --------------------------
-iter_params = "tiny" 
+iter_params = "smol" 
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 30000
+    itbound_mc = 20000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
@@ -191,8 +190,8 @@ if iter_params == "tiny":
     itbound_mc = 5
     batchsize_mc = 5
     nodes_mc = 8
-    params["q"] =  0. * np.ones(params["N_rb"]) 
-    layers_mc = 4
+    #params["q"] =  0. * np.ones(params["N_rb"]) 
+    layers_mc = 2
     biases_mc = True
     adam_xi_eta = 0.05
     adam_nn_eta = 0.05
@@ -233,9 +232,22 @@ if params["test_TrueFalse"] is True:
 
 #--------------------------------------
 # ASSET BASKET: Specify basket of candidate assets, and REAL or NOMINAL data
-params["asset_basket_id"] =  "Paper_FactorInv_Factor2"   # "MC_everything" #"basic_ForsythLi"    #Pre-defined basket of underlying candidate assets - see fun_Data_assets_basket.py
-params["factor_constraint"] = True
-params["factor_constraints_dict"] = {"Size_Lo30": 0.2, "Value_Hi30":0.2}
+params["asset_basket_id"] =  "B10_and_VWD"   #"Paper_FactorInv_Factor2"  #"basic_ForsythLi"    #Pre-defined basket of underlying candidate assets - see fun_Data_assets_basket.py
+params["factor_constraint"] = False
+
+
+if params["asset_basket_id"] == "Paper_FactorInv_Factor4":
+    params["factor_constraints_dict"] = {"Size_Lo30": 0.1, "Value_Hi30":0.1, "Vol_Lo20":0.1, "Mom_Hi30": 0.1}
+
+if params["asset_basket_id"] == "Paper_FactorInv_Factor2":
+    params["factor_constraints_dict"] = {"Size_Lo30": 0.20, "Value_Hi30":0.20}
+
+if params["asset_basket_id"] == "MC_everything":
+    params["factor_constraints_dict"] = {"total_factor_prop": 0.5, "dynamic_prop": True}
+ 
+
+#
+#{"Size_Lo30": 0.20, "Value_Hi30":0.20}
     
 params["add_cash_TrueFalse"] = False     #If True, add "Cash" as an asset to the selected asset basket
     # - We will ALWAYS set add_cash_TrueFalse = True if TransCosts_TrueFalse == True (below)
@@ -466,6 +478,8 @@ params["N_a"] = len(params["asset_basket"]["basket_columns"])   #Nr of assets = 
 
 
 prop_const = np.ones(params["N_a"]) * (1/ params["N_a"])  # automatically get equal proportions:
+
+# prop_const = np.array([0,0.50, 0.50, 0 , 0])
 withdraw_const = 40.0
 
 # if params["asset_basket"] == "MC_everything":
@@ -591,8 +605,8 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
     params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
         train_test_Flag = "train",                  # "train" or "test"
         params = params,                            # params dictionary as in main code
-        data_bootstrap_yyyymm_start = 192607,    #196307   # start month to use subset of data for bootstrapping, CHECK DATA!
-        data_bootstrap_yyyymm_end = 202212, #199201,         # end month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_start = 196307,    #196307   # start month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_end = 202212, #202212,         # end month to use subset of data for bootstrapping, CHECK DATA!
         data_bootstrap_exp_block_size = blocksize,          # Expected block size in terms of frequency of market returns data
                                                     # e.g. = X means expected block size is X months of returns
                                                     # if market returns data is monthly
@@ -847,7 +861,7 @@ NN_training_options["Adam_ewma_1"] = 0.9
 NN_training_options["Adam_ewma_2"] = 0.998 #0.999
 NN_training_options["Adam_eta"] = adam_nn_eta #override 0.1
 NN_training_options["Adam_weight_decay"] = 1e-4
-NN_training_options['nit_running_min'] = int(itbound / 10)  # nr of iterations at the end that will be used to get the running minimum for output
+NN_training_options['nit_running_min'] = int(itbound / 100)  # nr of iterations at the end that will be used to get the running minimum for output
 NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in

@@ -395,6 +395,28 @@ def asset_basket(basket_type,   #"asset"
         #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
         basket_timeseries_names = ["Vol_Lo20", "T90", "B10", "EWD"]
     
+    elif basket_id == "7_Factor_plusEWD":
+        
+        #description
+        basket_desc = "7_Factor_totalmax"
+        
+        #SHORT label for e.g. figures
+        basket_label = "7_Factor_totalmax"
+                
+        #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
+        basket_timeseries_names = ["Size_Lo30", "Value_Hi30","Oprof_Hi30", "Inv_Lo30", "Mom_Hi30", "EP_Hi30", "Vol_Lo20", "Div_Hi30",  "EQWFact","T30", "B10", "VWD", "EWD"]
+    
+    elif basket_id == "5_Factor_plusEWD":
+        
+        #description
+        basket_desc = "5_Factor_plusEWD"
+        
+        #SHORT label for e.g. figures
+        basket_label = "5_Factor_plusEWD"
+                
+        #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
+        basket_timeseries_names = ["Size_Lo30", "Value_Hi30", "Mom_Hi30", "Vol_Lo20", "Div_Hi30",  "T30", "B10", "VWD", "EWD"]
+    
 
         
 

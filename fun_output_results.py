@@ -7,7 +7,7 @@ import numpy as np
 import datetime
 import fun_utilities
 import matplotlib.pyplot as plt
-
+import os
 
 def output_W_T_vectors(params_TRAIN,         # dictionary with parameters and results from NN TRAINING
                       params_TEST = None,    # dictionary with parameters and results from NN TESTING
@@ -106,10 +106,11 @@ def output_W_T_histogram_and_cdf(df_W_T_vectors,  #df_output from the function o
     #Save histograms
     if output_Excel:
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
-
+        
         filename = filename_prefix_for_Excel + "timestamp_" + timestamp + "_W_T_histogram_and_cdf" \
                        + ".xlsx"
-
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        
         with pd.ExcelWriter(filename) as writer:
             df_hist.to_excel(writer, sheet_name="hist_" + percentage_or_count, header=True, index=True)
             df_cdf.to_excel(writer, sheet_name="CDF", header=True, index=True)
