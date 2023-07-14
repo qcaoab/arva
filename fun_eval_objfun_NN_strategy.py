@@ -27,8 +27,9 @@ def eval_obj_NN_strategy_pyt(NN_pyt, params):
 
     #Calculate the  wealth paths, terminal wealth
     
-    params, g, Q = fun_invest_NN_strategy.invest_NN_strategy_pyt(NN_pyt, params)
-
+    params, Q_prev, Q , g = fun_invest_NN_strategy.invest_NN_strategy_pyt(NN_pyt, params)
+    # modify the global variable
+    
     #Unpack F_theta
 
     #if params["obj_fun"] == "mean_cvar_single_level":
@@ -41,10 +42,14 @@ def eval_obj_NN_strategy_pyt(NN_pyt, params):
         #for output
         #params["F_val"] = fun.detach().to("cpu").numpy()     #Obj func value
         #params["xi"] = xi
-        
+    
+    
     if params['obj_fun'] == 'arva':
         
-        fun = fun_Objective_functions.fun_objective_arva_pytorch(params, Q)
+        fun = fun_Objective_functions.fun_objective_arva_pytorch(params, Q_prev, Q)
         params["F_val"] = fun.detach().to("cpu").numpy()     #Obj func value
-        return fun.detach().to("cpu").numpy()
+        
+        #return fun.detach().to("cpu").numpy()
+    
+    return fun, params
 

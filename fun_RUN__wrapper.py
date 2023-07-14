@@ -17,6 +17,7 @@ import fun_output_results_PRPscores
 import fun_invest_ConstProp_strategy
 import fun_eval_objfun_NN_strategy
 import fun_W_T_stats
+import fun_Q_T_stats
 import fun_BM_vs_NN_comparison
 import class_NN_Pytorch
 
@@ -158,14 +159,24 @@ def RUN__wrapper_training_testing_NN(
     params_CP_TRAIN = fun_invest_ConstProp_strategy.invest_ConstProp_strategy(prop_const=params["benchmark_prop_const"],
                                                                               params=params,
                                                                               train_test_Flag="train")
-
-    # Print some key results from Benchmark strategy on TRAINING data
+    
+        # Print some key results from Benchmark strategy on TRAINING data
+    
     print("-----------------------------------------------")
     print("Selected results: ConstProp_strategy on TRAINING dataset")
     print("W_T_mean: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_mean"]))
     print("W_T_median: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_median"]))
     print("W_T_pctile_5: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_pctile_5"]))
     print("W_T_CVAR_5_pct: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
+    print("-----------------------------------------------")
+    
+    # Print some key results from Benchmark strategy on TRAINING data
+    print("-----------------------------------------------")
+    print("Selected results: ConstProp_strategy on TRAINING dataset")
+    print("Q_T_mean: " + str(params_CP_TRAIN["Q_T_stats_dict"]["Q_T_mean"]))
+    print("Q_T_median: " + str(params_CP_TRAIN["Q_T_stats_dict"]["Q_T_median"]))
+    print("Q_T_pctile_5: " + str(params_CP_TRAIN["Q_T_stats_dict"]["Q_T_pctile_5"]))
+    print("Q_T_CVAR_5_pct: " + str(params_CP_TRAIN["Q_T_stats_dict"]["Q_T_CVAR_5_pct"]))
     print("-----------------------------------------------")
 
     # Append to params results for "W_paths_mean" and "W_paths_std",
@@ -195,16 +206,26 @@ def RUN__wrapper_training_testing_NN(
                                                             params = params,
                                                             NN_training_options = NN_training_options
                                                             )
-
-
+    print(params_TRAIN.keys())
     print("-----------------------------------------------")
-    print("Selected results: NN-strategy-on-TRAINING dataset")
+    print("Selected results: ConstProp_strategy on TRAINING dataset")
     print("W_T_mean: " + str(params_TRAIN["W_T_stats_dict"]["W_T_mean"]))
     print("W_T_median: " + str(params_TRAIN["W_T_stats_dict"]["W_T_median"]))
     print("W_T_pctile_5: " + str(params_TRAIN["W_T_stats_dict"]["W_T_pctile_5"]))
     print("W_T_CVAR_5_pct: " + str(params_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
     print("F value: " + str(params_TRAIN["F_val"]))
     print("-----------------------------------------------")
+
+    print("-----------------------------------------------")
+    print("Selected results: ConstProp_strategy on TRAINING dataset")
+    print("Q_T_mean: " + str(params_TRAIN["Q_T_stats_dict"]["Q_T_mean"]))
+    print("Q_T_median: " + str(params_TRAIN["Q_T_stats_dict"]["Q_T_median"]))
+    print("Q_T_pctile_5: " + str(params_TRAIN["Q_T_stats_dict"]["Q_T_pctile_5"]))
+    print("Q_T_CVAR_5_pct: " + str(params_TRAIN["Q_T_stats_dict"]["Q_T_CVAR_5_pct"]))
+    print("F value: " + str(params_TRAIN["F_val"]))
+    print("-----------------------------------------------")
+    
+    
 
 
     #----------------------------------------------------------------------------------------
@@ -239,9 +260,16 @@ def RUN__wrapper_training_testing_NN(
                                          )
         print("-----------------------------------------------")
         print("Selected results: NN strategy on TESTING dataset")
-        print("W_T_mean: " + str(params_TEST["W_T_stats_dict"]["W_T_mean"]))
-        print("W_T_pctile_5: " + str(params_TEST["W_T_stats_dict"]["W_T_pctile_5"]))
-        print("W_T_CVAR_5_pct: " + str(params_TEST["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
+        print("W_T_mean: " + str(params_TEST["W_T_stats_dict"]["Q_T_mean"]))
+        print("W_T_pctile_5: " + str(params_TEST["W_T_stats_dict"]["Q_T_pctile_5"]))
+        print("W_T_CVAR_5_pct: " + str(params_TEST["W_T_stats_dict"]["Q_T_CVAR_5_pct"]))
+        print("-----------------------------------------------")
+        
+        print("-----------------------------------------------")
+        print("Selected results: NN strategy on TESTING dataset")
+        print("Q_T_mean: " + str(params_TEST["Q_T_stats_dict"]["Q_T_mean"]))
+        print("Q_T_pctile_5: " + str(params_TEST["Q_T_stats_dict"]["Q_T_pctile_5"]))
+        print("Q_T_CVAR_5_pct: " + str(params_TEST["Q_T_stats_dict"]["Q_T_CVAR_5_pct"]))
         print("-----------------------------------------------")
 
 
@@ -280,7 +308,7 @@ def RUN__wrapper_output(
     # Unpack output flags
     # -----------------------------------------------------------------------------------------------
     # Basic output params                                             #added kappa to output name
-    code_title_prefix = output_parameters["code_title_prefix"] + str(params_TRAIN["obj_fun_rho"])   # used as prefix for naming files when saving outputs
+    code_title_prefix = output_parameters["code_title_prefix"] #+ str(params_TRAIN["obj_fun_rho"])   # used as prefix for naming files when saving outputs
     output_results_Excel = output_parameters["output_results_Excel"]  # Output results summary to Excel
 
     save_Figures_format = output_parameters["save_Figures_format"] # format to save figures in, e.g. "png", "eps",

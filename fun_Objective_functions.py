@@ -49,9 +49,32 @@ def objective_mean_cvar_pytorch(params, W_T_vector, xi):
     return fun
 
 
-def fun_objective_arva_pytorch(params, Q):
-    Q_prev = Q.insert(0, 0)[0:-1]
-    fun = np.sum(Q) - params["lam"] *np.sum(np.power(np.min(Q - Q_prev, 0),2))
+def fun_objective_arva_pytorch(params, Q_prev, Q):
+    
+    #print("-----------------Q---------------------")
+    #print(Q)
+    '''
+    if Q.dim() <2:
+        
+        d = Q.shape[0]
+        Q = Q.reshape(1, d)
+        l = 1
+        print(d)
+    else:
+        l = Q.shape[0]
+        d = Q.shape[1]
+        print(l)
+        print(d)
+    '''
+    #print("-----------------Q_prev---------------------")
+    #print(Q_prev)
+    zeros = torch.full(Q.size(), 0, device= params["device"])
+    
+    #zero_padding = torch.full((1,d), 0, device = 'cuda:0')
+    #Q_prev = torch.cat((zero_padding, Q), axis = 0)[0: l]
+    
+    fun = torch.sum(Q) - params["lam"] *torch.sum(torch.min(Q - Q_prev, zeros)**2)
+    
     fun = torch.mean(fun)
     
     return fun

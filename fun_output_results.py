@@ -7,7 +7,7 @@ import numpy as np
 import datetime
 import fun_utilities
 import matplotlib.pyplot as plt
-
+from torchsummary import summary
 
 def output_W_T_vectors(params_TRAIN,         # dictionary with parameters and results from NN TRAINING
                       params_TEST = None,    # dictionary with parameters and results from NN TESTING
@@ -28,7 +28,7 @@ def output_W_T_vectors(params_TRAIN,         # dictionary with parameters and re
     #---------------------------------------------------------------------------------
     #TRAINING results
     #convert first to pd.Series in order to handle different length vectors W_T
-    W_T_train = pd.Series(params_TRAIN["W_T"])
+    W_T_train = pd.Series(params_TRAIN["W"][:, -1])
     df_output = pd.DataFrame(data = W_T_train, columns=["W_T_train"], index=None)
 
     #---------------------------------------------------------------------------------
@@ -268,9 +268,9 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
     output_NN_setup.update({"n_nodes_output": params_TRAIN["N_a"]})
 
     NN_object = params_TRAIN["NN_object"]
-
-    output_NN_setup.update({"NN_object.theta_length": NN_object.theta_length})
-
+    #summary(NN_object)
+    #output_NN_setup.update({"NN_object.theta_length": NN_object.theta_length})
+    '''
     for layer_id in np.arange(0,params_TRAIN["N_L"]+2,1):
         #get info
         description = NN_object.layers[layer_id].description
@@ -283,7 +283,7 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
         output_NN_setup.update({"layer_id_" + str(layer_id) + "_activation": activation})
 
     output_NN_setup.update({"": ""})  # Clear line
-
+    '''
     # ------------------------------------------------------------------------------------------------
     #  Main NN training options
     output_NN_training_options = {}
@@ -323,9 +323,9 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
             output_results_TRAIN.update({key: params_TRAIN["res_BEST"][key]})
 
     suffix = "_train"  # to avoid duplicates in final results
-    for key in params_TRAIN["W_T_stats_dict"].keys():  # Get terminal wealth stats
+    for key in params_TRAIN["Q_T_stats_dict"].keys():  # Get terminal wealth stats
         output_results_TRAIN.update(
-            {key + suffix: params_TRAIN["W_T_stats_dict"][key]})
+            {key + suffix: params_TRAIN["Q_T_stats_dict"][key]})
 
 
     #Add checks to training results if MEAN-CVAR objective
@@ -352,10 +352,10 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
             output_results_TRAIN.update({prefix + idx: df_prop.loc[idx].mean(skipna=True)})
 
     #Append Feature stats (mean,stdev) over all paths and over all time periods for each feature
-    temp_dict = params_TRAIN["Feature_phi_stats_dict"]
-    output_results_TRAIN.update({"---* NN feature path stats *--- in training data": "--------"})
-    for key in temp_dict.keys():
-        output_results_TRAIN.update({key : temp_dict[key]})
+    #temp_dict = params_TRAIN["Feature_phi_stats_dict"]
+    #output_results_TRAIN.update({"---* NN feature path stats *--- in training data": "--------"})
+    #for key in temp_dict.keys():
+        #output_results_TRAIN.update({key : temp_dict[key]})
 
     #Append values for feature standardization
     if params_TRAIN["use_trading_signals_TrueFalse"] is True:
@@ -397,9 +397,9 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
 
 
         suffix = "_test"  # to avoid duplicates in final results
-        for key in params_TEST["W_T_stats_dict"].keys():  # Get terminal wealth stats
+        for key in params_TEST["Q_T_stats_dict"].keys():  # Get terminal wealth stats
             output_results_TEST.update(
-                {key + suffix: params_TEST["W_T_stats_dict"][key]})
+                {key + suffix: params_TEST["Q_T_stats_dict"][key]})
 
 
         # Append AVERAGE proportion percentiles over time invested in each asset on the TESTING dataset
@@ -412,10 +412,10 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
                 output_results_TEST.update({prefix + idx + suffix: df_prop.loc[idx].mean(skipna=True)})
 
         # Append Feature stats (mean,stdev) over all paths and over all time periods for each feature
-        temp_dict = params_TEST["Feature_phi_stats_dict"]
-        output_results_TEST.update({"---* NN feature path stats *--- in testing data": "--------"})
-        for key in temp_dict.keys():
-            output_results_TEST.update({key: temp_dict[key]})
+        #temp_dict = params_TEST["Feature_phi_stats_dict"]
+        #output_results_TEST.update({"---* NN feature path stats *--- in testing data": "--------"})
+        #for key in temp_dict.keys():
+            #output_results_TEST.update({key: temp_dict[key]})
 
         # Append AVERAGE PRP score percentiles over time for each feature, in TESTING dataset
         if "df_PRP_pctiles" in params_TEST.keys():
@@ -456,9 +456,9 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
             output_results_Benchmark.update({"prop_const": params_BENCHMARK_train["prop_const"].tolist()})
 
 
-        for key in params_BENCHMARK_train["W_T_stats_dict"].keys(): #Get terminal wealth stats
+        for key in params_BENCHMARK_train["Q_T_stats_dict"].keys(): #Get terminal wealth stats
             output_results_Benchmark.update(
-                {key + suffix: params_BENCHMARK_train["W_T_stats_dict"][key]})
+                {key + suffix: params_BENCHMARK_train["Q_T_stats_dict"][key]})
 
 
         #Append transaction costs if applicable
@@ -484,9 +484,9 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
             output_results_Benchmark_test.update({"prop_const": params_BENCHMARK_test["prop_const"].tolist()})
 
 
-        for key in params_BENCHMARK_test["W_T_stats_dict"].keys(): #Get terminal wealth stats
+        for key in params_BENCHMARK_test["Q_T_stats_dict"].keys(): #Get terminal wealth stats
             output_results_Benchmark_test.update(
-                {key + suffix: params_BENCHMARK_test["W_T_stats_dict"][key]})
+                {key + suffix: params_BENCHMARK_test["Q_T_stats_dict"][key]})
 
 
         #Append transaction costs if applicable

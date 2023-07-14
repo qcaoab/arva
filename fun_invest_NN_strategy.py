@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import fun_Q_T_stats
 import fun_W_T_stats
 import copy
 import fun_utilities    #using smooth approx to abs value function
@@ -10,6 +11,8 @@ from fun_construct_Feature_vector import construct_Feature_vector
 
 
 def invest_decumulate_NN_strategy(NN_pyt, params):
+    
+    print("-------------invest decumulate NN strategy -------------------------")
     
     #OBJECTIVE: Using pytorch, Calculate the  wealth paths, terminal wealth, all withdrawals,
     # where NN_object is the control/investment strategy in pytorch object, with theta parameters
@@ -25,7 +28,7 @@ def invest_decumulate_NN_strategy(NN_pyt, params):
     # params["W_paths_std"]: contains STANDARD DEVIATION of W(t_n+) across sample paths using NN strategy
     #                W.shape = (1, N_rb+1) since it is the mean of paths, not returns
     # params["NN_object"] = NN_object used to obtain the results, object of pytorch class NN, which gives control
-    # params["W_T_stats_dict"] = W_T_stats_dict: summary W_T stats as a dictionary
+    # params["Q_T_stats_dict"] = Q_T_stats_dict: summary W_T stats as a dictionary
     
     
     # params["Feature_phi_paths"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
@@ -72,6 +75,10 @@ def invest_decumulate_NN_strategy(NN_pyt, params):
     params["W"] = np.zeros([N_d, N_rb+1]) #   W contains PATHS, so W.shape = (N_d, N_rb+1)
     params["W_paths_mean"] = np.zeros([1, N_rb + 1])    #mean of W paths at each rebalancing time
     params["W_paths_std"] = np.zeros([1, N_rb + 1])     #stdev of W paths at each rebalancing time
+    
+    params["Q_"] = np.zeros([N_d, N_rb+1]) #   W contains PATHS, so W.shape = (N_d, N_rb+1)
+    params["Q_paths_mean"] = np.zeros([1, N_rb + 1])    #mean of W paths at each rebalancing time
+    params["Q_paths_std"] = np.zeros([1, N_rb + 1])     #stdev of W paths at each rebalancing time
 
     params["Feature_phi_paths"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
     params["NN_asset_prop_paths"] = np.zeros([N_d, N_rb, N_a])  #Paths for the proportions or wealth in each asset for given dataset
@@ -90,7 +97,8 @@ def invest_decumulate_NN_strategy(NN_pyt, params):
                         # portfolio wealth  each step of loop, calculated applying the current NN strategy.
                         # The same NN is used at each timestep, which includes a forward pass and backprop
                         # step for each Rb time. 
-    
+    Q = 0 * torch.ones(N_d, requires_grad=True, device=params["device"])
+    Qmax = torch.full(Q.size(), ARVA.Qmax, device = params["device"])
     
     #-------------------------------------------------------------------------------
     #   TIMESTEPPING
@@ -107,7 +115,7 @@ def invest_decumulate_NN_strategy(NN_pyt, params):
 
         #Assign values from previous loop
         g_prev = g.clone() #g_prev = g(t_n_min_1) = wealth (t_n)^-
-
+        Q_prev = Q.clone()
         
         # --------------------------- RETURNS FOR  (t_n^+, t_n+1^-) ---------------------------
         #Construct matrix from training data using the subset of returns for (t_n^+, t_n+1^-)
@@ -123,6 +131,10 @@ def invest_decumulate_NN_strategy(NN_pyt, params):
         #cash injection
         g_prev = g_prev + q[n_index] #g_prev now contains W(t_n^+)
 
+        Q = torch.min(ARVA.Annuity[n]*g_prev, Qmax)
+        #params['Q'] = Q
+        g_prev = g_prev - Q # g_prev now contains W(t_n^+)
+        
         params["W"][:,n_index] = g_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
         params["W_paths_mean"][0,n_index] = torch.mean(g_prev)
 
@@ -130,6 +142,16 @@ def invest_decumulate_NN_strategy(NN_pyt, params):
             params["W_paths_std"][0, n_index] = torch.std(g_prev, unbiased=True) #ddof=1 for (N_d -1) in denominator (bessels correction)
         else:
             params["W_paths_std"][0, n_index] = torch.std(g_prev)
+            
+        #-----------------------------------------------------------------------------------------------------
+        params["Q_"][:,n_index] = Q_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
+        params["Q_paths_mean"][0,n_index] = torch.mean(g_prev)
+
+        if torch.std(Q_prev) > 0.0:
+            params["Q_paths_std"][0, n_index] = torch.std(Q_prev, unbiased=True) #ddof=1 for (N_d -1) in denominator (bessels correction)
+        else:
+            params["Q_paths_std"][0, n_index] = torch.std(Q_prev)
+
 
 
 
@@ -199,6 +221,7 @@ def invest_decumulate_NN_strategy(NN_pyt, params):
 
 
 def invest_NN_strategy_pyt(NN_pyt, params):
+    #print("-------------invest NN strategy pyt----------------------")
     
     #OBJECTIVE: Using pytorch, Calculate the  wealth paths, terminal wealth,
     # where NN_object is the control/investment strategy in pytorch object, with theta parameters
@@ -212,7 +235,7 @@ def invest_NN_strategy_pyt(NN_pyt, params):
     # params["W_paths_std"]: contains STANDARD DEVIATION of W(t_n+) across sample paths using NN strategy
     #                W.shape = (1, N_rb+1) since it is the mean of paths, not returns
     # params["NN_object"] = NN_object used to obtain the results, object of pytorch class NN, which gives control
-    # params["W_T_stats_dict"] = W_T_stats_dict: summary W_T stats as a dictionary
+    # params["Q_T_stats_dict"] = Q_T_stats_dict: summary W_T stats as a dictionary
     
     
     # params["Feature_phi_paths"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
@@ -258,7 +281,12 @@ def invest_NN_strategy_pyt(NN_pyt, params):
     params["W"] = np.zeros([N_d, N_rb+1]) #   W contains PATHS, so W.shape = (N_d, N_rb+1)
     params["W_paths_mean"] = np.zeros([1, N_rb + 1])    #mean of W paths at each rebalancing time
     params["W_paths_std"] = np.zeros([1, N_rb + 1])     #stdev of W paths at each rebalancing time
-
+    
+    #--------------------------------Q path-------------------------------------------------------------------------
+    params["Q_"] = np.zeros([N_d, N_rb+1]) #   W contains PATHS, so W.shape = (N_d, N_rb+1)
+    params["Q_paths_mean"] = np.zeros([1, N_rb + 1])    #mean of W paths at each rebalancing time
+    params["Q_paths_std"] = np.zeros([1, N_rb + 1])     #stdev of W paths at each rebalancing time
+    #----------------------------------------------------------------------------------------------------
     params["Feature_phi_paths"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
     params["NN_asset_prop_paths"] = np.zeros([N_d, N_rb, N_a])  #Paths for the proportions or wealth in each asset for given dataset
 
@@ -271,7 +299,8 @@ def invest_NN_strategy_pyt(NN_pyt, params):
                         # The same NN is used at each timestep, which includes a forward pass and backprop
                         # step for each Rb time. 
     
-    
+    Q = 0 * torch.ones(N_d, requires_grad=True, device=params["device"])
+    Qmax = torch.full(Q.size(), ARVA.Qmax, device= 'cuda:0')
     #-------------------------------------------------------------------------------
     #   TIMESTEPPING
     #-------------------------------------------------------------------------------
@@ -288,14 +317,16 @@ def invest_NN_strategy_pyt(NN_pyt, params):
         #Assign values from previous loop
         g_prev = g.clone() #g_prev = g(t_n_min_1) = wealth (t_n)^-
         #print(g_prev)
+        Q_prev = Q.clone()
+        
         #---------------------------------------------------------------------------------
         #Update wealth after annuity withdrawal
-        if params["Annuity_Withdrawal"] is True:
-            size = g_prev.size()
-            Qmax = torch.full(size, ARVA.Qmax, device= 'cuda:0')
-            Q = torch.min(ARVA.Annuity[n]*g_prev, Qmax)
-            #params['Q'] = Q
-            g_prev = g_prev - Q # g_prev now contains W(t_n^+)
+        #if params["Annuity_Withdrawal"] is True:
+        
+        
+        Q = torch.min(ARVA.Annuity[n]*g_prev, Qmax)
+        #params['Q'] = Q
+        g_prev = g_prev - Q # g_prev now contains W(t_n^+)
         #-----------------------------------------------------------------------------------
         
         
@@ -323,7 +354,15 @@ def invest_NN_strategy_pyt(NN_pyt, params):
         else:
             params["W_paths_std"][0, n_index] = torch.std(g_prev)
 
+        
+        #-------------------------------------------------------------------------------------------------
+        params["Q_"][:,n_index] = Q_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
+        params["Q_paths_mean"][0,n_index] = torch.mean(Q_prev).detach().cpu().numpy()
 
+        if torch.std(Q_prev) > 0.0:
+            params["Q_paths_std"][0, n_index] = torch.std(Q_prev, unbiased=True) #ddof=1 for (N_d -1) in denominator (bessels correction)
+        else:
+            params["Q_paths_std"][0, n_index] = torch.std(Q_prev)
 
         #--------------------------- CONSTRUCT FEATURE VECTOR and standardize ---------------------------
 
@@ -384,10 +423,20 @@ def invest_NN_strategy_pyt(NN_pyt, params):
 
             
     #end: TIMESTEPPING
+    Q_T_stats_dict = fun_Q_T_stats.fun_Q_T_summary_stats(Q.detach().cpu().numpy())
+    W_T_stats_dict = fun_W_T_stats.fun_W_T_summary_stats(g.detach().cpu().numpy())
+    #params.update(Q_T_stats_dict)   #unpacks the dictionary "Q_T_stats_dict" into "params"
 
+    # Appends the whole dictionary as well, useful for outputting results
+    del Q_T_stats_dict["Q_T_summary_stats"]     #don't need the summary stats pd.DataFrame in dictionary
+    params["Q_T_stats_dict"] = Q_T_stats_dict
+    del W_T_stats_dict["W_T_summary_stats"]     #don't need the summary stats pd.DataFrame in dictionary
+    params["W_T_stats_dict"] = W_T_stats_dict
+
+    params["NN_object"] = NN_pyt#also append NN object used to obtain the results
     # -------------------------------------------------
 
-    return params, g, Q
+    return params, Q_prev, Q, g
 '''
 def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
                        LRP_for_NN_TrueFalse = False, PRP_TrueFalse = False):
@@ -408,7 +457,7 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
     # params["W_T_grad_g_theta"] = (grad_g in notes) gradient of terminal wealth wrt parameters (theta vector) of NN
     #   - only contains values when output_Gradient == True, otherwise None
     # params["NN_object"] = NN_object used to obtain the results, object of class_Neural_Network (which gives control)
-    # params["W_T_stats_dict"] = W_T_stats_dict: summary W_T stats as a dictionary
+    # params["Q_T_stats_dict"] = Q_T_stats_dict: summary W_T stats as a dictionary
 
     # if params["TransCosts_TrueFalse"] is True, also adds:
     #   params["TransCosts_cum"] = vector of cum trans costs over [0,T], for each path
@@ -950,12 +999,12 @@ def invest_NN_strategy(NN_theta, NN_object, params, output_Gradient = True,
 
 
     #Add summary stats to params dictionary (based on results AFTER cash withdrawal, if applicable)
-    W_T_stats_dict = fun_W_T_stats.fun_W_T_summary_stats(W_T)
-    #params.update(W_T_stats_dict)   #unpacks the dictionary "W_T_stats_dict" into "params"
+    Q_T_stats_dict = fun_Q_T_stats.fun_W_T_summary_stats(W_T)
+    #params.update(Q_T_stats_dict)   #unpacks the dictionary "Q_T_stats_dict" into "params"
 
     # Appends the whole dictionary as well, useful for outputting results
-    del W_T_stats_dict["W_T_summary_stats"]     #don't need the summary stats pd.DataFrame in dictionary
-    params["W_T_stats_dict"] = W_T_stats_dict
+    del Q_T_stats_dict["W_T_summary_stats"]     #don't need the summary stats pd.DataFrame in dictionary
+    params["Q_T_stats_dict"] = Q_T_stats_dict
 
 
     params["NN_object"] = NN_object #also append NN object used to obtain the results

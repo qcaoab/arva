@@ -8,7 +8,7 @@ from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy_pyt as objfun
 from fun_eval_objfun_NN_strategy import fun_val as objfun_val   #Function value ONLY
 from fun_eval_objfun_NN_strategy import fun_gradient as objfun_gradient #Gradient  ONLY
 
-from fun_W_T_stats import fun_W_T_summary_stats
+from fun_Q_T_stats import fun_W_T_summary_stats
 
 
 def run_scipy_minimize(method,
@@ -141,12 +141,12 @@ def run_scipy_minimize(method,
     else:
         NN_theta = F_theta
 
-    (params, val, _, grad) = objfun(F_theta = F_theta,   # record the objective function value
-                                 NN_object = NN_object, params = params, output_Gradient=True)
-    supnorm_grad = np.linalg.norm(grad, ord=np.inf)  # max(abs(gradient))
+    #(params, val, _, grad) = objfun(F_theta = F_theta,   # record the objective function value
+                                 #NN_object = NN_object, params = params, output_Gradient=True)
+    #supnorm_grad = np.linalg.norm(grad, ord=np.inf)  # max(abs(gradient))
 
-    if val == res.fun:
-        print("Recalculated val == res.fun")
+    #if val == res.fun:
+        #print("Recalculated val == res.fun")
 
 
     t_end = time.time()
@@ -158,8 +158,8 @@ def run_scipy_minimize(method,
     res["F_theta"] = F_theta        #minimizer or point where algorithm stopped
     res["NN_theta"] = NN_theta      #NN parameters forming part of F_theta
     res["nit"] = int(it)     #total nr of iterations executed to get res["NN_theta"]
-    res["val"] = val    #objective function value evaluated at res["NN_theta"]
-    res["supnorm_grad"] = supnorm_grad  # sup norm of gradient vector at res["NN_theta"], i.e. max(abs(gradient))
+    #res["val"] = val    #objective function value evaluated at res["NN_theta"]
+    #res["supnorm_grad"] = supnorm_grad  # sup norm of gradient vector at res["NN_theta"], i.e. max(abs(gradient))
     res["runtime_mins"] = t_runtime  # run time in MINUTES until output is obtained
 
     #Append terminal wealth stats using this optimal value
@@ -183,8 +183,8 @@ def run_scipy_minimize(method,
     W_T_stats_df = pd.DataFrame(data=W_T_stats_dict, index=[0])
 
 
-    summary_df = pd.DataFrame([[method, it, val, supnorm_grad, t_runtime]],
-                              columns=["method", "nit", "objfunc_val", "supnorm_grad", "runtime_mins"])
+    summary_df = pd.DataFrame([[method, it,  t_runtime]],
+                              columns=["method", "nit", "objfunc_val", "runtime_mins"])
 
     summary_df = pd.concat([summary_df, W_T_stats_df], axis=1, ignore_index = False)
 

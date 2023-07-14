@@ -6,6 +6,7 @@ import copy
 #from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun  #objective function for NN evaluation
 from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy_pyt as objfun_pyt #pytorch objective func
 from fun_W_T_stats import fun_W_T_summary_stats
+from fun_Q_T_stats import fun_Q_T_summary_stats
 import torch
 
 from torch.optim.swa_utils import AveragedModel
@@ -99,7 +100,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
     
     
     #initialize xi tensor
-    xi = torch.tensor([params["xi_0"]], requires_grad=True, device=params["device"])
+    #xi = torch.tensor([params["xi_0"]], requires_grad=True, device=params["device"])
     
     
     if "Adam" in NN_training_options["methods"]:
@@ -110,7 +111,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
                                      NN_training_options["Adam_ewma_2"] ))
 
         #append xi to optimization parameters
-        optimizer.param_groups[0]['params'].append(xi)
+        #optimizer.param_groups[0]['params'].append(xi)
         
     #init iterate averaging model
     swa_model = AveragedModel(NN_pyt)
@@ -156,7 +157,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         optimizer.zero_grad()
         
         # eval obj fun with SGD batch, includes forward pass on NN with updated weights from last step
-        f_val = objfun_pyt(NN_pyt, params_it)
+        f_val, params_it = objfun_pyt(NN_pyt, params_it)
         
         #calc gradients
         f_val.backward()
@@ -171,18 +172,18 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
         #ITERATE AVERAGING
         # if it >= nit_IterateAveragingStart:
         #     swa_model.update_parameters(NN_pyt)
-                          
+        '''                 
         if it == nit_IterateAveragingStart:
             xi_avg = xi.detach().clone()
             xi_min = xi.detach().clone()
-        
+        '''
         
         if (it - 1) >= nit_IterateAveragingStart:
             swa_model.update_parameters(NN_pyt)
             
             #xi averaging            
             N_avg = N_avg + 1
-            xi_avg = (xi_avg*N_avg + xi.detach()) / (N_avg + 1)
+            #xi_avg = (xi_avg*N_avg + xi.detach()) / (N_avg + 1)
             
         # else:
         #     xi_avg = xi.detach()
@@ -195,13 +196,13 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
 
             # newval is calculated using ALL data, not just subset
             with torch.no_grad():
-                new_fval, _ = objfun_pyt(swa_model.module, params)
+                new_fval , params = objfun_pyt(swa_model.module, params)
         
                 if new_fval < v_min:
                     print("updated min: ")
                     print(f"obj fun: {new_fval}")
                     NN_pyt_min = copy.deepcopy(swa_model.module)
-                    xi_min = xi_avg.detach().clone()
+                    #xi_min = xi_avg.detach().clone()
                     v_min = new_fval.detach().clone()      
             
         # ----------------
@@ -210,10 +211,10 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
             if it in np.append(np.arange(0, itbound, int(0.02*itbound)), itbound):
                 print( str(it/itbound * 100) + "% of gradient descent iterations done. Method = " + method)                
                 with torch.no_grad():    
-                    new_fval, _ = objfun_pyt(NN_pyt, params) # uses full tensor version of params 
+                    new_fval, params = objfun_pyt(NN_pyt, params) # uses full tensor version of params 
                     if new_fval < v_min:
                         NN_pyt_min = copy.deepcopy(NN_pyt)
-                        xi_min = xi.detach().clone()
+                        #xi_min = xi.detach().clone()
                         v_min = new_fval.detach().clone() 
                         print(f"updated min: {new_fval}")
                 # supnorm_grad = np.linalg.norm(grad_theta_new_mc, ord = np.inf)     #max(abs(gradient))
@@ -243,18 +244,17 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
     # NN_object.stack_NN_parameters()
     
     #convert xi from tensor to np
-    xi_np = xi_min.detach().cpu().numpy()
+    #xi_np = xi_min.detach().cpu().numpy()
     
     #append xi_np to NN theta for f_theta
-    F_theta = np.append(NN_object.theta, xi_np)    
+    F_theta = np.append(NN_object.theta, 1)    
     
     
     #need to double check the exporting of optimal params and calculations in old NN
     #calc original objfun
-    (params, val, _, grad) = objfun(F_theta = F_theta,   # record the objective function value
-                                 NN_object = NN_object, params = params, output_Gradient=True)
-    supnorm_grad = np.linalg.norm(grad, ord=np.inf)  # max(abs(gradient))
-
+    #(params, val, _, grad) = objfun_pyt(NN_object = NN_object, params = params)
+    #supnorm_grad = np.linalg.norm(grad, ord=np.inf)  # max(abs(gradient))
+    '''
     if params["obj_fun"] == "mean_cvar":
         NN_theta = F_theta[0:-2]
         xi = F_theta[-2]  # Second-last entry is xi, where (xi**2) is candidate VAR
@@ -284,14 +284,15 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
 
         # Make sure parameter dictionary is updated so that e.g. fun_Objective_functions can work correctly
         params["xi"] = xi_np[0] #(xi**2) is candidate VAR
+    '''
+    
+    NN_theta = F_theta
+    
 
-    else:
-        NN_theta = F_theta
-
-        #added theta cache
-        optimal_params = {"NN":NN_theta.tolist()}
-        with open('NN_optimal2.json', 'w') as outfile:
-            json.dump(optimal_params, outfile)
+    #added theta cache
+    optimal_params = {"NN":NN_theta.tolist()}
+    with open('NN_optimal2.json', 'w') as outfile:
+        json.dump(optimal_params, outfile)
 
 
 
@@ -303,37 +304,41 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
     res["F_theta"] = F_theta        #minimizer or point where algorithm stopped
     res["NN_theta"] = NN_theta        #minimizer or point where algorithm stopped
     res["nit"] = int(it)     #total nr of iterations executed to get res["NN_theta"]
-    res["val"] = val    #objective function value evaluated at res["NN_theta"]
-    res["supnorm_grad"] = supnorm_grad  # sup norm of gradient vector at res["NN_theta"], i.e. max(abs(gradient))
+    res["val"] = f_val    #objective function value evaluated at res["NN_theta"]
+    #res["supnorm_grad"] = supnorm_grad  # sup norm of gradient vector at res["NN_theta"], i.e. max(abs(gradient))
     res["runtime_mins"] = t_runtime  # run time in MINUTES until output is obtained
-
+    
+    
+    
+    #print(params.keys())
     #Append terminal wealth stats using this optimal value
     W_T = params["W"][:, -1]
-
+    Q_T = params["Q_"][:, -1]
+    '''
     #Override W_T in one case
     if params["obj_fun"] == "one_sided_quadratic_target_error":  # only in this case
         if params["obj_fun_cashwithdrawal_TrueFalse"] == True:  #Check if we want values *after* cash withdrawal
             W_T = params["W_T_cashwithdraw"]
-
-
+    '''
 
     W_T_stats_dict = fun_W_T_summary_stats(W_T)
+    Q_T_stats_dict = fun_Q_T_summary_stats(Q_T)
 
     #Remove "W_T_summary_stats" dataframe
-    del W_T_stats_dict['W_T_summary_stats']
+    #del Q_T_stats_dict['Q_T_summary_stats']
 
     #Add summary stats to res dictionary
-
     res.update(W_T_stats_dict)
+    res.update(Q_T_stats_dict)
 
     #Put results in pandas.Dataframe for easy comparison with other methods
-    W_T_stats_df = pd.DataFrame(data=W_T_stats_dict, index=[0])
+    #Q_T_stats_df = pd.DataFrame(data=Q_T_stats_dict, index=[0])
 
 
-    summary_df = pd.DataFrame([[method, it, val, supnorm_grad, t_runtime]],
-                              columns=["method", "nit", "objfunc_val", "supnorm_grad", "runtime_mins"])
+    summary_df = pd.DataFrame([[method, it, f_val, t_runtime]],
+                              columns=["method", "nit", "objfunc_val",  "runtime_mins"])
 
-    summary_df = pd.concat([summary_df, W_T_stats_df], axis=1, ignore_index = False)
+    #summary_df = pd.concat([summary_df, Q_T_stats_df], axis=1, ignore_index = False)
 
 
     res["summary_df"] = summary_df
@@ -345,7 +350,7 @@ def run_Gradient_Descent_pytorch(NN_pyt, NN_orig, params, NN_training_options):
     return res
     
 
-
+'''
 def run_Gradient_Descent(method,
                          theta0,        # initial parameter vector (weights and biases) and other params of form
                                         # [NN_theta, extra_theta] where NN_theta = NN_object.NN_theta
@@ -779,23 +784,23 @@ def run_Gradient_Descent(method,
 
 
 
-    W_T_stats_dict = fun_W_T_summary_stats(W_T)
+    Q_T_stats_dict = fun_W_T_summary_stats(W_T)
 
     #Remove "W_T_summary_stats" dataframe
-    del W_T_stats_dict['W_T_summary_stats']
+    del Q_T_stats_dict['W_T_summary_stats']
 
     #Add summary stats to res dictionary
 
-    res.update(W_T_stats_dict)
+    res.update(Q_T_stats_dict)
 
     #Put results in pandas.Dataframe for easy comparison with other methods
-    W_T_stats_df = pd.DataFrame(data=W_T_stats_dict, index=[0])
+    Q_T_stats_df = pd.DataFrame(data=Q_T_stats_dict, index=[0])
 
 
     summary_df = pd.DataFrame([[method, it, val, supnorm_grad, t_runtime]],
                               columns=["method", "nit", "objfunc_val", "supnorm_grad", "runtime_mins"])
 
-    summary_df = pd.concat([summary_df, W_T_stats_df], axis=1, ignore_index = False)
+    summary_df = pd.concat([summary_df, Q_T_stats_df], axis=1, ignore_index = False)
 
 
     res["summary_df"] = summary_df
@@ -805,3 +810,4 @@ def run_Gradient_Descent(method,
 
 
     return res
+'''

@@ -189,10 +189,20 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
     W_T_stats_dict = fun_W_T_stats.fun_W_T_summary_stats(W_end)
 
     #Add summary stats to params dictionary
-    # params.update(W_T_stats_dict) #unpacks the dictionary "W_T_stats_dict" into "params"
+    params.update(W_T_stats_dict) #unpacks the dictionary "W_T_stats_dict" into "params"
 
     # Appends the whole dictionary as well, useful for outputting results
     del W_T_stats_dict["W_T_summary_stats"]     #don't need the summary stats pd.DataFrame in dictionary
     params["W_T_stats_dict"] = W_T_stats_dict
+    
+    import fun_Q_T_stats
+    Q_T_stats_dict = fun_Q_T_stats.fun_Q_T_summary_stats(W_end)
+
+    #Add summary stats to params dictionary
+    params.update(Q_T_stats_dict) #unpacks the dictionary "W_T_stats_dict" into "params"
+
+    # Appends the whole dictionary as well, useful for outputting results
+    del Q_T_stats_dict["Q_T_summary_stats"]     #don't need the summary stats pd.DataFrame in dictionary
+    params["Q_T_stats_dict"] = Q_T_stats_dict
 
     return params
