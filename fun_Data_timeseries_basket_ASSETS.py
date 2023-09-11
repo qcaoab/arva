@@ -69,7 +69,30 @@ def asset_basket(basket_type,   #"asset"
         #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
         basket_timeseries_names = ["T30", "B10", "VWD", "Size_Lo30", "Value_Hi30", "Vol_Lo20", "Mom_Hi30"]
 
+    
+    
+    elif basket_id == "4_factor_1927":
+        #description
+        basket_desc = "4 factors with data since 1927: Basic, size, value, div, mom"
 
+        #SHORT label for e.g. figures
+        basket_label = "4factor_1927"
+
+        #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
+        basket_timeseries_names = ["T30", "B10", "VWD", "Size_Lo30", "Value_Hi30", "Div_Hi30", "Mom_Hi30"]
+        
+        
+
+    elif basket_id == "3factor_mc":
+        #description
+        basket_desc = "3 factors : Basic, size, value, mom"
+
+        #SHORT label for e.g. figures
+        basket_label = "3factors"
+
+        #timeseries names, ONE FOR EVERY ASSET to be used as identifiers (e.g. column headings PREFIX) for timeseries
+        basket_timeseries_names = ["T30", "B10", "VWD", "Size_Lo30", "Value_Hi30", "Mom_Hi30"]
+        
     elif basket_id == "Paper_FactorInv_Factor4_noB10":
         #description
         basket_desc = "Factor4 portfolio for paper: Basic but no B10, size, value, vol, mom"

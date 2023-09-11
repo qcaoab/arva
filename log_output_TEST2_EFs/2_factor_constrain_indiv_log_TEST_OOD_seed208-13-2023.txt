@@ -1,0 +1,130 @@
+/home/marcchen/Documents/constrain_factor/researchcode/exp_config_json_files/multi_portfolio_TEST1_EFs_OOS_test.json
+Starting at: 
+13-08-23_10:58
+
+ numpy seed:  3  
+
+
+ pytorch seed:  3  
+
+Key parameters-------
+paths: 256000
+iterations: 10
+batchsize: 10
+remove neg:  False
+w constaint activation:  yy_fix_jan29
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = Paper_FactorInv_Factor2
+timeseries_basket['basket_desc'] = Factor2 portfolio for paper: Basic, size and value
+timeseries_basket['basket_columns'] = 
+['T30_real_ret', 'B10_real_ret', 'VWD_real_ret', 'Size_Lo30_real_ret', 'Value_Hi30_real_ret']
+############# End: defined asset  basket #################
+               Cash_nom_ret  Size_Lo30_nom_ret  ...  VWD_nom_ret  EWD_nom_ret
+My identifier                                   ...                          
+192601                  0.0                NaN  ...     0.000561     0.023174
+192602                  0.0                NaN  ...    -0.033046    -0.053510
+192603                  0.0                NaN  ...    -0.064002    -0.096824
+192604                  0.0                NaN  ...     0.037029     0.032975
+192605                  0.0                NaN  ...     0.012095     0.001035
+
+[5 rows x 16 columns]
+               Cash_nom_ret  Size_Lo30_nom_ret  ...  VWD_nom_ret  EWD_nom_ret
+My identifier                                   ...                          
+202208                  NaN            -0.0020  ...    -0.036240    -0.011556
+202209                  NaN            -0.0955  ...    -0.091324    -0.099903
+202210                  NaN             0.0883  ...     0.077403     0.049863
+202211                  NaN            -0.0076  ...     0.052365     0.028123
+202212                  NaN            -0.0457  ...    -0.057116    -0.047241
+
+[5 rows x 16 columns]
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = Paper_FactorInv_Factor2
+timeseries_basket['basket_desc'] = Factor2 portfolio for paper: Basic, size and value
+timeseries_basket['basket_columns'] = 
+['T30_nom_ret', 'B10_nom_ret', 'VWD_nom_ret', 'Size_Lo30_nom_ret', 'Value_Hi30_nom_ret']
+############# End: defined asset  basket #################
+               Size_Lo30_nom_ret  Value_Hi30_nom_ret  ...  B10_nom_ret  VWD_nom_ret
+My identifier                                         ...                          
+192607                    0.0014              0.0154  ...     0.005383     0.031411
+192608                    0.0319              0.0561  ...     0.005363     0.028647
+192609                   -0.0173             -0.0071  ...     0.005343     0.005787
+192610                   -0.0294             -0.0355  ...     0.005323    -0.028996
+192611                   -0.0038              0.0294  ...     0.005303     0.028554
+
+[5 rows x 6 columns]
+               Size_Lo30_nom_ret  Value_Hi30_nom_ret  ...  B10_nom_ret  VWD_nom_ret
+My identifier                                         ...                          
+202208                   -0.0020             -0.0164  ...    -0.043289    -0.036240
+202209                   -0.0955             -0.0871  ...    -0.050056    -0.091324
+202210                    0.0883              0.1486  ...    -0.014968     0.077403
+202211                   -0.0076              0.0462  ...     0.040789     0.052365
+202212                   -0.0457             -0.0499  ...    -0.018566    -0.057116
+
+[5 rows x 6 columns]
+Indices constructed with column names:
+Index(['date_for_plt', 'Size_Lo30_nom_ret_ind', 'Value_Hi30_nom_ret_ind',
+       'CPI_nom_ret_ind', 'T30_nom_ret_ind', 'B10_nom_ret_ind',
+       'VWD_nom_ret_ind'],
+      dtype='object')
+############# Updated: defined asset basket #################
+timeseries_basket['data_df_mean'] = 
+T30_real_ret           0.000229
+B10_real_ret           0.001637
+VWD_real_ret           0.006759
+Size_Lo30_real_ret     0.009939
+Value_Hi30_real_ret    0.010052
+dtype: float64
+
+
+timeseries_basket['data_df_stdev'] = 
+T30_real_ret           0.005227
+B10_real_ret           0.019258
+VWD_real_ret           0.053610
+Size_Lo30_real_ret     0.082598
+Value_Hi30_real_ret    0.072063
+dtype: float64
+
+
+timeseries_basket['data_df_corr'] = 
+                     T30_real_ret  ...  Value_Hi30_real_ret
+T30_real_ret             1.000000  ...             0.018239
+B10_real_ret             0.351722  ...             0.031301
+VWD_real_ret             0.068448  ...             0.909335
+Size_Lo30_real_ret       0.014412  ...             0.908542
+Value_Hi30_real_ret      0.018239  ...             1.000000
+
+[5 rows x 5 columns]
+
+
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names', 'data_df', 'data_df_mean', 'data_df_stdev', 'data_df_corr'])
+############# End: updated: defined asset basket #################
+-----------------------------------------------
+Dates to be REMOVED due to missing values (should be at *start* only due to trading signals):
+Int64Index([], dtype='int64')
+-----------------------------------------------
+Dates from available data for bootstrapping:
+Start: 192607
+End: 202212
+-----------------------------------------------
+Bootstrap block size: 18
+-----------------------------------------------
+Dates USED bootstrapping:
+Start: 196307
+End: 202212
+-----------------------------------------------
+0.0% of bootstrap sample done.
+5.0% of bootstrap sample done.
+10.0% of bootstrap sample done.
+15.0% of bootstrap sample done.
+20.0% of bootstrap sample done.

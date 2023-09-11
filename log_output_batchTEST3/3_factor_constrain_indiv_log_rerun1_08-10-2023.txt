@@ -1,0 +1,13 @@
+/home/marcchen/Documents/constrain_factor/researchcode/exp_config_json_files/multi_portfolio_TEST3_split_1991.json
+Starting at: 
+10-08-23_17:18
+
+ numpy seed:  2  
+
+
+ pytorch seed:  2  
+
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/constrain_factor/researchcode/bash_driver_factordecum.py", line 141, in <module>
+    nn_preload = config_params["preload_nn"] #saved_model_dir +"/"
+KeyError: 'preload_nn'

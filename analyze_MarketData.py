@@ -20,26 +20,26 @@ import math
 import plotly.graph_objects as go
 
 
-os.chdir("/home/marcchen/Documents/factor_decumulation/researchcode")
+os.chdir("/home/marcchen/Documents/constrain_factor/researchcode")
 
 #Initialize empty dictionaries
 params = {}
 data_settings = {}
 
 save_Figures = True             #If true, save figures in format save_Figures_format
-save_Figures_format = "png"     #format to save figures in
+save_Figures_format = "pdf"     #format to save figures in
 
 output_Excel = True #If True, will save the underlying data to Excel spreadsheets
 
 periods_yyyymm_start_end = {0 : [196307, 202212],
-                            1 : [196307,200912],
-                            2 : [201001,202212]}
+                            1 : [192707,199112],
+                            2 : [199201,202212]}
 
 
 #-----------------------------------------------------------------------------------------------
 # Specify market data we want to analyze
 #-----------------------------------------------------------------------------------------------
-params["asset_basket_id"] = "MC_everything"    #"Paper_FactorInv_Factor2" #Pre-defined basket of underlying candidate assets - see fun_Data_assets_basket.py
+params["asset_basket_id"] = "Paper_FactorInv_Factor4"    #"Paper_FactorInv_Factor2" #Pre-defined basket of underlying candidate assets - see fun_Data_assets_basket.py
 params["add_cash_TrueFalse"] = True     #If True, add "Cash" as an asset to the selected asset basket
 params["real_or_nominal"] = "real" # "real" or "nominal" for asset data for wealth process: if "real", the asset data will be deflated by CPI
 #real or nominal for TRADING SIGNALS will be set below
@@ -102,6 +102,65 @@ for period in periods_yyyymm_start_end.keys():
                                                                              timeseries_basket= params["asset_basket"])
 
     
+    
+    #plot indexes
+
+    start = str(periods_yyyymm_start_end[period][0])
+    end = str(periods_yyyymm_start_end[period][1])
+    
+    dates = pd.date_range(start=f'{start[0:4]}-{start[4:6]}-01', end= f'{end[0:4]}-{end[4:6]}-01', freq=pd.offsets.MonthBegin(1))
+    
+    mkt_index = params["asset_basket"]['data_df']['VWD_real_ret'].add(1).cumprod()
+    b10_index = params["asset_basket"]['data_df']['B10_real_ret'].add(1).cumprod()
+    size_index = params["asset_basket"]['data_df']['Size_Lo30_real_ret'].add(1).cumprod()
+    val_index = params["asset_basket"]['data_df']['Value_Hi30_real_ret'].add(1).cumprod()
+    mom_index = params["asset_basket"]['data_df']['Mom_Hi30_real_ret'].add(1).cumprod()
+    vol_index = params["asset_basket"]['data_df']['Vol_Lo20_real_ret'].add(1).cumprod()
+    
+    plt.clf()
+    fig, ax = plt.subplots()
+    
+    indexes = [mkt_index, b10_index, size_index, val_index, mom_index, vol_index]
+    labels = ["Mkt", "B10", "Size", "Val", "Mom", "Vol"]
+    colors = ["darkviolet", "darkorange", "red", "green", "brown", "blue"]
+    
+    for i in range(len(indexes)):
+        ax.plot(dates, indexes[i], label=labels[i], color=colors[i])
+        
+        if labels[i]=="Size":
+            ax.annotate(labels[i], 
+                        fontweight="semibold",
+                        fontsize=10,
+                        color=colors[i],
+                        xy=(dates[-1], indexes[i].iloc[-1]),
+                        xytext=(dates[-1]+ pd.Timedelta(weeks=40), indexes[i].iloc[-1]+10),
+                        horizontalalignment='left',
+                        verticalalignment='center')
+        else:            
+            ax.annotate(labels[i], 
+                            fontweight="semibold",
+                            fontsize=10,
+                            color=colors[i],
+                            xy=(dates[-1], indexes[i].iloc[-1]),
+                            xytext=(dates[-1]+ pd.Timedelta(weeks=40), indexes[i].iloc[-1]),
+                            horizontalalignment='left',
+                            verticalalignment='center')
+    
+    
+    
+    ax.set_xlabel("Date", fontweight='bold', fontsize=15)
+    ax.set_ylabel("Index", fontweight='bold', fontsize=15)
+    # plt.legend(loc='lower left')
+    # ax.set_xlim([-680, 300])
+    # ax.set_ylim([35, 65])
+    ax.spines[['right', 'top']].set_visible(False)
+    ax.tick_params(axis='both', which='major', labelsize=12)
+    plt.subplots_adjust(bottom=0.15)
+    
+    
+    plt.savefig("/home/marcchen/Documents/constrain_factor/researchcode/market_analysis_output/factor_index_plot.pdf")
+    
+    
     #plot densities of assets in groups
     
     def plot_asset_hist(asset_names, x_range):
@@ -121,6 +180,14 @@ for period in periods_yyyymm_start_end.keys():
     # Get key results from market data
     #-----------------------------------------------------------------------------------------------
     asset_names = params["asset_basket"]["basket_timeseries_names"]
+    
+    asset_names[3] = "Mkt"
+    asset_names[4] = "Size"
+    asset_names[5] = "Value"
+    asset_names[6] = "Vol"
+    asset_names[7] = "Mom"
+    
+    
     asset_column_names =  params["asset_basket"]["basket_columns"]
 
     data_df = params["asset_basket"]["data_df"]
@@ -141,58 +208,58 @@ for period in periods_yyyymm_start_end.keys():
         data_df_corr.to_excel(prefix + "data_df_corr" + suffix + ".xlsx")
 
     # Create Kmeans model
-    kmeans = KMeans(n_clusters = 7,max_iter = 1000)# Make a pipeline chaining normalizer and kmeans
+    # kmeans = KMeans(n_clusters = 7,max_iter = 1000)# Make a pipeline chaining normalizer and kmeans
 
-    df_t = data_df.transpose()
-    kmeans.fit(df_t)
-    labels = kmeans.predict(df_t)
-    df1 = pd.DataFrame({'labels':labels,'companies':list(data_df.columns)}).sort_values(by=['labels'],axis = 0)
+    # df_t = data_df.transpose()
+    # kmeans.fit(df_t)
+    # labels = kmeans.predict(df_t)
+    # df1 = pd.DataFrame({'labels':labels,'companies':list(data_df.columns)}).sort_values(by=['labels'],axis = 0)
     
-    #plot?
-    from sklearn.decomposition import PCA
-    # 
-    # # Reduce the data
-    reduced_data = PCA(n_components = 2)# Create Kmeans model
-    kmeans = KMeans(n_clusters = 4,max_iter = 1000)# Make a pipeline chaining normalizer, pca and kmeans
-    pipeline = make_pipeline(reduced_data,kmeans)# Fit pipeline to daily stock movements
-    pipeline.fit(df_t)# Prediction
-    labels = pipeline.predict(df_t)# Create dataframe to store companies and predicted labels
-    df2 = pd.DataFrame({'labels':labels,'companies':list(data_df.columns)}).sort_values(by=['labels'],axis = 0)
+    # #plot?
+    # from sklearn.decomposition import PCA
+    # # 
+    # # # Reduce the data
+    # reduced_data = PCA(n_components = 2)# Create Kmeans model
+    # kmeans = KMeans(n_clusters = 4,max_iter = 1000)# Make a pipeline chaining normalizer, pca and kmeans
+    # pipeline = make_pipeline(reduced_data,kmeans)# Fit pipeline to daily stock movements
+    # pipeline.fit(df_t)# Prediction
+    # labels = pipeline.predict(df_t)# Create dataframe to store companies and predicted labels
+    # df2 = pd.DataFrame({'labels':labels,'companies':list(data_df.columns)}).sort_values(by=['labels'],axis = 0)
 
    
     
-    # Reduce the data
-    reduced_data = PCA(n_components = 2).fit_transform(df_t)# Define step size of mesh
-    h = 0.01
+    # # Reduce the data
+    # reduced_data = PCA(n_components = 2).fit_transform(df_t)# Define step size of mesh
+    # h = 0.01
     
-    # Plot the decision boundary
-    x_min,x_max = reduced_data[:,0].min()-1, reduced_data[:,0].max() + 1
-    y_min,y_max = reduced_data[:,1].min()-1, reduced_data[:,1].max() + 1
-    xx,yy = np.meshgrid(np.arange(x_min,x_max,h),np.arange(y_min,y_max,h))
+    # # Plot the decision boundary
+    # x_min,x_max = reduced_data[:,0].min()-1, reduced_data[:,0].max() + 1
+    # y_min,y_max = reduced_data[:,1].min()-1, reduced_data[:,1].max() + 1
+    # xx,yy = np.meshgrid(np.arange(x_min,x_max,h),np.arange(y_min,y_max,h))
     
-    # Obtain labels for each point in the mesh using our trained model
-    # kmeans.fit(reduced_data)
-    Z = kmeans.predict(np.c_[xx.ravel(),yy.ravel()])
+    # # Obtain labels for each point in the mesh using our trained model
+    # # kmeans.fit(reduced_data)
+    # Z = kmeans.predict(np.c_[xx.ravel(),yy.ravel()])
     
-    # Put the result into a color plot
-    Z = Z.reshape(xx.shape)
+    # # Put the result into a color plot
+    # Z = Z.reshape(xx.shape)
     
-    # Define color plot
-    cmap = plt.cm.Paired
+    # # Define color plot
+    # cmap = plt.cm.Paired
     
-    # Plotting figure
-    plt.clf()
-    plt.figure(figsize=(10,10))
-    plt.imshow(Z,interpolation = 'nearest',extent=(xx.min(),xx.max(),yy.min(),yy.max()),cmap = cmap,aspect = 'auto',origin = 'lower')
-    plt.plot(reduced_data[:,0],reduced_data[:,1],'k.',markersize = 5)
+    # # Plotting figure
+    # plt.clf()
+    # plt.figure(figsize=(10,10))
+    # plt.imshow(Z,interpolation = 'nearest',extent=(xx.min(),xx.max(),yy.min(),yy.max()),cmap = cmap,aspect = 'auto',origin = 'lower')
+    # plt.plot(reduced_data[:,0],reduced_data[:,1],'k.',markersize = 5)
     
-    # Plot the centroid of each cluster as a white X
-    centroids = kmeans.cluster_centers_
-    plt.scatter(centroids[:,0],centroids[:,1],marker = 'x',s = 169,linewidths = 3,color = 'w',zorder = 10)
-    plt.title('K-Means clustering on stock market movements (PCA-Reduced data)')
-    plt.xlim(x_min,x_max)
-    plt.ylim(y_min,y_max)
-    plt.savefig("/home/marcchen/Documents/factor_decumulation/researchcode/market_analysis_output/clustering.png")
+    # # Plot the centroid of each cluster as a white X
+    # centroids = kmeans.cluster_centers_
+    # plt.scatter(centroids[:,0],centroids[:,1],marker = 'x',s = 169,linewidths = 3,color = 'w',zorder = 10)
+    # plt.title('K-Means clustering on stock market movements (PCA-Reduced data)')
+    # plt.xlim(x_min,x_max)
+    # plt.ylim(y_min,y_max)
+    # plt.savefig("/home/marcchen/Documents/factor_decumulation/researchcode/market_analysis_output/clustering.png")
 
 
     #Scatterplot
@@ -210,7 +277,7 @@ for period in periods_yyyymm_start_end.keys():
             x =data_df_stdev[column_name]*100
             y = data_df_mean[column_name]*100
             ax.scatter(x,y)
-            ax.annotate(label, (x, y))
+            ax.annotate(label, (x, y+0.01), fontsize=16, fontweight="bold")
             # ax.annotate(label, (x,y),
             #             xytext=(0,10), # distance from text to points (x,y)
             #             ha='center' ) # horizontal alignment can be left, right or center
@@ -221,13 +288,13 @@ for period in periods_yyyymm_start_end.keys():
             #ax.plot([0.0,x], [0.0,y], "grey", linestyle=":")
 
 
-    plt.xlabel("Stdev (monthly returns)")
-    plt.ylabel("ExpVal (monthly returns)")
-    plt.title("[Stdev, Mean] of monthly returns for equity indices: " +  str(yyyymm_start) + " to " + str(yyyymm_end) )
+    plt.xlabel("Stdev (monthly returns)", fontweight='bold', fontsize=16)
+    plt.ylabel("ExpVal (monthly returns)", fontweight='bold', fontsize=16)
+    # plt.title("[Stdev, Mean] of monthly returns for equity indices: " +  str(yyyymm_start) + " to " + str(yyyymm_end) )
 
 
     if save_Figures:  # Save plots
         fig_filename = "z_Fig_Scatter_StdevMean_" + \
                        str(yyyymm_start) + "_to_" + str(yyyymm_end) + "." + save_Figures_format
-        plt.savefig("market_analysis_output/" + fig_filename, format=save_Figures_format)
+        plt.savefig("market_analysis_output/3fac_" + fig_filename, format=save_Figures_format)
 

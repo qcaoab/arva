@@ -265,7 +265,7 @@ output_parameters["heatmap_y_bin_max"] = 1000.0  # maximum for the y-axis grid o
 output_parameters["heatmap_y_num_pts"] = int(output_parameters["heatmap_y_bin_max"] - output_parameters["heatmap_y_bin_min"])+1  # number of points for y-axis
 output_parameters["heatmap_xticklabels"] = 2  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
 output_parameters["heatmap_yticklabels"] = 25  # e.g. yticklabels = 10 means we are displaying every 10th label
-output_parameters["heatmap_cmap"] = "rainbow"  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
+output_parameters["heatmap_cmap"] = "viridis_r"  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
 output_parameters["heatmap_cbar_limits"] = [0.0, 1.0]  # list in format [vmin, vmax] for heatmap colorbar/scale
 
 

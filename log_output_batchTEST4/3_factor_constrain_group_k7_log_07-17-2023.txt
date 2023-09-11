@@ -1,0 +1,480 @@
+/home/marcchen/Documents/constrain_factor/researchcode/exp_config_json_files/multi_portfolio_TEST4_kappa3.json
+Starting at: 
+17-07-23_14:35
+
+ numpy seed:  2  
+
+
+ pytorch seed:  2  
+
+Key parameters-------
+paths: 256000
+iterations: 10
+batchsize: 10
+remove neg:  False
+w constaint activation:  yy_fix_jan29
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = 3factor_mc
+timeseries_basket['basket_desc'] = 3 factors : Basic, size, value, mom
+timeseries_basket['basket_columns'] = 
+['T30_real_ret', 'B10_real_ret', 'VWD_real_ret', 'Size_Lo30_real_ret', 'Value_Hi30_real_ret', 'Mom_Hi30_real_ret']
+############# End: defined asset  basket #################
+               Cash_nom_ret  Size_Lo30_nom_ret  ...  VWD_nom_ret  EWD_nom_ret
+My identifier                                   ...                          
+192601                  0.0                NaN  ...     0.000561     0.023174
+192602                  0.0                NaN  ...    -0.033046    -0.053510
+192603                  0.0                NaN  ...    -0.064002    -0.096824
+192604                  0.0                NaN  ...     0.037029     0.032975
+192605                  0.0                NaN  ...     0.012095     0.001035
+
+[5 rows x 16 columns]
+               Cash_nom_ret  Size_Lo30_nom_ret  ...  VWD_nom_ret  EWD_nom_ret
+My identifier                                   ...                          
+202208                  NaN            -0.0020  ...    -0.036240    -0.011556
+202209                  NaN            -0.0955  ...    -0.091324    -0.099903
+202210                  NaN             0.0883  ...     0.077403     0.049863
+202211                  NaN            -0.0076  ...     0.052365     0.028123
+202212                  NaN            -0.0457  ...    -0.057116    -0.047241
+
+[5 rows x 16 columns]
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = 3factor_mc
+timeseries_basket['basket_desc'] = 3 factors : Basic, size, value, mom
+timeseries_basket['basket_columns'] = 
+['T30_nom_ret', 'B10_nom_ret', 'VWD_nom_ret', 'Size_Lo30_nom_ret', 'Value_Hi30_nom_ret', 'Mom_Hi30_nom_ret']
+############# End: defined asset  basket #################
+               Size_Lo30_nom_ret  Value_Hi30_nom_ret  ...  B10_nom_ret  VWD_nom_ret
+My identifier                                         ...                          
+192607                    0.0014              0.0154  ...     0.005383     0.031411
+192608                    0.0319              0.0561  ...     0.005363     0.028647
+192609                   -0.0173             -0.0071  ...     0.005343     0.005787
+192610                   -0.0294             -0.0355  ...     0.005323    -0.028996
+192611                   -0.0038              0.0294  ...     0.005303     0.028554
+
+[5 rows x 7 columns]
+               Size_Lo30_nom_ret  Value_Hi30_nom_ret  ...  B10_nom_ret  VWD_nom_ret
+My identifier                                         ...                          
+202208                   -0.0020             -0.0164  ...    -0.043289    -0.036240
+202209                   -0.0955             -0.0871  ...    -0.050056    -0.091324
+202210                    0.0883              0.1486  ...    -0.014968     0.077403
+202211                   -0.0076              0.0462  ...     0.040789     0.052365
+202212                   -0.0457             -0.0499  ...    -0.018566    -0.057116
+
+[5 rows x 7 columns]
+Indices constructed with column names:
+Index(['date_for_plt', 'Size_Lo30_nom_ret_ind', 'Value_Hi30_nom_ret_ind',
+       'Mom_Hi30_nom_ret_ind', 'CPI_nom_ret_ind', 'T30_nom_ret_ind',
+       'B10_nom_ret_ind', 'VWD_nom_ret_ind'],
+      dtype='object')
+############# Updated: defined asset basket #################
+timeseries_basket['data_df_mean'] = 
+T30_real_ret           0.000229
+B10_real_ret           0.001637
+VWD_real_ret           0.006759
+Size_Lo30_real_ret     0.009939
+Value_Hi30_real_ret    0.010052
+Mom_Hi30_real_ret      0.011386
+dtype: float64
+
+
+timeseries_basket['data_df_stdev'] = 
+T30_real_ret           0.005227
+B10_real_ret           0.019258
+VWD_real_ret           0.053610
+Size_Lo30_real_ret     0.082598
+Value_Hi30_real_ret    0.072063
+Mom_Hi30_real_ret      0.061421
+dtype: float64
+
+
+timeseries_basket['data_df_corr'] = 
+                     T30_real_ret  ...  Mom_Hi30_real_ret
+T30_real_ret             1.000000  ...           0.055142
+B10_real_ret             0.351722  ...           0.066570
+VWD_real_ret             0.068448  ...           0.936115
+Size_Lo30_real_ret       0.014412  ...           0.903222
+Value_Hi30_real_ret      0.018239  ...           0.869469
+Mom_Hi30_real_ret        0.055142  ...           1.000000
+
+[6 rows x 6 columns]
+
+
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names', 'data_df', 'data_df_mean', 'data_df_stdev', 'data_df_corr'])
+############# End: updated: defined asset basket #################
+-----------------------------------------------
+Dates to be REMOVED due to missing values (should be at *start* only due to trading signals):
+Int64Index([], dtype='int64')
+-----------------------------------------------
+Dates from available data for bootstrapping:
+Start: 192607
+End: 202212
+-----------------------------------------------
+Bootstrap block size: 6
+-----------------------------------------------
+Dates USED bootstrapping:
+Start: 199201
+End: 202212
+-----------------------------------------------
+0.0% of bootstrap sample done.
+5.0% of bootstrap sample done.
+10.0% of bootstrap sample done.
+15.0% of bootstrap sample done.
+20.0% of bootstrap sample done.
+25.0% of bootstrap sample done.
+30.0% of bootstrap sample done.
+35.0% of bootstrap sample done.
+40.0% of bootstrap sample done.
+45.0% of bootstrap sample done.
+50.0% of bootstrap sample done.
+55.00000000000001% of bootstrap sample done.
+60.0% of bootstrap sample done.
+65.0% of bootstrap sample done.
+70.0% of bootstrap sample done.
+75.0% of bootstrap sample done.
+80.0% of bootstrap sample done.
+85.0% of bootstrap sample done.
+90.0% of bootstrap sample done.
+95.0% of bootstrap sample done.
+Withdrawal NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       1       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer      14  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer      14  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       1              none   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1      (2, 14)     True          14  
+2     (14, 14)     True          14  
+3      (14, 1)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+Allocation NN:
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes activation x_l(weights)  \
+0        obj.layers[0]        0   input_layer       2       None         None   
+1        obj.layers[1]        1  hidden_layer    None       None         None   
+2        obj.layers[2]        2  hidden_layer    None       None         None   
+3        obj.layers[3]        3  output_layer       7       None         None   
+
+  add_bias b_l(biases)  
+0    False        None  
+1    False        None  
+2    False        None  
+3    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Neural_Network object 'obj' has instance attribute obj.layers.
+obj.layers is a list of 'Neural_Network_Layer' objects with following attributes:
+
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+/home/marcchen/Documents/constrain_factor/researchcode/class_Neural_Network.py:344: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  layers_info_df = layers_info_df.append(layer_dict, ignore_index=True)
+  obj.layers[layer_id] layer_id   description n_nodes        activation  \
+0        obj.layers[0]        0   input_layer       2              None   
+1        obj.layers[1]        1  hidden_layer      14  logistic_sigmoid   
+2        obj.layers[2]        2  hidden_layer      14  logistic_sigmoid   
+3        obj.layers[3]        3  output_layer       7              none   
+
+  x_l(weights) add_bias b_l(biases)  
+0         None    False        None  
+1      (2, 14)     True          14  
+2     (14, 14)     True          14  
+3      (14, 7)    False        None  
+
+ Run 'update_layer' method of Neural_Network object to change layer attributes.
+--------------------------------------------------------------------------------------------------
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       14  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       14  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 14)      True          14  
+0     (14, 14)      True          14  
+0      (14, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       14  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       14  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        7              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 14)      True          14  
+0     (14, 14)      True          14  
+0      (14, 7)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+{'methods': ['Adam'], 'output_progress': False, 'tol': 1e-06, 'itbound_scipy_algorithms': 1000, 'check_exit_criteria': False, 'nit_running_min': 0, 'itbound_SGD_algorithms': 10, 'nit_IterateAveragingStart': 9, 'batchsize': 10, 'SGD_learningrate': 50.0, 'Adagrad_epsilon': 1e-08, 'Adagrad_eta': 1.0, 'Adadelta_ewma': 0.9, 'Adadelta_epsilon': 1e-08, 'RMSprop_ewma': 0.8, 'RMSprop_epsilon': 1e-08, 'RMSprop_eta': 0.1, 'Adam_ewma_1': 0.9, 'Adam_ewma_2': 0.998, 'Adam_eta': 0.0, 'Adam_epsilon': 1e-08, 'Adam_weight_decay': 0.0001, 'running_min_from_avg': False, 'running_min_from_sgd': True, 'lr_schedule': True}
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       14  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       14  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        1              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 14)      True          14  
+0     (14, 14)      True          14  
+0      (14, 1)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+  obj.layers[layer_id]  layer_id   description  n_nodes        activation  \
+0        obj.layers[0]         0   input_layer        2              None   
+0        obj.layers[1]         1  hidden_layer       14  logistic_sigmoid   
+0        obj.layers[2]         2  hidden_layer       14  logistic_sigmoid   
+0        obj.layers[3]         3  output_layer        7              none   
+
+  x_l(weights)  add_bias b_l(biases)  
+0         None     False        None  
+0      (2, 14)      True          14  
+0     (14, 14)      True          14  
+0      (14, 7)     False        None  
+Pytorch NN pbject created from original NN class. Change            original NN object to change structure.
+pre-loaded NN:  OrderedDict([('0.model.hidden_layer_1.weight', tensor([[  4.5379, -15.9536],
+        [  4.6726, -16.5519],
+        [ -0.6903,  -0.1136],
+        [  3.4447,  -9.7956],
+        [  1.9847,  -2.5219],
+        [ 10.8181, -10.5626],
+        [ -0.6902,  -0.1136],
+        [ 11.6389,  -0.6866],
+        [  4.1635, -14.1565],
+        [ -0.6902,  -0.1136],
+        [  2.1003, -33.5942],
+        [ 27.6431,  -7.5813],
+        [ 12.9708,  -0.8776],
+        [ 10.9860,  -2.7200]], device='cuda:0')), ('0.model.hidden_layer_1.bias', tensor([ -4.3361,  -4.2137,  -3.8806,  -5.1693,  -5.1299,  -2.1058,  -3.8805,
+         -9.5527,  -4.6532,  -3.8805,   0.7554,  -1.7984, -10.0506,  -8.8662],
+       device='cuda:0')), ('0.model.hidden_layer_2.weight', tensor([[ 3.0439e+00,  3.3267e+00,  1.7973e-01,  1.0689e+00,  1.6822e-01,
+          4.4250e+00,  1.7990e-01,  5.4113e+00,  2.2995e+00,  1.7990e-01,
+          6.2228e+00,  3.0074e+00,  1.0457e+01,  3.5988e+00],
+        [ 3.1531e+00,  3.3828e+00, -9.8534e-02,  1.4779e+00,  2.2814e-01,
+          4.6827e+00, -9.8661e-02,  5.3689e+00,  2.5438e+00, -9.8661e-02,
+          6.5737e+00,  3.8110e+00,  1.0560e+01,  4.0408e+00],
+        [ 3.1308e+00,  3.3695e+00, -4.8977e-02,  1.3978e+00,  2.1120e-01,
+          4.6379e+00, -4.8670e-02,  5.3682e+00,  2.4977e+00, -4.8673e-02,
+          6.5160e+00,  3.7036e+00,  1.0545e+01,  3.9704e+00],
+        [ 1.0073e-02,  1.2333e-02, -9.9433e-03, -3.2949e-03, -1.0048e-02,
+         -4.4252e-01, -9.9434e-03, -1.8665e-01,  4.8229e-03, -9.9434e-03,
+         -4.5584e-01, -1.1742e+00, -2.5327e-01, -3.1120e-02],
+        [ 1.0067e-02,  1.2326e-02, -9.9437e-03, -3.2969e-03, -1.0048e-02,
+         -4.4252e-01, -9.9438e-03, -1.8664e-01,  4.8184e-03, -9.9438e-03,
+         -4.5580e-01, -1.1738e+00, -2.5325e-01, -3.1120e-02],
+        [ 2.1197e-01,  2.4593e-01,  4.7592e-02,  7.1250e-02,  3.5014e-02,
+          7.8720e-01,  4.7594e-02,  3.4982e-01,  1.4573e-01,  4.7594e-02,
+          1.5222e+00,  2.5674e+00,  3.9094e-01, -2.7949e-02],
+        [ 1.0073e-02,  1.2333e-02, -9.9433e-03, -3.2949e-03, -1.0048e-02,
+         -4.4252e-01, -9.9434e-03, -1.8664e-01,  4.8229e-03, -9.9434e-03,
+         -4.5584e-01, -1.1742e+00, -2.5327e-01, -3.1120e-02],
+        [ 1.0073e-02,  1.2333e-02, -9.9433e-03, -3.2949e-03, -1.0048e-02,
+         -4.4252e-01, -9.9434e-03, -1.8665e-01,  4.8229e-03, -9.9434e-03,
+         -4.5584e-01, -1.1742e+00, -2.5327e-01, -3.1120e-02],
+        [ 1.0073e-02,  1.2332e-02, -9.9433e-03, -3.2950e-03, -1.0048e-02,
+         -4.4251e-01, -9.9434e-03, -1.8664e-01,  4.8228e-03, -9.9434e-03,
+         -4.5584e-01, -1.1742e+00, -2.5327e-01, -3.1120e-02],
+        [ 3.1524e+00,  3.3822e+00, -9.7776e-02,  1.4760e+00,  2.2798e-01,
+          4.6830e+00, -9.7885e-02,  5.3698e+00,  2.5426e+00, -9.7885e-02,
+          6.5742e+00,  3.8101e+00,  1.0562e+01,  4.0397e+00],
+        [ 3.0078e+00,  3.2942e+00,  1.9869e-01,  1.0235e+00,  1.5992e-01,
+          4.3906e+00,  1.9882e-01,  5.3845e+00,  2.2559e+00,  1.9882e-01,
+          6.1657e+00,  2.9140e+00,  1.0382e+01,  3.5136e+00],
+        [ 1.0073e-02,  1.2333e-02, -9.9433e-03, -3.2949e-03, -1.0048e-02,
+         -4.4252e-01, -9.9434e-03, -1.8664e-01,  4.8229e-03, -9.9434e-03,
+         -4.5584e-01, -1.1742e+00, -2.5327e-01, -3.1120e-02],
+        [ 1.0073e-02,  1.2333e-02, -9.9433e-03, -3.2949e-03, -1.0048e-02,
+         -4.4252e-01, -9.9434e-03, -1.8664e-01,  4.8229e-03, -9.9434e-03,
+         -4.5584e-01, -1.1742e+00, -2.5327e-01, -3.1120e-02],
+        [ 3.1621e+00,  3.3904e+00, -1.0894e-01,  1.4969e+00,  2.3500e-01,
+          4.7004e+00, -1.0917e-01,  5.3840e+00,  2.5568e+00, -1.0917e-01,
+          6.6015e+00,  3.8397e+00,  1.0592e+01,  4.0666e+00]], device='cuda:0')), ('0.model.hidden_layer_2.bias', tensor([-11.3161, -11.8355, -11.7566,  -1.4077,  -1.4082,   3.7045,  -1.4077,
+         -1.4077,  -1.4077, -11.8360, -11.2293,  -1.4077,  -1.4077, -11.8753],
+       device='cuda:0')), ('0.model.output_layer_3.weight', tensor([[-5.5252, -7.1842, -6.7275,  0.0326,  0.0326, 14.0501,  0.0326,  0.0326,
+          0.0326, -7.1745, -5.4301,  0.0326,  0.0326, -7.3008]],
+       device='cuda:0')), ('1.model.hidden_layer_1.weight', tensor([[ -2.0968,   0.1391],
+        [ -2.0450,   0.2249],
+        [ -2.0265,   0.2670],
+        [ -2.0949,   0.1584],
+        [-11.6559,  -8.9352],
+        [ -2.1765,   0.0463],
+        [ -9.7968,   5.7736],
+        [ -2.0899,   0.2297],
+        [ -2.0971,   0.1386],
+        [-30.4256,   4.2100],
+        [ 11.6766,   5.8095],
+        [  8.8324,   0.9716],
+        [  4.0165,  13.8639],
+        [ -3.3362,   2.8304]], device='cuda:0')), ('1.model.hidden_layer_1.bias', tensor([-5.2437, -5.2873, -5.2942, -5.2646, -2.8622, -5.1828,  1.1218, -5.2643,
+        -5.2434,  0.7300, -1.5276, -8.4551,  3.4084, -9.6580], device='cuda:0')), ('1.model.hidden_layer_2.weight', tensor([[-1.1545e-02, -1.1117e-02, -1.1100e-02, -1.1305e-02, -3.2749e-01,
+         -1.2278e-02, -5.0191e-01, -1.1268e-02, -1.1548e-02, -1.1559e-01,
+         -2.7207e+00, -1.9434e-01, -1.2792e+00, -1.4512e-01],
+        [ 2.0611e-01,  1.7058e-01,  1.6440e-01,  1.5616e-01,  8.0174e+00,
+          2.0795e-01, -5.3006e+00,  1.2274e-01,  2.0615e-01,  5.1599e+00,
+         -5.4460e+00, -6.3714e+00, -9.6181e+00,  8.6095e-04],
+        [-5.1002e-01, -4.8452e-01, -4.9360e-01, -4.7386e-01,  6.5678e+00,
+         -5.1201e-01, -6.4983e+00, -5.3590e-01, -5.1007e-01,  6.0354e+00,
+         -2.6691e+00, -7.0213e+00, -9.0672e+00,  1.8032e-02],
+        [-1.1545e-02, -1.1117e-02, -1.1100e-02, -1.1305e-02, -3.2749e-01,
+         -1.2278e-02, -5.0191e-01, -1.1268e-02, -1.1548e-02, -1.1559e-01,
+         -2.7207e+00, -1.9433e-01, -1.2792e+00, -1.4512e-01],
+        [ 3.3497e-01,  3.1438e-01,  3.1260e-01,  3.3089e-01,  3.8924e+00,
+          3.5832e-01, -6.9235e+00,  2.8727e-01,  3.3509e-01, -1.7687e+00,
+         -3.4347e+00, -5.3636e+00, -2.8962e+00,  1.1213e-02],
+        [-4.8575e-01, -4.1067e-01, -3.8912e-01, -4.6943e-01, -5.1533e-01,
+         -5.8670e-01,  2.5063e+00, -4.7875e-01, -4.8624e-01,  7.7295e+00,
+         -7.2766e-01, -2.8412e+00,  4.1209e+00, -7.1528e+00],
+        [ 2.2143e-01,  2.3228e-01,  2.5434e-01,  2.1130e-01, -1.0287e+00,
+          1.9191e-01,  3.4665e+01,  2.8893e-01,  2.2134e-01,  1.3726e+00,
+         -2.2925e+00,  6.5309e+00,  3.4359e+00,  3.1029e-02],
+        [-5.0292e-01, -4.2879e-01, -4.1058e-01, -4.5808e-01,  9.4405e+00,
+         -5.9240e-01, -6.4397e+00, -4.4966e-01, -5.0337e-01, -2.0610e+01,
+          2.6102e+00,  1.2761e+01, -4.7738e+00,  2.6020e+00],
+        [-1.0988e-02, -1.0571e-02, -1.0551e-02, -1.0757e-02, -3.2515e-01,
+         -1.1699e-02, -4.9239e-01, -1.0716e-02, -1.0991e-02, -1.1415e-01,
+         -2.7231e+00, -2.0324e-01, -1.2868e+00, -1.3684e-01],
+        [-1.7437e-01, -1.4788e-01, -1.3596e-01, -1.4609e-01,  1.0139e+01,
+         -2.0886e-01,  6.2428e+00, -1.5379e-01, -1.7453e-01,  4.7196e+00,
+         -1.6428e+00,  4.5603e+00, -2.0716e+01,  2.9589e-02],
+        [ 1.5242e-01,  1.4796e-01,  1.3823e-01,  2.0681e-01, -4.0813e-01,
+          1.8898e-01, -1.9677e+00,  2.0830e-01,  1.5253e-01,  4.3907e-01,
+         -2.2142e+00, -9.7767e+00,  2.5314e+00, -1.1447e-01],
+        [ 1.4406e-01,  1.3528e-01,  1.3441e-01,  1.4346e-01,  6.1989e+00,
+          1.5600e-01, -5.1138e+00,  1.4897e-01,  1.4412e-01,  7.0756e-01,
+         -5.6387e+00, -5.5876e+00, -8.6357e+00, -1.8079e-03],
+        [-1.1545e-02, -1.1117e-02, -1.1100e-02, -1.1305e-02, -3.2749e-01,
+         -1.2278e-02, -5.0191e-01, -1.1268e-02, -1.1548e-02, -1.1559e-01,
+         -2.7207e+00, -1.9434e-01, -1.2792e+00, -1.4512e-01],
+        [-1.1545e-02, -1.1117e-02, -1.1100e-02, -1.1305e-02, -3.2749e-01,
+         -1.2278e-02, -5.0191e-01, -1.1268e-02, -1.1548e-02, -1.1559e-01,
+         -2.7207e+00, -1.9434e-01, -1.2792e+00, -1.4512e-01]], device='cuda:0')), ('1.model.hidden_layer_2.bias', tensor([-4.8500,  1.4978,  0.2460, -4.8500, -0.8704, -6.3337, -3.4997,  2.5295,
+        -4.8408, -2.3381, -3.6212,  0.1378, -4.8500, -4.8500], device='cuda:0')), ('1.model.output_layer_3.weight', tensor([[ 4.0477e-02, -1.6009e+00, -2.2981e+00,  4.0474e-02, -5.5987e-01,
+          3.8145e+00,  1.5199e+00,  1.6970e+00,  3.9373e-02, -6.3897e+00,
+          8.8414e+00,  3.7514e-01,  4.0476e-02,  4.0474e-02],
+        [-3.5794e-02,  2.0851e+00,  2.6841e+00, -3.5798e-02,  1.0953e+00,
+         -2.1446e+00,  6.4328e-01,  1.4181e+00, -3.1291e-02,  7.6647e+00,
+         -7.3323e+00,  3.7089e-01, -3.5795e-02, -3.5798e-02],
+        [-1.3594e-02, -2.2335e-01, -1.9866e-01, -1.3594e-02, -9.8625e-02,
+         -1.5042e+00, -8.3813e+00, -1.3059e+01, -1.3650e-02, -8.6615e-02,
+         -7.6270e-01, -3.6713e-02, -1.3594e-02, -1.3594e-02],
+        [-8.7181e-03, -5.2598e-01, -4.4466e-01, -8.7181e-03, -2.3676e-01,
+         -6.2842e-01, -3.9079e+00, -5.5668e+00, -8.7929e-03, -3.1760e-01,
+         -3.2159e-01, -2.7684e-01, -8.7181e-03, -8.7181e-03],
+        [-1.1316e-02, -6.4025e-01, -5.0048e-01, -1.1316e-02, -2.8603e-01,
+         -4.3462e-01, -2.7616e+00, -4.5005e+00, -1.1407e-02, -3.6220e-01,
+         -2.1010e-01, -3.4350e-01, -1.1316e-02, -1.1316e-02],
+        [ 1.5049e-02,  1.2807e-01, -5.7964e-02,  1.5049e-02, -4.3751e-01,
+          1.0737e+00,  6.4706e+00,  1.0900e+01,  1.5092e-02, -3.1010e-01,
+          5.2381e-01, -3.6014e-01,  1.5049e-02,  1.5049e-02],
+        [-3.5737e-02,  1.2255e+01,  9.8463e+00, -3.5738e-02,  9.0836e+00,
+         -4.8773e+00, -1.1672e-01,  1.2435e+00, -3.2162e-02, -2.0059e+00,
+         -2.8655e+00,  1.0810e+01, -3.5737e-02, -3.5738e-02]], device='cuda:0'))])
+loaded xi:  666.6145
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.0, 0.6, 0.1, 0.1, 0.1, 0.1]
+W_T_mean: 1011.5336873625768
+W_T_median: 846.3315480446447
+W_T_pctile_5: -19.171513607574234
+W_T_CVAR_5_pct: -160.48826639580275
+-----------------------------------------------
+new min fval from sgd:  -4635.590076377345
+min fval:  -4635.590076377345
+-----------------------------------------------
+Selected results: NN-strategy-on-TRAINING dataset (temp implementation
+W_T_mean: 856.6405469969415
+W_T_median: 860.1529904970101
+W_T_pctile_5: 726.6015293547466
+W_T_CVAR_5_pct: 476.2879511434675
+Average q (qsum/M+1):  43.53466796875
+Optimal xi:  [666.6145]
+Expected(across Rb) median(across samples) p_equity:  0.14187108143232763
+obj fun:  tensor(-4635.5901, device='cuda:0', dtype=torch.float64)
+-----------------------------------------------
+Need to implement this
+bond graph is mislabeled!
+bond graph is mislabeled!
+bond graph is mislabeled!
+bond graph is mislabeled!
+bond graph is mislabeled!
+bond graph is mislabeled!
+/home/marcchen/Documents/constrain_factor/researchcode/fun_Plot_NN_control_DataHeatmaps.py:161: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format=save_Figures_format, bbox_inches="tight")
+/home/marcchen/Documents/constrain_factor/researchcode/fun_output_results_Pctiles.py:176: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
+-----------------------------------------------
+Just FINISHED: 
+Asset basket ID: 3factor_mc
+Objective function: mean_cvar_single_level
+Tracing param: 7.0
+-----------------------------------------------

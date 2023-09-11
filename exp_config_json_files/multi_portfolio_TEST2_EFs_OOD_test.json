@@ -1,0 +1,60 @@
+
+{
+    
+    "2basic_NN": [
+        {  
+            "seed_mc": 2,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "preload_nn": "",
+            "preload_xi": "",
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/2basic_NN_09-08-23_18:33_DS2_EF", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "B10_and_VWD",
+            "factor_constraint": false,
+            "factor_constraints_dict": {},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 10.0, 15.0, 25.0, 50.0, 999.0],
+            "prop_const": [0.7,0.3],
+            "blocksize": 6,
+            "data_bootstrap_yyyymm_start": 199201,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.02
+        }
+    ],
+
+
+    "2_factor_constrain_indiv": [
+        {  
+            "seed_mc": 2,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": true,
+            "preload_nn": "",
+            "preload_xi": "",
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/2_factor_constrain_indiv_09-08-23_18:33_DS2_EF", 
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": true,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "check",
+            "asset_basket_id": "Paper_FactorInv_Factor2",
+            "factor_constraint": true,
+            "factor_constraints_dict": {"Size_Lo30": 0.25, "Value_Hi30":0.25},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [0.05, 0.2, 0.5, 1.0, 1.2, 1.5, 3.0, 5.0, 10.0, 25.0, 50.0, 999.0],
+            "prop_const": [0.0, 0.5, 0.2, 0.15, 0.15],
+            "blocksize": 6,
+            "data_bootstrap_yyyymm_start": 199201,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.02
+
+        }
+    ]
+
+}

@@ -52,8 +52,11 @@ else:
 #Import config files params--------------------------------------------------------------
 
 
+config_file_path = sys.argv[2]
 
-with open('/home/marcchen/Documents/constrain_factor/researchcode/exp_config_json_files/multi_portfolio_TEST1.json') as json_file:
+print(config_file_path)
+ 
+with open(config_file_path) as json_file:
     config_params = json.load(json_file)
 
 #config_params = config_params[experiment_name][0]
@@ -135,9 +138,12 @@ saved_model_dir = config_params["model_dir"]
 
 params["local_path"] = str(os.getcwd())
 
-nn_preload = saved_model_dir +"/"
+nn_preload = config_params["preload_nn"] #saved_model_dir +"/"
+xi_preload = config_params["preload_xi"] #saved_model_dir +"/"
 
-xi_preload = saved_model_dir +"/"
+if config_params["iter_params"] == "check":
+    nn_preload = saved_model_dir +"/"
+    xi_preload = saved_model_dir +"/"
 
 #Pytorch flag for pre-trained NN
 params["PreTrained_pytorch"] = config_params["PreTrained_pytorch"]
@@ -178,7 +184,17 @@ iter_params = config_params["iter_params"]
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 30000
+    itbound_mc = 20000
+    batchsize_mc = 1000
+    nodes_mc = 8
+    layers_mc = 2
+    biases_mc = True
+    adam_xi_eta = 0.04
+    adam_nn_eta = 0.05
+
+if iter_params == "test2":
+    n_d_train_mc = int(2.56* (10**4)) 
+    itbound_mc = 1000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
@@ -195,10 +211,10 @@ if iter_params == "check":
     biases_mc = True
     adam_xi_eta = 0.00
     adam_nn_eta = 0.00
-
+    
 if iter_params == "smol":
-    n_d_train_mc = int(2.56* (10**3)) 
-    itbound_mc = 100
+    n_d_train_mc = int(2.56* (10**5)) 
+    itbound_mc = 10000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
@@ -207,15 +223,15 @@ if iter_params == "smol":
     adam_nn_eta = 0.05
 
 if iter_params == "tiny":
-    n_d_train_mc = 10
+    n_d_train_mc = int(2.56* (10**3))
     itbound_mc = 5
     batchsize_mc = 5
     nodes_mc = 8
     # params["q"] =  0. * np.ones(params["N_rb"]) 
     layers_mc = 2
     biases_mc = True
-    adam_xi_eta = 0.04
-    adam_nn_eta = 0.05
+    adam_xi_eta = 0.00
+    adam_nn_eta = 0.00
 #----------------------------------------------
 # print key params:
 print("Key parameters-------")

@@ -5,6 +5,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -28,6 +29,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -52,6 +54,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -76,6 +79,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -101,6 +105,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -125,12 +130,13 @@
             "seed_mc": 2,
             "cont_nn": false,
             "cont_xi": false,
-            "preload": false,
+            "preload": true,
+            "model_dir": "/home/marcchen/Documents/constrain_factor/researchcode/saved_models_constrain/2_factor_constrain_group_14-07-23_13:02",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
             "standardization_file_path": "wvrrv",
-            "iter_params": "test",
+            "iter_params": "smol",
             "asset_basket_id": "Paper_FactorInv_Factor2",
             "factor_constraint": true,
             "factor_constraints_dict": {"total_factor_max":0.5},
@@ -146,12 +152,93 @@
     ],
 
 
+    "3_factor_unconstrain": [
+        {  
+            "seed_mc": 2,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": false,
+            "model_dir": "vrrv",
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": false,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "test",
+            "asset_basket_id": "3factor_mc",
+            "factor_constraint": false,
+            "factor_constraints_dict": {},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0.0, 0.6, 0.1, 0.1, 0.1, 0.1],
+            "blocksize": 6,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.05
+
+        }
+    ],
+
+    "3_factor_constrain_indiv": [
+        {  
+            "seed_mc": 2,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": false,
+            "model_dir": "vrrv",
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": false,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "test",
+            "asset_basket_id": "3factor_mc",
+            "factor_constraint": true,
+            "factor_constraints_dict": {"Size_Lo30": 0.166666667, "Value_Hi30":0.166666667, "Mom_Hi30":0.166666667},
+            "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0.0, 0.6, 0.1, 0.1, 0.1, 0.1],
+            "blocksize": 6,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.05
+
+        }
+    ],
+
+    "3_factor_constrain_group": [
+        {  
+            "seed_mc": 2,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": false,
+            "model_dir": "vrrv",
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": false,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "test",
+            "asset_basket_id": "3factor_mc",
+            "factor_constraint": true,
+            "factor_constraints_dict": {"total_factor_max":0.5},
+            "dynamic_total_factorprop": true,
+            "kappa_list": [1.0],
+            "prop_const": [0.0, 0.6, 0.1, 0.1, 0.1, 0.1],
+            "blocksize": 6,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.05
+
+        }
+    ],
+
+
+
     "4_factor_unconstrain": [
         {  
             "seed_mc": 2,
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -171,12 +258,13 @@
         }
     ],
 
-    "4_factor_constrain": [
+    "4_factor_constrain_indiv": [
         {  
             "seed_mc": 2,
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -184,8 +272,34 @@
             "iter_params": "test",
             "asset_basket_id": "Paper_FactorInv_Factor4",
             "factor_constraint": true,
-            "factor_constraints_dict": {"Size_Lo30": 0.1, "Value_Hi30":0.1, "Vol_Lo20": 0.1, "Mom_Hi30":0.1},
+            "factor_constraints_dict": {"Size_Lo30": 0.125, "Value_Hi30":0.125, "Vol_Lo20": 0.125, "Mom_Hi30":0.125},
             "dynamic_total_factorprop": false,
+            "kappa_list": [1.0],
+            "prop_const": [0, 0.5, 0.1, 0.1, 0.1, 0.1, 0.1],
+            "blocksize": 6,
+            "data_bootstrap_yyyymm_start": 196307,
+            "data_bootstrap_yyyymm_end": 202212,
+            "pct_running_min": 0.05
+
+        }
+    ],
+
+    "4_factor_constrain_group": [
+        {  
+            "seed_mc": 2,
+            "cont_nn": false,
+            "cont_xi": false,
+            "preload": false,
+            "model_dir": "vrrv",
+            "nn_preload": "svvr",
+            "xi_preload": "rwrc",
+            "PreTrained_pytorch": false,
+            "standardization_file_path": "wvrrv",
+            "iter_params": "test",
+            "asset_basket_id": "Paper_FactorInv_Factor4",
+            "factor_constraint": true,
+            "factor_constraints_dict": {"total_factor_max":0.5},
+            "dynamic_total_factorprop": true,
             "kappa_list": [1.0],
             "prop_const": [0, 0.5, 0.1, 0.1, 0.1, 0.1, 0.1],
             "blocksize": 6,
@@ -202,6 +316,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -227,6 +342,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -252,6 +368,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -277,6 +394,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
@@ -302,6 +420,7 @@
             "cont_nn": false,
             "cont_xi": false,
             "preload": false,
+            "model_dir": "vrrv",
             "nn_preload": "svvr",
             "xi_preload": "rwrc",
             "PreTrained_pytorch": false,
