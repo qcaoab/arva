@@ -1,3 +1,5 @@
+This code is for retrieving updated asset return data from CRSP. You'll need an account from UWaterloo Library Services for the Wharton Research Data Services to make use of it.
+
 Files in this directory:
 
 1. get_csv_files_from_wrds.py: simple python script to retrieve data

@@ -47,25 +47,6 @@ else:
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    
-    
-#Import config files params--------------------------------------------------------------
-
-
-config_file_path = sys.argv[2]
-
-print(config_file_path)
- 
-with open(config_file_path) as json_file:
-    config_params = json.load(json_file)
-
-#config_params = config_params[experiment_name][0]
-
-experiment_name = sys.argv[1]
-config_params = config_params[experiment_name][0]
-
-
-#----------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------
 # Portfolio problem: Main structural parameters
@@ -86,9 +67,9 @@ print(start_time)
 #filepath prefixes
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
-os.chdir(dname) 
-code_title_prefix = "output_heatmaps_constrain/"+experiment_name+start_time+"/"   #used for saving output on local
-console_output_prefix = experiment_name+"_"+start_time+"/"
+os.chdir(dname)
+code_title_prefix = "output_heatmaps_constrain/mc_decum_"+start_time+"/"   #used for saving output on local
+console_output_prefix = "mc_decum_" +start_time+"/"
 params["console_output_prefix"] = console_output_prefix
 params["start_time"] = start_time
 
@@ -108,7 +89,7 @@ params["device"] = device
 #decumulation params
 params["q_min"] = 35.0 #min withdrawal per Rb
 params["q_max"] = 60.0 #max withdrawal per Rb
-params["mu_bc"] = 0.00 #boconfig_paramsrrowing spread: annual additional rate on negative wealth (plus bond rate)
+params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
 # ^TO DO: need to implement borrowing interest when wealth is negative
 # params["constrain_w_neg"] = True # HARDCODED FOR NOW
 
@@ -119,36 +100,29 @@ params["xi_constant"] = False
 params["remove_neg"] = False
 
 #set seed
-seed_mc = config_params["seed_mc"]
+seed_mc = 2
 np.random.seed(seed_mc)
 print("\n numpy seed: ", seed_mc, " \n")
 torch.manual_seed(seed_mc)
 print("\n pytorch seed: ", seed_mc, " \n")
 
-cont_nn = config_params["cont_nn"]  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
+cont_nn = False  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
 cont_nn_start = 3
-cont_xi = config_params["cont_xi"]  #uses previous value of optimal xi to initialize xi in next run
+cont_xi = False #uses previous value of optimal xi to initialize xi in next run
 cont_xi_start = 3  #tracing param index (starts at 1) to start continuation learning at
 
 # preload saved model
-preload = config_params["preload"]
-
-saved_model_dir = config_params["model_dir"]
-
-
+preload = False
 params["local_path"] = str(os.getcwd())
 
-nn_preload = config_params["preload_nn"] #saved_model_dir +"/"
-xi_preload = config_params["preload_xi"] #saved_model_dir +"/"
+nn_preload = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/NN_opt_mc_decum_30-06-23_19:28_kappa_1.0" 
 
-if config_params["iter_params"] == "check":
-    nn_preload = saved_model_dir +"/"
-    xi_preload = saved_model_dir +"/"
+xi_preload = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/xi_opt_mc_decum_30-06-23_19:28_kappa_1.0.json" 
 
 #Pytorch flag for pre-trained NN
-params["PreTrained_pytorch"] = config_params["PreTrained_pytorch"]
+params["PreTrained_pytorch"] = False
     
-params["standardization_file_path"] = saved_model_dir + "/_standardizing_opt_kappa_1.0.json" 
+params["standardization_file_path"] = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/standardizing_opt_mc_decum_27-06-23_18:47_kappa_1.0.json"
 
 #control export params
 params["output_control"] = False
@@ -178,11 +152,11 @@ params["w_constraint_activation"] = "yy_fix_jan29"
 #standardize differently for withdrawal
 params["withdrawal_standardize"] = True
 
-params["iter_params"] = config_params["iter_params"]
 # iteration dashboard --------------------------
-iter_params = config_params["iter_params"]
 
-if iter_params == "test":
+params["iter_params"] = "small"
+
+if params["iter_params"] == "test":
     n_d_train_mc = int(2.56* (10**5)) 
     itbound_mc = 20000
     batchsize_mc = 1000
@@ -191,30 +165,20 @@ if iter_params == "test":
     biases_mc = True
     adam_xi_eta = 0.04
     adam_nn_eta = 0.05
-
-if iter_params == "test2":
-    n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 1000
-    batchsize_mc = 1000
-    nodes_mc = 8
-    layers_mc = 2
-    biases_mc = True
-    adam_xi_eta = 0.04
-    adam_nn_eta = 0.05
     
-if iter_params == "check":
-    n_d_train_mc = int(2.56* (10**5)) 
+if params["iter_params"] == "check":
+    n_d_train_mc = int(2.56* (10**4)) 
     itbound_mc = 10
-    batchsize_mc = 10
+    batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
     biases_mc = True
     adam_xi_eta = 0.00
     adam_nn_eta = 0.00
-    
-if iter_params == "smol":
-    n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 10000
+
+if params["iter_params"] == "small":
+    n_d_train_mc = int(2.56* (10**4)) 
+    itbound_mc = 4000
     batchsize_mc = 1000
     nodes_mc = 8
     layers_mc = 2
@@ -222,16 +186,16 @@ if iter_params == "smol":
     adam_xi_eta = 0.04
     adam_nn_eta = 0.05
 
-if iter_params == "tiny":
-    n_d_train_mc = int(2.56* (10**3))
+if params["iter_params"] == "tiny":
+    n_d_train_mc = 10
     itbound_mc = 5
     batchsize_mc = 5
     nodes_mc = 8
-    # params["q"] =  0. * np.ones(params["N_rb"]) 
+    #params["q"] =  0. * np.ones(params["N_rb"]) 
     layers_mc = 2
     biases_mc = True
-    adam_xi_eta = 0.00
-    adam_nn_eta = 0.00
+    adam_xi_eta = 0.05
+    adam_nn_eta = 0.05
 #----------------------------------------------
 # print key params:
 print("Key parameters-------")
@@ -269,11 +233,23 @@ if params["test_TrueFalse"] is True:
 
 #--------------------------------------
 # ASSET BASKET: Specify basket of candidate assets, and REAL or NOMINAL data
-params["asset_basket_id"] =  config_params["asset_basket_id"] #"MC_everything"   #"Paper_FactorInv_Factor2"  #"basic_ForsythLi"    #Pre-defined basket of underlying candidate assets - see fun_Data_assets_basket.py
-params["factor_constraint"] = config_params["factor_constraint"]
-params["dynamic_total_factorprop"] = config_params["dynamic_total_factorprop"]
-params["factor_constraints_dict"] = config_params["factor_constraints_dict"]
+params["asset_basket_id"] =  "B10_and_VWD"   #"Paper_FactorInv_Factor2"  #"basic_ForsythLi"    #Pre-defined basket of underlying candidate assets - see fun_Data_assets_basket.py
+params["factor_constraint"] = False
 
+
+if params["asset_basket_id"] == "Paper_FactorInv_Factor4":
+    params["factor_constraints_dict"] = {"Size_Lo30": 0.1, "Value_Hi30":0.1, "Vol_Lo20":0.1, "Mom_Hi30": 0.1}
+
+if params["asset_basket_id"] == "Paper_FactorInv_Factor2":
+    params["factor_constraints_dict"] = {"Size_Lo30": 0.20, "Value_Hi30":0.20}
+
+if params["asset_basket_id"] == "MC_everything":
+    params["factor_constraints_dict"] = {"total_factor_prop": 0.5, "dynamic_prop": True}
+
+params["dynamic_total_factorprop"] = False
+
+#
+#{"Size_Lo30": 0.20, "Value_Hi30":0.20}
     
 params["add_cash_TrueFalse"] = False     #If True, add "Cash" as an asset to the selected asset basket
     # - We will ALWAYS set add_cash_TrueFalse = True if TransCosts_TrueFalse == True (below)
@@ -331,7 +307,7 @@ params["obj_fun_epsilon"] =  10**-6
 
 
 #k = 999. for Inf case!
-tracing_parameters_to_run =  config_params["kappa_list"] #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
+tracing_parameters_to_run =  [1.0]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
  #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
@@ -438,7 +414,7 @@ output_parameters["output_W_T_benchmark_comparisons"] = False #If true, outputs 
 # Roling historical test
 output_parameters["output_Rolling_Historical_Data_test"] = False  #If true, test NN strategy and benchmark strategy on actual single
                                     # historical data path, starting in each month and investing for the duration
-output_parameters["fixed_yyyymm_list"] = [198001, 198912, 199001] #Used for historical rolling test; LIST of yyyymm_start months of particular interest>
+output_parameters["fixed_yyyymm_list"] = [198001, 198912, 199001] #Used for historical rolling test; LIST of yyyymm_start months of particular interest
 output_parameters["output_Rolling_Historical_only_for_fixed"] = False  #if True, outputs rolling historical ONLY for output_parameters["fixed_yyyymm_list"]
 
 # NN detail
@@ -501,9 +477,9 @@ params["N_a"] = len(params["asset_basket"]["basket_columns"])   #Nr of assets = 
 
 #specify prop_const;
 
-prop_const = config_params["prop_const"]
 
-# np.ones(params["N_a"]) * (1/ params["N_a"])  # automatically get equal proportions:
+
+prop_const = np.ones(params["N_a"]) * (1/ params["N_a"])  # automatically get equal proportions:
 
 # prop_const = np.array([0,0.50, 0.50, 0 , 0])
 withdraw_const = 40.0
@@ -626,13 +602,13 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
     # ----------------------------------------
     # TRAINING data bootstrapping
     # - Append bootstrapped data to "params" dictionary
-    blocksize = config_params["blocksize"]
+    blocksize = 6
     print("Bootstrap block size: " + str(blocksize))
     params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
         train_test_Flag = "train",                  # "train" or "test"
         params = params,                            # params dictionary as in main code
-        data_bootstrap_yyyymm_start = config_params["data_bootstrap_yyyymm_start"],    #196307   # start month to use subset of data for bootstrapping, CHECK DATA!
-        data_bootstrap_yyyymm_end = config_params["data_bootstrap_yyyymm_end"], #202212,         # end month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_start = 196307,    #196307   # start month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_end = 202212, #202212,         # end month to use subset of data for bootstrapping, CHECK DATA!
         data_bootstrap_exp_block_size = blocksize,          # Expected block size in terms of frequency of market returns data
                                                     # e.g. = X means expected block size is X months of returns
                                                     # if market returns data is monthly
@@ -766,17 +742,11 @@ params["N_L_allocate"] = layers_mc # Nr of hidden layers of NN
                    # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
                    # layer_id list: [0, 1,...,N_L, N_L+1]
 
-if params["dynamic_total_factorprop"] == False:
-    
-    NN_allocate_orig = class_Neural_Network.Neural_Network(n_nodes_input = params["N_phi"],
+
+NN_allocate_orig = class_Neural_Network.Neural_Network(n_nodes_input = params["N_phi"],
                                          n_nodes_output = params["N_a"],
                                          n_layers_hidden = params["N_L_allocate"])
-else: #extra node to determine factor proportion
-    NN_allocate_orig = class_Neural_Network.Neural_Network(n_nodes_input = params["N_phi"],
-                                         n_nodes_output = params["N_a"]+1,
-                                         n_layers_hidden = params["N_L_allocate"])
-    
-    
+
 print("Allocation NN:")
 NN_allocate_orig.print_layers_info()  #Check what to update
 
@@ -893,7 +863,7 @@ NN_training_options["Adam_ewma_1"] = 0.9
 NN_training_options["Adam_ewma_2"] = 0.998 #0.999
 NN_training_options["Adam_eta"] = adam_nn_eta #override 0.1
 NN_training_options["Adam_weight_decay"] = 1e-4
-NN_training_options['nit_running_min'] = int(itbound * config_params["pct_running_min"])  # nr of iterations at the end that will be used to get the running minimum for output
+NN_training_options['nit_running_min'] = int(itbound / 100)  # nr of iterations at the end that will be used to get the running minimum for output
 NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
@@ -962,7 +932,7 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
         if os.path.isdir(nn_preload):
             files = [f for f in os.listdir(nn_preload)]
             suffix_len = len(str(tracing_param))
-            nn_preload_path = Path(nn_preload + [path for path in files if path[0:7] =='_NNopt_' 
+            nn_preload_path = Path(nn_preload + [path for path in files if path[0:15] =='NN_opt_mc_decum' 
                                and re.split('kappa_', path)[-1] == str(tracing_param)][0])
             check = 0
         else:
@@ -976,7 +946,7 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
         if os.path.isdir(nn_preload):
             files = [f for f in os.listdir(nn_preload)]
             suffix_len = len(str(tracing_param)+'.json')
-            xi_preload_path = Path(nn_preload + [path for path in files if path[0:7] =='_XIopt_' 
+            xi_preload_path = Path(nn_preload + [path for path in files if path[0:15] =='xi_opt_mc_decum' 
                                and re.split('kappa_', path)[-1] == str(tracing_param)+'.json'][0])
         else:
             xi_preload_path = xi_preload

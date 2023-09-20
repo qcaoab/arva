@@ -98,6 +98,9 @@ def objective_mean_cvar_pytorch(params, W_T_vector, xi):
     return fun
 
 
+
+#Everything below this point is old Pieter code
+
 def fun_objective(params, standardize=True):
     #Assign and evaluate objective function and its gradient w.r.t. terminal wealth
 

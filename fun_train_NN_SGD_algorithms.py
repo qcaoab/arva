@@ -460,6 +460,8 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     
 
 
+#Everything below this point is old Pieter code
+
 def run_Gradient_Descent(method,
                          theta0,        # initial parameter vector (weights and biases) and other params of form
                                         # [NN_theta, extra_theta] where NN_theta = NN_object.NN_theta

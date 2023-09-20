@@ -153,7 +153,7 @@ params["w_constraint_activation"] = "yy_fix_jan29"
 params["withdrawal_standardize"] = True
 
 # iteration dashboard --------------------------
-iter_params = "smol" 
+iter_params = "tiny" 
 
 if iter_params == "test":
     n_d_train_mc = int(2.56* (10**5)) 
