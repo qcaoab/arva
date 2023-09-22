@@ -10,15 +10,12 @@ import numpy as np
 import math
 import os
 import gc   #garbage collector
-import seaborn as sns
 import datetime
 import pickle
 import sys
 import datetime
 import codecs, json
 from pathlib import Path
-import time
-import glob
 import re
 
 #Import files needed (other files are imported within those files as needed)
@@ -53,90 +50,82 @@ else:
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary
 
-#sleep timer
-# sleep_hrs = 1
-# print(f"sleeping {sleep_hrs} hrs")
-# time.sleep(60*60*sleep_hrs)
-
-#time
+# Record start time
 now = datetime.datetime.now()
 print ("Starting at: ")
 start_time = now.strftime("%d-%m-%y_%H:%M")
+params["start_time"] = start_time
 print(start_time)
 
-#filepath prefixes
+#filepath prefixes TODO: clean this up 
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 code_title_prefix = "output_heatmaps_constrain/mc_decum_"+start_time+"/"   #used for saving output on local
 console_output_prefix = "mc_decum_" +start_time+"/"
 params["console_output_prefix"] = console_output_prefix
-params["start_time"] = start_time
+
 
 params["T"] = 30. #Investment time horizon, in years
 params["N_rb"] = 30  #Nr of equally-spaced rebalancing events in [0,T]
-          #Cash injections AND rebalancing at times t_n = (n-1)*(T/N_rb), for n=1,...,N_rb
-
+          #Withdrawals, cash injections, AND rebalancing at times t_n = (n-1)*(T/N_rb), for n=1,...,N_rb
 params["delta_t"] = params["T"] / params["N_rb"]    # Rebalancing time interval
 params["W0"] = 1000.     # Initial wealth W0
-params["q"] =  0. * np.ones(params["N_rb"])  # Cash injection schedule (a priori specified)
+# NOT IMPLEMENTED YET: Cash injections
+params["q"] =  0. * np.ones(params["N_rb"])
 
-# pytorch stuff
-pytorch_flag = True
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# automatic flag to see if running on GPU machine.
+device = 'cuda' if torch.cuda.is_available() else 'cpu'  
 params["device"] = device
 
-#decumulation params
+# Dynamic NN Withdrawal options
+params["nn_withdraw"] = True # flag to include dynamic withdrawals as part of experiment. Turning this to "false" 
+                             # will make the script bypass withdrawal network. 
 params["q_min"] = 35.0 #min withdrawal per Rb
 params["q_max"] = 60.0 #max withdrawal per Rb
+
+params["w_constraint_activation"] = "yy_fix_jan29" # Withdrawal constraint activation function
+                                                   # "yy_fix_jan29" ensures that the withdrawal is constrained properly
+                                                   # , even in the case of q_min < w_t < q_max
+
 params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
-# ^TO DO: need to implement borrowing interest when wealth is negative
-# params["constrain_w_neg"] = True # HARDCODED FOR NOW
+# ^TODO: need to implement borrowing interest when wealth is negative
 
-# hold xi constant?
-params["xi_constant"] = False
 
-#remove negative paths from NN training?
-params["remove_neg"] = False
+#set seed for both pytorch and numpy
+params["random_seed"] = 2
+np.random.seed(params["random_seed"])
+print("\n numpy seed: ", params["random_seed"], " \n")
+torch.manual_seed(params["random_seed"])
+print("\n pytorch seed: ", params["random_seed"], " \n")
 
-#set seed
-seed_mc = 2
-np.random.seed(seed_mc)
-print("\n numpy seed: ", seed_mc, " \n")
-torch.manual_seed(seed_mc)
-print("\n pytorch seed: ", seed_mc, " \n")
+# Transfer learning flags:
+cont_nn = False  #if True, will use weights from previous tracing parameter to initialize NNtheta0. 
+cont_nn_start = 3 # tracing param (i.e. kappa) index (starts at 1) to start transfer learning from  
+cont_xi = False # uses previous value of optimal xi to initialize xi in next run
+cont_xi_start = 3  #tracing param index (starts at 1) to start transfer learning at
 
-cont_nn = False  #MC added: if True, will use weights from previous tracing parameter to initialize NNtheta0. 
-cont_nn_start = 3
-cont_xi = False #uses previous value of optimal xi to initialize xi in next run
-cont_xi_start = 3  #tracing param index (starts at 1) to start continuation learning at
-
-# preload saved model
+# preload saved model TODO: combine these and maybe replace entirely?
 preload = False
 params["local_path"] = str(os.getcwd())
 
 nn_preload = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/NN_opt_mc_decum_30-06-23_19:28_kappa_1.0" 
-
 xi_preload = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/xi_opt_mc_decum_30-06-23_19:28_kappa_1.0.json" 
 
-#Pytorch flag for pre-trained NN
-params["PreTrained_pytorch"] = False
+# Flag for side loading standardization parameters: necessary when you are testing on a distribution different from the 
+# training distribution. 
+params["sideload_standardization"] = False
     
 params["standardization_file_path"] = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/standardizing_opt_mc_decum_27-06-23_18:47_kappa_1.0.json"
 
-#control export params
+# Options for exporting control: This is for creating a control file that Prof. Forsyth can use for his C++ based simulation.
 params["output_control"] = False
 params["control_filepath"] = params["local_path"] + "/control_files/feb14_kappa1_add_w1000.txt"
 params["w_grid_min"] = 0
 params["w_grid_max"] = 10000
 params["nx"] = 4096
 
-#smooth cvar function 
-
-params["smooth_cvar_func"] = True
-params["lambda_quad"] = 10**(-6)
-
-#Specify TRANSACTION COSTS parameters
+#Specify TRANSACTION COSTS parameters: NOT YET IMPLEMENTED. 
 params["TransCosts_TrueFalse"] = False #If True, incorporate transaction costs
 # - if TransCosts_TrueFalse == True, additional parameters will be used
 if params["TransCosts_TrueFalse"] is True:
@@ -144,150 +133,108 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_propcost"] = 0.5/100   #proportional TC in (0,1] of trading in any asset EXCEPT cash account
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
-# w_constraint activation function
-# "yy_fix_jan29"
-# "yy_fix_feb3"
-params["w_constraint_activation"] = "yy_fix_jan29"
+# Parameters for size of experiment:
+# Shortcut names to set size of experiment
+params["iter_params"] = "tiny" 
 
-#standardize differently for withdrawal
-params["withdrawal_standardize"] = True
-
-# iteration dashboard --------------------------
-iter_params = "tiny" 
-
-if iter_params == "test":
-    n_d_train_mc = int(2.56* (10**5)) 
-    itbound_mc = 20000
-    batchsize_mc = 1000
-    nodes_mc = 8
-    layers_mc = 2
-    biases_mc = True
-    adam_xi_eta = 0.04
-    adam_nn_eta = 0.05
+    # parameters for full training loop
+if params["iter_params"] == "big":
+    N_d_train = int(2.56* (10**5))   # number of random paths simulated or sampled
+    itbound = 20000                  # number of training iterations
+    batchsize = 1000                 # Mini-batch: number of paths in each Stochastic Gradient Descent iteration 
+    nodes_nn = 8                     # number of nodes in each hidden layer for each NN
+    layers_nn = 2                    # number of hidden layers for each NN
+    biases_nn = True                 # flag to include or exclude biases in each NN
+    adam_xi_eta = 0.04               # adam learning rate for xi (candidate VAR) for mean-cvar objective
+    adam_nn_eta = 0.05               # adam learning rate for NN parameters
     
-if iter_params == "check":
-    n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 10
-    batchsize_mc = 1000
-    nodes_mc = 8
-    layers_mc = 2
-    biases_mc = True
-    adam_xi_eta = 0.00
+    # parameters for testing a trained model
+if params["iter_params"] == "check": 
+    N_d_train = int(2.56* (10**5)) 
+    itbound = 10
+    batchsize = 1000
+    nodes_nn = 8
+    layers_nn = 2
+    biases_nn = True
+    adam_xi_eta = 0.00  # learning rate set to zero to ensure no training happens when you are testing the model
     adam_nn_eta = 0.00
 
-if iter_params == "smol":
-    n_d_train_mc = int(2.56* (10**4)) 
-    itbound_mc = 4000
-    batchsize_mc = 1000
-    nodes_mc = 8
-    layers_mc = 2
-    biases_mc = True
+    # small training loop for testing code functionality -- should be able to get reasonable performance from this
+if params["iter_params"] == "small":
+    N_d_train = int(2.56* (10**4)) 
+    itbound = 4000
+    batchsize = 1000
+    nodes_nn = 8
+    layers_nn = 2
+    biases_nn = True
     adam_xi_eta = 0.04
     adam_nn_eta = 0.05
 
-if iter_params == "tiny":
-    n_d_train_mc = 10
-    itbound_mc = 5
-    batchsize_mc = 5
-    nodes_mc = 8
-    #params["q"] =  0. * np.ones(params["N_rb"]) 
-    layers_mc = 2
-    biases_mc = True
+    # tiny training loop for debugging code -- results will be nonsense
+if params["iter_params"] == "tiny":
+    N_d_train = 10
+    itbound = 5
+    batchsize = 5
+    nodes_nn = 8
+    layers_nn = 2
+    biases_nn = True
     adam_xi_eta = 0.05
     adam_nn_eta = 0.05
 #----------------------------------------------
-# print key params:
-print("Key parameters-------")
-print(f"paths: {n_d_train_mc}")
-print(f"iterations: {itbound_mc}")
-print(f"batchsize: {batchsize_mc}")
-print(f"remove neg: ", params["remove_neg"])
-print("w constaint activation: ", params["w_constraint_activation"])
 
+# Main settings for data: This is used for creating both training and testing data. 
+params["N_d_train"] = N_d_train #Nr of data return sample paths to bootstrap
+params["data_source_Train"] = "simulated" #"bootstrap" or "simulated" [data source for TRAINING data]
 
-#Main settings for TRAINING data
-params["N_d_train"] = n_d_train_mc #Nr of TRAINING data return sample paths to bootstrap
-params["data_source_Train"] = "bootstrap" #"bootstrap" or "simulated" [data source for TRAINING data]
-
-
-#Specify if NN has been pre-trained: if FALSE, will TRAIN the NN
-params["preTrained_TrueFalse"] = False  #If True, NO TRAINING will occur, instead given F_theta will be used
-if params["preTrained_TrueFalse"] is True:
-    #Specify the F_theta vector
-    # IMPORTANT: Every other input must correspond exactly to the setup used to get this F_theta
-    preTrained_F_theta_list = []
-    params["preTrained_F_theta"] = np.array(preTrained_F_theta_list)
-    #     params["F_theta"] = F_theta #Parameter vector theta of NN at which F_val is obtained
-    #                if params["obj_fun"] = "mean_cvar" this is the *VECTOR* [NN_theta, xi, gamma]
-    #                if params["obj_fun"] = "mean_cvar_single_level" this is the *VECTOR* [NN_theta, xi]
-
-#Main settings for TESTING data
-params["test_TrueFalse"] = False #TRUE if training AND testing, FALSE if *just training*
-
-if params["test_TrueFalse"] is True:
-    params["N_d_test"] = int((10**5))  # (only used when test_TrueFalse == True) Nr of TESTING data sample paths to bootstrap
-    params["data_source_Test"] = "bootstrap" #"bootstrap" or "simulated" [if test_TrueFalse == True, data source for TESTING data]
-
-
+# TODO: create better output info about whether NN was trained/tested
 
 #--------------------------------------
 # ASSET BASKET: Specify basket of candidate assets, and REAL or NOMINAL data
-params["asset_basket_id"] =  "B10_and_VWD"   #"Paper_FactorInv_Factor2"  #"basic_ForsythLi"    #Pre-defined basket of underlying candidate assets - see fun_Data_assets_basket.py
+params["asset_basket_id"] =  "B10_and_VWD"   # Pre-defined basket of underlying candidate assets 
+                                             # See fun_Data_assets_basket.py for other asset basket options, and to add new 
+                                             # asset baskets. 
+params["add_cash_TrueFalse"] = False # This functionality is not implemented, but you can include cash by including T30 in the
+                                     # asset basket. 
+
+# Options for factor investing - Only relevant if using factor assets. 
 params["factor_constraint"] = False
+params["dynamic_total_factorprop"] = False
+params["factor_constraints_dict"] = None  
 
-
-if params["asset_basket_id"] == "Paper_FactorInv_Factor4":
-    params["factor_constraints_dict"] = {"Size_Lo30": 0.1, "Value_Hi30":0.1, "Vol_Lo20":0.1, "Mom_Hi30": 0.1}
-
-if params["asset_basket_id"] == "Paper_FactorInv_Factor2":
-    params["factor_constraints_dict"] = {"Size_Lo30": 0.20, "Value_Hi30":0.20}
-
-if params["asset_basket_id"] == "MC_everything":
-    params["factor_constraints_dict"] = {"total_factor_prop": 0.5, "dynamic_prop": True}
- 
-
-#
-#{"Size_Lo30": 0.20, "Value_Hi30":0.20}
-    
-params["add_cash_TrueFalse"] = False     #If True, add "Cash" as an asset to the selected asset basket
-    # - We will ALWAYS set add_cash_TrueFalse = True if TransCosts_TrueFalse == True (below)
 params["real_or_nominal"] = "real" # "real" or "nominal" for asset data for wealth process: if "real", the asset data will be deflated by CPI
-#   Note: real or nominal for TRADING SIGNALS will be set separately below
 
 
+# Note: In a previous implementation for the dynamic NN investing ML model, Postdoc Pieter Van Staden had implemented 
+# Functionality for calculating confidence penalties and including trading signals in the features of the NN.
+# Neither of these have been implemented in this new Pytorch implementation. This is where you might specify parameters for
+# that functionality if you were to add it to this implementation. 
 #--------------------------------------
-# CONFIDENCE PENALTY: Entropy-based confidence penalty on the outputs of the NN
-# --> Based on the paper by PereyraEtAl 2017
-# Specify hyperparameters
-params["ConfPenalty_TrueFalse"] = False   #If True, apply confidence penalty
-params["ConfPenalty_lambda"] = 0.0 # weight (>0) on confidence penalty term; if == 0, then NO confidence penalty is applied
-params["ConfPenalty_n_H"] = 4   # integer in {1,...,N_a}, where N_a is number of *noncash* assets in params["asset_basket_id"]
-                                # only large (confident/undiversified) investments in assets {ConfPenalty_n_H,...,N_a}
-                                # will be penalized, *NOT* the other assets.
-                                # Generates runtime error if ConfPenalty_n_H > N_a
-
-if params["add_cash_TrueFalse"] is True:
-    #Add one since cash will be *inserted* as the first asset
-    params["ConfPenalty_n_H"] = params["ConfPenalty_n_H"] + 1
-
+# CONFIDENCE PENALTY: 
 #--------------------------------------
 # TRADING SIGNALS:
-params["use_trading_signals_TrueFalse"] = False    #If TRUE, will use trading signals in feature vector
-                                        # if FALSE, will use only default features (e.g. time to go, wealth)
-if params["use_trading_signals_TrueFalse"] is True:
-    # Trading signal SETTINGS:
-    params["trading_signal_basket_id"] = "All_MA_RSTD"    #Pre-defined basket of trading signals
-    params["trading_signal_underlying_asset_basket_id"] = "VWD"    #UNDERLYING asset basket for trading signals
-    params["trading_signal_real_or_nominal"] = "nominal" # "real" or "nominal": if "real", the asset data will be deflated by CPI
+#---------------------------------------
+
 
 # -----------------------------------------------------------------------------------------------
 #  OBJECTIVE FUNCTION:  CHOICE AND PARAMETERS
 # -----------------------------------------------------------------------------------------------
-params["obj_fun"] = "mean_cvar_single_level"
+params["obj_fun"] = "mean_cvar_single_level"  # see fun_Objective_functions.py to see other objective function options, or
+                                              # to add additional objective functions. 
+params["obj_fun_epsilon"] =  10**-6 # epsilon in Forsyth stablization term. Not really needed for NN approach, but we usually
+                                    # want it so we are solving the same objective function. 
 
-params["obj_fun_epsilon"] =  10**-6
+# hold xi (candidate VAR) constant? Only used for debugging purposes with mean-CVAR objective. 
+params["xi_constant"] = False
 
-# STANDARD objective functions ofAdam W(T): obj_fun options include:
+# Quadratic smoothing options for mean-cvar function. 
+params["smooth_cvar_func"] = True
+params["lambda_quad"] = 10**(-6)
+
+# Note: The only objective functions that have been implemented here are the mean-cvar and linear shortfall functions.
+# To add objective functions, they must be implemented in fun_Objective_functions.py. 
+
+# Here are some notes on objective functions that have been used in previous implementations:
+# STANDARD objective functions ofAdam W(T): obj_fun options could include:
 # "mean_cvar_single_level",
 # "one_sided_quadratic_target_error",
 # "quad_target_error", "huber_loss"
@@ -300,21 +247,16 @@ params["obj_fun_epsilon"] =  10**-6
 # "ir_stochastic" info ratio using *STOCHASTIC TARGET* as in Goetzmann et al (2002)
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
-# print("tracing parameter entered from terminal: ", sys.argv[1])
-# tracing_parameters_to_run = [0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0, 3.0, 10.0]
 
 
 #k = 999. for Inf case!
-tracing_parameters_to_run =  [1.0]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
- #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
+tracing_parameters_to_run =  [1.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
+ #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
 
+# print("tracing parameter(s) entered from terminal: ", sys.argv[1])
 #[float(item) for item in sys.argv[1].split(",")] #Must be LIST
-
-#[1.0, 1.5, 3.0, 10.0]
-# tracing_parameters_to_run = [float(item) for item in sys.argv[1].split(" ")] #Must be LIST
-
 
 
 # TRACING PARAMETERS interpreted as follows:
@@ -330,10 +272,6 @@ tracing_parameters_to_run =  [1.0]#[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
 #       if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] = True, this is beta_hat
 #       if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] = False, this is beta in exp(beta*t_n)
 
-
-# SGD max iterations and batch size
-itbound = itbound_mc #64000    #Mean-CVAR: use at least itbound = 50k
-batchsize = batchsize_mc  #100      #Mean-CVAR: use at least batchsize = 1000, other can use = 100
 
 # Set objective function parameters [rarely changed]
 # -----------------------------------------------------------------------------
@@ -423,7 +361,7 @@ output_parameters["output_TrainingData_NNweights_test"] = False   #if true, outp
 output_parameters["output_Pctiles_Excel"] = True #If True, outputs Excel spreadsheet with NN pctiles of proportions in each asset and wealth over time
 output_parameters["output_Pctiles_Plots"] = True #if True, plots the paths of output_Pctiles_Excel over time
 output_parameters["output_Pctiles_Plots_W_max"] = 2000. #Maximum y-axis value for WEALTH percentile plots
-output_parameters["output_Pctiles_list"] = [2,5,50,95]  #Only used if output_Pctiles_Excel or output_Pctiles_Plots is True, must be list, e.g.  [20,50,80]
+output_parameters["output_Pctiles_list"] = [5,50,95]  #Only used if output_Pctiles_Excel or output_Pctiles_Plots is True, must be list, e.g.  [20,50,80]
 output_parameters["output_Pctiles_on_TEST_data"] = False #Output percentiles for test data as well
 
 #Control heatmap params [used if save_Figures == True]
@@ -453,10 +391,6 @@ output_parameters["PRPheatmap_yticklabels"] = 1  # e.g. yticklabels = 500 means 
 # Asset basket and Feature specification (also specify basket of trading signals, if applicable)
 #-----------------------------------------------------------------------------------------------
 
-#If modelling TCs, make sure we have incorporated the account:
-if params["TransCosts_TrueFalse"] is True:
-    params["add_cash_TrueFalse"] = True
-
 
 #Construct asset basket:
 # - this will also give COLUMN NAMES in the historical returns data to use
@@ -474,25 +408,12 @@ params["N_a"] = len(params["asset_basket"]["basket_columns"])   #Nr of assets = 
 
 
 #specify prop_const;
-
-
-
 prop_const = np.ones(params["N_a"]) * (1/ params["N_a"])  # automatically get equal proportions:
 
 # prop_const = np.array([0,0.50, 0.50, 0 , 0])
 withdraw_const = 40.0
 
-# if params["asset_basket"] == "MC_everything":
-#     prop_const = np.zeros(params["N_a"])
-#     params["ewd_idx"] = params["asset_basket"]['basket_columns'].index('EWD_real_ret')
-#     prop_const[params["ewd_idx"]] = 0.50
-#     prop_const[params["b10_idx"]] = 0.50
 
-
-#Check application of confidence penalty "ConfPenalty_n_H" is within the number of asset (N_a) bounds
-if params["ConfPenalty_TrueFalse"] is True:
-    if params["ConfPenalty_n_H"] > params["N_a"]:
-        raise ValueError("PVS error: params['ConfPenalty_n_H'] > params['N_a'], need to select new params['ConfPenalty_n_H'].")
 
 #Initialize number of input nodes
 params["N_phi"] =  2  #Nr of default features, i.e. the number of input nodes
@@ -504,20 +425,6 @@ if params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te
 
 
 params["N_phi_standard"] = params["N_phi"] # Set nr of basic features *BEFORE* we add trading signals
-if params["use_trading_signals_TrueFalse"] is True:
-
-    #Construct trading signal basket:
-    # - this will also give COLUMN NAMES in the historical returns data to use
-    params["trading_signal_basket"] = fun_Data_timeseries_basket.timeseries_basket_construct(
-                                basket_type="trading_signal",
-                                basket_id=params["trading_signal_basket_id"],
-                                real_or_nominal = params["trading_signal_real_or_nominal"],
-                                underlying_asset_basket_id = params["trading_signal_underlying_asset_basket_id"])
-#27.744101568234655
-
-    #Adjust number of features (input nodes to reflect trading signals
-    params["N_phi"] = params["N_phi"] + len(params["trading_signal_basket"]["basket_columns"])  #Nr of input nodes
-    params["feature_order"].extend(params["trading_signal_basket"]["basket_timeseries_names"])  #Add feature names
 
 
 #-----------------------------------------------------------------------------------------------
@@ -629,79 +536,21 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
 
 elif params["data_source_Train"] == "simulated":
 
-    if params["use_trading_signals_TrueFalse"]  is True:
-        raise ValueError("Cannot use trading signals with simulated market data.")
-
-    else:
-        # ----------------------------------------
-        # TRAINING data simulation
-        # - Append simulated data to "params" dictionary
-        params = fun_Data__MCsim_wrapper.wrap_run_MCsim(
-                    train_test_Flag = "train",  # "train" or "test"
-                    params = params,  # params dictionary as in main code
-                    model_ID_set_identifier = "Forsyth_retirementDC_2020" # (see code)identifier for the collection of models AND correlations to use
-                   )
-        # ASSET return data:
-        #   params["MCsim_info_train"]: inputs used to get the MC simulation results
-        #   params["Y_train"][j, n, i] = Return, along sample path j, over time period (t_n, t_n+1), for asset i
-        #       -- IMPORTANT: params["Y_train"][j, n, i] entries are basically (1 + return), so it is ready for multiplication with start value
-        #   params["Y_order_train"][i] = column name of asset i used for identification
+# ----------------------------------------
+    # TRAINING data simulation
+    # - Append simulated data to "params" dictionary
+    params = fun_Data__MCsim_wrapper.wrap_run_MCsim(
+                train_test_Flag = "train",  # "train" or "test"
+                params = params,  # params dictionary as in main code
+                model_ID_set_identifier = "Forsyth_retirementDC_2020" # (see code)identifier for the collection of models AND correlations to use
+                )
+    # ASSET return data:
+    #   params["MCsim_info_train"]: inputs used to get the MC simulation results
+    #   params["Y_train"][j, n, i] = Return, along sample path j, over time period (t_n, t_n+1), for asset i
+    #       -- IMPORTANT: params["Y_train"][j, n, i] entries are basically (1 + return), so it is ready for multiplication with start value
+    #   params["Y_order_train"][i] = column name of asset i used for identification
 
 
-
-if params["test_TrueFalse"] is True:
-
-    if params["data_source_Test"] == "bootstrap": #TESTING data bootstrap
-
-        # ----------------------------------------
-        # TESTING data bootstrapping
-        # - Append bootstrapped data to "params" dictionary
-
-        params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
-            train_test_Flag = "test",                   # "train" or "test"
-            params = params,                            # params dictionary as in main code
-            data_bootstrap_yyyymm_start = 192601,       # start month to use subset of data for bootstrapping, CHECK DATA!
-            data_bootstrap_yyyymm_end = 201512,         # end month to use subset of data for bootstrapping, CHECK DATA!
-            data_bootstrap_exp_block_size = 24,          # Expected block size in terms of frequency of market returns data
-                                                        # e.g. = X means expected block size is X months of returns
-                                                        # if market returns data is monthly
-            data_bootstrap_fixed_block = False,         # if False: use STATIONARY BLOCK BOOTSTRAP, if True, use FIXED block bootstrap
-            data_bootstrap_delta_t = 1 / 12             # time interval for returns data (monthly returns means data_delta_t=1/12)
-        )
-
-
-        # TEST data: only appended when params["test_TrueFalse"] == True
-
-        #   params["Y_test"][j, n, i] = (1+Return), along sample path j, over time period (t_n, t_n+1), for asset i
-        #   params["Y_order_test"][i] = column name of asset i used for identification
-        #   and if we have trading signals,
-        #   params["TradSig_test"][j, n, i] = Point-in time observation for trade signal i, along sample path j, at rebalancing time t_n;
-        #                               can only rely on time series observations <= t_n
-        #   params["TradSig_order_test"][i] = column name of trade signal i used for identification
-        # ----------------------------------------
-
-
-    elif params["data_source_Test"] == "simulated":
-
-        if params["use_trading_signals_TrueFalse"] is True:
-            raise ValueError("Cannot use trading signals with simulated market data.")
-
-        else:
-            # ----------------------------------------
-            # TESTING data simulation
-            # - Append simulated data to "params" dictionary
-
-            params = fun_Data__MCsim_wrapper.wrap_run_MCsim(
-                train_test_Flag="test",  # "train" or "test"
-                params=params,  # params dictionary as in main code
-                model_ID_set_identifier= "ForsythLi_2019_basic"
-                # (see code)identifier for the collection of models AND correlations to use
-            )
-            # ASSET return data:
-            #   params["MCsim_info_test"]: inputs used to get the MC simulation results
-            #   params["Y_test"][j, n, i] = Return, along sample path j, over time period (t_n, t_n+1), for asset i
-            #       -- IMPORTANT: params["Y_test"][j, n, i] entries are basically (1 + return), so it is ready for multiplication with start value
-            #   params["Y_order_test"][i] = column name of asset i used for identification
 
 
 #-----------------------------------------------------------------------------------------------
@@ -726,7 +575,7 @@ NN_withdraw_orig.print_layers_info()  #Check what to update
 #Update layers info
 
 for l in range(1, params["N_L_withdraw"]+1):
-    NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=biases_mc)
+    NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_nn , activation = "logistic_sigmoid", add_bias=biases_nn)
     
 NN_withdraw_orig.update_layer_info(layer_id = params["N_L_withdraw"]+1, activation = "none", add_bias= False) #output layer
 
@@ -736,7 +585,7 @@ NN_withdraw_orig.print_layers_info() #Check if structure is correct
 
 # Allocation NN: NN_allocate 
 #---------------------------
-params["N_L_allocate"] = layers_mc # Nr of hidden layers of NN
+params["N_L_allocate"] = layers_nn # Nr of hidden layers of NN
                    # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
                    # layer_id list: [0, 1,...,N_L, N_L+1]
 
@@ -749,16 +598,16 @@ print("Allocation NN:")
 NN_allocate_orig.print_layers_info()  #Check what to update
 
 #Update layers info
-for l in range(1, layers_mc+1):
-    NN_allocate_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=biases_mc)
+for l in range(1, layers_nn+1):
+    NN_allocate_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_nn , activation = "logistic_sigmoid", add_bias=biases_nn)
 
 #changed activ to none for constraint function
 
 if params["factor_constraint"]:
-    NN_allocate_orig.update_layer_info(layer_id = layers_mc+1, activation = "none", add_bias= False)
+    NN_allocate_orig.update_layer_info(layer_id = layers_nn+1, activation = "none", add_bias= False)
 
 else:
-    NN_allocate_orig.update_layer_info(layer_id = layers_mc+1, activation = "softmax", add_bias= False)
+    NN_allocate_orig.update_layer_info(layer_id = layers_nn+1, activation = "softmax", add_bias= False)
 
 
 NN_allocate_orig.print_layers_info() #Check if structure is correct
@@ -870,15 +719,6 @@ NN_training_options["running_min_from_sgd"] = True #if true, take running min fr
 NN_training_options["lr_schedule"] = True  #If true, set to divide lr by 10 at 70% and 97%
 
 print(NN_training_options)
-
-#MC pytorch addition:
-NN_training_options["pytorch"] = pytorch_flag  
-
-#If preTrained = True, overwrite
-if params["preTrained_TrueFalse"] is True:
-    NN_training_options = {}    #overwrite
-    NN_training_options.update({"methods": "None_preTrained_F_theta__provided" })
-
 
 
 # -----------------------------------------------------------------------------

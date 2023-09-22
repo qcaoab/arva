@@ -125,11 +125,7 @@ def wrap_append_market_data(params,  #params dictionary as in main code
 
     if params["data_source_Train"] == "bootstrap":
         run_code = True
-    elif params["test_TrueFalse"] is True:  #if we need to test
-        if params["data_source_Test"] == "bootstrap":   #Check if we need bootstrap data
-            run_code = True
-
-
+    
     #If run_code == True: yes, we need to run the code
     if run_code is True:
 

@@ -28,11 +28,7 @@ def set_training_testing_data(train_test_Flag, #"train" or "test"
                 params["benchmark_W_paths"] = params["benchmark_W_paths_train"].copy()
 
 
-        if params["use_trading_signals_TrueFalse"] == True:
-            params["TradSig"] = params["TradSig_train"].copy()
-            params["TradSig_order"] = params["TradSig_order_train"].copy()
-
-
+        
     elif train_test_Flag == "test":
         params["N_d"] = params["N_d_test"]
 

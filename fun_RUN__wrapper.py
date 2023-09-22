@@ -181,7 +181,7 @@ def RUN__wrapper_training_testing_NN(
     params["benchmark_W_mean_train_post_withdraw"] = params_CP_TRAIN["W_paths_mean_post_withdraw"].copy()
     params["benchmark_W_std_train_post_withdraw"] = params_CP_TRAIN["W_paths_std_post_withdraw"].copy()
 
-    if params["PreTrained_pytorch"] == True:
+    if params["sideload_standardization"] == True:
         f = open(params["standardization_file_path"])
         temp_dict = json.load(f)
         for (k,v) in temp_dict.items():

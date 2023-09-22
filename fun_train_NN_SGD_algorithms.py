@@ -3,12 +3,13 @@ import time
 import numpy as np
 import pandas as pd
 import copy
-from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun  #objective function for NN evaluation
+# from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy as objfun  #objective function for NN evaluation
 from fun_eval_objfun_NN_strategy import eval_obj_NN_strategy_pyt as objfun_pyt #pytorch objective func
 from fun_W_T_stats import fun_W_T_summary_stats
 import torch
 import fun_invest_NN_strategy
 import os
+import pickle
 
 from torch.optim.swa_utils import AveragedModel
 
@@ -289,17 +290,6 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     #convert xi from tensor to np 
     xi_np = xi_min.detach().cpu().numpy()
     
-    
-    # print("-----------------------------------------------")
-    # print("Selected results: NN-strategy-on-TRAINING dataset (temp implementation")
-    # print("W_T_mean: " + str(W_T_stats_dict["W_T_mean"]))
-    # print("W_T_median: " + str(W_T_stats_dict["W_T_median"]))
-    # print("W_T_pctile_5: " + str(W_T_stats_dict["W_T_pctile_5"]))
-    # print("W_T_CVAR_5_pct: " + str(W_T_stats_dict["W_T_CVAR_5_pct"]))
-    # print("Average q (qsum/M+1): ", torch.mean(qsum_T_vector).cpu().detach().numpy()/(params["N_rb"]+1))
-    # print("Optimal xi: ", xi_np)
-    # print("Expected(across Rb) median(across samples) p_equity: ", np.mean(np.median(params["NN_asset_prop_paths"], axis = 0)[:,1]))
-    # print("-----------------------------------------------")
      
     res["temp_w_output_dict"] = W_T_stats_dict
     res["q_avg"] = torch.mean(qsum_T_vector).cpu().detach().numpy()/(params["N_rb"]+1)
@@ -307,20 +297,51 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     res["average_median_p"] = np.mean(np.median(params["NN_asset_prop_paths"], axis = 0)[:,1])
     res["objfun_final"] = min_fval
     
-    # save model for continuation learning
-        # NN_theta = F_theta[0:-1]
-        # xi = F_theta[-1]  # Last entry is xi, where (xi**2) is candidate VAR
 
-        #save NN params and xi for continuation learning
+    #---------CREATE SAVED MODEL OBJECT---------------
+    # If not testing a model, bundle the trained NN model and all revelant meta data into a dictionary. 
+    # Save as serialized pickle object. This can be easily loaded later using pickle.load() 
+    # These saved models can be used later for either 1) testing, or 
+    # 2) initializing new models for transfer learning. i.e., if you are running multiple kappa points to create an
+    # efficient frontier, it can be useful to initialize from the previous kappa point to speed up training or 
+    # prevent hang ups in training, like getting stuck at a local minimum. 
     
     if params["iter_params"] != "check":
+         
         
         model_save_path = params["console_output_prefix"]
         local_path = params["local_path"]
         kappa = params["obj_fun_rho"]
-        
         filename_nn = f"{local_path}/saved_models_constrain/{model_save_path}_NNopt_kappa_{kappa}"
         os.makedirs(os.path.dirname(filename_nn), exist_ok=True)
+        
+        # Gather standardizing parameters that were used on the training features
+        standardizing_params = {"benchmark_W_mean_train":params["benchmark_W_mean_train"].tolist(),
+                                "benchmark_W_std_train":params["benchmark_W_std_train"].tolist(),
+                                "benchmark_W_mean_train_post_withdraw":params["benchmark_W_mean_train_post_withdraw"].tolist(),
+                                "benchmark_W_std_train_post_withdraw":params["benchmark_W_std_train_post_withdraw"].tolist()}
+        
+        #old
+        with open(f'{local_path}/saved_models_constrain/{model_save_path}_standardizing_opt_kappa_{kappa}.json', 'w') as outfile:
+            json.dump(standardizing_params, outfile)
+        #---
+        
+        
+        # gather saved model and metadata
+        saved_model_dict = {}
+        saved_model_dict["NN_object"] = NN_list_min
+        saved_model_dict["training_params"] = params
+                
+        filehandler_dump = open(filename_nn, "wb")
+        pickle.dump(saved_model_dict, filehandler_dump)
+        filehandler_dump.close()
+        
+        filehandler_load = open(filename_nn, "rb")
+    
+        loaded_dict = pickle.load(filehandler_load)
+        
+        
+        
         
         torch.save(NN_list_min.state_dict(),filename_nn)
         
@@ -329,16 +350,7 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
         with open(f'{local_path}/saved_models_constrain/{model_save_path}_XIopt_kappa_{kappa}.json', 'w') as outfile:
             json.dump(optimal_xi, outfile)
 
-        # Store training standardizing parameters
-
-        standardizing_params = {"benchmark_W_mean_train":params["benchmark_W_mean_train"].tolist(),
-                                "benchmark_W_std_train":params["benchmark_W_std_train"].tolist(),
-                                "benchmark_W_mean_train_post_withdraw":params["benchmark_W_mean_train_post_withdraw"].tolist(),
-                                "benchmark_W_std_train_post_withdraw":params["benchmark_W_std_train_post_withdraw"].tolist()}
         
-        with open(f'{local_path}/saved_models_constrain/{model_save_path}_standardizing_opt_kappa_{kappa}.json', 'w') as outfile:
-            json.dump(standardizing_params, outfile)
-
         print("saved model: ")
         print(NN_list_min.state_dict())
         print("xi: ", xi_np)

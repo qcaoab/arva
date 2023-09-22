@@ -133,23 +133,7 @@ def construct_Feature_vector(params,                        # params dictionary 
         phi[:, 2] = benchmark_wealth_std
 
 
-    #Add trading signals
-    if params["use_trading_signals_TrueFalse"] == True:
-        #   params["TradSig"][j, n, i] = Point-in time observation for trade signal i, along sample path j, at rebalancing time t_n;
-        #                               can only rely on time series observations <= t_n
-
-        for i in np.arange(N_phi_standard, N_phi, 1):
-            trad_sig_index = i - N_phi_standard
-            trad_sig_mean = params["TradSig_MEAN_train"][trad_sig_index]
-            trad_sig_stdev = params["TradSig_STDEV_train"][trad_sig_index]
-
-
-            #Always use TRAINING data mean/stdev for standardization
-            # params["TradSig_MEAN_train"] and params["TradSig_STDEV_train"] will be
-            # in the right order. This is calculated in fun_Data_bootstrap
-            phi[:, i] =  (params["TradSig"][:, n_index, trad_sig_index] - trad_sig_mean)/trad_sig_stdev
-            # Note params["TradSig"] is either for the training or testing data, set in fun_Data.set_training_testing_data
-
+    
 
     return phi
 

@@ -668,8 +668,6 @@ NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
 
-#MC pytorch addition:
-NN_training_options["pytorch"] = pytorch_flag  
 
 #If preTrained = True, overwrite
 if params["preTrained_TrueFalse"] is True:

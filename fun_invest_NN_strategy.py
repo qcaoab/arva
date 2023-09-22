@@ -136,7 +136,8 @@ def withdraw_invest_NN_strategy(NN_list, params):
                                  wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
                                                     # but *before* rebalancing at time t_n for (t_n, t_n+1)
                                  feature_calc_option= None,  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
-                                 withdraw= params["withdrawal_standardize"])
+                                 withdraw= params["nn_withdraw"]) # Features for withdrawal NN and allocation NN need to be 
+                                                                  # standardized with different data (before and after withdrawal). 
 
         for feature_index in np.arange(0,N_phi,1):  #loop over feature index
             params["Feature_phi_paths_withdrawal"][:,n_index,feature_index] =  phi_1[:,feature_index].detach().cpu().numpy()

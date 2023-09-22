@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import copy
 import fun_Data__assign
-from fun_train_NN_scipy_algorithms import run_scipy_minimize    #scipy minimization algorithms
 from fun_train_NN_SGD_algorithms import run_Gradient_Descent, run_Gradient_Descent_pytorch    #SGD algorithms
 import fun_invest_NN_strategy
 import fun_eval_objfun_NN_strategy  #used for final objective function evaluation after training
@@ -45,11 +44,7 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
     params = fun_Data__assign.set_training_testing_data(train_test_Flag, params)
     params["train_test_Flag"] = train_test_Flag
 
-    # Now done in fun_Data_assign:
-    # if params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:  # Make sure we copy the correct benchmark vector
-    #     params["benchmark_W_T_vector"] = params["benchmark_W_T_vector_train"].copy()
-    #     params["benchmark_W_paths"] = params["benchmark_W_paths_train"].copy()
-
+    
     #Add theta0 and NN_training_options for reference
     params["theta0"] = theta0
     params["NN_training_options"] = NN_training_options
@@ -58,143 +53,10 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
     res_ALL = {}    #initialize
     res_BEST = {}
 
-    # CG (in scipy algorithms): --------------------------------------------------------------------------------
-    # if "CG" in NN_training_options["methods"]:
-    #     # method = "CG": uses a nonlinear conjugate gradient algorithm by Polak and Ribiere,
-    #     #               a variant of the Fletcher-Reeves method
-    #     #               Needs first derivatives only
+    # The only optimization algorithm implemented here is Adaptive Momentum (Adam) with stochastic gradient descent. Additional options for optimization algorithms can be included here. 
+   
 
-    #     print("Running CG.")
-    #     res_CG = run_scipy_minimize(method="CG",
-    #                                 theta0 = theta0,
-    #                                 NN_object = NN_object,
-    #                                 params = params,
-    #                                 itbound = NN_training_options["itbound_scipy_algorithms"],
-    #                                 tol =  NN_training_options["tol"],
-    #                                 output_progress = NN_training_options["output_progress"]
-    #                                 )
-    #     res_ALL["res_CG"] = res_CG  #append to res_ALL
-    #     print(res_CG)
-
-    # # BFGS (in scipy algorithms): --------------------------------------------------------------------------------
-    # if "BFGS" in NN_training_options["methods"]:
-    #     # method='BFGS': Broyden-Fletcher-Goldfarb-Shanno algorithm, quasi-Newton method,
-    #     #               Needs first derivatives only
-
-    #     print("Running BFGS.")
-    #     res_BFGS = run_scipy_minimize(method="BFGS",
-    #                                   theta0=theta0,
-    #                                   NN_object=NN_object,
-    #                                   params=params,
-    #                                   itbound=NN_training_options["itbound_scipy_algorithms"],
-    #                                   tol=NN_training_options["tol"],
-    #                                   output_progress=NN_training_options["output_progress"]
-    #                                   )
-    #     res_ALL["res_BFGS"] = res_BFGS  # append to res_ALL
-    #     print(res_BFGS)
-
-    # # Newton-CG (in scipy algorithms): --------------------------------------------------------------------------------
-    # if "Newton-CG" in NN_training_options["methods"]:
-    #     # method='Newton-CG': Newton-Conjugate-Gradient algorithm,
-    #     #                       uses a CG method to the compute the search direction
-    #     #                   Good for big problems, no explicit Hessian inversion/factorization
-    #     print("Running Newton-CG.")
-
-    #     res_NewtonCG = run_scipy_minimize(method="Newton-CG",
-    #                                       theta0=theta0,
-    #                                       NN_object=NN_object,
-    #                                       params=params,
-    #                                       itbound=NN_training_options["itbound_scipy_algorithms"],
-    #                                       tol=NN_training_options["tol"],
-    #                                       output_progress=NN_training_options["output_progress"]
-    #                                       )
-    #     res_ALL["res_NewtonCG"] = res_NewtonCG  # append to res_ALL
-    #     print(res_NewtonCG)
-
-
-
-    # SGD_constant (in SGD algorithms): ---------------------------------------------------------------------------
-
-    # if "SGD_constant" in NN_training_options["methods"]:
-    #     print("Running SGD_constant.")
-    #     res_SGD_constant = run_Gradient_Descent(method="SGD_constant",
-    #                                    theta0 = theta0,
-    #                                    NN_object = NN_object,
-    #                                    params = params,
-    #                                    itbound = NN_training_options["itbound_SGD_algorithms"],
-    #                                    batchsize = NN_training_options["batchsize"],
-    #                                    check_exit_criteria = NN_training_options["check_exit_criteria"],
-    #                                    output_progress = NN_training_options["output_progress"],
-    #                                    nit_running_min = NN_training_options["nit_running_min"],
-    #                                    nit_IterateAveragingStart = NN_training_options["nit_IterateAveragingStart"],
-    #                                    SGD_learningrate = NN_training_options["SGD_learningrate"]
-    #                                    )
-
-    #     res_ALL["res_SGD_constant"] = res_SGD_constant    #append to res_ALL
-    #     #print(res_SGD_constant)
-
-    # # Adagrad (in SGD algorithms):: ---------------------------------------------------------------------------
-    # if "Adagrad" in NN_training_options["methods"]:
-    #     print("Running Adagrad.")
-    #     res_Adagrad = run_Gradient_Descent(method="Adagrad",
-    #                                        theta0=theta0,
-    #                                        NN_object=NN_object,
-    #                                        params=params,
-    #                                        itbound=NN_training_options["itbound_SGD_algorithms"],
-    #                                        batchsize=NN_training_options["batchsize"],
-    #                                        check_exit_criteria=NN_training_options["check_exit_criteria"],
-    #                                        output_progress=NN_training_options["output_progress"],
-    #                                        nit_running_min=NN_training_options["nit_running_min"],
-    #                                        nit_IterateAveragingStart=NN_training_options["nit_IterateAveragingStart"],
-    #                                        Adagrad_epsilon= NN_training_options["Adagrad_epsilon"],
-    #                                        Adagrad_eta= NN_training_options["Adagrad_eta"]
-    #                                        )
-
-    #     res_ALL["res_Adagrad"] = res_Adagrad    #append to res_ALL
-    #     #print(res_Adagrad)
-
-    # # Adadelta (in SGD algorithms):: ---------------------------------------------------------------------------
-    # if "Adadelta" in NN_training_options["methods"]:
-    #     print("Running Adadelta.")
-    #     res_Adadelta = run_Gradient_Descent(method="Adadelta",
-    #                                         theta0=theta0,
-    #                                         NN_object=NN_object,
-    #                                         params=params,
-    #                                         itbound=NN_training_options["itbound_SGD_algorithms"],
-    #                                         batchsize=NN_training_options["batchsize"],
-    #                                         check_exit_criteria=NN_training_options["check_exit_criteria"],
-    #                                         output_progress=NN_training_options["output_progress"],
-    #                                         nit_running_min=NN_training_options["nit_running_min"],
-    #                                         nit_IterateAveragingStart=NN_training_options["nit_IterateAveragingStart"],
-    #                                         Adadelta_epsilon= NN_training_options["Adadelta_epsilon"],
-    #                                         Adadelta_ewma= NN_training_options["Adadelta_ewma"]
-    #                                         )
-
-    #     res_ALL["res_Adadelta"] = res_Adadelta  # append to res_ALL
-    #     #print(res_Adadelta)
-
-    # # RMSprop (in SGD algorithms):: ---------------------------------------------------------------------------
-    # if "RMSprop" in NN_training_options["methods"]:
-    #     print("Running RMSprop.")
-    #     res_RMSprop = run_Gradient_Descent(method="RMSprop",
-    #                                        theta0=theta0,
-    #                                        NN_object=NN_object,
-    #                                        params = params,
-    #                                        itbound = NN_training_options["itbound_SGD_algorithms"],
-    #                                        batchsize = NN_training_options["batchsize"],
-    #                                        check_exit_criteria = NN_training_options["check_exit_criteria"],
-    #                                        output_progress = NN_training_options["output_progress"],
-    #                                        nit_running_min = NN_training_options["nit_running_min"],
-    #                                        nit_IterateAveragingStart=NN_training_options["nit_IterateAveragingStart"],
-    #                                        RMSprop_epsilon = NN_training_options["RMSprop_epsilon"],
-    #                                        RMSprop_ewma = NN_training_options["RMSprop_ewma"],
-    #                                        RMSprop_eta = NN_training_options["RMSprop_eta"]
-    #                                        )
-    #     res_ALL["res_RMSprop"] = res_RMSprop  # append to res_ALL
-    #     #print(res_RMSprop)
-
-
-    if NN_training_options["pytorch"] and "Adam" in NN_training_options["methods"]:
+    if "Adam" in NN_training_options["methods"]:
         
         # print("Running pytorch SGD gradient descent.")
         result_pyt_adam = run_Gradient_Descent_pytorch(NN_list= NN_list,
@@ -206,29 +68,6 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
         params["NN_object"] = NN_list
         
     
-    # # Adam (in SGD algorithms):: ---------------------------------------------------------------------------
-    # # non pytorch adam
-    # if not NN_training_options["pytorch"] and "Adam" in NN_training_options["methods"]:
-    #     print("Running Adam.")
-    #     res_Adam = run_Gradient_Descent(method="Adam",
-    #                                    theta0 = theta0,
-    #                                    NN_object = NN_object,
-    #                                    params = params,
-    #                                    itbound = NN_training_options["itbound_SGD_algorithms"],
-    #                                    batchsize = NN_training_options["batchsize"],
-    #                                    check_exit_criteria = NN_training_options["check_exit_criteria"],
-    #                                    output_progress = NN_training_options["output_progress"],
-    #                                    nit_running_min = NN_training_options["nit_running_min"],
-    #                                    nit_IterateAveragingStart=NN_training_options["nit_IterateAveragingStart"],
-    #                                    Adam_ewma_1 = NN_training_options["Adam_ewma_1"],
-    #                                    Adam_ewma_2 = NN_training_options["Adam_ewma_2"],
-    #                                    Adam_eta = NN_training_options["Adam_eta"],
-    #                                    Adam_epsilon = NN_training_options["Adam_epsilon"]
-    #                                    )
-
-    #     res_ALL["res_Adam"] = res_Adam  # append to res_ALL
-    #     #print(res_Adam)
-
 
     # CONSTRUCT OUTPUTS: ---------------------------------------------------------------------------
     val_min = np.inf  # initialize running minimum

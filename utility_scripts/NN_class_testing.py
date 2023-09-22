@@ -668,8 +668,6 @@ NN_training_options["itbound_SGD_algorithms"] = itbound
 NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
 
-#MC pytorch addition:
-NN_training_options["pytorch"] = pytorch_flag  
 
 #If preTrained = True, overwrite
 if params["preTrained_TrueFalse"] is True:
@@ -740,7 +738,6 @@ params_CP_TRAIN = fun_invest_ConstProp_strategy.invest_ConstProp_strategy(prop_c
 params["benchmark_W_mean_train"] = params_CP_TRAIN["W_paths_mean"].copy()
 params["benchmark_W_std_train"] = params_CP_TRAIN["W_paths_std"].copy()
 
-params["NN_training_options"]["pytorch"] = False
 phi_np = fun_construct_Feature_vector.construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
                                  wealth_n = g_prev_np,  # Wealth vector W(t_n^+), *after* contribution at t_n
@@ -748,8 +745,6 @@ phi_np = fun_construct_Feature_vector.construct_Feature_vector(params = params, 
                                  feature_calc_option= None  # "None" matches my code.  Set calc_option = "matlab" to match matlab code
                                  )
     
-
-params["NN_training_options"]["pytorch"] = True 
 
 phi_pyt = fun_construct_Feature_vector.construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
