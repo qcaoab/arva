@@ -74,18 +74,71 @@ class pytorch_NN(nn.Module):
             
         self.model = nn.Sequential(pytorch_layers)
         
-        
-        activation = {}
-        def get_activation(name): #old code for testing
-            def hook(model, input, output):
-                activation[name] = output.detach()
-            return hook
             
         # print structure
         pd.set_option("display.max_rows", None, "display.max_columns", None)
         print(nn_orig_df)
         print("Pytorch NN pbject created from original NN class. Change\
             original NN object to change structure.")
+    
+    
+    # def __init__(self, nn_options):
+
+    #     super(pytorch_NN, self).__init__()
+    #     self.flatten = nn.Flatten()
+
+    #     #activation function helper        
+    #     def activation_function(name):
+    #         if name == "logistic_sigmoid":
+    #             return nn.Sigmoid()
+    #         elif name == "ReLU":
+    #             return nn.ReLU()
+    #         elif name == "softmax":
+    #             return nn.Softmax(dim=1)
+    #         elif name == "none":
+    #             return nn.Identity()
+    #         else:
+    #             raise("activation function not included yet")
+
+        
+    #     N_layers_h = nn_options["N_layers"] 
+    #     N_input = nn_options["N_input"] 
+    #     N_nodes = nn_options["N_nodes"] 
+    #     hidden_activation = nn_options["hidden_activation"]        
+    #     output_activation = nn_options["output_activation"]                    
+    #     biases = nn_options["biases"] 
+        
+    #     # create list of number of nodes in each layer:
+    #     nodes_list = [N_nodes]*N_layers_h
+    #     nodes_list.insert(0, N_input)
+    #     nodes_list.insert(-1, ) 
+        
+    #     #create ordered dict for pytorch layers
+    #     pytorch_layers = OrderedDict()
+        
+    #     #iterate to create each hidden layer (input layer is automatically created in pytorch) 
+    #     for l in range(len(nodes_list)):
+
+    #         #create layer name
+    #         name = "hidden_layer_" + str(l) 
+                        
+    #         #create linear layers
+    #         pytorch_layers[name] = nn.Linear(nodes_list[l], 
+    #                                             nodes_list[l+1],
+    #                                             bias = biases)
+        
+    #         #activation function 
+    #         pytorch_layers[name + "_activation"] = activation_function(nn_orig_df["activation"].iloc[l])
+            
+    #     self.model = nn.Sequential(pytorch_layers)
+        
+            
+    #     # print structure
+    #     pd.set_option("display.max_rows", None, "display.max_columns", None)
+    #     print(nn_orig_df)
+    #     print("Pytorch NN pbject created from original NN class. Change\
+    #         original NN object to change structure.")
+    
        
 
     def forward(self, input_tensor):

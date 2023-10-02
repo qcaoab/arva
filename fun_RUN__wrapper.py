@@ -14,7 +14,6 @@ import fun_output_results_TopBottom
 import fun_output_results_Pctiles
 import fun_Plot_NN_control_FunctionHeatmaps
 import fun_Plot_NN_control_DataHeatmaps
-import fun_output_results_PRPscores
 import fun_invest_ConstProp_strategy
 import fun_eval_objfun_NN_strategy
 import fun_W_T_stats
@@ -261,55 +260,7 @@ def RUN__wrapper_training_testing_NN(
     params_TEST = {}
 
     #TESTING only when params["test_TrueFalse"] == True
-    if params["test_TrueFalse"] is True:
-
-
-        # Constant proportion strategy [BENCHMARK] implemented on the TESTING data
-        params_CP_TEST = fun_invest_ConstProp_strategy.invest_ConstProp_strategy(prop_const= params["benchmark_prop_const"] ,
-                                                                                  params=params,
-                                                                                  train_test_Flag="test")
-
-        #Do NOT recalc  params["benchmark_W_mean_train"] and  params["benchmark_W_std_train"] here,
-        #       since the NN was trained on the original values for these vectors
-
-        # Also add terminal wealth vector from constant proportion strategy (for ADS and IR objective)
-        if params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:
-            params["benchmark_W_T_vector_test"] = params_CP_TEST["W_T"].copy()  # terminal wealth as a vector (one entry for each path)
-            params["benchmark_W_paths_test"] = params_CP_TEST["W"].copy()
-
-        #NN results on TESTING data
-        params_TEST = fun_test_NN.test_NN(F_theta =  params_TRAIN["F_theta"],
-                                            NN_object = NN_list,
-                                            NN_orig_list = NN_orig_list, #pieter NNs list
-                                            params = params
-                                         )
-        print("-----------------------------------------------")
-        print("Selected results: NN strategy on TESTING dataset")
-        print("W_T_mean: " + str(params_TEST["W_T_stats_dict"]["W_T_mean"]))
-        print("W_T_pctile_5: " + str(params_TEST["W_T_stats_dict"]["W_T_pctile_5"]))
-        print("W_T_CVAR_5_pct: " + str(params_TEST["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
-        print("-----------------------------------------------")
-
-
-        #Assess generalization error using results of Jakubovitz et al (2019)
-        gen_error_dict = {} #generalization error dictionary
-        gen_error_dict["F_val_TRAIN"] = params_TRAIN["F_val"]  #Objective function value on TRAINING dataset
-        gen_error_dict["F_val_TEST"] = params_TEST["F_val"]    #Objective function value on TESTING dataset
-
-        # Estimate of GENERALIZATION ERROR: Jakubovitz et al (2019)
-        # Note: The VC dimension bound used here requires for example ReLU activations, and we use e.g. logistic sigmoid
-        #       However, the value captures the "complexity" of the NN for our purposes
-        gen_error_dict["GE_estimate"] = np.absolute(gen_error_dict["F_val_TRAIN"] - gen_error_dict["F_val_TEST"])
-        gen_error_dict["VC_dim_bound"] = (params_TRAIN["NN_object"].n_layers_total) * \
-                                         (params_TRAIN["NN_object"].theta_length)
-
-        #Append to testing data results
-        params_TEST["gen_error_dict"] = gen_error_dict
-
-        print("------------------------------------------------------------------")
-        print("params_TEST['gen_error_dict'] = ")
-        print(params_TEST['gen_error_dict'])
-
+    
 
     return params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST #, res_adam
 
@@ -374,10 +325,7 @@ def RUN__wrapper_output(
     heatmap_cbar_limits = output_parameters["heatmap_cbar_limits"] # list in format [vmin, vmax] for heatmap colorbar/scale
 
 
-    # XAI
-    output_PRPscores = output_parameters["output_PRPscores"] # If True, outputs PRP score analysis (heatmaps, percentiles)
-    PRPheatmap_xticklabels = output_parameters["PRPheatmap_xticklabels"] # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
-    PRPheatmap_yticklabels = output_parameters["PRPheatmap_yticklabels"]  # e.g. yticklabels = 500 means we are displaying every 500th label
+    
 
 
 
@@ -391,36 +339,15 @@ def RUN__wrapper_output(
         #Add percentiles of asset proportions and wealth over time to params
         params_TRAIN = fun_output_results_Pctiles.get_df_Pctile_paths(params_TRAIN)
 
-        #Add percentiles of PRP scores over time to params
-        if output_PRPscores is True:
-            params_TRAIN = fun_output_results_PRPscores.get_df_PRP_Pctile_paths(params_TRAIN)
-
-
-        if params_TRAIN["test_TrueFalse"] is True:    #if we did testing as well
-
-            params_TEST = fun_output_results_Pctiles.get_df_Pctile_paths(params_TEST)
-
-            # Add percentiles of PRP scores over time to params
-            if output_PRPscores is True:
-                params_TEST = fun_output_results_PRPscores.get_df_PRP_Pctile_paths(params_TEST)
-
-
-            fun_output_results.output_results_NN(params_TRAIN = params_TRAIN,
-                                                 params_TEST=params_TEST,
-                                                 params_BENCHMARK_train=params_CP_TRAIN,
-                                                 params_BENCHMARK_test= params_CP_TEST,
-                                                 output_Excel = output_results_Excel,
-                                                 filename_prefix_for_Excel=code_title_prefix
-                                                 )
-        else:
-            print("Need to implement this")
-            # fun_output_results.output_results_NN(params_TRAIN = params_TRAIN,
-            #                                      params_TEST=None,
-            #                                      params_BENCHMARK_train=params_CP_TRAIN,
-            #                                      params_BENCHMARK_test= None,
-            #                                      output_Excel = output_results_Excel,
-            #                                      filename_prefix_for_Excel=code_title_prefix
-            #                                      )
+       
+        #"TODO: Need to implement output
+        # fun_output_results.output_results_NN(params_TRAIN = params_TRAIN,
+        #                                      params_TEST=None,
+        #                                      params_BENCHMARK_train=params_CP_TRAIN,
+        #                                      params_BENCHMARK_test= None,
+        #                                      output_Excel = output_results_Excel,
+        #                                      filename_prefix_for_Excel=code_title_prefix
+        #                                      )
 
 
 
@@ -437,24 +364,14 @@ def RUN__wrapper_output(
         bins = np.linspace(start=0.0, stop= output_W_T_histogram_and_cdf_W_max ,
                            num= int(output_W_T_histogram_and_cdf_W_max/output_W_T_histogram_and_cdf_W_bin_width +1))
 
-        if params_TRAIN["test_TrueFalse"] is True:  # if we did testing as well
-            df_W_T_vectors = fun_output_results.output_W_T_vectors(params_TRAIN=params_TRAIN,
-                                                 params_TEST=params_TEST,
-                                                 params_BENCHMARK_train=params_CP_TRAIN,
-                                                 params_BENCHMARK_test=params_CP_TEST,
-                                                 output_Excel=output_W_T_vectors_Excel,
-                                                 filename_prefix_for_Excel=code_title_prefix
-                                                 )
-
-
-        else:
-            df_W_T_vectors = fun_output_results.output_W_T_vectors(params_TRAIN=params_TRAIN,
-                                                 params_TEST=None,
-                                                 params_BENCHMARK_train=params_CP_TRAIN,
-                                                 params_BENCHMARK_test=None,
-                                                 output_Excel=output_W_T_vectors_Excel,
-                                                 filename_prefix_for_Excel=code_title_prefix
-                                                 )
+        
+        df_W_T_vectors = fun_output_results.output_W_T_vectors(params_TRAIN=params_TRAIN,
+                                                params_TEST=None,
+                                                params_BENCHMARK_train=params_CP_TRAIN,
+                                                params_BENCHMARK_test=None,
+                                                output_Excel=output_W_T_vectors_Excel,
+                                                filename_prefix_for_Excel=code_title_prefix
+                                                )
 
         #Histogram and CDF: output to Excel spreadsheet
         fun_output_results.output_W_T_histogram_and_cdf(df_W_T_vectors = df_W_T_vectors,
@@ -472,67 +389,45 @@ def RUN__wrapper_output(
 
     if save_Figures_FunctionHeatmaps or output_FunctionHeatmaps_Excel:
 
-        if params_TRAIN["use_trading_signals_TrueFalse"] is False:
+        
+        fun_Plot_NN_control_FunctionHeatmaps.fun_Heatmap_NN_control_basic_features\
+                                    (params = params_TRAIN,  #params dictionary with *trained* NN parameters and setup as in main code
+                                    W_num_pts = heatmap_y_num_pts,  #number of points for wealth grid
+                                    W_min = heatmap_y_bin_min,  #minimum for the wealth grid
+                                    W_max = heatmap_y_bin_max,  #maximum for the wealth grid
+                                    save_Figures = save_Figures_FunctionHeatmaps,  #Saves figures in format specified below
+                                    save_Figures_format = save_Figures_format,
+                                    fig_filename_prefix = code_title_prefix,
+                                    feature_calc_option = None,  # Set calc_option = "matlab" to match matlab code, None to match my notes
+                                    xticklabels = heatmap_xticklabels,  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
+                                    yticklabels= heatmap_yticklabels,  #e.g. yticklabels = 500 means we are displaying every 500th label
+                                    cmap= heatmap_cmap,  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
+                                    heatmap_cbar_limits= heatmap_cbar_limits,  # list in format [vmin, vmax] for heatmap colorbar/scale
+                                    output_HeatmapData_Excel=output_FunctionHeatmaps_Excel  # If TRUE, output the heatmap grid data to Excel, naming uses fig_filename_prefix
+                                    )
 
-            fun_Plot_NN_control_FunctionHeatmaps.fun_Heatmap_NN_control_basic_features\
-                                       (params = params_TRAIN,  #params dictionary with *trained* NN parameters and setup as in main code
-                                        W_num_pts = heatmap_y_num_pts,  #number of points for wealth grid
-                                        W_min = heatmap_y_bin_min,  #minimum for the wealth grid
-                                        W_max = heatmap_y_bin_max,  #maximum for the wealth grid
-                                        save_Figures = save_Figures_FunctionHeatmaps,  #Saves figures in format specified below
-                                        save_Figures_format = save_Figures_format,
-                                        fig_filename_prefix = code_title_prefix,
-                                        feature_calc_option = None,  # Set calc_option = "matlab" to match matlab code, None to match my notes
-                                        xticklabels = heatmap_xticklabels,  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
-                                        yticklabels= heatmap_yticklabels,  #e.g. yticklabels = 500 means we are displaying every 500th label
-                                        cmap= heatmap_cmap,  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
-                                        heatmap_cbar_limits= heatmap_cbar_limits,  # list in format [vmin, vmax] for heatmap colorbar/scale
-                                        output_HeatmapData_Excel=output_FunctionHeatmaps_Excel  # If TRUE, output the heatmap grid data to Excel, naming uses fig_filename_prefix
-                                        )
 
-
-        elif params_TRAIN["use_trading_signals_TrueFalse"] is True and params_TRAIN["data_source_Train"] == "bootstrap":
-            # Note: This needs historical data which is read during bootstrapping
-
-            for yyyymm_path_start in fixed_yyyymm_list:
-
-                fun_Plot_NN_control_FunctionHeatmaps.fun_Heatmap_NN_control_histpath_TradSig\
-                                           (params = params_TRAIN,  #params dictionary with *trained* NN parameters and setup as in main code
-                                            W_num_pts = heatmap_y_num_pts,  #number of points for wealth grid
-                                            W_min = heatmap_y_bin_min,  #minimum for the wealth grid
-                                            W_max = heatmap_y_bin_max,  #maximum for the wealth grid
-                                            save_Figures = save_Figures_FunctionHeatmaps,  #Saves figures in format specified below
-                                            save_Figures_format = save_Figures_format,
-                                            fig_filename_prefix = code_title_prefix,
-                                            feature_calc_option = None,  # Set calc_option = "matlab" to match matlab code, None to match my notes
-                                            yyyymm_path_start = yyyymm_path_start,
-                                            xticklabels=heatmap_xticklabels,  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
-                                            yticklabels=heatmap_yticklabels, # e.g. yticklabels = 500 means we are displaying every 500th label
-                                            cmap= heatmap_cmap,  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
-                                            heatmap_cbar_limits=heatmap_cbar_limits # list in format [vmin, vmax] for heatmap colorbar/scale
-                                            )
-
+        
     # ----------------------------------------------------------------------------------------------------
     # NN control DATA HEATMAPS (Optimal control as realized on the training data)
     # ----------------------------------------------------------------------------------------------------
     if save_Figures_DataHeatmaps or output_DataHeatmaps_Excel:
 
-        if params_TRAIN["use_trading_signals_TrueFalse"] == False:
-            fun_Plot_NN_control_DataHeatmaps.plot_DataHeatmaps(
-                params=params_TRAIN,  # params dictionary with *trained* NN results and setup as in main code
-                y_bin_min = heatmap_y_bin_min,  # left endpoint of first y-axis bin
-                y_bin_max=heatmap_y_bin_max,  # right endpoint of last W bin
-                delta_y_bin = 5.0,  # bin width for W bins
-                save_Figures=save_Figures_DataHeatmaps,  # Saves figures in format specified below
-                save_Figures_format=save_Figures_format,
-                fig_filename_prefix = code_title_prefix,
-                xticklabels=heatmap_xticklabels,
-                # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
-                yticklabels=heatmap_yticklabels,  # e.g. yticklabels = 500 means we are displaying every 500th label
-                cmap= heatmap_cmap,  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
-                heatmap_cbar_limits=heatmap_cbar_limits,  # list in format [vmin, vmax] for heatmap colorbar/scale
-                output_HeatmapData_Excel=output_DataHeatmaps_Excel # If TRUE, output the heatmap grid data to Excel, naming uses fig_filename_prefix
-            )
+        fun_Plot_NN_control_DataHeatmaps.plot_DataHeatmaps(
+            params=params_TRAIN,  # params dictionary with *trained* NN results and setup as in main code
+            y_bin_min = heatmap_y_bin_min,  # left endpoint of first y-axis bin
+            y_bin_max=heatmap_y_bin_max,  # right endpoint of last W bin
+            delta_y_bin = 5.0,  # bin width for W bins
+            save_Figures=save_Figures_DataHeatmaps,  # Saves figures in format specified below
+            save_Figures_format=save_Figures_format,
+            fig_filename_prefix = code_title_prefix,
+            xticklabels=heatmap_xticklabels,
+            # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
+            yticklabels=heatmap_yticklabels,  # e.g. yticklabels = 500 means we are displaying every 500th label
+            cmap= heatmap_cmap,  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
+            heatmap_cbar_limits=heatmap_cbar_limits,  # list in format [vmin, vmax] for heatmap colorbar/scale
+            output_HeatmapData_Excel=output_DataHeatmaps_Excel # If TRUE, output the heatmap grid data to Excel, naming uses fig_filename_prefix
+        )
 
 
     # ----------------------------------------------------------------------------------------
@@ -595,37 +490,9 @@ def RUN__wrapper_output(
                             W_max=output_Pctiles_Plots_W_max,  # Maximum wealth value for wealth percentiles graph
                             )
 
-        if params_TRAIN["test_TrueFalse"] is True and output_Pctiles_on_TEST_data is True:    #if we did testing as well
-            fun_output_results_Pctiles.output_Pctile_paths(
-                params_TEST,  # dictionary with parameters and results from NN investment (TRAINING or TESTING)
-                pctiles=output_Pctiles_list,  # E.g. [20,50,80] List of percentiles to output and/or plot
-                output_Excel=output_Pctiles_Excel,  # write the result to Excel
-                filename_prefix_for_Excel= code_title_prefix + "zTESTdata_",  # used if output_Excel is True
-                save_Figures= output_Pctiles_Plots,  # Plots and save figures in format specified below
-                save_Figures_format="png",
-                fig_filename_prefix= code_title_prefix + "zTESTdata_",
-                W_max=output_Pctiles_Plots_W_max,  # Maximum wealth value for wealth percentiles graph
-            )
+        
 
-
-    #----------------------------------------------------------------------------------------------------
-    #  Explainable AI (PRP scores etc.)
-    #----------------------------------------------------------------------------------------------------
-    if params_TRAIN["PRP_TrueFalse"]  is True and output_PRPscores is True:
-        fun_output_results_PRPscores.output_results_PRPscores(
-            params = params_TRAIN,  # params dictionary with *trained* NN results and setup as in main code
-            nr_bins= 20, #nr of bins for PRP scores distribution heatmap
-            pctiles_list = output_Pctiles_list,  #E.g. [20,50,80] List of percentiles to output and/or plot
-            output_Excel=True,  # write the result to Excel
-            filename_prefix_for_Excel= code_title_prefix,  # used if output_Excel is True
-            save_Figures= True,  # Saves figures in format specified below
-            save_Figures_format="png",
-            fig_filename_prefix= code_title_prefix,
-            xticklabels=PRPheatmap_xticklabels,  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
-            yticklabels=PRPheatmap_yticklabels,  # e.g. yticklabels = 500 means we are displaying every 500th label
-            cmap= heatmap_cmap  # e.g. "Reds" or "rainbow" etc colormap for sns.heatmap
-        )
-
+    
     #----------------------------------------------------------------------------------------------------
     #  Stochastic benchmark objectives: output ratio stats
     #----------------------------------------------------------------------------------------------------

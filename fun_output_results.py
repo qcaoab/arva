@@ -19,23 +19,12 @@ def output_W_T_vectors(params_TRAIN,         # dictionary with parameters and re
     #Objective: Create single Excel spreadsheet with max 4 columns: ["W_T_train", "W_T_test", "W_T_benchmark_train", "W_T_benchmark_test"]
     # - W_T displayed might be  *after* cash withdrawal, if one sided quadratic check params["obj_fun_cashwithdrawal_TrueFalse"]
 
-    #CHECK if TESTING data is supplied when necessary
-    if params_TRAIN["test_TrueFalse"] is True:
-        if params_TEST is None:
-            raise ValueError("PVSerror in 'output_results_NN': if params_TRAIN['test_TrueFalse'] == True, then"
-                             "we need params_TEST as input to this function.")
-
+    
     #---------------------------------------------------------------------------------
     #TRAINING results
     #convert first to pd.Series in order to handle different length vectors W_T
     W_T_train = pd.Series(params_TRAIN["W_T"])
     df_output = pd.DataFrame(data = W_T_train, columns=["W_T_train"], index=None)
-
-    #---------------------------------------------------------------------------------
-    #  TESTING results
-    if params_TEST is not None:  #only if we have testing results
-        W_T_test = pd.Series(params_TEST["W_T"])
-        df_output["W_T_test"] = W_T_test
 
 
     #---------------------------------------------------------------------------------
@@ -43,11 +32,6 @@ def output_W_T_vectors(params_TRAIN,         # dictionary with parameters and re
     if params_BENCHMARK_train is not None:
         W_T_benchmark_train = pd.Series(params_BENCHMARK_train["W_T"])
         df_output["W_T_benchmark_train"] = W_T_benchmark_train
-
-    if params_BENCHMARK_test is not None:
-        W_T_benchmark_test = pd.Series(params_BENCHMARK_test["W_T"])
-        df_output["W_T_benchmark_test"] = W_T_benchmark_test
-
 
     # ------------------------------------------------------------------------------------------------
     # OUTPUT to Excel if required

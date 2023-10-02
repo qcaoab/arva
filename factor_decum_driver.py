@@ -83,10 +83,8 @@ params["nn_withdraw"] = True # flag to include dynamic withdrawals as part of ex
                              # will make the script bypass withdrawal network. 
 params["q_min"] = 35.0 #min withdrawal per Rb
 params["q_max"] = 60.0 #max withdrawal per Rb
+# note: consraint function options for withdrawals and asset allocation are defined in NN SETUP section of this file. 
 
-params["w_constraint_activation"] = "yy_fix_jan29" # Withdrawal constraint activation function
-                                                   # "yy_fix_jan29" ensures that the withdrawal is constrained properly
-                                                   # , even in the case of q_min < w_t < q_max
 
 params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
 # ^TODO: need to implement borrowing interest when wealth is negative
@@ -262,8 +260,11 @@ tracing_parameters_to_run =  [1.0]
 # TRACING PARAMETERS interpreted as follows:
 #   -> STANDARD objectives tracing parameters:
 #   params["obj_fun_rho"] if obj_fun is in ["mean_cvar_single_level"], *larger* rho means we are looking for a *higher* mean
+#       this "rho" is usually referred to as "\kappa" in Forsyth and Li's papers.
 #   params["obj_fun_W_target"] if obj_fun is in ["one_sided_quadratic_target_error", "quad_target_error", "huber_loss", "ads"]
 
+
+# It could also be interpreted as follows for other objective functions: (none of these are implemented)
 #   -> STOCHASTIC BENCHMARK objectives tracing parameters:
 # "ads_stochastic": params["obj_fun_ads_beta"]>=0 which is the annual target outperformance rate, in exp(beta*T)
 # "qd_stochastic": params["obj_fun_qd_beta"] >= 0, this is beta in exp(beta*T)
@@ -274,22 +275,9 @@ tracing_parameters_to_run =  [1.0]
 
 
 # Set objective function parameters [rarely changed]
-# -----------------------------------------------------------------------------
-if params["obj_fun"] == "one_sided_quadratic_target_error":
-    params["obj_fun_eps"] = 1e-06  # small regularization parameter used for one sided quadratic objective
-    params["obj_fun_cashwithdrawal_TrueFalse"] = True  # set to True if we want to report results *after* withdrawal of cash
-#-----------------------------------------------------------------------------
-elif params["obj_fun"] == "quad_target_error":
-    print("No extra obj_fun parameters required.")
-# -----------------------------------------------------------------------------
-elif params["obj_fun"] == "huber_loss":
-    params["obj_fun_huber_delta"] = 100.
-# -----------------------------------------------------------------------------
-elif params["obj_fun"] == "ads":    #Uses constant target
-    params["obj_fun_lambda_smooth"] = 1e-06
 
 # -----------------------------------------------------------------------------
-elif params["obj_fun"] == "mean_cvar_single_level":  # SINGLE level formulation, no Lagrangian
+if params["obj_fun"] == "mean_cvar_single_level":  # SINGLE level formulation, no Lagrangian
     params["obj_fun_alpha"] = 0.05  # alpha for alpha_CVaR, must be in DECIMAL format (not *100)
     params["obj_fun_lambda_smooth"] = 1e-07  # 1e-07  # Lambda for smoothed version of mean-CVAR objective,assumed =0 for no smoothing if not set
 # -----------------------------------------------------------------------------
@@ -303,30 +291,11 @@ elif params["obj_fun"] == "meancvarLIKE_constant_wstar":  # NOT true mean-cvar!
     # -- ALL OUTPUTS (Training + Testing) will be chosen for value of wstar
     #       such that params_TRAIN["F_val"] is SMALLEST
 
-#STOCHASTIC BENCHMARK objectives:
-# -----------------------------------------------------------------------------
-elif params["obj_fun"] == "ads_stochastic":  # Uses stochastic target as in Ni, Li, Forsyth (2020)
-    params["obj_fun_lambda_smooth"] = 1.00  # 1e-06
-
-# -----------------------------------------------------------------------------
-elif params["obj_fun"] == "qd_stochastic":  # QUADRATIC DEVIATION from elevated target as in Forsyth (2021)
-    print("No extra obj_fun parameters required.")
-
-# -----------------------------------------------------------------------------
-elif params["obj_fun"] == "ir_stochastic":  # INFORMATION RATIO using stochastic target as in Goetzmann et al (2002)
-    params["obj_fun_ir_s"] = 0.00  # annual target outperformance rate - see Ni, Li, Forsyth (2020)
-    #BUT for standard IR, let's just set this to zero always!!
-
-# -----------------------------------------------------------------------------
-elif params["obj_fun"] == "te_stochastic":  # TRACKING ERROR as in Forsyth (2021)
-    params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] = False #See "if statement" below how this is used
-    #       if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] = True, tracing_param is beta_hat
-    #       if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] = False, tracing_param is beta in beta_hat = exp(beta*t_n)
-
+#add parameters for new objective functions here
 
 
 #-----------------------------------------------------------------------------------------------
-# Output flags
+# Experiment Output Options
 #-----------------------------------------------------------------------------------------------
 
 output_parameters = {}
@@ -347,11 +316,12 @@ output_parameters["output_W_T_histogram_and_cdf_W_bin_width"] = 5.   # Bin width
 output_parameters["output_W_T_benchmark_comparisons"] = False #If true, outputs W_T vs Benchmark differences and ratios
 
 
-# Roling historical test
+# Rolling historical test: NOT IMPLEMENTED IN PYTORCH YET----
 output_parameters["output_Rolling_Historical_Data_test"] = False  #If true, test NN strategy and benchmark strategy on actual single
                                     # historical data path, starting in each month and investing for the duration
 output_parameters["fixed_yyyymm_list"] = [198001, 198912, 199001] #Used for historical rolling test; LIST of yyyymm_start months of particular interest
 output_parameters["output_Rolling_Historical_only_for_fixed"] = False  #if True, outputs rolling historical ONLY for output_parameters["fixed_yyyymm_list"]
+#-----------------------------------------------------------
 
 # NN detail
 output_parameters["output_TrainingData_NNweights_test"] = False   #if true, outputs the training paths + features + NN weights required to
@@ -380,17 +350,9 @@ output_parameters["heatmap_cmap"] = "rainbow"  # e.g. "Reds" or "rainbow" etc co
 output_parameters["heatmap_cbar_limits"] = [0.0, 1.0]  # list in format [vmin, vmax] for heatmap colorbar/scale
 output_parameters["percentile_cutoffs"] = True
 
-#XAI
-output_parameters["output_PRPscores"] = False    #If True, outputs PRP score analysis (heatmaps, percentiles)
-output_parameters["PRPheatmap_xticklabels"] = 1  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
-output_parameters["PRPheatmap_yticklabels"] = 1  # e.g. yticklabels = 500 means we are displaying every 500th label
-
-
-
 #-----------------------------------------------------------------------------------------------
 # Asset basket and Feature specification (also specify basket of trading signals, if applicable)
 #-----------------------------------------------------------------------------------------------
-
 
 #Construct asset basket:
 # - this will also give COLUMN NAMES in the historical returns data to use
@@ -400,35 +362,22 @@ params["asset_basket"] = fun_Data_timeseries_basket.timeseries_basket_construct(
                             add_cash_TrueFalse=params["add_cash_TrueFalse"],
                             real_or_nominal = params["real_or_nominal"] )
 
-#get index of b10 for borrowing cost
 
+#get index of B10 for borrowing cost (For when the 10 year treasury is used as proxy rate for reverse mortgage.)
 params["b10_idx"] = params["asset_basket"]['basket_columns'].index('B10_real_ret')
 #Assign number of assets based on basket information:
 params["N_a"] = len(params["asset_basket"]["basket_columns"])   #Nr of assets = nr of output nodes
 
 
-#specify prop_const;
-prop_const = np.ones(params["N_a"]) * (1/ params["N_a"])  # automatically get equal proportions:
-
-# prop_const = np.array([0,0.50, 0.50, 0 , 0])
-withdraw_const = 40.0
-
-
-
-#Initialize number of input nodes
+#Initialize number of NN input nodes: More input features would be needed if using trading signals or stochastic benchmark.  
 params["N_phi"] =  2  #Nr of default features, i.e. the number of input nodes
 params["feature_order"] = ["time_to_go", "stdized_wealth"]  #initialize order of the features
-
-if params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:
-    params["N_phi"] = 3  # Nr of default features, i.e. the number of input nodes
-    params["feature_order"].append("stdized_benchmark_wealth") # initialize order of the features
-
 
 params["N_phi_standard"] = params["N_phi"] # Set nr of basic features *BEFORE* we add trading signals
 
 
 #-----------------------------------------------------------------------------------------------
-# Market data: ASSETS and FEATURES (trading signals):
+# Gathering Historical Market data: ASSETS and FEATURES (trading signals):
 #   If market data required for bootstrapping, extracted, processed (e.g. inflation adjusted)
 #   and prepared for bootstrapping here.
 #-----------------------------------------------------------------------------------------------
@@ -464,35 +413,18 @@ params = fun_Data__bootstrap_wrapper.wrap_append_market_data(
                             data_read_header = 0,  # INDEX of row AFTER "skiprows" to use as column names
                             data_read_na_values = "nan" # how missing values are identified in the data
                             )
-
-# params = fun_Data__bootstrap_wrapper.wrap_append_market_data(
-#                             params = params,  #params dictionary as in main code
-#                             data_read_yyyymm_start = 192601, #Start date to use for historical market data, set to None for data set start
-#                             data_read_yyyymm_end = 202012,  #End date to use for historical market data, set to None for data set end
-#                             data_read_input_folder = "Market_data", #folder name (relative path)
-#                             data_read_input_file = "01_CRSP_data_end2020", #just the filename, no suffix
-#                             data_read_input_file_type = ".xlsx",  # file suffix
-#                             data_read_delta_t = 1 / 12,  # time interval for returns data (monthly returns means data_delta_t=1/12)
-#                             data_read_returns_format = "decimals",  # 'percentages' = already multiplied by 100 but without added % sign
-#                                                                         # 'decimals' is percentages in decimal form
-#                             data_read_skiprows = 0 , # nr of rows of file to skip before start reading
-#                             data_read_index_col = 0,  # Column INDEX of file with yyyymm to use as index
-#                             data_read_header = 0,  # INDEX of row AFTER "skiprows" to use as column names
-#                             data_read_na_values = "nan" # how missing values are identified in the data
-#                             )
-
-#Output bootstrap source data to Excel, if needed
-output_bootstrap_source_data = False
-if output_bootstrap_source_data:
-    df_temp = params["bootstrap_source_data"]
-    df_temp.to_excel(code_title_prefix + "bootstrap_source_data.xlsx")
 #          params["bootstrap_source_data"]: (new field) pandas.DataFrame with time series ready for bootstrapping:
 #                                           1) Inflation adjusted if necessary,
 #                                           2) Trade signals and asset returns merged
 #                                           3) NaNs removed (at start due to trade signal calculation)
 #               for a given month, asset obs are at END of month, trade signals at BEGINNING of month
 
-
+#Output bootstrap source data to Excel, if needed
+output_bootstrap_source_data = False
+if output_bootstrap_source_data:
+    df_temp = params["bootstrap_source_data"]
+    df_temp.to_excel(code_title_prefix + "bootstrap_source_data.xlsx")
+    
 
 #-----------------------------------------------------------------------------------------------
 # MARKET DATA GENERATOR: Source data for training\testing
@@ -500,9 +432,7 @@ if output_bootstrap_source_data:
 
 params["output_csv_data_training_testing"] = False  #if True, write out training/testing data to .csv files
 
-
-
-if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
+if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap using historical data
 
     # ----------------------------------------
     # TRAINING data bootstrapping
@@ -512,9 +442,9 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
     params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
         train_test_Flag = "train",                  # "train" or "test"
         params = params,                            # params dictionary as in main code
-        data_bootstrap_yyyymm_start = 196307,    #196307   # start month to use subset of data for bootstrapping, CHECK DATA!
-        data_bootstrap_yyyymm_end = 202212, #202212,         # end month to use subset of data for bootstrapping, CHECK DATA!
-        data_bootstrap_exp_block_size = blocksize,          # Expected block size in terms of frequency of market returns data
+        data_bootstrap_yyyymm_start = 196307,       # start month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_end = 202212,         # end month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_exp_block_size = blocksize,  # Expected block size in terms of frequency of market returns data
                                                     # e.g. = X means expected block size is X months of returns
                                                     # if market returns data is monthly
         data_bootstrap_fixed_block = False,         # if False: use STATIONARY BLOCK BOOTSTRAP, if True, use FIXED block bootstrap
@@ -537,7 +467,7 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap
 elif params["data_source_Train"] == "simulated":
 
 # ----------------------------------------
-    # TRAINING data simulation
+    # TRAINING data simulation, "Synthetic Data"
     # - Append simulated data to "params" dictionary
     params = fun_Data__MCsim_wrapper.wrap_run_MCsim(
                 train_test_Flag = "train",  # "train" or "test"
@@ -551,15 +481,34 @@ elif params["data_source_Train"] == "simulated":
     #   params["Y_order_train"][i] = column name of asset i used for identification
 
 
-
-
 #-----------------------------------------------------------------------------------------------
 # NEURAL NETWORK (NN) SETUP
 #-----------------------------------------------------------------------------------------------
 
-
-# Withdrawal NN: NN_withdraw 30.0
+# Build Withdrawal NN, if needed:
 #---------------------------
+
+# nn_options_q = {}              # _q indicates for withdrawals
+# nn_options_q["N_layers_h"] = 2   # Nr of hidden layers of NN
+#                                # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
+#                                # layer_id list: [0, 1,...,N_L, N_L+1]
+
+# nn_options_q["N_input"] = params["N_phi"]              # number of input nodes
+# nn_options_q["N_nodes"] = 8               # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer    
+# nn_options_q["hidden_activation"] = "logistic_sigmoid"       # Type of activation function for hidden layers
+# nn_options_q["output_activation"] = "none"                  # Type of activation function for output layer. 
+#                                                         # NOTE: When needing any kind of constraint activation function, this should be set to "none" so that the custom activation that encodes constraints can be applied in the fun_invest_NN.py file instead of in the PyTorch NN object itself. 
+# nn_options_q["biases"] = True             # add biases
+# #store options for record keeping
+# params["nn_options_q"] = nn_options_q
+
+# #initialize NN object for withdrawal network
+# NN_withdraw = class_NN_Pytorch.pytorch_NN(nn_options_q)
+
+
+#  TEMPORARY
+#---------------------------
+params["w_constraint_activation"] = "yy_fix_jan29"
 params["N_L_withdraw"] = 2   # Nr of hidden layers of NN
                    # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
                    # layer_id list: [0, 1,...,N_L, N_L+1]
@@ -573,9 +522,11 @@ print("Withdrawal NN:")
 NN_withdraw_orig.print_layers_info()  #Check what to update
 
 #Update layers info
+nodes_mc = 8
+biases_mc = True
 
 for l in range(1, params["N_L_withdraw"]+1):
-    NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_nn , activation = "logistic_sigmoid", add_bias=biases_nn)
+    NN_withdraw_orig.update_layer_info(layer_id = l , n_nodes = params["N_a"] + nodes_mc , activation = "logistic_sigmoid", add_bias=biases_mc)
     
 NN_withdraw_orig.update_layer_info(layer_id = params["N_L_withdraw"]+1, activation = "none", add_bias= False) #output layer
 
@@ -634,55 +585,28 @@ NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
 params["lambda_reg"] = 0.0 #1e-08 #1e-07    #Set to zero for no weight regularization
 
 
-
 #-----------------------------------------------------------------------------------------------
-# EXPLAINABLE ML: Parameters for LRP and PRP to explain NN results
+# CONSTANT BENCHMARK: Specify constant proportion strategy
 #-----------------------------------------------------------------------------------------------
 
-params["LRP_for_NN_TrueFalse"] = False    #If TRUE, will do layer-wise relevance propagation to explain
-                                            # importance/relevance of each feature at each rebalancing time
-                                            # outputs will be in format params["LRPscores"][j, n, i] = relevance score,
-                                            # along sample path j, at rebalancing time n, for feature i
-params["LRP_for_NN_epsilon"] = 1e-06    #>=0, larger values results in larger "absorption" of relevance
-                                        # at each layer in the backpropagation of relevance scores, and thus
-                                         # makes conclusions regarding importance of features "more sparse"
+# The constant benchmark is used to sanity check NN results, validate data sets, create NN feature standardization parameters, etc. It runs automatically before every training loop or testing. 
 
-
-#-- PRP
-params["PRP_TrueFalse"] = output_parameters["output_PRPscores"]      #If TRUE, will do PRP to explain
-                                            # importance/relevance of each feature at each rebalancing time
-                                            # outputs will be in format params["PRPscores"][j, n, i] = relevance score,
-                                            # along sample path j, at rebalancing time n, for feature i
-params["PRP_eps_1"] = 1e-07    #>=0, for numerical stability + absorption of relevance
-params["PRP_eps_2"] = 1e-07    #>=0, for numerical stability + absorption of relevance
-
-
-
-
-#-----------------------------------------------------------------------------------------------
-# BENCHMARK: Specify constant proportion strategy
-#-----------------------------------------------------------------------------------------------
 #prop_const[i] = constant proportion to invest in asset index i \in {0,1,...,N_a -1}
 #               Order corresponds to asset index in sample return paths in params["Y"][:, :, i]
 
-#Equal split
-# if params["add_cash_TrueFalse"] is False:   #if NO cash
-#     prop_const = np.ones(params["N_a"]) / params["N_a"] #Equal split
+#Equal Allocations across assets: automatic for number of assets. 
+params["benchmark_prop_const"] = np.ones(params["N_a"]) * (1/ params["N_a"])  # automatically get equal proportions
 
-# else:   #if params["add_cash_TrueFalse"] is True
-#     prop_const = np.ones(params["N_a"]-1) / (params["N_a"]-1)  # Equal split between NON-cash assets
-#     prop_const = np.insert(prop_const, 0, 0.0)  #insert value of zero for CASH asset
-
-# More complicated splits
+# Can manually specific more complicated splits, for example:
 # if params["N_a"] == 2:
 #     #prop_const = np.ones(params["N_a"]) / params["N_a"] #Equal split
 #     prop_const = np.array([0.6, 0.4])
 # elif params["N_a"] == 5:
 #     prop_const = np.array([0.1, 0.3, 0.36, 0.12, 0.12])
 
+# Constant Withdrawal: Most common constant benchmark is Bengen 4% rule, which is 40 if starting wealth is 1000. 
+params["withdraw_const"] = 40.0
 
-params["benchmark_prop_const"] = prop_const.copy()  #Copy over for subsequent use
-params["withdraw_const"] = withdraw_const
 
 
 #----------------------------------------------------------------------------------------

@@ -59,7 +59,7 @@ def objective_mean_cvar_pytorch(params, W_T_vector, xi):
 
     # Pytorch objective function shortcut (mean cvar single)
     #Get info in params specific for mean-cvar
-    rho = params["obj_fun_rho"]
+    rho = params["obj_fun_rho"] #this is usually referred to as "\kappa" in Forsyth and Li's papers.
     alpha = params["obj_fun_alpha"]
     # xi is passed from fun_train_SGD_algos to allow optimizer access.
 
