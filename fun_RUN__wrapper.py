@@ -98,8 +98,6 @@ def RUN__wrapper_TWO_stage_optimization(
 def RUN__wrapper_ONE_stage_optimization(
         params,  # dictionary as setup in the main code
         NN_list,  # object of class_Neural_Network with structure as setup in main code 
-        NN_orig_list, #pieter NNs
-        theta0,  # initial parameter vector (weights and biases) + other parameters for objective function
         NN_training_options,  # dictionary with options to train NN, specifying algorithms and hyperparameters
         output_parameters      #Dictionary with output parameters as setup in main code
 ):
@@ -116,9 +114,6 @@ def RUN__wrapper_ONE_stage_optimization(
         RUN__wrapper_training_testing_NN(
             params=params,  # dictionary as setup in the main code
             NN_list=NN_list,  # object of class_Neural_Network with structure as setup in main code
-            NN_orig_list = NN_orig_list, # pieter NNs
-            theta0=theta0,
-            # initial parameter vector (weights and biases) + other parameters for objective function
             NN_training_options=NN_training_options
             # dictionary with options to train NN, specifying algorithms and hyperparameters
         )
@@ -141,8 +136,6 @@ def RUN__wrapper_ONE_stage_optimization(
 def RUN__wrapper_training_testing_NN(
         params,    #dictionary as setup in the main code
         NN_list,  # object of class_Neural_Network with structure as setup in main code
-        NN_orig_list, 
-        theta0,      # initial parameter vector (weights and biases) + other parameters for objective function
         NN_training_options  #dictionary with options to train NN, specifying algorithms and hyperparameters
 ):
     #ALWAYS returns 4 dictionaries (whether testing or no testing):
@@ -209,19 +202,9 @@ def RUN__wrapper_training_testing_NN(
 
     params_TRAIN = {}   #make sure it is empty
     res_BEST = {} #make sure it is empty
-
-    # commented out for temporary output
-    # SOLVE optimization problem, or just evaluate if pre-trained
-    # params_TRAIN, res_BEST, _, res_ALL_dataframe = fun_train_NN.train_NN( theta0 = theta0,
-    #                                                         NN_list = NN_list,
-    #                                                         NN_orig_list = NN_orig_list,
-    #                                                         params = params,
-    #                                                         NN_training_options = NN_training_options
-    #                                                         )
     
-    params_TRAIN, res_adam = fun_train_NN.train_NN( theta0 = theta0,
+    params_TRAIN, res_adam = fun_train_NN.train_NN(
                                     NN_list = NN_list,
-                                    NN_orig_list = NN_orig_list,
                                     params = params,
                                     NN_training_options = NN_training_options
                                     )

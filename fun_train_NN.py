@@ -11,9 +11,7 @@ import fun_invest_NN_strategy
 import torch
 
 
-def train_NN(theta0,      # initial parameter vector (weights and biases) + other parameters for objective function
-             NN_list,      # object of class_Neural_Network with structure as setup in main code
-             NN_orig_list,
+def train_NN(NN_list,      # object of class_Neural_Network with structure as setup in main code
              params,         # dictionary with investment parameters as set up in main code
              NN_training_options  #dictionary with options to train NN, specifying algorithms and hyperparameters
              ):
@@ -46,7 +44,7 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
 
     
     #Add theta0 and NN_training_options for reference
-    params["theta0"] = theta0
+    # params["theta0"] = theta0 
     params["NN_training_options"] = NN_training_options
 
     #Dictionary of dictionaries with results
@@ -60,7 +58,6 @@ def train_NN(theta0,      # initial parameter vector (weights and biases) + othe
         
         # print("Running pytorch SGD gradient descent.")
         result_pyt_adam = run_Gradient_Descent_pytorch(NN_list= NN_list,
-                                                       NN_orig_list = NN_orig_list, #pieter NNs list
                                                        params = params, 
                                                        NN_training_options = NN_training_options)
         

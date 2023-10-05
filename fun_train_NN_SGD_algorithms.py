@@ -15,7 +15,7 @@ from torch.optim.swa_utils import AveragedModel
 
 import json
 
-def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_options):
+def run_Gradient_Descent_pytorch(NN_list, params, NN_training_options):
     
     # OBJECTIVE: Executes constant SGD and/or Adam, using pytorch implementations
 
@@ -364,15 +364,6 @@ def run_Gradient_Descent_pytorch(NN_list, NN_orig_list, params, NN_training_opti
     # from pytorch averaged model.
     
     #pytorch NN is NN_list_min
-    
-    # NN_withdraw_orig = NN_list_min.module[0].export_weights(NN_orig_list[0])
-    # NN_allocation_orig = NN_list_min.module[1].export_weights(NN_orig_list[1])
-    
-    # # # # copy weights from layers into theta
-    # NN_withdraw_orig.stack_NN_parameters()
-    # NN_allocation_orig.stack_NN_parameters()
-    
-    
     
     
     # TO DO: need to implement pieter NN implementation of this.
