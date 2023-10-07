@@ -276,7 +276,13 @@ def run_Gradient_Descent_pytorch(NN_list, params, NN_training_options):
 
     #temporary output
     with torch.no_grad():
-        params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list_min, params)
+        
+        if params["nn_withdraw"]:  #decumulation
+            params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list_min, params)
+        
+        else: #NO decumulation
+            params, W_T_vector = fun_invest_NN_strategy.invest_NN_strategy_pyt(NN_list_min, params)
+            
     # print("Median terminal wealth: ", torch.median(g))
         min_fval, _ = objfun_pyt(NN_list_min, params, xi_min)
     
@@ -292,7 +298,8 @@ def run_Gradient_Descent_pytorch(NN_list, params, NN_training_options):
     
      
     res["temp_w_output_dict"] = W_T_stats_dict
-    res["q_avg"] = torch.mean(qsum_T_vector).cpu().detach().numpy()/(params["N_rb"]+1)
+    if params["nn_withdraw"]:  #decumulation
+        res["q_avg"] = torch.mean(qsum_T_vector).cpu().detach().numpy()/(params["N_rb"]+1)
     res["optimal_xi"] = xi_np
     res["average_median_p"] = np.mean(np.median(params["NN_asset_prop_paths"], axis = 0)[:,1])
     res["objfun_final"] = min_fval

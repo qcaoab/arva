@@ -121,14 +121,12 @@ def train_NN(NN_list,      # object of class_Neural_Network with structure as se
     # # Update  params["res_BEST"]["NN_theta"] for subsequent use
     # if params["preTrained_TrueFalse"] is True:
     #     params["res_BEST"].update({"NN_theta": params["NN_theta"]})
-
-    params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
-    params["NN_object"] = NN_list
-
-    # return params, res_BEST, res_ALL, res_ALL_dataframe
-    
     with torch.no_grad():
-        params, _, _ = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
+        if params["nn_withdraw"]:  #decumulation
+            params, _, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
+        else: #NO decumulation
+            params, W_T_vector = fun_invest_NN_strategy.invest_NN_strategy_pyt(NN_list, params)
+            
         params["NN_object"] = NN_list
-    
+
     return params, res_ALL['pytorch_adam']

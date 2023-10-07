@@ -1,6 +1,5 @@
 import pandas as pd
 import fun_Data_timeseries_basket
-import fun_Data_construct_trading_signals
 import numpy as np
 
 def read_and_process_market_data(data_settings, timeseries_basket):

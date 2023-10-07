@@ -3,13 +3,9 @@
 
 import numpy as np
 import pandas as pd
-import datetime
 import json
-import class_Neural_Network
 import fun_train_NN
-import fun_test_NN
 import fun_output_results
-import fun_output_results_RollingHistorical
 import fun_output_results_TopBottom
 import fun_output_results_Pctiles
 import fun_Plot_NN_control_FunctionHeatmaps
@@ -17,7 +13,6 @@ import fun_Plot_NN_control_DataHeatmaps
 import fun_invest_ConstProp_strategy
 import fun_eval_objfun_NN_strategy
 import fun_W_T_stats
-import fun_BM_vs_NN_comparison
 import class_NN_Pytorch
 import export_control_from_NN
 
@@ -216,22 +211,12 @@ def RUN__wrapper_training_testing_NN(
     print("W_T_median: " + str(res_adam["temp_w_output_dict"]["W_T_median"]))
     print("W_T_pctile_5: " + str(res_adam["temp_w_output_dict"]["W_T_pctile_5"]))
     print("W_T_CVAR_5_pct: " + str(res_adam["temp_w_output_dict"]["W_T_CVAR_5_pct"]))
-    print("Average q (qsum/M+1): ", res_adam["q_avg"])
-    if params["xi_constant"]:
-        print("(xi held constant!)")
+    if params["nn_withdraw"]:
+        print("Average q (qsum/M+1): ", res_adam["q_avg"])
     print("Optimal xi: ", res_adam["optimal_xi"])
     print("Expected(across Rb) median(across samples) p_equity: ", res_adam["average_median_p"])
     print("obj fun: ", res_adam["objfun_final"])
     print("-----------------------------------------------")
-
-    # print("-----------------------------------------------")
-    # print("Selected results: NN-strategy-on-TRAINING dataset")
-    # print("W_T_mean: " + str(params_TRAIN["W_T_stats_dict"]["W_T_mean"]))
-    # print("W_T_median: " + str(params_TRAIN["W_T_stats_dict"]["W_T_median"]))
-    # print("W_T_pctile_5: " + str(params_TRAIN["W_T_stats_dict"]["W_T_pctile_5"]))
-    # print("W_T_CVAR_5_pct: " + str(params_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
-    # print("F value: " + str(params_TRAIN["F_val"]))
-    # print("-----------------------------------------------")
 
 
     #----------------------------------------------------------------------------------------
@@ -272,15 +257,6 @@ def RUN__wrapper_output(
     output_W_T_histogram_and_cdf_W_bin_width = output_parameters["output_W_T_histogram_and_cdf_W_bin_width"]  # Bin width of wealth for histogram and CDF.
 
 
-    # Roling historical test
-    output_Rolling_Historical_Data_test = output_parameters["output_Rolling_Historical_Data_test"]  # If true, test NN strategy and benchmark strategy on actual single
-    # historical data path, starting in each month and investing for the duration
-    fixed_yyyymm_list = output_parameters["fixed_yyyymm_list"]  # Used for historical rolling test; LIST of yyyymm_start months of interest
-    output_Rolling_Historical_only_for_fixed = output_parameters["output_Rolling_Historical_only_for_fixed"] #if True, outputs rolling historical ONLY for output_parameters["fixed_yyyymm_list"]
-
-    # Output benchmark stats
-    output_W_T_benchmark_comparisons = output_parameters["output_W_T_benchmark_comparisons"]  # If true, outputs W_T vs Benchmark differences and ratios
-
     # NN detail
     output_TrainingData_NNweights_test = output_parameters["output_TrainingData_NNweights_test"]  # if true, outputs the training paths + features + NN weights required to
     # reproduce the top and bottom k results for the terminal wealth and objective function values
@@ -308,10 +284,6 @@ def RUN__wrapper_output(
     heatmap_cbar_limits = output_parameters["heatmap_cbar_limits"] # list in format [vmin, vmax] for heatmap colorbar/scale
 
 
-    
-
-
-
     #----------------------------------------------------------------------------------------------------
     # OUTPUT full results to Excel (parameters + results)
     #----------------------------------------------------------------------------------------------------
@@ -331,8 +303,6 @@ def RUN__wrapper_output(
         #                                      output_Excel = output_results_Excel,
         #                                      filename_prefix_for_Excel=code_title_prefix
         #                                      )
-
-
 
     #----------------------------------------------------------------------------------------------------
     # OUTPUT terminal wealth vectors (W_T vectors) to .csv file AND/OR HISTOGRAM/CDF
@@ -413,24 +383,6 @@ def RUN__wrapper_output(
         )
 
 
-    # ----------------------------------------------------------------------------------------
-    # ROLLING HISTORICAL PATH assessment
-    # ----------------------------------------------------------------------------------------
-    # IMPORTANT: Only works with the *last* tracing_params entry run in the above loop
-
-
-    if output_Rolling_Historical_Data_test and params_TRAIN["data_source_Train"] == "bootstrap":
-        #Note: This needs historical data which is read during bootstrapping
-
-        top_bottom_rows_count = 2  # Number of top and bottom objective function and wealth values of interest
-
-        fun_output_results_RollingHistorical.output_results_RollingHistorical(params_TRAIN = params_TRAIN,
-                                     top_bottom_rows_count = top_bottom_rows_count,
-                                     fixed_yyyymm_list = fixed_yyyymm_list, #LIST of yyyymm_start months of interest
-                                     output_Excel= output_Rolling_Historical_Data_test,
-                                     output_only_for_fixed = output_Rolling_Historical_only_for_fixed, #output ONLY results for fixed_yyyymm_list
-                                     filename_prefix_for_Excel=code_title_prefix
-                                     )
 
     # ----------------------------------------------------------------------------------------------------
     # Output selected training PATHS and NN weights matrices for testing
@@ -473,22 +425,6 @@ def RUN__wrapper_output(
                             W_max=output_Pctiles_Plots_W_max,  # Maximum wealth value for wealth percentiles graph
                             )
 
-        
-
-    
-    #----------------------------------------------------------------------------------------------------
-    #  Stochastic benchmark objectives: output ratio stats
-    #----------------------------------------------------------------------------------------------------
-    if output_W_T_benchmark_comparisons is True:
-
-        fun_BM_vs_NN_comparison.fun_W_T_comparison_BM_vs_NN(
-            params_TRAIN = params_TRAIN,  # dictionary with parameters and results from NN TRAINING
-            params_BM_TRAIN = params_CP_TRAIN,  # dictionary with benchmark strategy results and info on the TRAINING dataset
-            params_TEST = params_TEST,  # dictionary with parameters and results from NN TESTING
-            params_BM_TEST=params_CP_TEST,  # dictionary with benchmark strategy results and info on the TESTING dataset
-            output_Excel=True,  # write the result to Excel
-            filename_prefix= code_title_prefix
-        )
 
     #Output since some summary fields have been added
     return params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST

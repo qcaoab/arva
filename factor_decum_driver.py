@@ -133,7 +133,7 @@ if params["TransCosts_TrueFalse"] is True:
 
 # Parameters for size of experiment:
 # Shortcut names to set size of experiment
-params["iter_params"] = "small" 
+params["iter_params"] = "tiny" 
 
     # parameters for full training loop
 if params["iter_params"] == "big":
@@ -220,9 +220,11 @@ params["obj_fun"] = "mean_cvar_single_level"  # see fun_Objective_functions.py t
                                               # to add additional objective functions. 
 params["obj_fun_epsilon"] =  10**-6 # epsilon in Forsyth stablization term. Not really needed for NN approach, but we usually
                                     # want it so we are solving the same objective function. 
+                                    
+# XI training settings (candidate VAR) for mean CVAR objective function:
 
-# hold xi (candidate VAR) constant? Only used for debugging purposes with mean-CVAR objective. 
-params["xi_constant"] = False
+params["xi_0"] = 100. #initial value
+params["xi_lr"] = adam_xi_eta # learning rate for xi (separate from NN learning rate)
 
 # Quadratic smoothing options for mean-cvar function. 
 params["smooth_cvar_func"] = True
@@ -246,8 +248,8 @@ params["lambda_quad"] = 10**(-6)
 # "te_stochastic": Tracking error as in Forsyth (2021)
 
 
-
-#k = 999. for Inf case!
+# TRACING PARAMETERS (i.e., kappa for mean cvar objective functions)
+# set k = 999. for Inf case!
 tracing_parameters_to_run =  [1.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
@@ -488,35 +490,31 @@ elif params["data_source_Train"] == "simulated":
 # Build Withdrawal NN, if needed: NN_withdrawal
 #---------------------------
 
-nn_options_q = {}              # _q indicates for withdrawals
-nn_options_q["nn_purpose"] = "withdrawal"
-nn_options_q["N_layers_hid"] = 2   # Nr of hidden layers of NN
-                               # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
-                               # layer_id list: [0, 1,...,N_L, N_L+1]
+if params["nn_withdraw"]:
 
-nn_options_q["N_nodes_input"] = params["N_phi"]    # number of input nodes. By default, feature vector phi includes just wealth and time
-nn_options_q["N_nodes_hid"] = 8                   # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer
-nn_options_q["N_nodes_out"] = 1             # number of nodes in output layer (withdrawal NN only takes 1)
-nn_options_q["hidden_activation"] = "logistic_sigmoid"       # Type of activation function for hidden layers
-nn_options_q["output_activation"] = "none"                  # Type of activation function for output layer. 
-                                                        # NOTE: When needing any kind of constraint activation function, this should be set to "none" so that the custom activation that encodes constraints can be applied in the fun_invest_NN.py file instead of in the PyTorch NN object itself. 
-                                                        
-# Set custom activation function with constraint. This is not applied in PyTorch object, and is instead applied as separate function in the fun_invest_NN.py file.                                                       
-params["w_constraint_activation"] = "yy_fix_jan29"   #"yy_fix_jan29" is the standard withdrawal constraint used in Forsyth (2022) "Nasty" paper, as well as all decumulation problems worked on by Mohib Shirazi and Marc Chen. 
+    nn_options_q = {}              # _q indicates for withdrawals
+    nn_options_q["nn_purpose"] = "withdrawal"
+    nn_options_q["N_layers_hid"] = 2   # Nr of hidden layers of NN
+                                # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
+                                # layer_id list: [0, 1,...,N_L, N_L+1]
 
-nn_options_q["biases"] = True       # add biases
-#store options for record keeping
-params["nn_options_q"] = nn_options_q
+    nn_options_q["N_nodes_input"] = params["N_phi"]    # number of input nodes. By default, feature vector phi includes just wealth and time
+    nn_options_q["N_nodes_hid"] = 8                   # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer
+    nn_options_q["N_nodes_out"] = 1             # number of nodes in output layer (withdrawal NN only takes 1)
+    nn_options_q["hidden_activation"] = "logistic_sigmoid"       # Type of activation function for hidden layers
+    nn_options_q["output_activation"] = "none"                  # Type of activation function for output layer. 
+                                                            # NOTE: When needing any kind of constraint activation function, this should be set to "none" so that the custom activation that encodes constraints can be applied in the fun_invest_NN.py file instead of in the PyTorch NN object itself. 
+                                                            
+    # Set custom activation function with constraint. This is not applied in PyTorch object, and is instead applied as separate function in the fun_invest_NN.py file.                                                       
+    params["w_constraint_activation"] = "yy_fix_jan29"   #"yy_fix_jan29" is the standard withdrawal constraint used in Forsyth (2022) "Nasty" paper, as well as all decumulation problems worked on by Mohib Shirazi and Marc Chen. 
 
-#initialize NN object for withdrawal network
-NN_withdraw = class_NN_Pytorch.pytorch_NN(nn_options_q)
+    nn_options_q["biases"] = True       # add biases
+    #store options for record keeping
+    params["nn_options_q"] = nn_options_q
 
-# print structure
-pd.set_option("display.max_rows", None, "display.max_columns", None)
-print(f"Intialized NN model structure for withdrawal: ")
-print(NN_withdraw.model) 
+    # NN initialization occurs in tracing parameter loop to ensure resetting/continuing parameters between runs
 
-
+#-------------------------------------
 # Build Allocation NN: NN_allocate 
 #---------------------------
 nn_options_p = {}              # _p indicates for allocation
@@ -537,19 +535,11 @@ nn_options_p["output_activation"] = "softmax"                  # Type of activat
 params["factor_constraint"] = False # True or False TODO: switch to change between "indiv", "group", and "None"
 params["dynamic_total_factorprop"] = False # True or False to switch on group constraint for all factor assets together
 params["factor_constraints_dict"] = None
-
                                                         
 nn_options_p["biases"] = True             # add biases
 #store options for record keeping
 params["nn_options_p"] = nn_options_p
 
-#initialize NN object for withdrawal network
-NN_allocate = class_NN_Pytorch.pytorch_NN(nn_options_p)
-
-# print structure
-pd.set_option("display.max_rows", None, "display.max_columns", None)
-print(f"Intialized NN model structure for allocation: ")
-print(NN_allocate.model) 
 
 
 #-----------------------------------------------------------------------------------------------
@@ -603,10 +593,8 @@ NN_training_options["running_min_from_avg"] = False #if true, take running min f
 NN_training_options["running_min_from_sgd"] = True #if true, take running min from sgd, both can be true
 NN_training_options["lr_schedule"] = True  #If true, set to divide lr by 10 at 70% and 97%
 
-
 print("\n NN training settings: ")
 print(NN_training_options)
-
 
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
@@ -617,23 +605,36 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
         params["kappa_inf"] = True
     else:
         params["kappa_inf"] = False
+    
+    
+    # INITIALIZE NNs:-----------------------------------------
+    #withdrawal network
+    if params["nn_withdraw"]:
+        NN_withdraw = class_NN_Pytorch.pytorch_NN(nn_options_q)
 
-    # copy NN structures to correct device
-    NN_withdraw.to(device)
+        # print structure
+        pd.set_option("display.max_rows", None, "display.max_columns", None)
+        print(f"Intialized NN model structure for withdrawal: ")
+        print(NN_withdraw.model) 
+        
+        # copy NN structures to correct device
+        NN_withdraw.to(device)
+        
+    #allocation network
+    NN_allocate = class_NN_Pytorch.pytorch_NN(nn_options_p)
     NN_allocate.to(device)
-
-    NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
-  
-     # - augment NN parameters with additional parameters to be solved
-    # if params["obj_fun"] in ["mean_cvar_single_level"]:  # MEAN-CVAR only, augment initial value with initial xi
-    #     if tracing_param == 1.0:
+    # print structure
+    print(f"Intialized NN model structure for allocation: ")
+    print(NN_allocate.model)     
     
-    xi_0 = 100.  
-    params["xi_0"] = xi_0
-    params["xi_lr"] = adam_xi_eta
+    # place in list object for convenience
+    if params["nn_withdraw"]:
+        NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
+    else:
+        NN_list = torch.nn.ModuleList([NN_allocate])
+    #--------------------------------------------------------------
     
-    if params["xi_constant"]:
-        params["xi_lr"] = 0.0
+     
     
     # manual preload: load at every tracing param, but is overridden by continuation learn if cont is set to true
     if preload:
@@ -643,7 +644,6 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
             suffix_len = len(str(tracing_param))
             nn_preload_path = Path(nn_preload + [path for path in files if path[0:15] =='NN_opt_mc_decum' 
                                and re.split('kappa_', path)[-1] == str(tracing_param)][0])
-            check = 0
         else:
             nn_preload_path = nn_preload
                         

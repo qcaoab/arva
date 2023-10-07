@@ -60,20 +60,16 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
 
     # Assign weights matrices and bias vectors in NN_object using given value of NN_theta
     #NN_object = params["NN_object"]
-    if len(params["NN_object"]) > 1:
+    if params["nn_withdraw"]:
         NN_object = params["NN_object"][1]
         NN_object_w = params["NN_object"][0]
         q_max = params["q_max"]
         q_min = params["q_min"]
-        use_PyTorch = True # At this point, it is synonymous with 2 NNs trained in PyTorch.
-        #@todo: fix this problem above
-    else:
-        NN_object.theta = params["res_BEST"]["NN_theta"]
-        NN_object.unpack_NN_parameters()
-
-    if use_PyTorch:
         asset_names.append("Withdrawals")
-
+    else:
+        NN_object = params["NN_object"][0]
+        
+        
     #Set up grids for feature vector evaluation
     W_grid = np.linspace(start=W_min, stop=W_max, num=W_num_pts)       #wealth grid
 
@@ -97,7 +93,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
         df_W_mesh.to_excel(fig_filename_prefix + "_FunctionHeatmap_WEALTH_mesh.xlsx", index=False, header=False)
 
 
-    if use_PyTorch:
+    if params["nn_withdraw"]:
         asset_loop_vector = np.arange(0, params["N_a"]+1,1) 
     else:
         asset_loop_vector = np.arange(0, params["N_a"],1)
@@ -107,7 +103,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
         z_NNopt_prop_mesh = np.empty(W_mesh.shape) #will contain NN-optimal proportion of wealth in asset_index
         z_NNopt_prop_mesh[:] = np.NaN
 
-        if asset_index == asset_loop_vector[-1]:
+        if asset_index == asset_loop_vector[-1] and params["nn_withdraw"]:
             withdraw = True
             z_NNopt_prop_mesh = z_NNopt_prop_mesh[:,1:] #will contain NN-optimal proportion of wealth in asset_index
         else:
@@ -120,8 +116,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
             # pctiles = np.percentile(params["W"][:,n_index], [5,95])
             # wealth_indices = (wealth_n > pctiles[0]) & (wealth_n < pctiles[1])
             # wealth_n = wealth_n[wealth_indices] 
-            if use_PyTorch:
-                wealth_n = torch.as_tensor(wealth_n, device = params["device"])
+            wealth_n = torch.as_tensor(wealth_n, device = params["device"])
 
             # ---------------------------Get standardized feature vector ---------------------------
             phi = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
@@ -137,7 +132,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
 
             #a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
             #z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index]
-            if use_PyTorch is True:
+            if params["nn_withdraw"]:
                 if asset_index == asset_loop_vector[-1]:
                     if n_index == 0:
                         continue
@@ -158,10 +153,11 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
                     # a_t_n_output = NN_object.forward(phi)
                     z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index].detach().to('cpu').numpy()
             else:
-                a_t_n_output, _, _ = NN_object.forward_propagation(phi=phi)
-                z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index]
+                a_t_n_output = torch.squeeze(NN_object.forward(phi))
+                z_NNopt_prop_mesh[:, n_index] = a_t_n_output[:, asset_index].detach().to('cpu').numpy()
+                
 
-        if asset_index == asset_loop_vector[-1]:
+        if asset_index == asset_loop_vector[-1] and params["nn_withdraw"]:
             with torch.no_grad():
                 wealth_n = torch.as_tensor(W_mesh[:,1], device = params["device"])
                 phi = construct_Feature_vector(params = params,  # params dictionary as per MAIN code

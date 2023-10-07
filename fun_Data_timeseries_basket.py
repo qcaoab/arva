@@ -4,7 +4,6 @@
 import pandas as pd
 import numpy as np
 import fun_Data_timeseries_basket_ASSETS
-import fun_Data_timeseries_basket_TRADSIG
 
 #Objective: constructs timeseries baskets: used for both ASSETS and TRADING SIGNAL (feature vector) constructions
 #IMPORTANT: If RETURNS, this code assumes the  historical returns time series in DECIMAL form, i.e. already divided by 100

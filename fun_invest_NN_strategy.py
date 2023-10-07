@@ -64,7 +64,7 @@ def withdraw_invest_NN_strategy(NN_list, params):
     else:
         node_adj = 0
         
-    if NN_list[1].model[-2].out_features != N_a + node_adj or NN_list[1].model[0].in_features != N_phi:
+    if NN_list[-1].model[-2].out_features != N_a + node_adj or NN_list[-1].model[0].in_features != N_phi:
         raise ValueError("PVS error in 'fun_NN_terminal_wealth': NN not right shape.")
 
     if sum(params["q"].shape) != N_rb:
@@ -309,7 +309,7 @@ def invest_NN_strategy_pyt(NN_pyt, params):
     
     #check return data right shapeparams["W"]
     #check number of output nodes 
-    if NN_pyt.model[-2].out_features != N_a or NN_pyt.model[0].in_features != N_phi:
+    if NN_pyt[0].model[-2].out_features != N_a or NN_pyt[0].model[0].in_features != N_phi:
         raise ValueError("PVS error in 'fun_NN_terminal_wealth': NN not right shape.")
 
     if sum(params["q"].shape) != N_rb:
@@ -321,6 +321,8 @@ def invest_NN_strategy_pyt(NN_pyt, params):
     params["W"] = np.zeros([N_d, N_rb+1]) #   W contains PATHS, so W.shape = (N_d, N_rb+1)
     params["W_paths_mean"] = np.zeros([1, N_rb + 1])    #mean of W paths at each rebalancing time
     params["W_paths_std"] = np.zeros([1, N_rb + 1])     #stdev of W paths at each rebalancing time
+
+    params["W_allocation"] = np.zeros([N_d, N_rb+1])
 
     params["Feature_phi_paths"] = np.zeros([N_d, N_rb, N_phi])  #Paths for the (possibly standardized) feature values
     params["NN_asset_prop_paths"] = np.zeros([N_d, N_rb, N_a])  #Paths for the proportions or wealth in each asset for given dataset
@@ -374,12 +376,31 @@ def invest_NN_strategy_pyt(NN_pyt, params):
             params["W_paths_std"][0, n_index] = torch.std(g_prev, unbiased=True) #ddof=1 for (N_d -1) in denominator (bessels correction)
         else:
             params["W_paths_std"][0, n_index] = torch.std(g_prev)
+            
+            
+        # --------------------------- RETURNS FOR  (t_n^+, t_n+1^-) ---------------------------
+        #Construct matrix from training data using the subset of returns for (t_n^+, t_n+1^-)
+        #   params["Y"][j, n_index, i] = Return, along sample path j, over time period (t_n, t_n+1),
+        #                           for asset i
+        # Y_t_n = params["Y"][:, n_index, :]
+        Y_t_n = torch.tensor(params["Y"][:, n_index, :], device=params["device"]) 
+        # Y_t_n[j,i] = return for asset i, along sample path j, over time period (t_n, t_n+1)
+        
+        #wondering about effect of negative wealth on allocation NN
 
-
+        #------------------------negative portfolios only incur borrowing cost (bond, not stock yield)----
+        
+        neg_indices = g_prev < 0 
+        
+        #to do: change this for multi asset problem
+        if neg_indices.any():
+            for i in range(Y_t_n.size()[1]):
+                Y_t_n[neg_indices][:,i] = Y_t_n[neg_indices][:,params["b10_idx"]] 
 
         #--------------------------- CONSTRUCT FEATURE VECTOR and standardize ---------------------------
 
-
+        params["W_allocation"][:,n_index] = g_prev.detach().cpu().numpy() #Update W to contain W(t_n^+)
+        
         phi = construct_Feature_vector(params = params,  # params dictionary as per MAIN code
                                  n = n,  # n is rebalancing event number n = 1,...,N_rb, used to calculate time-to-go
                                  wealth_n = g_prev,  # Wealth vector W(t_n^+), *after* contribution at t_n
@@ -396,7 +417,7 @@ def invest_NN_strategy_pyt(NN_pyt, params):
         #Get proportions to invest in each asset at time t_n^+
         #   a_t_n[j,i] = proportion to invest in asset i along sample path j
 
-        a_t_n_output = NN_pyt.forward(phi)
+        a_t_n_output = NN_pyt[0].forward(phi)
         
         
             # # output_Gradient == False: No need to keep track of the outputs
@@ -436,7 +457,24 @@ def invest_NN_strategy_pyt(NN_pyt, params):
 
             
     #end: TIMESTEPPING
+    #-------------------------------------------------------------------------------
+    #Update terminal wealth
+    g_np = g.detach().to('cpu').numpy()
+    params["W"][:, N_rb] = g_np.copy()
 
+    #Mean and std of paths
+    params["W_paths_mean"][0, N_rb] = np.mean(g_np)
+
+    if np.std(g_np) > 0.0: #to avoid errors with ddof
+        params["W_paths_std"][0, N_rb] = np.std(g_np, ddof=1)  # ddof=1 for (N_d -1) in denominator
+    else:
+        params["W_paths_std"][0, N_rb] = np.std(g_np)
+
+
+    # TERMINAL WEALTH: possible modification for possibly cash withdrawal at T^-
+    W_T = g_np.copy()  #terminal wealth
+    params["W_T"] = W_T.copy()
+    
     # -------------------------------------------------
 
     return params, g

@@ -43,7 +43,7 @@ def objective_mean_cvar_decumulation(params, qsum_T_vector, W_T_vector, xi):
 
 
 
-#MC added pytorch version of objective mean cvar
+#MC added pytorch version of objective mean cvar NO DECUMULATION
 def objective_mean_cvar_pytorch(params, W_T_vector, xi):
     
     #Assign and evaluate objective function and its gradient w.r.t. terminal wealth
