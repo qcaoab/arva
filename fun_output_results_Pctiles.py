@@ -165,12 +165,12 @@ def output_Pctile_paths(params,  # dictionary with parameters and results from N
             timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
 
             if node_index < N_a + withdraw_dummy: # ASSET node
-                fig_filename = fig_filename_prefix +  "timestamp_" + timestamp + "_Pctiles_asset_" \
+                fig_filename = fig_filename_prefix +  "_Pctiles_asset_" \
                                +  str(node_index) + "_" + asset_names[node_index] \
                                 + "." + save_Figures_format
 
             elif node_index == N_a + withdraw_dummy: #fake node to deal with wealth
-                fig_filename = fig_filename_prefix +  "timestamp_" + timestamp + "_Pctiles_Wealth" \
+                fig_filename = fig_filename_prefix +  "_Pctiles_Wealth" \
                                 + "." + save_Figures_format
 
             plt.savefig(fig_filename, format = save_Figures_format, bbox_inches = "tight")
@@ -187,7 +187,7 @@ def output_Pctile_paths(params,  # dictionary with parameters and results from N
     if output_Excel:
 
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
-        filename = filename_prefix_for_Excel  + "timestamp_" + timestamp + "_Pctiles_ALL"
+        filename = filename_prefix_for_Excel + "_Pctiles_ALL"
 
         df_pctiles_ALL.to_excel(filename + ".xlsx")
 

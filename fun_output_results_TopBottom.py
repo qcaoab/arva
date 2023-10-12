@@ -102,7 +102,7 @@ def output_training_results_TopBottom_paths(params_TRAIN, #params dictionary AFT
                         #contents of each dict_dfs_ALL.keys() will be in a separate worksheet, same workbook!
 
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
-        filename = filename_prefix_for_Excel + "timestamp_" + timestamp + "_TRAINING_TopBottomPaths_and_NNweights" + ".xlsx"
+        filename = filename_prefix_for_Excel + "_TRAINING_TopBottomPaths_and_NNweights" + ".xlsx"
 
         with pd.ExcelWriter(filename) as writer:    #we want to write out to multiple sheets
 

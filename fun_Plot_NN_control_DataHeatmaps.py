@@ -153,7 +153,7 @@ def plot_DataHeatmaps(
 
             timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
 
-            fig_filename = fig_filename_prefix + "timestamp_" + timestamp + "_DataHeatmap_asset_" \
+            fig_filename = fig_filename_prefix + "_DataHeatmap_asset_" \
                            + str(asset_index) + "_" + asset_names[asset_index] \
                            + "_[" + str(params["obj_fun_rho"]) + "]"\
                            + "." + save_Figures_format

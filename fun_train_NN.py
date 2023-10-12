@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import copy
 import fun_Data__assign
-from fun_train_NN_SGD_algorithms import run_Gradient_Descent, run_Gradient_Descent_pytorch    #SGD algorithms
+from fun_train_NN_SGD_algorithms import run_Gradient_Descent_pytorch    #SGD algorithms
 import fun_invest_NN_strategy
 import fun_eval_objfun_NN_strategy  #used for final objective function evaluation after training
 import fun_invest_NN_strategy

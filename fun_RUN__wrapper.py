@@ -159,21 +159,19 @@ def RUN__wrapper_training_testing_NN(
     print("W_T_CVAR_5_pct: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
     print("-----------------------------------------------")
 
-    # Append to params results for "W_paths_mean" and "W_paths_std",
-    #   used for standardizing the feature vector for NN strategy
-    params["benchmark_W_mean_train"] = params_CP_TRAIN["W_paths_mean"].copy()
-    params["benchmark_W_std_train"] = params_CP_TRAIN["W_paths_std"].copy()
+    
+    if params["sideloaded_standardization"] == True:
+        print("\n Side loaded standardization params from pre-trained model.")
+        
+    else:
+        # Append to params results for "W_paths_mean" and "W_paths_std",
+        # used for standardizing the feature vector for NN strategy
+        params["benchmark_W_mean_train"] = params_CP_TRAIN["W_paths_mean"].copy()
+        params["benchmark_W_std_train"] = params_CP_TRAIN["W_paths_std"].copy()
 
     #stats for post-withdrawal
     params["benchmark_W_mean_train_post_withdraw"] = params_CP_TRAIN["W_paths_mean_post_withdraw"].copy()
     params["benchmark_W_std_train_post_withdraw"] = params_CP_TRAIN["W_paths_std_post_withdraw"].copy()
-
-    if params["sideload_standardization"] == True:
-        f = open(params["standardization_file_path"])
-        temp_dict = json.load(f)
-        for (k,v) in temp_dict.items():
-            params[k] = np.array(v)
-    
     
     #Also add terminal wealth vector from constant proportion strategy (for ADS and IR objectives)
     if params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]:
@@ -245,7 +243,7 @@ def RUN__wrapper_output(
     # Unpack output flags
     # -----------------------------------------------------------------------------------------------
     # Basic output params                                             #added kappa to output name
-    code_title_prefix = output_parameters["code_title_prefix"] + str(params_TRAIN["obj_fun_rho"])   # used as prefix for naming files when saving outputs
+    code_title_prefix = output_parameters["code_title_prefix"]    # used as prefix for naming files when saving outputs
     output_results_Excel = output_parameters["output_results_Excel"]  # Output results summary to Excel
 
     save_Figures_format = output_parameters["save_Figures_format"] # format to save figures in, e.g. "png", "eps",
@@ -331,7 +329,8 @@ def RUN__wrapper_output(
                       bins = bins,  #bin edges or integer number of bins
                       percentage_or_count = "percentage", #not used for cdf
                       output_Excel=output_W_T_histogram_and_cdf,  # write the result to Excel
-                      filename_prefix_for_Excel= code_title_prefix
+                      filename_prefix_for_Excel= code_title_prefix,
+                      results_output = params_TRAIN["results_dir"]
                       )
 
     #----------------------------------------------------------------------------------------------------
@@ -350,7 +349,7 @@ def RUN__wrapper_output(
                                     W_max = heatmap_y_bin_max,  #maximum for the wealth grid
                                     save_Figures = save_Figures_FunctionHeatmaps,  #Saves figures in format specified below
                                     save_Figures_format = save_Figures_format,
-                                    fig_filename_prefix = code_title_prefix,
+                                    fig_filename_prefix = params_TRAIN["results_dir"],
                                     feature_calc_option = None,  # Set calc_option = "matlab" to match matlab code, None to match my notes
                                     xticklabels = heatmap_xticklabels,  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
                                     yticklabels= heatmap_yticklabels,  #e.g. yticklabels = 500 means we are displaying every 500th label
@@ -373,7 +372,7 @@ def RUN__wrapper_output(
             delta_y_bin = 5.0,  # bin width for W bins
             save_Figures=save_Figures_DataHeatmaps,  # Saves figures in format specified below
             save_Figures_format=save_Figures_format,
-            fig_filename_prefix = code_title_prefix,
+            fig_filename_prefix = params_TRAIN["results_dir"],
             xticklabels=heatmap_xticklabels,
             # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
             yticklabels=heatmap_yticklabels,  # e.g. yticklabels = 500 means we are displaying every 500th label
@@ -418,10 +417,10 @@ def RUN__wrapper_output(
                             params_TRAIN,  # dictionary with parameters and results from NN investment (TRAINING or TESTING)
                             pctiles=output_Pctiles_list,  # E.g. [20,50,80] List of percentiles to output and/or plot
                             output_Excel=output_Pctiles_Excel,  # write the result to Excel
-                            filename_prefix_for_Excel=code_title_prefix,  # used if output_Excel is True
+                            filename_prefix_for_Excel=params_TRAIN["results_dir"],  # used if output_Excel is True
                             save_Figures=output_Pctiles_Plots,  # Plots and save figures in format specified below
                             save_Figures_format="png",
-                            fig_filename_prefix=code_title_prefix,
+                            fig_filename_prefix=params_TRAIN["results_dir"],
                             W_max=output_Pctiles_Plots_W_max,  # Maximum wealth value for wealth percentiles graph
                             )
 

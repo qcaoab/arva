@@ -86,7 +86,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
         # TIME mesh output
         time_mesh = n_index_mesh * params["delta_t"] #Used to output data to Matlab
         df_time_mesh = pd.DataFrame(time_mesh)
-        df_time_mesh.to_excel(fig_filename_prefix + "_FunctionHeatmap_TIME_mesh.xlsx", index=False, header=False)
+        df_time_mesh.to_excel(params["results_dir"] + "_FunctionHeatmap_TIME_mesh.xlsx", index=False, header=False)
 
         # WEALTH mesh output
         df_W_mesh = pd.DataFrame(W_mesh)
@@ -257,7 +257,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
 
             timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
 
-            fig_filename = fig_filename_prefix +  "timestamp_" + timestamp + "_Heatmap_asset_" \
+            fig_filename = fig_filename_prefix + "_Heatmap_asset_" \
                            +  str(asset_index) + "_" + asset_names[asset_index] \
                            + "_[" + str(params["obj_fun_rho"]) + "]"\
                            + "." + save_Figures_format
@@ -415,7 +415,7 @@ def fun_Heatmap_NN_control_histpath_TradSig(params,  #params dictionary with *tr
     if save_Figures:
 
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
-        fig_filename = fig_filename_prefix + "timestamp_" + timestamp + "_Heatmap_HistoricalPaths_trading_signals" \
+        fig_filename = fig_filename_prefix + "_Heatmap_HistoricalPaths_trading_signals" \
                        + "_yyyymm_path_start_" + str(yyyymm_path_start) \
                        + "." + save_Figures_format
 
@@ -508,7 +508,7 @@ def fun_Heatmap_NN_control_histpath_TradSig(params,  #params dictionary with *tr
 
             timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
 
-            fig_filename = fig_filename_prefix + "timestamp_" + timestamp + "_Heatmap_asset_" \
+            fig_filename = fig_filename_prefix + "_Heatmap_asset_" \
                            +  str(asset_index) + "_" + asset_names[asset_index] \
                            + "_yyyymm_path_start_" + str(yyyymm_path_start) \
                            + "." + save_Figures_format

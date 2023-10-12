@@ -7,7 +7,6 @@ run_on_my_computer = False   #True if running in my local desktop, False if runn
 
 import pandas as pd
 import numpy as np
-import math
 import os
 import gc   #garbage collector
 import datetime
@@ -22,11 +21,11 @@ import re
 import fun_Data_timeseries_basket
 import fun_Data__bootstrap_wrapper
 import fun_Data__MCsim_wrapper
-import class_Neural_Network
 import fun_train_NN_algorithm_defaults
 import fun_RUN__wrapper
 import class_NN_Pytorch
 import torch
+import manage_nn_models
 
 if run_on_my_computer is True:  #handle importing of matplotlib
 
@@ -48,23 +47,22 @@ else:
 #-----------------------------------------------------------------------------------------------
 # Portfolio problem: Main structural parameters
 #-----------------------------------------------------------------------------------------------
-params = {} #Initialize empty dictionary
+params = {} #Initialize empty dictionary 
+
+# Name experiment for organizing output:
+params["experiment_name"] = "chen_decum"    
 
 # Record start time
 now = datetime.datetime.now()
 print ("Starting at: ")
-start_time = now.strftime("%d-%m-%y_%H:%M")
+start_time = now.strftime("%d-%m-%y_%H:%M:%S")
 params["start_time"] = start_time
 print(start_time)
 
-#filepath prefixes TODO: clean this up 
-abspath = os.path.abspath(__file__)
-dname = os.path.dirname(abspath)
-os.chdir(dname)
-code_title_prefix = "output_heatmaps_constrain/mc_decum_"+start_time+"/"   #used for saving output on local
-console_output_prefix = "mc_decum_" +start_time+"/"
-params["console_output_prefix"] = console_output_prefix
-
+# set working directory to be where this file is: 
+params["working_dir"] = os.path.dirname(os.path.abspath(__file__)) + "/" # Find name of directory of where this code is being run. 
+                                                                   # Subsequent file paths should be relative to this. 
+os.chdir(params["working_dir"]) 
 
 params["T"] = 30. #Investment time horizon, in years
 params["N_rb"] = 30  #Nr of equally-spaced rebalancing events in [0,T]
@@ -89,7 +87,6 @@ params["q_max"] = 60.0 #max withdrawal per Rb
 params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wealth (plus bond rate)
 # ^TODO: need to implement borrowing interest when wealth is negative
 
-
 #set seed for both pytorch and numpy
 params["random_seed"] = 2
 np.random.seed(params["random_seed"])
@@ -98,27 +95,18 @@ torch.manual_seed(params["random_seed"])
 print("\n pytorch seed: ", params["random_seed"], " \n")
 
 # Transfer learning flags:
-cont_nn = False  #if True, will use weights from previous tracing parameter to initialize NNtheta0. 
-cont_nn_start = 3 # tracing param (i.e. kappa) index (starts at 1) to start transfer learning from  
-cont_xi = False # uses previous value of optimal xi to initialize xi in next run
-cont_xi_start = 3  #tracing param index (starts at 1) to start transfer learning at
+transfer_learn = True #if True, will use weights from previous tracing parameter to initialize NN model. 
+transfer_learn_start = 0 # tracing param (i.e. kappa) index (starts at 1) to start transfer learning from  
 
 # preload saved model TODO: combine these and maybe replace entirely?
 preload = False
-params["local_path"] = str(os.getcwd())
 
-nn_preload = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/NN_opt_mc_decum_30-06-23_19:28_kappa_1.0" 
-xi_preload = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/xi_opt_mc_decum_30-06-23_19:28_kappa_1.0.json" 
-
-# Flag for side loading standardization parameters: necessary when you are testing on a distribution different from the 
-# training distribution. 
-params["sideload_standardization"] = False
-    
-params["standardization_file_path"] = "/home/marcchen/Documents/constrain_factor/researchcode/saved_models/standardizing_opt_mc_decum_27-06-23_18:47_kappa_1.0.json"
+# Set directory to load models from. Will automatically select model of correct tracing parameter if directory of models is given. Otherwise, path must point to model file directly.  
+load_model_dir = "saved_models_output/chen_decum_11-10-23_16:11:17" 
 
 # Options for exporting control: This is for creating a control file that Prof. Forsyth can use for his C++ based simulation.
 params["output_control"] = False
-params["control_filepath"] = params["local_path"] + "/control_files/feb14_kappa1_add_w1000.txt"
+params["control_filepath"] = params["working_dir"] + "/control_files/feb14_kappa1_add_w1000.txt"
 params["w_grid_min"] = 0
 params["w_grid_max"] = 10000
 params["nx"] = 4096
@@ -223,7 +211,7 @@ params["obj_fun_epsilon"] =  10**-6 # epsilon in Forsyth stablization term. Not 
                                     
 # XI training settings (candidate VAR) for mean CVAR objective function:
 
-params["xi_0"] = 100. #initial value
+params["xi_0"] = 100. #initial value -- will be overwritten if pre-loading a model.
 params["xi_lr"] = adam_xi_eta # learning rate for xi (separate from NN learning rate)
 
 # Quadratic smoothing options for mean-cvar function. 
@@ -250,7 +238,7 @@ params["lambda_quad"] = 10**(-6)
 
 # TRACING PARAMETERS (i.e., kappa for mean cvar objective functions)
 # set k = 999. for Inf case!
-tracing_parameters_to_run =  [1.0]
+tracing_parameters_to_run =  [1.0, 2.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
  #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
@@ -303,7 +291,8 @@ elif params["obj_fun"] == "meancvarLIKE_constant_wstar":  # NOT true mean-cvar!
 output_parameters = {}
 
 #Basic output params
-output_parameters["code_title_prefix"] = code_title_prefix # used as prefix for naming files when saving outputs
+output_parameters["code_title_prefix"] = params["experiment_name"]+"_"+start_time+"/" # prefix to name results, i.e. plots and results summary # used as prefix for naming files when saving outputs
+
 output_parameters["output_results_Excel"] = True      #Output results summary to Excel
 
 output_parameters["save_Figures_format"] = "png"  # if saving figs, format to save figures in, e.g. "png", "eps",
@@ -425,7 +414,7 @@ params = fun_Data__bootstrap_wrapper.wrap_append_market_data(
 output_bootstrap_source_data = False
 if output_bootstrap_source_data:
     df_temp = params["bootstrap_source_data"]
-    df_temp.to_excel(code_title_prefix + "bootstrap_source_data.xlsx")
+    df_temp.to_excel(output_parameters["code_title_prefix"] + "bootstrap_source_data.xlsx")
     
 
 #-----------------------------------------------------------------------------------------------
@@ -525,7 +514,7 @@ nn_options_p["N_layers_hid"] = 2   # Nr of hidden layers of NN
 
 nn_options_p["N_nodes_input"] = params["N_phi"]    # number of input nodes. By default, feature vector phi includes just wealth and time
 nn_options_p["N_nodes_hid"] = 8                   # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer
-nn_options_p["N_nodes_out"] = params["N_a"]               # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer  
+nn_options_p["N_nodes_out"] = params["N_a"]       # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer  
 nn_options_p["hidden_activation"] = "logistic_sigmoid"       # Type of activation function for hidden layers
 nn_options_p["output_activation"] = "softmax"                  # Type of activation function for output layer. 
                                                         # NOTE: When needing any kind of constraint activation function, this should be set to "none" so that the custom activation that encodes constraints can be applied in the fun_invest_NN.py file instead of in the PyTorch NN object itself. 
@@ -539,7 +528,6 @@ params["factor_constraints_dict"] = None
 nn_options_p["biases"] = True             # add biases
 #store options for record keeping
 params["nn_options_p"] = nn_options_p
-
 
 
 #-----------------------------------------------------------------------------------------------
@@ -563,6 +551,9 @@ params["benchmark_prop_const"] = np.ones(params["N_a"]) * (1/ params["N_a"])  # 
 
 # Constant Withdrawal: Most common constant benchmark is Bengen 4% rule, which is 40 if starting wealth is 1000. 
 params["withdraw_const"] = 40.0
+
+# Set sideloading feature standardization flag to false by default. Don't change this! This will be updated later if needed. 
+params["sideloaded_standardization"] = False
 
 
 #----------------------------------------------------------------------------------------
@@ -605,89 +596,88 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
         params["kappa_inf"] = True
     else:
         params["kappa_inf"] = False
+        
+    # Set directory to save results
+    params["results_dir"] = "results_output/" + output_parameters["code_title_prefix"] + "kappa_" + str(tracing_param) + "/"
+    # directory to save trained models
+    params["saved_model_dir"] = "saved_models_output/" + output_parameters["code_title_prefix"] 
+
+    # create subdirectories for this experiment's outputs:
+    os.makedirs(params["working_dir"] + params["saved_model_dir"], exist_ok=True)
+    os.makedirs(params["working_dir"] + params["results_dir"], exist_ok=True)
+    
     
     
     # INITIALIZE NNs:-----------------------------------------
-    #withdrawal network
-    if params["nn_withdraw"]:
-        NN_withdraw = class_NN_Pytorch.pytorch_NN(nn_options_q)
+    
+    
+    if not preload:
+        #withdrawal network
+        if params["nn_withdraw"]:
+            NN_withdraw = class_NN_Pytorch.pytorch_NN(nn_options_q)
 
+            # print structure
+            pd.set_option("display.max_rows", None, "display.max_columns", None)
+            print(f"Intialized NN model structure for withdrawal: ")
+            print(NN_withdraw.model) 
+            
+            # copy NN structures to correct device
+            NN_withdraw.to(device)
+            
+        #allocation network
+        NN_allocate = class_NN_Pytorch.pytorch_NN(nn_options_p)
+        NN_allocate.to(device)
         # print structure
-        pd.set_option("display.max_rows", None, "display.max_columns", None)
-        print(f"Intialized NN model structure for withdrawal: ")
-        print(NN_withdraw.model) 
+        print(f"Intialized NN model structure for allocation: ")
+        print(NN_allocate.model)     
         
-        # copy NN structures to correct device
-        NN_withdraw.to(device)
+        # place in list object for convenience
+        if params["nn_withdraw"]:
+            NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
+        else:
+            NN_list = torch.nn.ModuleList([NN_allocate])
+        #--------------------------------------------------------------
         
-    #allocation network
-    NN_allocate = class_NN_Pytorch.pytorch_NN(nn_options_p)
-    NN_allocate.to(device)
-    # print structure
-    print(f"Intialized NN model structure for allocation: ")
-    print(NN_allocate.model)     
     
-    # place in list object for convenience
-    if params["nn_withdraw"]:
-        NN_list = torch.nn.ModuleList([NN_withdraw, NN_allocate])
-    else:
-        NN_list = torch.nn.ModuleList([NN_allocate])
-    #--------------------------------------------------------------
+    #PRELOAD NN MODEL----------------------------------------------
     
-     
     
     # manual preload: load at every tracing param, but is overridden by continuation learn if cont is set to true
     if preload:
         
-        if os.path.isdir(nn_preload):
-            files = [f for f in os.listdir(nn_preload)]
+        if os.path.isdir(load_model_dir):
+            files = [f for f in os.listdir(load_model_dir)]
             suffix_len = len(str(tracing_param))
-            nn_preload_path = Path(nn_preload + [path for path in files if path[0:15] =='NN_opt_mc_decum' 
-                               and re.split('kappa_', path)[-1] == str(tracing_param)][0])
-        else:
-            nn_preload_path = nn_preload
-                        
+            # get filepath for the  
+            kappa_filepath = [path for path in files if re.split('kappa_|.pkl', path)[1] == str(tracing_param)]
             
-        NN_list.load_state_dict(torch.load(nn_preload_path))
-        NN_list.eval()
+            if len(kappa_filepath) > 1:
+                raise Exception(f"Warning: Multiple models available for kappa = {tracing_param} available.")
+            elif kappa_filepath == []: # if no model for current kappa exists
+                raise Exception(f"Warning: No pre-saved model for kappa = {tracing_param} available.")
+            else:
+                preload_path = Path(load_model_dir + "/" + kappa_filepath[0])
+        else:
+            preload_path = load_model_dir
+                        
+        #LOAD MODEL and update 'params' with necessary metadata      
+        NN_list, params = manage_nn_models.load_model(preload_path, params)
         print("pre-loaded NN: ", NN_list.state_dict())
         
-        if os.path.isdir(nn_preload):
-            files = [f for f in os.listdir(nn_preload)]
-            suffix_len = len(str(tracing_param)+'.json')
-            xi_preload_path = Path(nn_preload + [path for path in files if path[0:15] =='xi_opt_mc_decum' 
-                               and re.split('kappa_', path)[-1] == str(tracing_param)+'.json'][0])
-        else:
-            xi_preload_path = xi_preload
-            
-        
-        obj_text = codecs.open(xi_preload_path,'r', encoding='utf-8').read()
-        b_new = json.loads(obj_text)
-        print("loaded xi: ", b_new["xi"])
-        params["xi_0"] = float(b_new["xi"])
+           
+    # Load transfer learn model from previous kappa point
+    if i == 0:
+        last_kappa = 0  # if first kappa point, don't load model
+    else:
+        last_kappa = tracing_parameters_to_run[i-1]
+    model_save_path = params["saved_model_dir"]
+    last_model_path = Path(f"{model_save_path}kappa_{last_kappa}.pkl")
     
-    # load continuation learn model
-    past_kappa = tracing_parameters_to_run[i-1]
-    model_save_path = params["console_output_prefix"]
-    nn_saved_model = Path(params["local_path"] + f"/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
-    xi_saved = Path(params["local_path"] + f"/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
-    # nn_saved_model = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/NN_opt_{model_save_path}_kappa_{past_kappa}")
-    # xi_saved = Path(f"/home/mmkshira/Documents/pytorch_decumulation_mc/researchcode/saved_models/xi_opt_{model_save_path}_kappa_{past_kappa}.json")
-
-    if nn_saved_model.is_file():
+    if last_model_path.is_file() and transfer_learn:
         
-        #NN
-        if cont_nn and tracing_param not in tracing_parameters_to_run[0:cont_nn_start]:
-            NN_list.load_state_dict(torch.load(nn_saved_model))
-            NN_list.eval()
-            print("loaded continuation NN: ", NN_list.state_dict())
-            
-        #xi
-        if cont_xi and tracing_param not in tracing_parameters_to_run[0:cont_xi_start]:
-            obj_text = codecs.open(xi_saved,'r', encoding='utf-8').read()
-            b_new = json.loads(obj_text)
-            params["xi_0"] = float(b_new["xi"])
-            print("loaded xi: ", b_new["xi"])
+        NN_list, params = manage_nn_models.load_model(last_model_path, params)
+        
+        print(f"Transfer learning model loaded from kappa_{last_kappa}.")
                    
     
     # SET TRACING PARAMETERS inside params ----------------------------
@@ -698,34 +688,10 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
         params["obj_fun_rho"] = tracing_param  # all of them use rho (scalarization parameter)
 
 
-    #Now set tracing_params for STOCHASTIC BENCHMARK objectives:
-    # this is for params["obj_fun"] in ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]
-    elif params["obj_fun"] == "ads_stochastic": #ADS objective
-        params["obj_fun_ads_beta"] = tracing_param  # annual target outperformance rate - see Ni, Li, Forsyth (2020)
-
-    elif params["obj_fun"] == "qd_stochastic":
-        params["obj_fun_qd_beta"] = tracing_param  #  beta >= 0 in exp(beta*T)
-
-    elif params["obj_fun"] == "ir_stochastic": # INFORMATION RATIO using stochastic target
-        params["obj_fun_ir_gamma"] = tracing_param  # objective function gamma (embedding parameter)
-
-    elif params["obj_fun"] == "te_stochastic":  # TRACKING ERROR as in Forsyth (2021)
-        if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] is False:
-            params["obj_fun_te_beta"] = tracing_param  # need to specify beta for beta_hat = exp(beta*t_n)
-        else:  # if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] is True
-            params["obj_fun_te_beta_hat"] = tracing_param  # Need to specify beta_hat CONSTANT value >= 1
-
-
     # Do ONE-STAGE optimization for some objectives ----------------------------
     if params["obj_fun"] in ["mean_cvar_single_level",
                              "one_sided_quadratic_target_error",
-                             "quad_target_error",
-                             "huber_loss",
-                             "ads",
-                             "ads_stochastic",
-                             "qd_stochastic",
-                             "ir_stochastic",
-                             "te_stochastic"]:
+                             "quad_target_error"]:
 
         params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
             fun_RUN__wrapper.RUN__wrapper_ONE_stage_optimization(
@@ -735,20 +701,6 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
                 # dictionary with options to train NN, specifying algorithms and hyperparameters
                 output_parameters = output_parameters  # Dictionary with output parameters as setup in main code
             )
-
-    # Do TWO-STAGE optimization for some objectives ----------------------------
-    # elif params["obj_fun"] in ["meancvarLIKE_constant_wstar"]:
-
-    #     params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
-    #         fun_RUN__wrapper.RUN__wrapper_TWO_stage_optimization(
-    #             params=params,  # dictionary as setup in the main code
-    #             NN=NN,  # object of class_Neural_Network with structure as setup in main code
-    #             theta0=theta0,
-    #             # initial parameter vector (weights and biases) + other parameters for objective function
-    #             NN_training_options=NN_training_options,
-    #             # dictionary with options to train NN, specifying algorithms and hyperparameters
-    #             output_parameters = output_parameters  # Dictionary with output parameters as setup in main code
-    #         )
 
     else:
         raise ValueError("PVS error in main code: params['obj_fun'] = " + params['obj_fun'] +

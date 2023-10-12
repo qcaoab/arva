@@ -37,7 +37,7 @@ def output_W_T_vectors(params_TRAIN,         # dictionary with parameters and re
     # OUTPUT to Excel if required
     if output_Excel:
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
-        filename = filename_prefix_for_Excel + "timestamp_" + timestamp + "_W_T_vectors"
+        filename = filename_prefix_for_Excel + "_W_T_vectors"
         df_output.to_excel(filename + ".xlsx", header= True, index=False)
 
     return df_output
@@ -47,8 +47,8 @@ def output_W_T_histogram_and_cdf(df_W_T_vectors,  #df_output from the function o
                           percentage_or_count = "percentage",  #set to "count" for number of obs in each bin,
                           # "percentage" for % of total nr of obs in each bin; #NOT used for CDF!
                           output_Excel=False,  # write the result to Excel
-                          filename_prefix_for_Excel="z_"  # used if output_Excel== True
-                          ):
+                          filename_prefix_for_Excel="z_",  # used if output_Excel== True
+                          results_output = ""):
 
     #OBJECTIVE: Calculates histogram and CDF for the W_T vectors based on the function output_W_T_vectors
 
@@ -91,9 +91,8 @@ def output_W_T_histogram_and_cdf(df_W_T_vectors,  #df_output from the function o
     if output_Excel:
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
         
-        filename = filename_prefix_for_Excel + "timestamp_" + timestamp + "_W_T_histogram_and_cdf" \
-                       + ".xlsx"
-        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        filename = results_output + "cdf_histogram" + ".xlsx"
+        
         
         with pd.ExcelWriter(filename) as writer:
             df_hist.to_excel(writer, sheet_name="hist_" + percentage_or_count, header=True, index=True)
@@ -517,7 +516,7 @@ def output_results_NN(params_TRAIN,         # dictionary with parameters and res
     # OUTPUT to Excel if required
     if output_Excel:
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H_%M')
-        filename = filename_prefix_for_Excel + "timestamp_" + timestamp + "__output"
+        filename = filename_prefix_for_Excel + "__output"
         output_full_results.to_excel(filename + ".xlsx")
 
     return output_full_results
