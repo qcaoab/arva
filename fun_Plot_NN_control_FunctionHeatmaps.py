@@ -86,7 +86,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
         # TIME mesh output
         time_mesh = n_index_mesh * params["delta_t"] #Used to output data to Matlab
         df_time_mesh = pd.DataFrame(time_mesh)
-        df_time_mesh.to_excel(params["results_dir"] + "_FunctionHeatmap_TIME_mesh.xlsx", index=False, header=False)
+        df_time_mesh.to_excel(params["results_dir_kappa"] + "_FunctionHeatmap_TIME_mesh.xlsx", index=False, header=False)
 
         # WEALTH mesh output
         df_W_mesh = pd.DataFrame(W_mesh)
@@ -233,8 +233,7 @@ def fun_Heatmap_NN_control_basic_features(params,  #params dictionary with *trai
             h.set_yticklabels(W_grid_list[::yticklabels])
             h.set_xticklabels(time_forward[::xticklabels], rotation = 0)
             h.invert_yaxis()
-            print("bond graph is mislabeled!")
-            plt.title('Fraction in Stocks',# + asset_names[asset_index],
+            plt.title(f'Fraction in ' + asset_names[asset_index],
                       fontweight="bold", fontsize=12, pad = 10)  
             plt.text(0.86, 0.82, " 100% \nStocks",fontweight="bold", transform=plt.gcf().transFigure)
             plt.text(0.86, 0.12, " 100% \nBonds",fontweight="bold", transform=plt.gcf().transFigure)

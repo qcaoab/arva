@@ -136,7 +136,7 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
 
 
         #withdraw constant withdrawal strategy
-        if params["withdraw_const"] is not None:
+        if params["withdraw_const"] is not None and params["nn_withdraw"]:
         
             W_withdrawn = W_start - params["withdraw_const"]
             num_withdrawals += 1 
@@ -198,15 +198,12 @@ def invest_ConstProp_strategy(prop_const, params, train_test_Flag = "train"):
     #END: Loop over rebalancing events
 
     # one last withdrawal:
-    W_end = W_end - params["withdraw_const"]
-    num_withdrawals += 1 
-    qsum_const_T += params["withdraw_const"]
     
-
-    # print("const_prop check: ")
-    # print("num withdrawals: ", num_withdrawals)
-    # print("total withdrawals: ", qsum_const_T)
-
+    if params["nn_withdraw"]:
+        W_end = W_end - params["withdraw_const"]
+        num_withdrawals += 1 
+        qsum_const_T += params["withdraw_const"]
+    
     #Pay transaction costs from final rebalancing event, and update cumulative TCs
     if params["TransCosts_TrueFalse"] is True:
         W_end = W_end - np.exp(TransCosts_r_b*delta_t)*C_due

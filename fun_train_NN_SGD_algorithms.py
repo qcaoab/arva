@@ -291,9 +291,9 @@ def run_Gradient_Descent_pytorch(NN_list, params, NN_training_options):
     res["temp_w_output_dict"] = W_T_stats_dict
     if params["nn_withdraw"]:  #decumulation
         res["q_avg"] = torch.mean(qsum_T_vector).cpu().detach().numpy()/(params["N_rb"]+1)
-    res["optimal_xi"] = xi_np
+    res["optimal_xi"] = float(xi_np[0])
     res["average_median_p"] = np.mean(np.median(params["NN_asset_prop_paths"], axis = 0)[:,1])
-    res["objfun_final"] = min_fval
+    res["objfun_final"] = min_fval.cpu().detach().tolist()
     
 
     #---------CREATE SAVED MODEL OBJECT---------------

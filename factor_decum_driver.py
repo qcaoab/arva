@@ -8,14 +8,12 @@ run_on_my_computer = False   #True if running in my local desktop, False if runn
 import pandas as pd
 import numpy as np
 import os
-import gc   #garbage collector
 import datetime
-import pickle
 import sys
 import datetime
-import codecs, json
 from pathlib import Path
 import re
+import json
 
 #Import files needed (other files are imported within those files as needed)
 import fun_Data_timeseries_basket
@@ -23,9 +21,11 @@ import fun_Data__bootstrap_wrapper
 import fun_Data__MCsim_wrapper
 import fun_train_NN_algorithm_defaults
 import fun_RUN__wrapper
+import fun_utilities
 import class_NN_Pytorch
 import torch
 import manage_nn_models
+import copy
 
 if run_on_my_computer is True:  #handle importing of matplotlib
 
@@ -121,12 +121,12 @@ if params["TransCosts_TrueFalse"] is True:
 
 # Parameters for size of experiment:
 # Shortcut names to set size of experiment
-params["iter_params"] = "tiny" 
+params["iter_params"] = "small" 
 
     # parameters for full training loop
 if params["iter_params"] == "big":
     N_d_train = int(2.56* (10**5))   # number of random paths simulated or sampled
-    itbound = 20000                  # number of training iterations
+    itbound = 30000                  # number of training iterations
     batchsize = 1000                 # Mini-batch: number of paths in each Stochastic Gradient Descent iteration 
     nodes_nn = 8                     # number of nodes in each hidden layer for each NN
     layers_nn = 2                    # number of hidden layers for each NN
@@ -145,10 +145,10 @@ if params["iter_params"] == "check":
     adam_xi_eta = 0.00  # learning rate set to zero to ensure no training happens when you are testing the model
     adam_nn_eta = 0.00
 
-    # small training loop for testing code functionality -- should be able to get reasonable performance from this
+    # small training loop for testing code functionality -- should be able to get reasonable results from this
 if params["iter_params"] == "small":
     N_d_train = int(2.56* (10**4)) 
-    itbound = 4000
+    itbound = 2000
     batchsize = 1000
     nodes_nn = 8
     layers_nn = 2
@@ -229,11 +229,6 @@ params["lambda_quad"] = 10**(-6)
 # "meancvarLIKE_constant_wstar"   (NOT true mean-cvar)
 # "ads" for constant target
 
-#STOCHASTIC BENCHMARK objective functions:
-# "ads_stochastic" using asymm. dist. shaping as in Ni, Li, Forsyth (2020)
-# "qd_stochastic":  Quadratic deviation from elevated target as in Forsyth (2021)
-# "ir_stochastic" info ratio using *STOCHASTIC TARGET* as in Goetzmann et al (2002)
-# "te_stochastic": Tracking error as in Forsyth (2021)
 
 
 # TRACING PARAMETERS (i.e., kappa for mean cvar objective functions)
@@ -252,16 +247,6 @@ tracing_parameters_to_run =  [1.0, 2.0]
 #   params["obj_fun_rho"] if obj_fun is in ["mean_cvar_single_level"], *larger* rho means we are looking for a *higher* mean
 #       this "rho" is usually referred to as "\kappa" in Forsyth and Li's papers.
 #   params["obj_fun_W_target"] if obj_fun is in ["one_sided_quadratic_target_error", "quad_target_error", "huber_loss", "ads"]
-
-
-# It could also be interpreted as follows for other objective functions: (none of these are implemented)
-#   -> STOCHASTIC BENCHMARK objectives tracing parameters:
-# "ads_stochastic": params["obj_fun_ads_beta"]>=0 which is the annual target outperformance rate, in exp(beta*T)
-# "qd_stochastic": params["obj_fun_qd_beta"] >= 0, this is beta in exp(beta*T)
-# "ir_stochastic": [Information ratio] then this is the embedding parameter gamma >0
-# "te_stochastic": [Tracking error] this is "beta" >=0 or "beta_hat" >=1:
-#       if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] = True, this is beta_hat
-#       if params["obj_fun_te_beta_hat_CONSTANT_TrueFalse"] = False, this is beta in exp(beta*t_n)
 
 
 # Set objective function parameters [rarely changed]
@@ -587,6 +572,32 @@ NN_training_options["lr_schedule"] = True  #If true, set to divide lr by 10 at 7
 print("\n NN training settings: ")
 print(NN_training_options)
 
+
+params["results_dir"] = "results_output/" + output_parameters["code_title_prefix"] 
+
+# directory to save trained models
+params["saved_model_dir"] = "saved_models_output/" + output_parameters["code_title_prefix"] 
+
+# create subdirectories and summary file for this experiment's outputs:
+os.makedirs(params["saved_model_dir"], exist_ok=True)
+os.makedirs(params["results_dir"], exist_ok=True)
+
+# Create results summary file to append results to for each kappa point:
+result_summary = {}
+exp_details = copy.deepcopy(params)
+
+# delete all fields that can't be put into json
+for key in params.keys():
+    if fun_utilities.is_jsonable(exp_details[key]) == False:
+        del exp_details[key]
+
+result_summary["exp_details"] = exp_details
+out_file = open(params["results_dir"]+"results_summary.json", "w") 
+
+json.dump(result_summary, out_file, indent = 6)
+out_file.close() 
+
+
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
 for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_params
@@ -597,14 +608,10 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     else:
         params["kappa_inf"] = False
         
-    # Set directory to save results
-    params["results_dir"] = "results_output/" + output_parameters["code_title_prefix"] + "kappa_" + str(tracing_param) + "/"
-    # directory to save trained models
-    params["saved_model_dir"] = "saved_models_output/" + output_parameters["code_title_prefix"] 
-
-    # create subdirectories for this experiment's outputs:
-    os.makedirs(params["working_dir"] + params["saved_model_dir"], exist_ok=True)
-    os.makedirs(params["working_dir"] + params["results_dir"], exist_ok=True)
+    # Set directory to save results for each kappa point
+    params["results_dir_kappa"] = "results_output/" + output_parameters["code_title_prefix"] + \
+                                    "kappa_" + str(tracing_param) + "/"
+    os.makedirs(params["results_dir_kappa"], exist_ok=True)
     
     
     

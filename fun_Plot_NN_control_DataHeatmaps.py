@@ -13,6 +13,8 @@ import seaborn as sns
 import datetime
 import pandas as pd
 from constraint_activations import w_custom_activation
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def plot_DataHeatmaps(

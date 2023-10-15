@@ -102,7 +102,6 @@ def RUN__wrapper_ONE_stage_optimization(
     # "quad_target_error",
     # "huber_loss",
     # "ads"
-    # ["ads_stochastic", "qd_stochastic", "ir_stochastic", "te_stochastic"]
 
     #Do TRAINING and/or TESTING of NN
     params_TRAIN, params_CP_TRAIN, params_TEST, params_CP_TEST = \
@@ -159,9 +158,26 @@ def RUN__wrapper_training_testing_NN(
     print("W_T_CVAR_5_pct: " + str(params_CP_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]))
     print("-----------------------------------------------")
 
+    # Append constant benchmark results to the results summary file:
     
+    with open(params["results_dir"]+"results_summary.json") as in_file:
+        results_dict = json.load(in_file)
+    
+    results_dict["constant_benchmark_results"] = {"constant withdrawal": params["withdraw_const"],
+                                                  "constant allocation": params["benchmark_prop_const"].tolist(),
+                                                  "W_T_mean": params_CP_TRAIN["W_T_stats_dict"]["W_T_mean"],
+                                                  "W_T_median": params_CP_TRAIN["W_T_stats_dict"]["W_T_median"],
+                                                  "W_T_pctile_5": params_CP_TRAIN["W_T_stats_dict"]["W_T_pctile_5"],
+                                                  "W_T_CVAR_5_pct": params_CP_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]}
+    
+    with open(params["results_dir"]+"results_summary.json", "w") as out_file:
+        json.dump(results_dict, out_file, indent = 6)
+    out_file.close() 
+  
+    
+    # Don't over write standardization values if sideloaded during initialization   
     if params["sideloaded_standardization"] == True:
-        print("\n Side loaded standardization params from pre-trained model.")
+        print("\n Side loaded standardization params from pre-trained model. \n")
         
     else:
         # Append to params results for "W_paths_mean" and "W_paths_std",
@@ -203,6 +219,7 @@ def RUN__wrapper_training_testing_NN(
                                     )
 
 
+    # Print results of trained NN model:
     print("-----------------------------------------------")
     print("Selected results: NN-strategy-on-TRAINING dataset (temp implementation")
     print("W_T_mean: " + str(res_adam["temp_w_output_dict"]["W_T_mean"]))
@@ -216,7 +233,28 @@ def RUN__wrapper_training_testing_NN(
     print("obj fun: ", res_adam["objfun_final"])
     print("-----------------------------------------------")
 
-
+        
+    # Append NN results to the results summary file:
+    in_file = open(params["results_dir"]+"results_summary.json")
+    results_dict = json.load(in_file)
+    in_file.close()
+    
+    results_dict["NN_results_kappa_" + str(params["obj_fun_rho"])] = {"kappa": params["obj_fun_rho"],
+                                                  "W_T_mean": params_CP_TRAIN["W_T_stats_dict"]["W_T_mean"],
+                                                  "W_T_median": params_CP_TRAIN["W_T_stats_dict"]["W_T_median"],
+                                                  "W_T_pctile_5": params_CP_TRAIN["W_T_stats_dict"]["W_T_pctile_5"],
+                                                  "W_T_CVAR_5_pct": params_CP_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"],
+                                                  "optimal_xi": res_adam["optimal_xi"],
+                                                  "obj_fun_value": res_adam["objfun_final"]}
+    
+    if params["nn_withdraw"]:
+        results_dict["NN_results_kappa_" + str(params["obj_fun_rho"])]["Average q (qsum/M+1)"] = res_adam["q_avg"]
+    
+    out_file = open(params["results_dir"]+"results_summary.json", "w")
+    json.dump(results_dict, out_file, indent = 6)
+    out_file.close() 
+  
+    
     #----------------------------------------------------------------------------------------
     # TESTING of NN
     #----------------------------------------------------------------------------------------
@@ -330,7 +368,7 @@ def RUN__wrapper_output(
                       percentage_or_count = "percentage", #not used for cdf
                       output_Excel=output_W_T_histogram_and_cdf,  # write the result to Excel
                       filename_prefix_for_Excel= code_title_prefix,
-                      results_output = params_TRAIN["results_dir"]
+                      results_output = params_TRAIN["results_dir_kappa"]
                       )
 
     #----------------------------------------------------------------------------------------------------
@@ -349,7 +387,7 @@ def RUN__wrapper_output(
                                     W_max = heatmap_y_bin_max,  #maximum for the wealth grid
                                     save_Figures = save_Figures_FunctionHeatmaps,  #Saves figures in format specified below
                                     save_Figures_format = save_Figures_format,
-                                    fig_filename_prefix = params_TRAIN["results_dir"],
+                                    fig_filename_prefix = params_TRAIN["results_dir_kappa"],
                                     feature_calc_option = None,  # Set calc_option = "matlab" to match matlab code, None to match my notes
                                     xticklabels = heatmap_xticklabels,  # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
                                     yticklabels= heatmap_yticklabels,  #e.g. yticklabels = 500 means we are displaying every 500th label
@@ -372,7 +410,7 @@ def RUN__wrapper_output(
             delta_y_bin = 5.0,  # bin width for W bins
             save_Figures=save_Figures_DataHeatmaps,  # Saves figures in format specified below
             save_Figures_format=save_Figures_format,
-            fig_filename_prefix = params_TRAIN["results_dir"],
+            fig_filename_prefix = params_TRAIN["results_dir_kappa"],
             xticklabels=heatmap_xticklabels,
             # e.g. xticklabels=6 means we are displaying only every 6th xaxis label to avoid overlapping
             yticklabels=heatmap_yticklabels,  # e.g. yticklabels = 500 means we are displaying every 500th label
@@ -417,10 +455,10 @@ def RUN__wrapper_output(
                             params_TRAIN,  # dictionary with parameters and results from NN investment (TRAINING or TESTING)
                             pctiles=output_Pctiles_list,  # E.g. [20,50,80] List of percentiles to output and/or plot
                             output_Excel=output_Pctiles_Excel,  # write the result to Excel
-                            filename_prefix_for_Excel=params_TRAIN["results_dir"],  # used if output_Excel is True
+                            filename_prefix_for_Excel=params_TRAIN["results_dir_kappa"],  # used if output_Excel is True
                             save_Figures=output_Pctiles_Plots,  # Plots and save figures in format specified below
                             save_Figures_format="png",
-                            fig_filename_prefix=params_TRAIN["results_dir"],
+                            fig_filename_prefix=params_TRAIN["results_dir_kappa"],
                             W_max=output_Pctiles_Plots_W_max,  # Maximum wealth value for wealth percentiles graph
                             )
 

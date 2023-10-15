@@ -10,6 +10,7 @@
 # importlib.reload(NN_optimize_scipy_algorithms)
 
 import numpy as np
+import json
 
 def abs_value_smooth_quad(x,lambda_param, output_Gradient = False):
     #Returns smooth approximation to |x| and its derivative using
@@ -50,7 +51,12 @@ def abs_value_smooth_quad(x,lambda_param, output_Gradient = False):
 
     return abs_value, grad_abs_value
 
-
+def is_jsonable(x):
+    try:
+        json.dumps(x)
+        return True
+    except (TypeError, OverflowError):
+        return False
 
 
 def np_array_indices_SMALLEST_k_values_no_sorting(array, k):
