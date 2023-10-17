@@ -313,51 +313,6 @@ def run_Gradient_Descent_pytorch(NN_list, params, NN_training_options):
     # Make sure parameter dictionary is updated so that e.g. fun_Objective_functions can work correctly
     params["xi"] = xi_np[0] 
     
-    
-    # TODO
-    # # ---------------------------- SET OUTPUT --------------------------------------------
-    # res["method"] = method
-    # res["F_theta"] = F_theta        #minimizer or point where algorithm stopped
-    # res["NN_theta"] = NN_theta        #minimizer or point where algorithm stopped
-    # res["nit"] = int(it)     #total nr of iterations executed to get res["NN_theta"]
-    # res["val"] = val    #objective function value evaluated at res["NN_theta"]
-    # res["supnorm_grad"] = supnorm_grad  # sup norm of gradient vector at res["NN_theta"], i.e. max(abs(gradient))
-    # res["runtime_mins"] = t_runtime  # run time in MINUTES until output is obtained
-
-    # #Append terminal wealth stats using this optimal value
-    # W_T = params["W"][:, -1]
-
-    # #Override W_T in one case
-    # if params["obj_fun"] == "one_sided_quadratic_target_error":  # only in this case
-    #     if params["obj_fun_cashwithdrawal_TrueFalse"] == True:  #Check if we want values *after* cash withdrawal
-    #         W_T = params["W_T_cashwithdraw"]
-
-
-
-    # W_T_stats_dict = fun_W_T_summary_stats(W_T)
-
-    # #Remove "W_T_summary_stats" dataframe
-    # del W_T_stats_dict['W_T_summary_stats']
-
-    # #Add summary stats to res dictionary
-
-    # res.update(W_T_stats_dict)
-
-    # #Put results in pandas.Dataframe for easy comparison with other methods
-    # W_T_stats_df = pd.DataFrame(data=W_T_stats_dict, index=[0])
-
-
-    # summary_df = pd.DataFrame([[method, it, val, supnorm_grad, t_runtime]],
-    #                           columns=["method", "nit", "objfunc_val", "supnorm_grad", "runtime_mins"])
-    
-    # summary_df = pd.concat([summary_df, W_T_stats_df], axis=1, ignore_index = False)
-
-
-    # res["summary_df"] = summary_df
-
-    # if output_progress == True:
-    #     res["vval"] = vval    #pandas DataFrame outputted ONLY if  output_progress == True:
-
 
     return res
     

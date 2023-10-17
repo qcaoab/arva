@@ -4,7 +4,6 @@
 
 from fun_invest_NN_strategy import invest_NN_strategy
 from fun_construct_Feature_vector import construct_Feature_vector
-import class_Neural_Network
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')

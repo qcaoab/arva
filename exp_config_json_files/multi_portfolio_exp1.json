@@ -1,5 +1,4 @@
-{
-    "2basic_NN_test_old_data": [
+{  "2basic_NN_test_old_data": [
         {  
             "seed_mc": 2,
             "cont_nn": false,

@@ -160,7 +160,7 @@ def RUN__wrapper_training_testing_NN(
 
     # Append constant benchmark results to the results summary file:
     
-    with open(params["results_dir"]+"results_summary.json") as in_file:
+    with open(params["results_dir"]+"summary_all_points.json") as in_file:
         results_dict = json.load(in_file)
     
     results_dict["constant_benchmark_results"] = {"constant withdrawal": params["withdraw_const"],
@@ -170,7 +170,7 @@ def RUN__wrapper_training_testing_NN(
                                                   "W_T_pctile_5": params_CP_TRAIN["W_T_stats_dict"]["W_T_pctile_5"],
                                                   "W_T_CVAR_5_pct": params_CP_TRAIN["W_T_stats_dict"]["W_T_CVAR_5_pct"]}
     
-    with open(params["results_dir"]+"results_summary.json", "w") as out_file:
+    with open(params["results_dir"]+"summary_all_points.json", "w") as out_file:
         json.dump(results_dict, out_file, indent = 6)
     out_file.close() 
   
@@ -235,7 +235,7 @@ def RUN__wrapper_training_testing_NN(
 
         
     # Append NN results to the results summary file:
-    in_file = open(params["results_dir"]+"results_summary.json")
+    in_file = open(params["results_dir"]+"summary_all_points.json")
     results_dict = json.load(in_file)
     in_file.close()
     
@@ -248,9 +248,9 @@ def RUN__wrapper_training_testing_NN(
                                                   "obj_fun_value": res_adam["objfun_final"]}
     
     if params["nn_withdraw"]:
-        results_dict["NN_results_kappa_" + str(params["obj_fun_rho"])]["Average q (qsum/M+1)"] = res_adam["q_avg"]
+        results_dict["NN_results_kappa_" + str(params["obj_fun_rho"])]["avg_withdrawal"] = res_adam["q_avg"]
     
-    out_file = open(params["results_dir"]+"results_summary.json", "w")
+    out_file = open(params["results_dir"]+"summary_all_points.json", "w")
     json.dump(results_dict, out_file, indent = 6)
     out_file.close() 
   

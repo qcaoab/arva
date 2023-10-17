@@ -26,6 +26,7 @@ import class_NN_Pytorch
 import torch
 import manage_nn_models
 import copy
+import EF_plotter
 
 if run_on_my_computer is True:  #handle importing of matplotlib
 
@@ -273,10 +274,17 @@ elif params["obj_fun"] == "meancvarLIKE_constant_wstar":  # NOT true mean-cvar!
 # Experiment Output Options
 #-----------------------------------------------------------------------------------------------
 
+
 output_parameters = {}
 
 #Basic output params
 output_parameters["code_title_prefix"] = params["experiment_name"]+"_"+start_time+"/" # prefix to name results, i.e. plots and results summary # used as prefix for naming files when saving outputs
+
+# directories to save results output and trained models
+params["results_dir"] = "results_output/" + output_parameters["code_title_prefix"] 
+params["saved_model_dir"] = "saved_models_output/" + output_parameters["code_title_prefix"] 
+os.makedirs(params["saved_model_dir"], exist_ok=True)
+os.makedirs(params["results_dir"], exist_ok=True)
 
 output_parameters["output_results_Excel"] = True      #Output results summary to Excel
 
@@ -572,17 +580,7 @@ NN_training_options["lr_schedule"] = True  #If true, set to divide lr by 10 at 7
 print("\n NN training settings: ")
 print(NN_training_options)
 
-
-params["results_dir"] = "results_output/" + output_parameters["code_title_prefix"] 
-
-# directory to save trained models
-params["saved_model_dir"] = "saved_models_output/" + output_parameters["code_title_prefix"] 
-
-# create subdirectories and summary file for this experiment's outputs:
-os.makedirs(params["saved_model_dir"], exist_ok=True)
-os.makedirs(params["results_dir"], exist_ok=True)
-
-# Create results summary file to append results to for each kappa point:
+# Save experiment parameters in results summary file before beginning training:----
 result_summary = {}
 exp_details = copy.deepcopy(params)
 
@@ -591,13 +589,15 @@ for key in params.keys():
     if fun_utilities.is_jsonable(exp_details[key]) == False:
         del exp_details[key]
 
+# save to json
 result_summary["exp_details"] = exp_details
-out_file = open(params["results_dir"]+"results_summary.json", "w") 
-
+out_file = open(params["results_dir"]+"summary_all_points.json", "w") 
 json.dump(result_summary, out_file, indent = 6)
 out_file.close() 
+#---------------------------------------------------------------------------
 
 
+# RUN EXPERIMENT
 # -----------------------------------------------------------------------------
 # Loop over tracing parameters [scalarization or wealth targets] and do training, testing and outputs
 for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_params
@@ -612,8 +612,6 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     params["results_dir_kappa"] = "results_output/" + output_parameters["code_title_prefix"] + \
                                     "kappa_" + str(tracing_param) + "/"
     os.makedirs(params["results_dir_kappa"], exist_ok=True)
-    
-    
     
     # INITIALIZE NNs:-----------------------------------------
     
@@ -724,6 +722,12 @@ for i,tracing_param in enumerate(tracing_parameters_to_run): #Loop over tracing_
     print("-----------------------------------------------")
 
 #END: Loop over tracing_params
+
+# Plot all results
+with open(params["results_dir"]+"summary_all_points.json") as in_file:
+    results_dict = json.load(in_file)
+
+EF_plotter.plot_from_results_dict(results_dict, params["results_dir"])
 
 
 
