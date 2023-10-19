@@ -1,0 +1,141 @@
+/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/exp_config_json_files/multi_portfolio_exp1.json
+Starting at: 
+19-10-23_10:15:46
+
+ numpy seed:  2  
+
+
+ pytorch seed:  2  
+
+
+
+############# Defined asset basket #################
+timeseries_basket.keys() = 
+dict_keys(['basket_type', 'basket_id', 'basket_desc', 'basket_label', 'basket_columns', 'basket_timeseries_names'])
+timeseries_basket['basket_type'] = asset
+timeseries_basket['basket_id'] = B10_and_VWD
+timeseries_basket['basket_desc'] = CRSP data: B10 and VWD
+timeseries_basket['basket_columns'] = 
+['B10_real_ret', 'VWD_real_ret']
+############# End: defined asset  basket #################
+-----------------------------------------------
+No need to read market data.
+-----------------------------------------------
+3.3333333333333335% of MC simulations done.
+6.666666666666667% of MC simulations done.
+10.0% of MC simulations done.
+13.333333333333334% of MC simulations done.
+16.666666666666664% of MC simulations done.
+20.0% of MC simulations done.
+23.333333333333332% of MC simulations done.
+26.666666666666668% of MC simulations done.
+30.0% of MC simulations done.
+33.33333333333333% of MC simulations done.
+36.666666666666664% of MC simulations done.
+40.0% of MC simulations done.
+43.333333333333336% of MC simulations done.
+46.666666666666664% of MC simulations done.
+50.0% of MC simulations done.
+53.333333333333336% of MC simulations done.
+56.666666666666664% of MC simulations done.
+60.0% of MC simulations done.
+63.33333333333333% of MC simulations done.
+66.66666666666666% of MC simulations done.
+70.0% of MC simulations done.
+73.33333333333333% of MC simulations done.
+76.66666666666667% of MC simulations done.
+80.0% of MC simulations done.
+83.33333333333334% of MC simulations done.
+86.66666666666667% of MC simulations done.
+90.0% of MC simulations done.
+93.33333333333333% of MC simulations done.
+96.66666666666667% of MC simulations done.
+100.0% of MC simulations done.
+
+ Running: training
+
+ NN training settings: 
+{'methods': ['Adam'], 'output_progress': False, 'tol': 1e-06, 'itbound_scipy_algorithms': 1000, 'check_exit_criteria': False, 'nit_running_min': 500, 'itbound_SGD_algorithms': 5000, 'nit_IterateAveragingStart': 4500, 'batchsize': 1000, 'SGD_learningrate': 50.0, 'Adagrad_epsilon': 1e-08, 'Adagrad_eta': 1.0, 'Adadelta_ewma': 0.9, 'Adadelta_epsilon': 1e-08, 'RMSprop_ewma': 0.8, 'RMSprop_epsilon': 1e-08, 'RMSprop_eta': 0.1, 'Adam_ewma_1': 0.9, 'Adam_ewma_2': 0.998, 'Adam_eta': 0.05, 'Adam_epsilon': 1e-08, 'Adam_weight_decay': 0.0001, 'running_min_from_avg': False, 'running_min_from_sgd': True, 'lr_schedule': True}
+Intialized NN model structure for withdrawal: 
+Sequential(
+  (hidden_layer_0): Linear(in_features=2, out_features=8, bias=True)
+  (hidden_layer_0_activation): Sigmoid()
+  (hidden_layer_1): Linear(in_features=8, out_features=8, bias=True)
+  (hidden_layer_1_activation): Sigmoid()
+  (hidden_layer_2): Linear(in_features=8, out_features=1, bias=True)
+  (hidden_layer_2_activation): Identity()
+)
+Intialized NN model structure for allocation: 
+Sequential(
+  (hidden_layer_0): Linear(in_features=2, out_features=8, bias=True)
+  (hidden_layer_0_activation): Sigmoid()
+  (hidden_layer_1): Linear(in_features=8, out_features=8, bias=True)
+  (hidden_layer_1_activation): Sigmoid()
+  (hidden_layer_2): Linear(in_features=8, out_features=2, bias=True)
+  (hidden_layer_2_activation): Softmax(dim=1)
+)
+-----------------------------------------------
+Selected results: ConstProp_strategy on TRAINING dataset
+constant withdrawal:  40.0
+constant allocation:  [0.5 0.5]
+W_T_mean: 2160.553598397474
+W_T_median: 1449.009936889302
+W_T_pctile_5: -155.17696299638737
+W_T_CVAR_5_pct: -354.9955379746938
+-----------------------------------------------
+2.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1045.038613918209
+Current xi:  [99.8463]
+objective value function right now is: -1045.038613918209
+4.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1056.1045510083686
+Current xi:  [101.929]
+objective value function right now is: -1056.1045510083686
+6.0% of gradient descent iterations done. Method = Adam
+Current xi:  [104.54524]
+objective value function right now is: -1044.9474085614077
+8.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1062.0899956712587
+Current xi:  [107.32941]
+objective value function right now is: -1062.0899956712587
+10.0% of gradient descent iterations done. Method = Adam
+Current xi:  [110.15979]
+objective value function right now is: -1062.0196309887262
+12.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1066.1058366660893
+Current xi:  [112.64665]
+objective value function right now is: -1066.1058366660893
+14.000000000000002% of gradient descent iterations done. Method = Adam
+new min fval:  -1068.390986527534
+Current xi:  [115.327126]
+objective value function right now is: -1068.390986527534
+16.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1073.8688762525944
+Current xi:  [118.96343]
+objective value function right now is: -1073.8688762525944
+18.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1174.7069255733327
+Current xi:  [121.287605]
+objective value function right now is: -1174.7069255733327
+20.0% of gradient descent iterations done. Method = Adam
+new min fval:  -1308.480893489331
+Current xi:  [120.6582]
+objective value function right now is: -1308.480893489331
+Traceback (most recent call last):
+  File "/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/argparse_driver.py", line 690, in <module>
+    fun_RUN__wrapper.RUN__wrapper_ONE_stage_optimization(
+  File "/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/fun_RUN__wrapper.py", line 108, in RUN__wrapper_ONE_stage_optimization
+    RUN__wrapper_training_testing_NN(
+  File "/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/fun_RUN__wrapper.py", line 215, in RUN__wrapper_training_testing_NN
+    params_TRAIN, res_adam = fun_train_NN.train_NN(
+  File "/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/fun_train_NN.py", line 60, in train_NN
+    result_pyt_adam = run_Gradient_Descent_pytorch(NN_list= NN_list,
+  File "/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/fun_train_NN_SGD_algorithms.py", line 170, in run_Gradient_Descent_pytorch
+    f_val, _ = objfun_pyt(NN_list, params_it, xi)
+  File "/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/fun_eval_objfun_NN_strategy.py", line 32, in eval_obj_NN_strategy_pyt
+    params, W_T_vector, qsum_T_vector = fun_invest_NN_strategy.withdraw_invest_NN_strategy(NN_list, params)
+  File "/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/fun_invest_NN_strategy.py", line 151, in withdraw_invest_NN_strategy
+    q_n = w_custom_activation(nn_out, g_prev, params)
+  File "/home/marcchen/Documents/DC_plan_code_sep2023/researchcode/constraint_activations.py", line 190, in w_custom_activation
+    min_outer_qmax = torch.minimum(max_qmin_w, torch.ones(g_prev.size(), device=params["device"])*q_max)
+KeyboardInterrupt

@@ -45,32 +45,17 @@ else:
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
 
-
-#-------Import config files parameters from bash arg call-------------------------------------------
-
-config_file_path = sys.argv[2]
-
-print(config_file_path)
- 
-with open(config_file_path) as json_file:
-    config_params = json.load(json_file)
-
-#config_params = config_params[experiment_name][0]
-
-experiment_name = sys.argv[1]
-config_params = config_params[experiment_name][0]
-
 #-----------------------------------------------------------------------------------------------
 # Portfolio problem: Main structural parameters
 #-----------------------------------------------------------------------------------------------
 params = {} #Initialize empty dictionary 
 
 # Name experiment for organizing output:
-params["experiment_name"] = experiment_name    
+params["experiment_name"] = "chen_decum"    
 
 # Record start time
 now = datetime.datetime.now()
-print (f"Starting {experiment_name} experiment at: ")
+print ("Starting at: ")
 start_time = now.strftime("%d-%m-%y_%H:%M:%S")
 params["start_time"] = start_time
 print(start_time)
@@ -80,11 +65,11 @@ params["working_dir"] = os.path.dirname(os.path.abspath(__file__)) + "/" # Find 
                                                                    # Subsequent file paths should be relative to this. 
 os.chdir(params["working_dir"]) 
 
-params["T"] = config_params["T"] #Investment time horizon, in years
-params["N_rb"] = config_params["N_rb"]  #Nr of equally-spaced rebalancing events in [0,T]
+params["T"] = 30. #Investment time horizon, in years
+params["N_rb"] = 30  #Nr of equally-spaced rebalancing events in [0,T]
           #Withdrawals, cash injections, AND rebalancing at times t_n = (n-1)*(T/N_rb), for n=1,...,N_rb
 params["delta_t"] = params["T"] / params["N_rb"]    # Rebalancing time interval
-params["W0"] = config_params["W0"]     # Initial wealth W0
+params["W0"] = 1000.     # Initial wealth W0
 # NOT IMPLEMENTED YET: Cash injections
 params["q"] =  0. * np.ones(params["N_rb"])
 
@@ -93,10 +78,10 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 params["device"] = device
 
 # Dynamic NN Withdrawal options
-params["nn_withdraw"] = config_params["nn_withdraw"] # flag to include dynamic withdrawals as part of experiment. Turning this to "false" 
+params["nn_withdraw"] = True # flag to include dynamic withdrawals as part of experiment. Turning this to "false" 
                              # will make the script bypass withdrawal network. 
-params["q_min"] = config_params["q_min"] #min withdrawal per Rb
-params["q_max"] = config_params["q_max"] #max withdrawal per Rb
+params["q_min"] = 35.0 #min withdrawal per Rb
+params["q_max"] = 60.0 #max withdrawal per Rb
 # note: consraint function options for withdrawals and asset allocation are defined in NN SETUP section of this file. 
 
 
@@ -104,21 +89,21 @@ params["mu_bc"] = 0.00 #borrowing spread: annual additional rate on negative wea
 # ^TODO: need to implement borrowing interest when wealth is negative
 
 #set seed for both pytorch and numpy
-params["random_seed"] = config_params["random_seed"]
+params["random_seed"] = 2
 np.random.seed(params["random_seed"])
 print("\n numpy seed: ", params["random_seed"], " \n")
 torch.manual_seed(params["random_seed"])
 print("\n pytorch seed: ", params["random_seed"], " \n")
 
 # Transfer learning flags:
-transfer_learn = config_params["transfer_learn"] #if True, will use weights from previous tracing parameter to initialize NN model. 
-transfer_learn_start = config_params["transfer_learn_startidx"] # tracing param (i.e. kappa) index (starts at 1) to start transfer learning from  
+transfer_learn = True #if True, will use weights from previous tracing parameter to initialize NN model. 
+transfer_learn_start = 0 # tracing param (i.e. kappa) index (starts at 1) to start transfer learning from  
 
 # preload saved model TODO: combine these and maybe replace entirely?
-preload = config_params["preload_model"]
+preload = False
 
 # Set directory to load models from. Will automatically select model of correct tracing parameter if directory of models is given. Otherwise, path must point to model file directly.  
-load_model_dir = config_params["load_model_dir"] 
+load_model_dir = "saved_models_output/chen_decum_11-10-23_16:11:17" 
 
 # Options for exporting control: This is for creating a control file that Prof. Forsyth can use for his C++ based simulation.
 params["output_control"] = False
@@ -135,26 +120,73 @@ if params["TransCosts_TrueFalse"] is True:
     params["TransCosts_propcost"] = 0.5/100   #proportional TC in (0,1] of trading in any asset EXCEPT cash account
     params["TransCosts_lambda"] = 1e-6  #lambda>0 parameter for smooth quadratic approx to abs. value function
 
+# Parameters for size of experiment:
+# Shortcut names to set size of experiment
+params["iter_params"] = "tiny" 
 
-#----------------------------------------------------------------------
+    # parameters for full training loop
+if params["iter_params"] == "big":
+    N_d_train = int(2.56* (10**5))   # number of random paths simulated or sampled
+    itbound = 30000                  # number of training iterations
+    batchsize = 1000                 # Mini-batch: number of paths in each Stochastic Gradient Descent iteration 
+    nodes_nn = 8                     # number of nodes in each hidden layer for each NN
+    layers_nn = 2                    # number of hidden layers for each NN
+    biases_nn = True                 # flag to include or exclude biases in each NN
+    adam_xi_eta = 0.04               # adam learning rate for xi (candidate VAR) for mean-cvar objective
+    adam_nn_eta = 0.05               # adam learning rate for NN parameters
+    
+    # parameters for testing a trained model
+if params["iter_params"] == "check": 
+    N_d_train = int(2.56* (10**5)) 
+    itbound = 10
+    batchsize = 1000
+    nodes_nn = 8
+    layers_nn = 2
+    biases_nn = True
+    adam_xi_eta = 0.00  # learning rate set to zero to ensure no training happens when you are testing the model
+    adam_nn_eta = 0.00
+
+    # small training loop for testing code functionality -- should be able to get reasonable results from this
+if params["iter_params"] == "small":
+    N_d_train = int(2.56* (10**4)) 
+    itbound = 2000
+    batchsize = 1000
+    nodes_nn = 8
+    layers_nn = 2
+    biases_nn = True
+    adam_xi_eta = 0.04
+    adam_nn_eta = 0.05
+
+    # tiny training loop for debugging code -- results will be nonsense
+if params["iter_params"] == "tiny":
+    N_d_train = 10
+    itbound = 5
+    batchsize = 5
+    nodes_nn = 8
+    layers_nn = 2
+    biases_nn = True
+    adam_xi_eta = 0.05
+    adam_nn_eta = 0.05
+#----------------------------------------------
+
 # Main settings for data: This is used for creating both training and testing data. 
-params["N_d_train"] = config_params["N_paths"] #Nr of data return sample paths to bootstrap
-params["data_source_Train"] = config_params["data_source"] #"bootstrap" or "simulated" [data source for TRAINING data]
+params["N_d_train"] = N_d_train #Nr of data return sample paths to bootstrap
+params["data_source_Train"] = "bootstrap" #"bootstrap" or "simulated" [data source for TRAINING data]
 
 # TODO: create better output info about whether NN was trained/tested
 
 #--------------------------------------
 # ASSET BASKET: Specify basket of candidate assets, and REAL or NOMINAL data
-params["asset_basket_id"] =  config_params["asset_basket_id"]   # Pre-defined basket of underlying candidate assets 
+params["asset_basket_id"] =  "B10_and_VWD"   # Pre-defined basket of underlying candidate assets 
                                              # See fun_Data_assets_basket.py for other asset basket options, and to add new 
                                              # asset baskets. 
 params["add_cash_TrueFalse"] = False # This functionality is not implemented, but you can include cash by including T30 in the
                                      # asset basket. 
 
 # Options for factor investing - Only relevant if using factor assets. 
-params["factor_constraint"] = config_params["factor_constraint"]
-params["dynamic_total_factorprop"] = config_params["dynamic_total_factorprop"]
-params["factor_constraints_dict"] = config_params["factor_constraints_dict"]
+params["factor_constraint"] = False
+params["dynamic_total_factorprop"] = False
+params["factor_constraints_dict"] = None  
 
 params["real_or_nominal"] = "real" # "real" or "nominal" for asset data for wealth process: if "real", the asset data will be deflated by CPI
 
@@ -168,12 +200,12 @@ params["real_or_nominal"] = "real" # "real" or "nominal" for asset data for weal
 #--------------------------------------
 # TRADING SIGNALS:
 #---------------------------------------
-
+params["use_trading_signals_TrueFalse"] = False
 
 # -----------------------------------------------------------------------------------------------
 #  OBJECTIVE FUNCTION:  CHOICE AND PARAMETERS
 # -----------------------------------------------------------------------------------------------
-params["obj_fun"] = config_params["obj_fun"]  # see fun_Objective_functions.py to see other objective function options, or
+params["obj_fun"] = "mean_cvar_single_level"  # see fun_Objective_functions.py to see other objective function options, or
                                               # to add additional objective functions. 
 params["obj_fun_epsilon"] =  10**-6 # epsilon in Forsyth stablization term. Not really needed for NN approach, but we usually
                                     # want it so we are solving the same objective function. 
@@ -181,7 +213,7 @@ params["obj_fun_epsilon"] =  10**-6 # epsilon in Forsyth stablization term. Not 
 # XI training settings (candidate VAR) for mean CVAR objective function:
 
 params["xi_0"] = 100. #initial value -- will be overwritten if pre-loading a model.
-params["xi_lr"] = 0.04 # learning rate for xi (separate from NN learning rate)
+params["xi_lr"] = adam_xi_eta # learning rate for xi (separate from NN learning rate)
 
 # Quadratic smoothing options for mean-cvar function. 
 params["smooth_cvar_func"] = True
@@ -202,7 +234,7 @@ params["lambda_quad"] = 10**(-6)
 
 # TRACING PARAMETERS (i.e., kappa for mean cvar objective functions)
 # set k = 999. for Inf case!
-tracing_parameters_to_run =  config_params["kappa_list"]
+tracing_parameters_to_run =  [1.0, 2.0]
 
 #[0.05, 0.2, 0.5, 1.0, 1.5, 3.0, 5.0, 50.0]
  #[float(item) for item in sys.argv[1].split(",")]  #[0.1, 0.25, 0.4, 0.6, 0.7, 0.8, 0.9, 1.0] + np.around(np.arange(1.1, 3.1, 0.1),1).tolist() + [10.0]
@@ -371,7 +403,7 @@ params = fun_Data__bootstrap_wrapper.wrap_append_market_data(
 #                                           3) NaNs removed (at start due to trade signal calculation)
 #               for a given month, asset obs are at END of month, trade signals at BEGINNING of month
 
-#Output bootstrap source data to Excel, if needed
+#Output bootstrap source data to Excel, if needed 
 output_bootstrap_source_data = False
 if output_bootstrap_source_data:
     df_temp = params["bootstrap_source_data"]
@@ -389,13 +421,13 @@ if params["data_source_Train"] == "bootstrap":  # TRAINING data bootstrap using 
     # ----------------------------------------
     # TRAINING data bootstrapping
     # - Append bootstrapped data to "params" dictionary
-    blocksize = config_params["blocksize"]
+    blocksize = 6
     print("Bootstrap block size: " + str(blocksize))
     params = fun_Data__bootstrap_wrapper.wrap_run_bootstrap(
         train_test_Flag = "train",                  # "train" or "test"
         params = params,                            # params dictionary as in main code
-        data_bootstrap_yyyymm_start = config_params["data_bootstrap_yyyymm_start"],       # start month to use subset of data for bootstrapping, CHECK DATA!
-        data_bootstrap_yyyymm_end = config_params["data_bootstrap_yyyymm_end"],         # end month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_start = 196307,       # start month to use subset of data for bootstrapping, CHECK DATA!
+        data_bootstrap_yyyymm_end = 202212,         # end month to use subset of data for bootstrapping, CHECK DATA!
         data_bootstrap_exp_block_size = blocksize,  # Expected block size in terms of frequency of market returns data
                                                     # e.g. = X means expected block size is X months of returns
                                                     # if market returns data is monthly
@@ -444,12 +476,12 @@ if params["nn_withdraw"]:
 
     nn_options_q = {}              # _q indicates for withdrawals
     nn_options_q["nn_purpose"] = "withdrawal"
-    nn_options_q["N_layers_hid"] = config_params["withdraw_nn_layers"]  # Nr of hidden layers of NN
+    nn_options_q["N_layers_hid"] = 2   # Nr of hidden layers of NN
                                 # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
                                 # layer_id list: [0, 1,...,N_L, N_L+1]
 
     nn_options_q["N_nodes_input"] = params["N_phi"]    # number of input nodes. By default, feature vector phi includes just wealth and time
-    nn_options_q["N_nodes_hid"] = config_params["withdraw_nn_nodes"]                   # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer
+    nn_options_q["N_nodes_hid"] = 8                   # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer
     nn_options_q["N_nodes_out"] = 1             # number of nodes in output layer (withdrawal NN only takes 1)
     nn_options_q["hidden_activation"] = "logistic_sigmoid"       # Type of activation function for hidden layers
     nn_options_q["output_activation"] = "none"                  # Type of activation function for output layer. 
@@ -469,12 +501,12 @@ if params["nn_withdraw"]:
 #---------------------------
 nn_options_p = {}              # _p indicates for allocation
 nn_options_p["nn_purpose"] = "allocation"
-nn_options_p["N_layers_hid"] = config_params["allocate_nn_layers"]   # Nr of hidden layers of NN
+nn_options_p["N_layers_hid"] = 2   # Nr of hidden layers of NN
                                # NN will have total layers 1 (input) + N_L (hidden) + 1 (output) = N_L + 2 layers in total
                                # layer_id list: [0, 1,...,N_L, N_L+1]
 
 nn_options_p["N_nodes_input"] = params["N_phi"]    # number of input nodes. By default, feature vector phi includes just wealth and time
-nn_options_p["N_nodes_hid"] = config_params["allocate_nn_nodes"]                   # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer
+nn_options_p["N_nodes_hid"] = 8                   # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer
 nn_options_p["N_nodes_out"] = params["N_a"]       # number of nodes to add to N_a (number of assets) to set total nodes in each hidden layer  
 nn_options_p["hidden_activation"] = "logistic_sigmoid"       # Type of activation function for hidden layers
 nn_options_p["output_activation"] = "softmax"                  # Type of activation function for output layer. 
@@ -482,9 +514,9 @@ nn_options_p["output_activation"] = "softmax"                  # Type of activat
 
 # Asset custom constraint functions:
 # So far, these are only implemented for asset baskets including factor assets
-params["factor_constraint"] = config_params["factor_constraint"] # True or False TODO: switch to change between "indiv", "group", and "None"
-params["dynamic_total_factorprop"] = config_params["dynamic_total_factorprop"] # True or False to switch on group constraint for all factor assets together
-params["factor_constraints_dict"] = config_params["factor_constraints_dict"]
+params["factor_constraint"] = False # True or False TODO: switch to change between "indiv", "group", and "None"
+params["dynamic_total_factorprop"] = False # True or False to switch on group constraint for all factor assets together
+params["factor_constraints_dict"] = None
                                                         
 nn_options_p["biases"] = True             # add biases
 #store options for record keeping
@@ -501,13 +533,8 @@ params["nn_options_p"] = nn_options_p
 #               Order corresponds to asset index in sample return paths in params["Y"][:, :, i]
 
 #Equal Allocations across assets: automatic for number of assets. 
+params["benchmark_prop_const"] = np.ones(params["N_a"]) * (1/ params["N_a"])  # automatically get equal proportions
 
-if config_params["benchmark_prop_const"] == "equal_weighted":
-    params["benchmark_prop_const"] = np.ones(params["N_a"]) * (1/ params["N_a"])  # automatically get equal proportions
-
-else: 
-    params["benchmark_prop_const"] = np.array(config_params["benchmark_prop_const"])
-    
 # Can manually specific more complicated splits, for example:
 # if params["N_a"] == 2:
 #     #prop_const = np.ones(params["N_a"]) / params["N_a"] #Equal split
@@ -537,34 +564,19 @@ NN_training_options = fun_train_NN_algorithm_defaults.train_NN_algorithm_default
 
 
 #Override some of the NN_training_options set above if needed
-itbound = config_params["itbound_SGD"]
 NN_training_options["methods"] = ["Adam"]
 NN_training_options["Adam_ewma_1"] = 0.9
 NN_training_options["Adam_ewma_2"] = 0.998 #0.999
-NN_training_options["Adam_eta"] = 0.05 #override 0.1
+NN_training_options["Adam_eta"] = adam_nn_eta #override 0.1
 NN_training_options["Adam_weight_decay"] = 1e-4
-NN_training_options['nit_running_min'] = int(config_params["pct_running_min"] * itbound)  # nr of iterations at the end that will be used to get the running minimum for output
+NN_training_options['nit_running_min'] = int(itbound / 100)  # nr of iterations at the end that will be used to get the running minimum for output
 NN_training_options["itbound_SGD_algorithms"] = itbound
-NN_training_options["batchsize"] = config_params["minibatch_SGD"]
+NN_training_options["batchsize"] = batchsize
 NN_training_options["nit_IterateAveragingStart"] = int(itbound * 9 / 10)  # Start IA 90% of the way in
 NN_training_options["running_min_from_avg"] = False #if true, take running min from avg
 NN_training_options["running_min_from_sgd"] = True #if true, take running min from sgd, both can be true
 NN_training_options["lr_schedule"] = True  #If true, set to divide lr by 10 at 70% and 97%
 
-# Flag for testing a model, to skip training
-train_test_flag = config_params["train_or_test"]
-
-if train_test_flag == "test":
-    NN_training_options["Adam_eta"] = 0.0
-    params["xi_lr"] = 0.00
-    itbound = 10
-    NN_training_options['nit_running_min'] = 1
-    NN_training_options["nit_IterateAveragingStart"] = 9
-    
-elif train_test_flag == "train":
-    pass
-
-print(f"\n Running: {train_test_flag}ing")
 print("\n NN training settings: ")
 print(NN_training_options)
 

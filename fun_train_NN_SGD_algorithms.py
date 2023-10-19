@@ -43,7 +43,6 @@ def run_Gradient_Descent_pytorch(NN_list, params, NN_training_options):
                                     #this is modified into tensor format
     #       params["Y"].shape = (N_d, N_rb, N_a) = (Nr of training data pts, Nr of rebal, Nr of assets)
 
-    # theta0 = starting point for SGD
     # tol = tolerance for solving problem (e.grad. 1e-06)
     # itbound = maximum number of iterations for the  algorithm
     # batchsize =  size of minibatch to select from the training data set (in params) for each iteration
